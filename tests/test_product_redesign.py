@@ -79,3 +79,101 @@ def test_pdf_endpoint_returns_programme_scoped_report():
     assert report["student_name"] == "Transcript Student"
     assert isinstance(report["requirements"], list)
     assert isinstance(report["eligible_courses"], list)
+
+
+def _json_analysis_payload(years_registered=2):
+    return {
+        "student_id": "TST-JSON-001",
+        "name": "JSON Student",
+        "programme": "Bachelor of Social Science",
+        "declared_majors": ["philosophy"],
+        "faculty": "uct_humanities",
+        "programme_key": "bsocsc_regular",
+        "years_registered": years_registered,
+        "results": [
+            {
+                "code": "PHI1024F",
+                "name": "Introduction to Philosophy",
+                "nqf_level": 5,
+                "nqf_credits": 18,
+                "mark": 65,
+                "grade": "2-",
+                "academic_year": 2024,
+            }
+        ],
+    }
+
+
+def test_json_endpoint_rejects_invalid_years_registered():
+    for years_registered in (0, 21, True, "two", 2.5):
+        response = client.post(
+            "/api/v1/analyse/json",
+            json=_json_analysis_payload(years_registered=years_registered),
+        )
+        assert response.status_code == 422
+        assert "years_registered" in response.json()["detail"]
+
+
+def test_json_endpoint_rejects_boolean_course_mark():
+    payload = _json_analysis_payload()
+    payload["results"][0]["mark"] = True
+    response = client.post("/api/v1/analyse/json", json=payload)
+    assert response.status_code == 422
+    assert "mark" in response.json()["detail"]
+
+
+def test_json_endpoint_rejects_fractional_course_mark():
+    payload = _json_analysis_payload()
+    payload["results"][0]["mark"] = 65.8
+    response = client.post("/api/v1/analyse/json", json=payload)
+    assert response.status_code == 422
+    assert "mark" in response.json()["detail"]
+
+
+def test_json_endpoint_rejects_invalid_academic_year():
+    for academic_year in (1999, 2201, True, 2024.5):
+        payload = _json_analysis_payload()
+        payload["results"][0]["academic_year"] = academic_year
+        response = client.post("/api/v1/analyse/json", json=payload)
+        assert response.status_code == 422
+        assert "academic_year" in response.json()["detail"]
+
+
+def test_simulation_rejects_boolean_mark():
+    response = client.post(
+        "/api/v1/simulate/pass",
+        json={
+            "student": _json_analysis_payload(),
+            "faculty": "uct_humanities",
+            "programme_key": "bsocsc_regular",
+            "course_code": "POL1004F",
+            "mark": True,
+        },
+    )
+    assert response.status_code == 422
+    assert "mark" in response.json()["detail"]
+
+
+def test_text_endpoint_applies_explicit_years_registered():
+    transcript_text = """
+    Name: Student, Text
+    Campus ID: TSTTXT001
+    Programme: Bachelor of Social Science
+    Academic Year: 2024
+    PHI 1024F Introduction to Philosophy 05 18 65 2-
+    """
+    response = client.post(
+        "/api/v1/analyse/text",
+        json={
+            "text": transcript_text,
+            "faculty": "uct_humanities",
+            "programme_key": "bsocsc_regular",
+            "declared_majors": ["philosophy"],
+            "years_registered": 2,
+        },
+    )
+    assert response.status_code == 200
+    report = response.json()
+    duration = next(row for row in report["requirements"] if row["label"] == "Minimum 3 years of study")
+    assert duration["current"] == 2
+    assert "2 year(s) registered" in duration["detail"]

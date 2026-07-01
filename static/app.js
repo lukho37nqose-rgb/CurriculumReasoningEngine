@@ -64,7 +64,12 @@ function announce(message) {
 }
 
 function statusKey(value) {
-  return String(value || "unverified").trim().toLowerCase().replace(/[\s-]+/g, "_");
+  return String(value || "unverified")
+    .trim()
+    .toLowerCase()
+    .replace(/[\s-]+/g, "_")
+    .replace(/[^a-z0-9_]/g, "")
+    || "unverified";
 }
 
 function uniqueLines(lines) {

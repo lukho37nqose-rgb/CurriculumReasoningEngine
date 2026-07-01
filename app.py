@@ -185,9 +185,7 @@ def _student_from_dict(body: dict) -> StudentRecord:
             raise ValueError(f"Result {index + 1} is missing a course code.")
         mark = raw.get("mark")
         if mark is not None:
-            mark = int(mark)
-            if not 0 <= mark <= 100:
-                raise ValueError(f"Result {index + 1} has a mark outside 0-100.")
+            mark = _parse_mark(mark, field_name=f"Result {index + 1} mark")
         nqf_level = int(raw.get("nqf_level", 0))
         nqf_credits = int(raw.get("nqf_credits", 0))
         if not 0 <= nqf_level <= 10:
@@ -202,7 +200,7 @@ def _student_from_dict(body: dict) -> StudentRecord:
                 nqf_credits=nqf_credits,
                 mark=mark,
                 grade=raw.get("grade"),
-                academic_year=(int(raw["academic_year"]) if raw.get("academic_year") not in (None, "") else None),
+                academic_year=_parse_academic_year(raw.get("academic_year")),
             )
         )
 
@@ -219,8 +217,62 @@ def _student_from_dict(body: dict) -> StudentRecord:
         faculty_key=str(body.get("faculty_key", "")).strip(),
         programme_key=str(body.get("programme_key", "")).strip(),
         pathway_key=str(body.get("pathway_key", "")).strip(),
-        years_registered=(int(body["years_registered"]) if body.get("years_registered") not in (None, "") else None),
+        years_registered=_parse_years_registered(body.get("years_registered")),
     )
+
+
+def _parse_years_registered(value: Any) -> int | None:
+    if value in (None, ""):
+        return None
+    years = _parse_whole_number(value, field_name="years_registered")
+    if not 1 <= years <= 20:
+        raise ValueError("years_registered must be between 1 and 20.")
+    return years
+
+
+def _parse_mark(value: Any, *, field_name: str = "mark") -> int:
+    mark = _parse_whole_number(value, field_name=field_name)
+    if not 0 <= mark <= 100:
+        raise ValueError(f"{field_name} outside 0-100.")
+    return mark
+
+
+def _parse_academic_year(value: Any) -> int | None:
+    if value in (None, ""):
+        return None
+    year = _parse_whole_number(value, field_name="academic_year")
+    if not 2000 <= year <= 2200:
+        raise ValueError("academic_year must be between 2000 and 2200.")
+    return year
+
+
+def _parse_whole_number(value: Any, *, field_name: str) -> int:
+    if isinstance(value, bool):
+        raise ValueError(f"{field_name} must be a whole number.")
+    if isinstance(value, int):
+        return value
+    if isinstance(value, float):
+        if value.is_integer():
+            return int(value)
+        raise ValueError(f"{field_name} must be a whole number.")
+    if isinstance(value, str):
+        stripped = value.strip()
+        if stripped.isdecimal():
+            return int(stripped)
+        raise ValueError(f"{field_name} must be a whole number.")
+    raise ValueError(f"{field_name} must be a whole number.")
+
+
+def _apply_text_request_overrides(student: StudentRecord, body: dict) -> StudentRecord:
+    years_registered = _parse_years_registered(body.get("years_registered"))
+    if years_registered is not None:
+        student.years_registered = years_registered
+    declared_majors = body.get("declared_majors")
+    if declared_majors is not None:
+        if not isinstance(declared_majors, list):
+            raise ValueError("declared_majors must be a list.")
+        student.declared_majors = [str(major).strip() for major in declared_majors if str(major).strip()]
+    return student
 
 
 def _to_dict(obj: Any) -> Any:
@@ -543,10 +595,12 @@ async def analyse_pdf(
     selected_majors = [value.strip() for value in majors.split(",") if value.strip()]
     if selected_majors:
         student.declared_majors = selected_majors
-    if years_registered is not None:
-        if not 1 <= years_registered <= 20:
-            raise HTTPException(status_code=422, detail="years_registered must be between 1 and 20.")
-        student.years_registered = years_registered
+    try:
+        parsed_years_registered = _parse_years_registered(years_registered)
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    if parsed_years_registered is not None:
+        student.years_registered = parsed_years_registered
     return JSONResponse(_to_dict(compute_report(student, catalogue)))
 
 
@@ -559,6 +613,10 @@ async def analyse_text(body: dict):
     student = parse_transcript_text(text)
     if not student.results and not student.student_id:
         raise HTTPException(status_code=422, detail="The text did not contain recognisable UCT transcript data.")
+    try:
+        student = _apply_text_request_overrides(student, body)
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=f"Invalid student record: {exc}") from exc
     student, catalogue, _, _ = _context_from_body(body, student)
     return JSONResponse(_to_dict(compute_report(student, catalogue)))
 
@@ -598,11 +656,9 @@ async def simulate_pass(body: dict):
     try:
         student = _student_from_dict(body.get("student", {}))
         course_code = str(body.get("course_code", "")).strip().upper()
-        mark = int(body.get("mark", 75))
+        mark = _parse_mark(body.get("mark", 75))
         if not course_code:
             raise ValueError("course_code is required.")
-        if not 0 <= mark <= 100:
-            raise ValueError("mark must be between 0 and 100.")
     except (KeyError, TypeError, ValueError) as exc:
         raise HTTPException(status_code=422, detail=f"Invalid student record: {exc}") from exc
     student, catalogue, graph, _ = _context_from_body(body, student)
@@ -637,9 +693,10 @@ async def simulate_semester(body: dict):
         for item in body.get("courses", []):
             if not isinstance(item, (list, tuple)) or len(item) != 2:
                 raise ValueError("Each simulated course must be [course_code, mark].")
-            code, mark = str(item[0]).strip().upper(), int(item[1])
-            if not code or not 0 <= mark <= 100:
-                raise ValueError("Simulated course codes are required and marks must be 0-100.")
+            code = str(item[0]).strip().upper()
+            mark = _parse_mark(item[1], field_name="Simulated mark")
+            if not code:
+                raise ValueError("Simulated course codes are required.")
             courses_to_take.append((code, mark))
     except (KeyError, TypeError, ValueError) as exc:
         raise HTTPException(status_code=422, detail=f"Invalid student record: {exc}") from exc

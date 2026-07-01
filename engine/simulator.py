@@ -27,6 +27,8 @@ class SimulationEngine:
 
     @staticmethod
     def _validate_mark(mark: int) -> int:
+        if isinstance(mark, bool):
+            raise ValueError("Simulated marks must be whole numbers between 0 and 100.")
         mark = int(mark)
         if not 0 <= mark <= 100:
             raise ValueError("Simulated marks must be between 0 and 100.")
