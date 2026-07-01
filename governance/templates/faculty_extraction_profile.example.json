@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "faculty_key": "uct_humanities",
+  "profile_version": 1,
+  "document_patterns": ["*humanities*handbook*.pdf"],
+  "terminology": {
+    "programme": ["qualification", "programme of study"],
+    "pathway": ["stream", "concentration", "route"],
+    "manual_condition": ["by permission", "subject to approval"]
+  },
+  "course_code_patterns": ["^[A-Z]{3}[0-9]{4}[A-Z]$"],
+  "section_hints": ["RULES AND CURRICULA", "COURSE OUTLINES"],
+  "special_adapters": [],
+  "review_required": true
+}

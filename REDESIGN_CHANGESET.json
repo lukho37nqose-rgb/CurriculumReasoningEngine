@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "base": "CurriculumAdvisor-UCT-2026-governance-candidate",
+  "redesign": "CurriculumAdvisor-redesign-v1",
+  "policy": "Local redesign only. No GitHub writes. Catalogue data and academic rule files are preserved.",
+  "comparison": {
+    "original_file_count": 99,
+    "redesign_file_count_before_audit_files": 119,
+    "unchanged_original_files": 91,
+    "changed_existing_files": [
+      "README.md",
+      "app.py",
+      "catalogue_governance/integrity.py",
+      "railway.toml",
+      "static/index.html",
+      "tests/test_complete_humanities_routes.py",
+      "tests/test_faculty_routing.py",
+      "tools/catalogue_guard.py"
+    ],
+    "added_files": [
+      ".github/workflows/ci.yml",
+      "REDESIGN_BUILD_REPORT.md",
+      "curriculum_advisor/__init__.py",
+      "curriculum_advisor/governance_status.py",
+      "curriculum_advisor/product.py",
+      "docs/ARCHITECTURE.md",
+      "docs/DEPLOYMENT_AND_MIGRATION.md",
+      "docs/PRODUCT_DECISIONS.md",
+      "docs/redesign-admin.png",
+      "docs/redesign-landing.png",
+      "docs/redesign-report.png",
+      "docs/redesign-route.png",
+      "pyproject.toml",
+      "requirements-dev.txt",
+      "static/admin.css",
+      "static/admin.html",
+      "static/admin.js",
+      "static/app.css",
+      "static/app.js",
+      "tests/test_product_redesign.py"
+    ],
+    "removed_files": []
+  },
+  "catalogue_integrity": {
+    "data_files_changed_or_removed": [],
+    "catalogue_data_preserved": true,
+    "baseline_manifest_file_count": 22,
+    "baseline_manifest_verified": true
+  },
+  "validation": {
+    "pytest": "200 passed, 19 subtests passed",
+    "ruff": "passed for application, product and governance surface",
+    "bandit": "passed with documented B104/B105 false-positive exclusions",
+    "javascript_syntax": "passed",
+    "python_compilation": "passed",
+    "visual_smoke_checks": "landing, route, report and governance desk rendered in a mocked browser",
+    "pip_audit": "configured in CI; offline build environment could not query PyPI"
+  }
+}

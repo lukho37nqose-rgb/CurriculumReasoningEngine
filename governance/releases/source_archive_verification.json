@@ -1,0 +1,24 @@
+{
+  "recorded_at": "2026-07-01T12:05:48Z",
+  "source_archive": {
+    "uploaded_name": "CurriculumAdvisor-UCT-2026.zip",
+    "expected_release_name": "CurriculumAdvisor-UCT-2026-public-release.zip",
+    "expected_sha256": "800c6a4488b0630f83f9c1a24b3a87f6c608c31a4185eeb14014cbbfdb8b527c",
+    "actual_sha256": "cb0670cfbc36be293d992e736dbee5bc875d3afa8620322a52eb908d4055f659",
+    "exact_archive_match": false,
+    "status": "checksum_mismatch_unverified_source_archive"
+  },
+  "governance_patch": {
+    "uploaded_name": "CurriculumAdvisor-governance-foundation-v1.zip",
+    "expected_sha256": "4a82423d43c9146fabff8f1fefd5a34bd43cb5e6534e76c9274f8da69bfdbff0",
+    "actual_sha256": "4a82423d43c9146fabff8f1fefd5a34bd43cb5e6534e76c9274f8da69bfdbff0",
+    "exact_archive_match": true,
+    "status": "verified"
+  },
+  "merge_policy": {
+    "mode": "additive_only",
+    "path_collisions": 0,
+    "existing_source_files_overwritten": 0,
+    "curriculum_data_files_modified": 0
+  }
+}

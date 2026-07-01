@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Read-only CurriculumAdvisor catalogue governance and release integrity desk.">
+  <meta name="theme-color" content="#102b27">
+  <title>CurriculumAdvisor · Data governance desk</title>
+  <link rel="stylesheet" href="/static/app.css">
+  <link rel="stylesheet" href="/static/admin.css">
+  <script src="/static/admin.js" defer></script>
+</head>
+<body class="admin-body">
+  <a class="skip-link" href="#adminMain">Skip to main content</a>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="/">
+        <span class="brand-symbol" aria-hidden="true">CA</span>
+        <span><strong>CurriculumAdvisor</strong><small>Data governance desk</small></span>
+      </a>
+      <nav class="header-actions"><a class="admin-link no-border" href="/">Student experience</a></nav>
+    </div>
+  </header>
+
+  <main id="adminMain" class="admin-main shell">
+    <section class="admin-hero">
+      <div>
+        <p class="kicker">Read-only institutional workspace</p>
+        <h1>Curriculum data should be editable without becoming casually mutable.</h1>
+        <p>This desk makes catalogue integrity, ownership and release boundaries visible. Publication controls remain deliberately disabled until authentication and institutional authority are designed.</p>
+      </div>
+      <div class="release-seal" id="releaseSeal"><span class="spinner large"></span><strong>Checking baseline</strong></div>
+    </section>
+
+    <section class="admin-grid">
+      <article class="admin-card span-2">
+        <div class="admin-card-heading"><div><span>Release integrity</span><h2>Current catalogue baseline</h2></div><span class="badge provisional" id="integrityBadge">Checking</span></div>
+        <div id="releaseMetrics" class="release-metrics"><div class="admin-loading"><span class="spinner"></span> Verifying all catalogue files…</div></div>
+        <div id="integrityDetail"></div>
+      </article>
+
+      <article class="admin-card">
+        <div class="admin-card-heading"><div><span>Publication</span><h2>Controls</h2></div></div>
+        <div class="disabled-control"><button type="button" disabled>Publish catalogue release</button><p>Disabled by design. A public pilot must not expose unauthenticated curriculum-writing controls.</p></div>
+        <div class="disabled-control"><button type="button" disabled>Approve departmental change</button><p>Approval requires named authority, source evidence and a separate reviewer.</p></div>
+      </article>
+
+      <article class="admin-card span-3">
+        <div class="admin-card-heading"><div><span>Workflow</span><h2>A curriculum change is a governed release, not an overwrite</h2></div></div>
+        <ol class="release-flow" id="releaseFlow">
+          <li><span>1</span><strong>Draft</strong><p>Record the proposed change and source.</p></li>
+          <li><span>2</span><strong>Submit</strong><p>Departmental editor identifies affected records.</p></li>
+          <li><span>3</span><strong>Validate</strong><p>References, totals and regression tests are checked.</p></li>
+          <li><span>4</span><strong>Approve</strong><p>A different authorised role accepts the release.</p></li>
+          <li><span>5</span><strong>Publish</strong><p>A new version is issued; history is not rewritten.</p></li>
+          <li><span>6</span><strong>Supersede</strong><p>Older cohorts remain attached to their governing rules.</p></li>
+        </ol>
+      </article>
+
+      <article class="admin-card span-2">
+        <div class="admin-card-heading"><div><span>Ownership</span><h2>Who may change what?</h2></div></div>
+        <div class="ownership-table" role="table" aria-label="Curriculum data ownership">
+          <div class="ownership-row heading" role="row"><span>Information</span><span>Editor</span><span>Approver</span></div>
+          <div class="ownership-row" role="row"><strong>Course facts and prerequisites</strong><span>Departmental curriculum editor</span><span>Department reviewer</span></div>
+          <div class="ownership-row" role="row"><strong>Major and pathway rules</strong><span>Department or programme convenor</span><span>Faculty curriculum authority</span></div>
+          <div class="ownership-row" role="row"><strong>Qualification and progression rules</strong><span>Faculty curriculum officer</span><span>Authorised faculty authority</span></div>
+          <div class="ownership-row" role="row"><strong>Timetable and term offerings</strong><span>Institutional import or timetable office</span><span>Operational data owner</span></div>
+          <div class="ownership-row" role="row"><strong>Canonical rule vocabulary</strong><span>Platform data team</span><span>Governance and technical review</span></div>
+        </div>
+      </article>
+
+      <article class="admin-card">
+        <div class="admin-card-heading"><div><span>Separation</span><h2>Operational data</h2></div></div>
+        <div class="boundary-stack">
+          <div><strong>Curriculum definition</strong><p>What a course is and how it contributes to a qualification.</p></div>
+          <div><strong>Term offering</strong><p>Whether it is scheduled this semester and when it meets.</p></div>
+          <div><strong>Institutional decision</strong><p>Whether a particular student receives permission, concession or substitution.</p></div>
+        </div>
+      </article>
+
+      <article class="admin-card span-3">
+        <div class="admin-card-heading"><div><span>Architecture</span><h2>One canonical model, faculty-specific interpretation</h2></div></div>
+        <div class="architecture-line">
+          <div><span>01</span><strong>Handbooks & exports</strong><p>Official documents and institutional feeds.</p></div><b>→</b>
+          <div><span>02</span><strong>Common ingestion</strong><p>Shared parsing, normalisation and source capture.</p></div><b>→</b>
+          <div><span>03</span><strong>Faculty profiles</strong><p>Terminology, patterns and specialist adapters.</p></div><b>→</b>
+          <div><span>04</span><strong>Draft release</strong><p>Diff, impact preview and human review.</p></div><b>→</b>
+          <div><span>05</span><strong>Versioned catalogue</strong><p>Immutable publication for the reasoning engine.</p></div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="shell footer-grid"><div><strong>CurriculumAdvisor</strong><p>The administration surface is deliberately more conservative than the student interface.</p></div><div><span>Current mode</span><p>Integrity inspection and governance architecture only. No live editing or publication.</p></div><div><a href="/">Return to student experience</a></div></div></footer>
+</body>
+</html>

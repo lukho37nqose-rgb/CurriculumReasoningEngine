@@ -1,0 +1,31 @@
+{
+  "original_file_count": 76,
+  "original_files_byte_identical": true,
+  "modified_or_missing_original_files": [],
+  "added_file_count": 23,
+  "added_files": [
+    "GOVERNANCE_FOUNDATION_BUILD_REPORT.md",
+    "MERGE_VALIDATION_REPORT.md",
+    "PATCH_SHA256SUMS.txt",
+    "README_GOVERNANCE_FOUNDATION.md",
+    "catalogue_governance/__init__.py",
+    "catalogue_governance/integrity.py",
+    "catalogue_governance/operational.py",
+    "docs/CURRICULUM_DATA_GOVERNANCE.md",
+    "docs/FIRST_SAFE_MIGRATION.md",
+    "governance/releases/additive_merge_audit.json",
+    "governance/releases/source_archive_verification.json",
+    "governance/releases/uct-2026-uploaded-baseline.manifest.json",
+    "governance/schemas/catalogue_release.schema.json",
+    "governance/schemas/change_request.schema.json",
+    "governance/schemas/course_offerings.schema.json",
+    "governance/schemas/faculty_extraction_profile.schema.json",
+    "governance/templates/change_request.example.json",
+    "governance/templates/course_offerings.example.json",
+    "governance/templates/faculty_extraction_profile.example.json",
+    "pyproject-governance.toml",
+    "tests/test_catalogue_governance_integrity.py",
+    "tests/test_operational_offerings.py",
+    "tools/catalogue_guard.py"
+  ]
+}

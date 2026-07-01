@@ -1,0 +1,1023 @@
+[
+  {
+    "course_code": "BUS2016H",
+    "published_credit_level_pairs": [
+      {
+        "credits": 18,
+        "nqf_level": 6
+      },
+      {
+        "credits": 18,
+        "nqf_level": 7
+      }
+    ],
+    "canonical_course_fact": {
+      "credits": 18,
+      "nqf_level": 6,
+      "source": {
+        "document": "2026 Faculty of Commerce Undergraduate Handbook",
+        "page": 188,
+        "section": "Course outline"
+      }
+    },
+    "observations": [
+      {
+        "programme": "CU020BUS01",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 21,
+        "name": "Financial Mathematics"
+      },
+      {
+        "programme": "CB003BUS01",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 45,
+        "name": "Actuarial Science I: Financial Mathematics"
+      },
+      {
+        "programme": "CB003BUS09",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 46,
+        "name": "Financial Mathematics"
+      },
+      {
+        "programme": "CB025BUS01",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 60,
+        "name": "Financial Mathematics"
+      },
+      {
+        "programme": "CB025BUS09",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 61,
+        "name": "Financial Mathematics"
+      },
+      {
+        "programme": "CB018BUS01",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 75,
+        "name": "Financial Mathematics"
+      },
+      {
+        "programme": "CB018BUS09",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 76,
+        "name": "Financial Mathematics"
+      },
+      {
+        "programme": "CB019BUS01",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 89,
+        "name": "Financial Mathematics"
+      },
+      {
+        "programme": "CB019BUS09",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 90,
+        "name": "Financial Mathematics"
+      },
+      {
+        "programme": "CB026BUS01",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 105,
+        "name": "Financial Mathematics"
+      },
+      {
+        "programme": "CB026BUS09",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 106,
+        "name": "Financial Mathematics"
+      },
+      {
+        "programme": "CB020BUS01",
+        "credits": 18,
+        "nqf_level": 7,
+        "page": 121,
+        "name": "Financial Mathematics"
+      },
+      {
+        "programme": "CB020BUS09",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 122,
+        "name": "Financial Mathematics"
+      }
+    ],
+    "resolution": "The department course-outline fact is retained; the conflicting curriculum-table rows are recorded for faculty confirmation."
+  },
+  {
+    "course_code": "BUS2033F",
+    "published_credit_level_pairs": [
+      {
+        "credits": 18,
+        "nqf_level": 6
+      },
+      {
+        "credits": 18,
+        "nqf_level": 7
+      }
+    ],
+    "canonical_course_fact": {
+      "credits": 18,
+      "nqf_level": 6,
+      "source": {
+        "document": "2026 Faculty of Commerce Undergraduate Handbook",
+        "page": 189,
+        "section": "Course outline"
+      }
+    },
+    "observations": [
+      {
+        "programme": "CB003BUS09",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 46,
+        "name": "Professional Communication"
+      },
+      {
+        "programme": "CB004FTX05",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 49,
+        "name": "Professional Communication"
+      },
+      {
+        "programme": "CB004ECO01",
+        "credits": 18,
+        "nqf_level": 7,
+        "page": 54,
+        "name": "Professional Communication"
+      },
+      {
+        "programme": "CB004BUS07",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 57,
+        "name": "Professional Communication"
+      },
+      {
+        "programme": "CB004BUS28",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 58,
+        "name": "Professional Communication"
+      },
+      {
+        "programme": "CB025BUS09",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 61,
+        "name": "Professional Communication"
+      },
+      {
+        "programme": "CB024STA13",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 62,
+        "name": "Professional Communication"
+      },
+      {
+        "programme": "CB024FTX05",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 64,
+        "name": "Professional Communication"
+      },
+      {
+        "programme": "CB024ECO01",
+        "credits": 18,
+        "nqf_level": 7,
+        "page": 69,
+        "name": "Professional Communication"
+      },
+      {
+        "programme": "CB024BUS07",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 72,
+        "name": "Professional Communication"
+      },
+      {
+        "programme": "CB024BUS28",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 73,
+        "name": "Professional Communication"
+      },
+      {
+        "programme": "CB015FTX05",
+        "credits": 18,
+        "nqf_level": 7,
+        "page": 79,
+        "name": "Professional Communication"
+      },
+      {
+        "programme": "CB015INF01",
+        "credits": 18,
+        "nqf_level": 7,
+        "page": 81,
+        "name": "Professional Communication"
+      },
+      {
+        "programme": "CB015BUS07",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 86,
+        "name": "Professional Communication"
+      },
+      {
+        "programme": "CB015BUS28",
+        "credits": 18,
+        "nqf_level": 7,
+        "page": 87,
+        "name": "Professional Communication*"
+      },
+      {
+        "programme": "CB001INF01",
+        "credits": 18,
+        "nqf_level": 7,
+        "page": 92,
+        "name": "Professional Communication"
+      },
+      {
+        "programme": "CB023INF01",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 113,
+        "name": "Professional Communication"
+      },
+      {
+        "programme": "CB023INF06",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 114,
+        "name": "Professional Communication"
+      },
+      {
+        "programme": "CB023INF11",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 115,
+        "name": "Professional Communication"
+      },
+      {
+        "programme": "CB020BUS09",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 122,
+        "name": "Professional Communication"
+      },
+      {
+        "programme": "CB011INF06",
+        "credits": 18,
+        "nqf_level": 6,
+        "page": 131,
+        "name": "Professional Communication"
+      }
+    ],
+    "resolution": "The department course-outline fact is retained; the conflicting curriculum-table rows are recorded for faculty confirmation."
+  },
+  {
+    "course_code": "BUS4028F",
+    "published_credit_level_pairs": [
+      {
+        "credits": 21,
+        "nqf_level": 7
+      },
+      {
+        "credits": 21,
+        "nqf_level": 8
+      }
+    ],
+    "canonical_course_fact": {
+      "credits": 21,
+      "nqf_level": 8,
+      "source": {
+        "document": "2026 Faculty of Commerce Undergraduate Handbook",
+        "page": 194,
+        "section": "Course outline"
+      }
+    },
+    "observations": [
+      {
+        "programme": "CB003BUS01",
+        "credits": 21,
+        "nqf_level": 8,
+        "page": 45,
+        "name": "Actuarial Science III: Financial Economics"
+      },
+      {
+        "programme": "CB003BUS09",
+        "credits": 21,
+        "nqf_level": 7,
+        "page": 46,
+        "name": "Actuarial Science III: Financial Economics"
+      },
+      {
+        "programme": "CB025BUS01",
+        "credits": 21,
+        "nqf_level": 7,
+        "page": 60,
+        "name": "Actuarial Science III: Financial Economics"
+      },
+      {
+        "programme": "CB025BUS09",
+        "credits": 21,
+        "nqf_level": 7,
+        "page": 61,
+        "name": "Actuarial Science III: Financial Economics"
+      },
+      {
+        "programme": "CB018BUS01",
+        "credits": 21,
+        "nqf_level": 7,
+        "page": 75,
+        "name": "Actuarial Science III: Financial Economics"
+      },
+      {
+        "programme": "CB018BUS09",
+        "credits": 21,
+        "nqf_level": 7,
+        "page": 76,
+        "name": "Actuarial Science III: Financial Economics"
+      }
+    ],
+    "resolution": "The department course-outline fact is retained; the conflicting curriculum-table rows are recorded for faculty confirmation."
+  },
+  {
+    "course_code": "ECO1111F",
+    "published_credit_level_pairs": [
+      {
+        "credits": 18,
+        "nqf_level": 5
+      },
+      {
+        "credits": 18,
+        "nqf_level": 7
+      }
+    ],
+    "canonical_course_fact": {
+      "credits": 18,
+      "nqf_level": 5,
+      "source": {
+        "document": "2026 Faculty of Commerce Undergraduate Handbook",
+        "page": 155,
+        "section": "Course outline"
+      }
+    },
+    "observations": [
+      {
+        "programme": "CB025BUS01",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 60,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB025BUS09",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 61,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB024STA13",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 62,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB024FTX05",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 64,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB024FTX04",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 65,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB024CSC05",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 66,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB024INF01",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 68,
+        "name": "Macroeconomics 1"
+      },
+      {
+        "programme": "CB024ECO01",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 69,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB024BUS07",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 72,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB024BUS28",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 73,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB018BUS01",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 75,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB018BUS09",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 76,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB015STA13",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 77,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB015FTX05",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 79,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB015FTX04",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 80,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB015INF01",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 81,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB015ECO01",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 83,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB015ECO03",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 84,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB015BUS07",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 86,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB015BUS28",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 87,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB026BUS01",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 105,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB026BUS09",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 106,
+        "name": "Macroeconomics"
+      },
+      {
+        "programme": "CB023ACC08",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 107,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB023ACC04",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 107,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB023PHI03",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 108,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB023ECO02",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 110,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB023ECO04",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 111,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB023ECO03",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 112,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB023INF01",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 113,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB023INF06",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 114,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB023INF11",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 115,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB023BUS06",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 116,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB020BUS01",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 121,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB020BUS09",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 122,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB011ACC08",
+        "credits": 18,
+        "nqf_level": 7,
+        "page": 123,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB011ACC04",
+        "credits": 18,
+        "nqf_level": 7,
+        "page": 124,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB011PHI03",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 125,
+        "name": "Microeconomics I"
+      },
+      {
+        "programme": "CB011ECO02",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 126,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB011ECO04",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 127,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB011ECO03",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 129,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB011INF01",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 130,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB011INF06",
+        "credits": 18,
+        "nqf_level": 7,
+        "page": 131,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB011INF11",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 132,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB011BUS06",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 133,
+        "name": "Macroeconomics I"
+      }
+    ],
+    "resolution": "The department course-outline fact is retained; the conflicting curriculum-table rows are recorded for faculty confirmation."
+  },
+  {
+    "course_code": "ECO1111S",
+    "published_credit_level_pairs": [
+      {
+        "credits": 18,
+        "nqf_level": 5
+      },
+      {
+        "credits": 18,
+        "nqf_level": 7
+      }
+    ],
+    "canonical_course_fact": {
+      "credits": 18,
+      "nqf_level": 5,
+      "source": {
+        "document": "2026 Faculty of Commerce Undergraduate Handbook",
+        "page": 155,
+        "section": "Course outline"
+      }
+    },
+    "observations": [
+      {
+        "programme": "CB025BUS01",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 60,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB025BUS09",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 61,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB024STA13",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 62,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB024FTX05",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 64,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB024FTX04",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 65,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB024CSC05",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 66,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB024INF01",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 68,
+        "name": "Macroeconomics 1"
+      },
+      {
+        "programme": "CB024ECO01",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 69,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB024BUS07",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 72,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB024BUS28",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 73,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB018BUS01",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 75,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB018BUS09",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 76,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB015STA13",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 77,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB015FTX05",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 79,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB015FTX04",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 80,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB015INF01",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 81,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB015ECO01",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 83,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB015ECO03",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 84,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB015BUS07",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 86,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB015BUS28",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 87,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB026BUS01",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 105,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB026BUS09",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 106,
+        "name": "Macroeconomics"
+      },
+      {
+        "programme": "CB023ACC08",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 107,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB023ACC04",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 107,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB023PHI03",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 108,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB023ECO02",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 110,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB023ECO04",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 111,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB023ECO03",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 112,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB023INF01",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 113,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB023INF06",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 114,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB023INF11",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 115,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB023BUS06",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 116,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB020BUS01",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 121,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB020BUS09",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 122,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB011ACC08",
+        "credits": 18,
+        "nqf_level": 7,
+        "page": 123,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB011ACC04",
+        "credits": 18,
+        "nqf_level": 7,
+        "page": 124,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB011PHI03",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 125,
+        "name": "Microeconomics I"
+      },
+      {
+        "programme": "CB011ECO02",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 126,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB011ECO04",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 127,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB011ECO03",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 129,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB011INF01",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 130,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB011INF06",
+        "credits": 18,
+        "nqf_level": 7,
+        "page": 131,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB011INF11",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 132,
+        "name": "Macroeconomics I"
+      },
+      {
+        "programme": "CB011BUS06",
+        "credits": 18,
+        "nqf_level": 5,
+        "page": 133,
+        "name": "Macroeconomics I"
+      }
+    ],
+    "resolution": "The department course-outline fact is retained; the conflicting curriculum-table rows are recorded for faculty confirmation."
+  }
+]

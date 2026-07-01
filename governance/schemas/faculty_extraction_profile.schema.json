@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://curriculumadvisor.example/schemas/faculty-extraction-profile-v1.json",
+  "title": "CurriculumAdvisor Faculty Extraction Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "faculty_key", "profile_version", "document_patterns", "terminology", "course_code_patterns", "review_required"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "faculty_key": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+    "profile_version": {"type": "integer", "minimum": 1},
+    "document_patterns": {"type": "array", "items": {"type": "string"}},
+    "terminology": {
+      "type": "object",
+      "additionalProperties": {"type": "array", "items": {"type": "string"}}
+    },
+    "course_code_patterns": {"type": "array", "items": {"type": "string"}},
+    "section_hints": {"type": "array", "items": {"type": "string"}},
+    "special_adapters": {"type": "array", "items": {"type": "string"}},
+    "review_required": {"const": true}
+  }
+}

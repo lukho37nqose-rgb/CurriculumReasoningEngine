@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://curriculumadvisor.example/schemas/course-offerings-v1.json",
+  "title": "CurriculumAdvisor Term-Specific Course Offerings",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "academic_year", "term", "source", "verification_status", "last_updated", "offerings"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "academic_year": {"type": "integer", "minimum": 2000, "maximum": 2200},
+    "term": {"enum": ["first_semester", "second_semester", "full_year", "summer", "winter"]},
+    "source": {"type": "string", "minLength": 1},
+    "verification_status": {"enum": ["verified", "provisional", "unverified", "conflict"]},
+    "last_updated": {"type": "string", "format": "date-time"},
+    "offerings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["course_code", "status", "campus", "section", "meetings"],
+        "properties": {
+          "course_code": {"type": "string", "pattern": "^[A-Za-z0-9]+$"},
+          "status": {"enum": ["scheduled", "provisional", "cancelled", "not_offered", "unknown"]},
+          "campus": {"type": "string", "minLength": 1},
+          "section": {"type": "string", "minLength": 1},
+          "department": {"type": "string"},
+          "notes": {"type": "string"},
+          "meetings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["day", "start", "end", "type"],
+              "properties": {
+                "day": {"enum": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]},
+                "start": {"type": "string", "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$"},
+                "end": {"type": "string", "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$"},
+                "type": {"type": "string", "minLength": 1},
+                "venue": {"type": "string"}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

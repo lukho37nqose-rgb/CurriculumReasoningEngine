@@ -1,0 +1,22 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.swp
+.env
+.DS_Store
+.vscode/
+.idea/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Local data / PDFs
+*.pdf
+data/**/*.txt
+*.jsonl
+tmp/
+temp/

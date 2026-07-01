@@ -1,0 +1,7186 @@
+[
+  {
+    "code": "APG1003W",
+    "name": "TECHNOLOGY I",
+    "credits": 20,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "APG1020W"
+    ],
+    "offered": [
+      "Whole year"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 73,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None",
+    "co_requisite_text": "APG1020W",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG1004F",
+    "name": "HISTORY & THEORY OF ARCHITECTURE I",
+    "credits": 10,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 73,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG1005S",
+    "name": "HISTORY & THEORY OF ARCHITECTURE II",
+    "credits": 10,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 73,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG1016H",
+    "name": "GEOMATICS I",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "CSC1015F",
+      "CSC1017F"
+    ],
+    "offered": [],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 74,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None",
+    "co_requisite_text": "CSC1015F or CSC1017F",
+    "not_offered_2026": true
+  },
+  {
+    "code": "APG1020W",
+    "name": "DESIGN & THEORY STUDIO I",
+    "credits": 60,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "APG1003W"
+    ],
+    "offered": [
+      "Whole year"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 74,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None",
+    "co_requisite_text": "APG1003W",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG1021W",
+    "name": "REPRESENTATION I",
+    "credits": 20,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "APG1003W",
+      "APG1020W"
+    ],
+    "offered": [
+      "Whole year"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 74,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None",
+    "co_requisite_text": "APG1003W, APG1020W",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG1022X",
+    "name": "PRACTICAL TRAINING IN GEOMATICS",
+    "credits": 0,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 75,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": true
+  },
+  {
+    "code": "APG1023S",
+    "name": "SURVEYING AND GEOGRAPHIC INFORMATION SYSTEMS FOR",
+    "credits": 15,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 75,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG1024F",
+    "name": "INTRODUCTION TO GEOSPATIAL SCIENCES",
+    "credits": 8,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 75,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG2000F",
+    "name": "HISTORY & THEORY OF ARCHITECTURE III",
+    "credits": 10,
+    "nqf_level": 6,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 76,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG2003S",
+    "name": "HISTORY & THEORY OF ARCHITECTURE IV",
+    "credits": 10,
+    "nqf_level": 6,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 76,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG2009F",
+    "name": "THEORY OF STRUCTURES I",
+    "credits": 10,
+    "nqf_level": 6,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 76,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG2014S",
+    "name": "GEOMATICS II",
+    "credits": 24,
+    "nqf_level": 6,
+    "prerequisites": [
+      "APG1016F",
+      "CSC1015F",
+      "CSC1017F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "APG2040F",
+      "MAM2084F",
+      "STA1000S"
+    ],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 77,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CSC1015F or CSC1017F, APG1016F/H",
+    "co_requisite_text": "APG2040F, MAM2084F/S, STA1000S",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG2015F",
+    "name": "GEOGRAPHIC INFORMATION SYSTEMS I",
+    "credits": 24,
+    "nqf_level": 6,
+    "prerequisites": [
+      "APG1016H",
+      "CSC1015F",
+      "CSC1017F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 77,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "BSc Geomatics students: CSC1015F or CSC1017F, APG1016H",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG2019X",
+    "name": "PRACTICAL TRAINING I",
+    "credits": 0,
+    "nqf_level": 6,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "APG2040F"
+    ],
+    "offered": [
+      "Not classified"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 77,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None",
+    "co_requisite_text": "APG2040F",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG2021W",
+    "name": "TECHNOLOGY II",
+    "credits": 20,
+    "nqf_level": 6,
+    "prerequisites": [
+      "APG1003W"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "APG2038W",
+      "APG2039W"
+    ],
+    "offered": [
+      "Whole year"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 78,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "APG1003W",
+    "co_requisite_text": "APG2038W, APG2039W",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG2026F",
+    "name": "CONSTRUCTION SURVEYING",
+    "credits": 16,
+    "nqf_level": 6,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 78,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG2026S",
+    "name": "CONSTRUCTION SURVEYING",
+    "credits": 16,
+    "nqf_level": 6,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 79,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG2027X",
+    "name": "WORK EXPERIENCE",
+    "credits": 0,
+    "nqf_level": 6,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "APG2021W",
+      "APG2039W"
+    ],
+    "offered": [
+      "Not classified"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 79,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None",
+    "co_requisite_text": "APG2021W, APG2039W",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG2039W",
+    "name": "DESIGN & THEORY STUDIO II",
+    "credits": 60,
+    "nqf_level": 6,
+    "prerequisites": [
+      "APG1020W"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "APG2021W",
+      "APG2043F"
+    ],
+    "offered": [
+      "Whole year"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 79,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "APG1020W",
+    "co_requisite_text": "APG2021W, APG2043F",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG2040F",
+    "name": "SURVEYING 1",
+    "credits": 18,
+    "nqf_level": 6,
+    "prerequisites": [
+      "APG1016H",
+      "MAM1004F",
+      "MAM1021F",
+      "STA1000S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 80,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM1021F/S or (MAM1004F and STA1000S); APG1016H",
+    "co_requisite_text": "None.",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG2041S",
+    "name": "APPLIED SURVEYING AND GISC",
+    "credits": 14,
+    "nqf_level": 6,
+    "prerequisites": [
+      "APG2015F",
+      "APG2040F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 80,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "DP for APG2040F and APG2015F",
+    "co_requisite_text": "None.",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG2042Z",
+    "name": "REPRESENTATION II",
+    "credits": 8,
+    "nqf_level": 6,
+    "prerequisites": [
+      "APG1021W"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "APG2039W"
+    ],
+    "offered": [
+      "Other/non-standard period"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 81,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "APG1021W",
+    "co_requisite_text": "APG2039W",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG2043F",
+    "name": "ENVIRONMENT & SERVICES I",
+    "credits": 10,
+    "nqf_level": 6,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [
+      "APG2021W",
+      "APG2039W"
+    ],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 81,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "APG2039W; APG2021W",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG3000Z",
+    "name": "HISTORY & THEORY OF ARCHITECTURE V",
+    "credits": 10,
+    "nqf_level": 7,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Other/non-standard period"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 81,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG3012S",
+    "name": "GEOMATICS III",
+    "credits": 24,
+    "nqf_level": 7,
+    "prerequisites": [
+      "APG2014S",
+      "APG2015F",
+      "APG2016W",
+      "APG2040F",
+      "CSC1015F",
+      "CSC1017F",
+      "MAM1000W",
+      "MAM1021F",
+      "STA1000S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "APG2041S"
+    ],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 81,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM1000W or MAM1021F/S, STA1000S, CSC1015F or CSC1017F, APG2014S, APG2015F; APG2016W or APG2040F.",
+    "co_requisite_text": "APG2041S",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG3013F",
+    "name": "NUMERICAL METHODS IN GEOMATICS",
+    "credits": 16,
+    "nqf_level": 7,
+    "prerequisites": [
+      "APG2014S",
+      "APG2016W",
+      "APG2040F",
+      "MAM2084F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "APG2041S"
+    ],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 82,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM2084F/S, APG2014S, APG2016W or APG2040F.",
+    "co_requisite_text": "APG2041S",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG3016C",
+    "name": "SURVEYING II",
+    "credits": 12,
+    "nqf_level": 7,
+    "prerequisites": [
+      "APG1016H",
+      "APG2016W",
+      "APG2040F",
+      "APG2041S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Third quarter"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 82,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "APG1016H; for BSc Geomatics students APG2016W or (APG2040F and APG2041S) are also prerequisites.",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG3017D",
+    "name": "SURVEYING III",
+    "credits": 12,
+    "nqf_level": 7,
+    "prerequisites": [
+      "APG2019X",
+      "APG2040F",
+      "APG2041S",
+      "MAM1021S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "APG3016C"
+    ],
+    "offered": [
+      "Fourth quarter"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 83,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "APG2040F, APG2041S, APG2019X, MAM1021S",
+    "co_requisite_text": "APG3016C.",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG3023W",
+    "name": "TECHNOLOGY III",
+    "credits": 20,
+    "nqf_level": 7,
+    "prerequisites": [
+      "APG2021W"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "APG3034W",
+      "APG3037W"
+    ],
+    "offered": [
+      "Whole year"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 83,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "APG2021W",
+    "co_requisite_text": "APG3034W, APG3037W",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG3027Z",
+    "name": "CADASTRAL SURVEYING AND REGISTRATION PROJECTS",
+    "credits": 24,
+    "nqf_level": 7,
+    "prerequisites": [
+      "APG2019X",
+      "APG2040F",
+      "APG2041S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "APG3033W",
+      "CON2033F"
+    ],
+    "offered": [
+      "Other/non-standard period"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 83,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "APG2040F, APG2041S, APG2019X.",
+    "co_requisite_text": "CON2033F, APG3033W",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG3028X",
+    "name": "INDEPENDENT RESEARCH",
+    "credits": 0,
+    "nqf_level": 7,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [
+      "APG3037W"
+    ],
+    "offered": [
+      "Not classified"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 84,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "APG3037W",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG3030F",
+    "name": "DESIGN & THEORY STUDIO III",
+    "credits": 40,
+    "nqf_level": 7,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 84,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG3033W",
+    "name": "LAND AND CADASTRAL SURVEY LAW",
+    "credits": 16,
+    "nqf_level": 7,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [
+      "CON2033F"
+    ],
+    "offered": [
+      "Whole year"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 84,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "CON2033F",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG3034Z",
+    "name": "ENVIRONMENT & SERVICES II",
+    "credits": 10,
+    "nqf_level": 7,
+    "prerequisites": [
+      "APG2038W",
+      "APG2043F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "APG3023W",
+      "APG3037W"
+    ],
+    "offered": [
+      "Other/non-standard period"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 85,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "APG2038W / APG2043F",
+    "co_requisite_text": "APG3023W ; APG3037W",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG3035F",
+    "name": "THEORY OF STRUCTURES II",
+    "credits": 10,
+    "nqf_level": 7,
+    "prerequisites": [
+      "APG2009F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 85,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "APG2009F",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG3036F",
+    "name": "MANAGEMENT PRACTICE LAW",
+    "credits": 10,
+    "nqf_level": 7,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 85,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG3037W",
+    "name": "DESIGN & THEORY STUDIO III",
+    "credits": 60,
+    "nqf_level": 7,
+    "prerequisites": [
+      "APG2039W"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "APG3023W",
+      "APG3034W"
+    ],
+    "offered": [
+      "Whole year"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 86,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "APG2039W.",
+    "co_requisite_text": "APG3023W, APG3034W.",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG3038F",
+    "name": "PROFESSIONAL COMMUNICATION STUDIES",
+    "credits": 12,
+    "nqf_level": 7,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 86,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG3039B",
+    "name": "SPATIAL DATA INFRASTRUCTURES",
+    "credits": 12,
+    "nqf_level": 7,
+    "prerequisites": [
+      "APG2014S",
+      "APG2015F",
+      "CSC1015F",
+      "CSC1017F",
+      "MAM1021F",
+      "STA1000S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second quarter"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 86,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM1021F/S, STA1000S, CSC1015F or CSC1017F, APG2014S, APG2015F",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG3040C",
+    "name": "ADVANCED SPATIAL DATA ANALYSIS",
+    "credits": 12,
+    "nqf_level": 7,
+    "prerequisites": [
+      "APG2014S",
+      "APG2015F",
+      "CSC1015F",
+      "CSC1017F",
+      "MAM1021F",
+      "STA1000S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Third quarter"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 86,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM1021F/S, STA1000S, CSC1015F or CSC1017F, APG2014S, APG2015F",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG3041Z",
+    "name": "REPRESENTATION III",
+    "credits": 8,
+    "nqf_level": 7,
+    "prerequisites": [
+      "APG2042Z"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "APG3037W"
+    ],
+    "offered": [
+      "Other/non-standard period"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 87,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "APG2042Z",
+    "co_requisite_text": "APG3037W",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG4001S",
+    "name": "GEODESY",
+    "credits": 24,
+    "nqf_level": 8,
+    "prerequisites": [
+      "APG3013F",
+      "APG3016C",
+      "APG3017D",
+      "MAM2084S",
+      "PHY1031F",
+      "PHY1032S",
+      "STA1000S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 87,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "APG3013F, APG3016C, APG3017D, MAM2084S, STA1000S, PHY1031F, PHY1032S.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG4002Z",
+    "name": "LAND USE PLANNING & TOWNSHIP DESIGN",
+    "credits": 16,
+    "nqf_level": 8,
+    "prerequisites": [
+      "APG3016C"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Other/non-standard period"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 87,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "APG3016C",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG4003Z",
+    "name": "GEOMATICS PROJECT",
+    "credits": 40,
+    "nqf_level": 8,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Other/non-standard period"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 88,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "The candidate must be able to graduate in the year in which the course is taken.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG4005F",
+    "name": "ENGINEERING SURVEYING & ADJUSTMENT",
+    "credits": 18,
+    "nqf_level": 8,
+    "prerequisites": [
+      "APG3013F",
+      "APG3017D"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 88,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "APG3013F, APG3017D.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG4010X",
+    "name": "GEOINFORMATICS CAMP",
+    "credits": 4,
+    "nqf_level": 8,
+    "prerequisites": [
+      "APG3012S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Not classified"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 88,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "APG3012S.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG4011F",
+    "name": "GEOMATICS IV",
+    "credits": 24,
+    "nqf_level": 8,
+    "prerequisites": [
+      "APG3012S",
+      "MAM2084F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 89,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "APG3012S, MAM2084F/S.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "APG4012S",
+    "name": "GEOMATICS MANAGEMENT AND PROFESSIONALISM",
+    "credits": 24,
+    "nqf_level": 8,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 89,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "It is intended that this course is taken by students in the final year of their degree programme. Students on ASPECT may take the course in their programme year of study where timetabling permits.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CHE1001P",
+    "name": "INTRODUCTION TO CHEMICAL ENGINEERING",
+    "credits": 22,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Summer term session 2"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 94,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CHE1006F",
+    "name": "CHEMICAL ENGINEERING IA",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 94,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CHE1007S",
+    "name": "CHEMICAL ENGINEERING IB",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [
+      "CHE1006F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 94,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CHE1006F",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CHE2000X",
+    "name": "FIELD TRIP",
+    "credits": 4,
+    "nqf_level": 6,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [
+      "CHE2005W"
+    ],
+    "offered": [
+      "Not classified"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 95,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "CHE2005W",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CHE2005W",
+    "name": "CHEMICAL ENGINEERING II",
+    "credits": 72,
+    "nqf_level": 6,
+    "prerequisites": [
+      "CEM1000W",
+      "CHE1006F",
+      "CHE1007S",
+      "MAM1020F",
+      "MAM1021S",
+      "PHY1012F",
+      "STA1008S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "CHE2000X"
+    ],
+    "offered": [
+      "Whole year"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 95,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CEM1000W, CHE1006F, CHE1007S, MAM1020F/S, MAM1021S/F, PHY1012F/S, STA1008S",
+    "co_requisite_text": "CHE2000X",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CHE2006S",
+    "name": "INTRODUCTION TO BIOTECHNOLOGY",
+    "credits": 24,
+    "nqf_level": 6,
+    "prerequisites": [
+      "BIO1000F",
+      "CHE1006F",
+      "CHE1007S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 95,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "BIO1000F, CHE1006F, CHE1007S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CHE3000X",
+    "name": "WORKPLACE EXPERIENCE",
+    "credits": 0,
+    "nqf_level": 7,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Not classified"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 96,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CHE3006F",
+    "name": "FUNDAMENTALS OF CHEMICAL ENGINEERING III",
+    "credits": 54,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CHE2005W",
+      "MAM2084F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 96,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CHE2005W, MAM2084F/S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CHE3007S",
+    "name": "DATA SCIENCE, SYSTEM DYNAMICS AND PROCESS CONTROL",
+    "credits": 24,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CHE2005W",
+      "MAM2083F",
+      "MAM2084F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 97,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CHE2005W, MAM2083F/S, MAM2084F/S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CHE3008S",
+    "name": "CHEMICAL ENGINEERING PROJECT MANAGEMENT AND UNIT",
+    "credits": 20,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CHE3006F",
+      "MAM2083F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "CHE3007S"
+    ],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 97,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CHE3006F, MAM2083F/S",
+    "co_requisite_text": "CHE3007S",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CHE3009P",
+    "name": "CHEMICAL ENGINEERING UNIT OPERATION DESIGN",
+    "credits": 20,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CHE3008S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Summer term session 2"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 98,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "DP obtained in CHE3008S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CHE3067S",
+    "name": "DESIGN AND OPERATION OF CATALYTIC REACTORS",
+    "credits": 16,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CHE2005W"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 98,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CHE2005W",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CHE3068S",
+    "name": "BIOPROCESS ENGINEERING",
+    "credits": 16,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CHE2005W",
+      "CHE2006S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 98,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CHE2005W, CHE2006S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CHE3069S",
+    "name": "MINERAL AND METALLURGICAL PROCESSING",
+    "credits": 16,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CHE2005W"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "GEO2006S"
+    ],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 99,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CHE2005W",
+    "co_requisite_text": "GEO2006S",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CHE3070S",
+    "name": "NUMERICAL SIMULATION FOR CHEMICAL ENGINEERS",
+    "credits": 16,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CHE2005W"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 99,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CHE2005W",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CHE4036Z",
+    "name": "CHEMICAL ENGINEERING DESIGN",
+    "credits": 36,
+    "nqf_level": 8,
+    "prerequisites": [
+      "CHE4048F",
+      "CHE4049F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Other/non-standard period"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 99,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "All core third year courses, CHE4048F, CHE4049F.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CHE4045Z",
+    "name": "CHEMICAL ENGINEERING RESEARCH",
+    "credits": 36,
+    "nqf_level": 8,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Other/non-standard period"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 100,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "All core third year courses.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CHE4048F",
+    "name": "BUSINESS, SOCIETY AND ENVIRONMENT",
+    "credits": 20,
+    "nqf_level": 8,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "CHE4049F"
+    ],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 100,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "All core third year courses.",
+    "co_requisite_text": "CHE4049F",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CHE4049F",
+    "name": "PROCESS SYNTHESIS AND EQUIPMENT DESIGN",
+    "credits": 20,
+    "nqf_level": 8,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "CHE4048F"
+    ],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 100,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "All core third year courses.",
+    "co_requisite_text": "CHE4048F",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CHE4057F",
+    "name": "INDUSTRIAL ECOLOGY FOR CHEMICAL ENGINEERS",
+    "credits": 8,
+    "nqf_level": 8,
+    "prerequisites": [
+      "CHE3006F",
+      "CHE3007S",
+      "CHE3008S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 101,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CHE3006F, CHE3007S, CHE3008S",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CHE4058Z",
+    "name": "LIFE CYCLE ASSESSMENT",
+    "credits": 8,
+    "nqf_level": 8,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Other/non-standard period"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 101,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "3 years of engineering or science studies at university level",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CHE4068F",
+    "name": "BIOPROCESS ENGINEERING DESIGN",
+    "credits": 16,
+    "nqf_level": 8,
+    "prerequisites": [
+      "CHE3068S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 101,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CHE3068S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CHE4069F",
+    "name": "MINERAL AND METALLURGICAL PROCESSING II",
+    "credits": 16,
+    "nqf_level": 8,
+    "prerequisites": [
+      "CHE3006F",
+      "CHE3007S",
+      "CHE3008S",
+      "CHE3069S",
+      "GEO2006S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 102,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CHE3006F, CHE3007S, CHE3008S, CHE3069S, GEO2006S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CHE4070F",
+    "name": "NUMERICAL OPTIMISATION FOR CHEMICAL ENGINEERS",
+    "credits": 16,
+    "nqf_level": 8,
+    "prerequisites": [
+      "CHE3006F",
+      "CHE3007S",
+      "CHE3008S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 102,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CHE3006F, CHE3007S, CHE3008S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CHE4072F",
+    "name": "RENEWABLE ENERGY IN THE PROCESS INDUSTRY",
+    "credits": 16,
+    "nqf_level": 8,
+    "prerequisites": [
+      "CHE3006F",
+      "CHE3007S",
+      "CHE3008S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 102,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CHE3006F, CHE3007S, CHE3008S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV1006S",
+    "name": "BUILDING SCIENCE I",
+    "credits": 16,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 105,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV1008F",
+    "name": "INTRODUCTION TO CIVIL ENGINEERING",
+    "credits": 12,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 106,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV1009F",
+    "name": "CIVIL ENGINEERING DRAWING",
+    "credits": 8,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 106,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV1011S",
+    "name": "INTRODUCTION TO ENGINEERING MECHANICS",
+    "credits": 15,
+    "nqf_level": 5,
+    "prerequisites": [
+      "MAM1020F",
+      "PHY1012F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 106,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "PHY1012F/S (DP), MAM1020F/S (DP)",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV1012S",
+    "name": "SUSTAINABLE URBAN INFRASTRUCTURE",
+    "credits": 8,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 107,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV1013S",
+    "name": "ENVIRONMENTAL CHEMISTRY FOR CIVIL ENGINEERING",
+    "credits": 12,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 107,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV1014Z",
+    "name": "WATER CHALLENGE SCENARIO PROJECT",
+    "credits": 4,
+    "nqf_level": 6,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Other/non-standard period"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 107,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV2020X",
+    "name": "PRACTICAL EXPERIENCE",
+    "credits": 0,
+    "nqf_level": 6,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Not classified"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 107,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV2044F",
+    "name": "MECHANICS OF MATERIALS",
+    "credits": 15,
+    "nqf_level": 6,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 108,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV2045F",
+    "name": "GEOTECHNICAL ENGINEERING 1",
+    "credits": 8,
+    "nqf_level": 6,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 108,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV2046F",
+    "name": "TRANSPORTATION ENGINEERING",
+    "credits": 15,
+    "nqf_level": 6,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 108,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV2047Z",
+    "name": "TRANSPORTATION INFRASTRUCTURE PROJECT",
+    "credits": 4,
+    "nqf_level": 6,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Other/non-standard period"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 109,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV2048S",
+    "name": "HYDRAULICS 1 - PRESSURISED WATER FLOW",
+    "credits": 15,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CIV1011S",
+      "MAM1020F",
+      "PHY1012F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 109,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "PHY1012F (DP) and MAM1020F (DP) and CIV1011S (DP)",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV2049Z",
+    "name": "WATER AND SANITATION INFRASTRUCTURE PROJECT",
+    "credits": 4,
+    "nqf_level": 6,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Other/non-standard period"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 109,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV2050Z",
+    "name": "STRUCTURAL SYSTEMS PROJECT",
+    "credits": 4,
+    "nqf_level": 6,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Other/non-standard period"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 109,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV2051S",
+    "name": "ANALYSIS OF STATICALLY DETERMINATE STRUCTURES",
+    "credits": 15,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CIV2044F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 110,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "DP in CIV2044F",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV3042F",
+    "name": "GEOTECHNICAL ENGINEERING II",
+    "credits": 16,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CIV2039S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 110,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CIV2039S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV3043F",
+    "name": "HYDRAULIC ENGINEERING",
+    "credits": 16,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CIV2040S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 110,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CIV2040S (DP)",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV3044F",
+    "name": "ENGINEERING HYDROLOGY",
+    "credits": 8,
+    "nqf_level": 7,
+    "prerequisites": [
+      "STA1008F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 110,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "STA1008F/S (DP)",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV3045S",
+    "name": "TRANSPORTATION PLANNING",
+    "credits": 16,
+    "nqf_level": 7,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 111,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None.",
+    "co_requisite_text": "None.",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV3046S",
+    "name": "WATER TREATMENT",
+    "credits": 12,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CEM1008F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 111,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CEM1008F",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV3047S",
+    "name": "URBAN WATER SERVICES",
+    "credits": 16,
+    "nqf_level": 7,
+    "prerequisites": [
+      "APG2026S",
+      "CIV3043F",
+      "CIV3044F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 111,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "APG2026S; CIV3043F (DP) and CIV3044F (DP).",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV3048F",
+    "name": "STRUCTURAL ANALYSIS II",
+    "credits": 16,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CIV2041S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 112,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CIV2041S",
+    "co_requisite_text": "n/a",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV3049S",
+    "name": "STRUCTURAL DESIGN I",
+    "credits": 16,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CIV3048F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 112,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CIV3048F",
+    "co_requisite_text": "n/a",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV4035C",
+    "name": "DESIGN PROJECT",
+    "credits": 24,
+    "nqf_level": 8,
+    "prerequisites": [
+      "CIV2042F",
+      "MAM2083F",
+      "MAM2084S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Third quarter"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 112,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "All core Civil Engineering design (CIV) courses, including successful completion of their respective pre-requisites, as well as MAM2083F, MAM2084S, CIV2042F,",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV4041F",
+    "name": "PROFESSIONAL PRACTICE",
+    "credits": 12,
+    "nqf_level": 8,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 113,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "Students must be potential qualifiers (i.e. anticipated final year of study).",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV4042F",
+    "name": "WASTEWATER TREATMENT",
+    "credits": 12,
+    "nqf_level": 8,
+    "prerequisites": [
+      "CEM1008F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 113,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CEM1008F",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV4045F",
+    "name": "STRUCTURAL DESIGN II",
+    "credits": 18,
+    "nqf_level": 8,
+    "prerequisites": [
+      "CIV3048F",
+      "CIV3049S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 113,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CIV3048F and CIV3049S (DP)",
+    "co_requisite_text": "n/a",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CIV4046F",
+    "name": "TRANSPORTATION ENGINEERING",
+    "credits": 18,
+    "nqf_level": 8,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 114,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON1004W",
+    "name": "CONSTRUCTION TECHNOLOGY I",
+    "credits": 26,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Whole year"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 116,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON1007X",
+    "name": "PRACTICAL TRAINING",
+    "credits": 0,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Not classified"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 116,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON1010S",
+    "name": "CONSTRUCTION INFORMATION SYSTEMS",
+    "credits": 8,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 116,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON1021F",
+    "name": "PROPERTY AND PLANNING I",
+    "credits": 14,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 117,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON1022F",
+    "name": "BUILDING CONSTRUCTION I",
+    "credits": 14,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 117,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON1023S",
+    "name": "BUILDING CONSTRUCTION II",
+    "credits": 14,
+    "nqf_level": 5,
+    "prerequisites": [
+      "CON1022F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 117,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CON1022F",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON1024S",
+    "name": "PROPERTY ECONOMICS I",
+    "credits": 14,
+    "nqf_level": 5,
+    "prerequisites": [
+      "CON1021F",
+      "ECO1010F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 118,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CON1021F, ECO1010F/S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON1025S",
+    "name": "PROPERTY AND TECHNOLOGY",
+    "credits": 14,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 118,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON2006W",
+    "name": "CONSTRUCTION TECHNOLOGY II",
+    "credits": 28,
+    "nqf_level": 6,
+    "prerequisites": [
+      "CON1004W"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Whole year"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 118,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CON1004W",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON2013X",
+    "name": "PRACTICAL TRAINING",
+    "credits": 0,
+    "nqf_level": 6,
+    "prerequisites": [
+      "CON1007X"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Not classified"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 118,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CON1007X",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON2020S",
+    "name": "CONSTRUCTION MANAGEMENT I",
+    "credits": 16,
+    "nqf_level": 6,
+    "prerequisites": [
+      "CON1004W"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 119,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CON1004W",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON2026S",
+    "name": "PROJECT MANAGEMENT FOR ENGINEERS",
+    "credits": 8,
+    "nqf_level": 6,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 119,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON2032S",
+    "name": "PROPERTY INVESTMENT AND FINANCE I",
+    "credits": 14,
+    "nqf_level": 6,
+    "prerequisites": [
+      "MAM1010F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 119,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM1010F/S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON2033F",
+    "name": "REAL PROPERTY LAW I",
+    "credits": 14,
+    "nqf_level": 6,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 120,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON2034S",
+    "name": "PROFESSIONALISM IN THE BUILT ENVIRONMENT",
+    "credits": 12,
+    "nqf_level": 6,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 120,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON2035S",
+    "name": "PROPERTY AND PLANNING II",
+    "credits": 14,
+    "nqf_level": 6,
+    "prerequisites": [
+      "CON1024S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 120,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CON1024S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON2036F",
+    "name": "PROPERTY VALUATION I",
+    "credits": 14,
+    "nqf_level": 6,
+    "prerequisites": [
+      "CON1024S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 121,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CON1024S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON2037W",
+    "name": "MEASUREMENT AND DESIGN APPRAISAL IA",
+    "credits": 20,
+    "nqf_level": 6,
+    "prerequisites": [
+      "CON1004W",
+      "MEC1010F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Whole year"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 121,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CON1004W, MEC1010F",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON3012W",
+    "name": "CONSTRUCTION TECHNOLOGY III",
+    "credits": 28,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CON2006W"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "CON3030F",
+      "CON3031W",
+      "CON3043W"
+    ],
+    "offered": [
+      "Whole year"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 121,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CON2006W",
+    "co_requisite_text": "CON3031W, CON3030F and CON3043W",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON3023X",
+    "name": "PRACTICAL TRAINING",
+    "credits": 0,
+    "nqf_level": 7,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Not classified"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 122,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON3030F",
+    "name": "CONSTRUCTION COSTING",
+    "credits": 14,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CON1004W",
+      "CON1010F",
+      "CON2037W"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "CON3012W",
+      "CON3031W",
+      "CON3043W"
+    ],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 122,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CON1010F, CON1004W, CON2037W",
+    "co_requisite_text": "CON3043W, CON3012W and CON3031W",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON3031W",
+    "name": "MEASUREMENT & DESIGN APPRAISAL II",
+    "credits": 26,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CON2006W",
+      "CON2037W"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "CON3012W",
+      "CON3030F",
+      "CON3043W"
+    ],
+    "offered": [
+      "Whole year"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 122,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CON2006W and CON2037W",
+    "co_requisite_text": "CON3012W, CON3030F and CON3043W",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON3032W",
+    "name": "APPLIED CONTRACT LAW I",
+    "credits": 12,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CML1001F",
+      "CML1001P",
+      "CML1004S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Whole year"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 123,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CML1001F or CML1004S or CML1001P",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON3033S",
+    "name": "PROPERTY STUDIES I",
+    "credits": 14,
+    "nqf_level": 7,
+    "prerequisites": [
+      "MAM1010F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 123,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM1010F/S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON3038W",
+    "name": "CONSTRUCTION MANAGEMENT II",
+    "credits": 28,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CON2020S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Whole year"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 123,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CON2020S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON3043W",
+    "name": "COST ENGINEERING UNDER UNCERTAINTY",
+    "credits": 14,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CON2006W",
+      "CON2037W"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "CON3012W",
+      "CON3030F",
+      "CON3031W"
+    ],
+    "offered": [
+      "Whole year"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 123,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CON2006W and CON2037W",
+    "co_requisite_text": "CON3012W, CON3031W and CON3030F",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON3046S",
+    "name": "PROPERTY AND FACILITIES MANAGEMENT",
+    "credits": 14,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CON1023S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 124,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CON1023S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON3047F",
+    "name": "PROPERTY INVESTMENT & FINANCE II",
+    "credits": 14,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CON2032S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 124,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CON2032S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON3048F",
+    "name": "PROPERTY DEVELOPMENT I",
+    "credits": 14,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CON1023S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 124,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CON1023S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON3050F",
+    "name": "PROPERTY AND CONTRACT LAW",
+    "credits": 14,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CML1001F",
+      "CML1004S",
+      "CON2033F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 125,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CON2033F,CML1001F/L/P or CML1004S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON3051F",
+    "name": "PROPERTY VALUATION II",
+    "credits": 14,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CON2036F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 125,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CON2036F",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON3052S",
+    "name": "PROPERTY ECONOMICS II",
+    "credits": 14,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CON1024S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 125,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CON1024S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON3053S",
+    "name": "PROPERTY AND ENVIRONMENT",
+    "credits": 14,
+    "nqf_level": 7,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 126,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CON3054S",
+    "name": "PROPERTY DEVELOPMENT II",
+    "credits": 10,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CON3047F",
+      "CON3048F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 126,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CON3047F, CON3048F",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE1000X",
+    "name": "PRACTICAL TRAINING",
+    "credits": 0,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Not classified"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 129,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE1008F",
+    "name": "INTRODUCTION TO ELECTRICAL ENGINEERING A",
+    "credits": 12,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 129,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE1009S",
+    "name": "INTRODUCTION TO ELECTRICAL ENGINEERING B",
+    "credits": 12,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 129,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE2041F",
+    "name": "INTRODUCTION TO ELECTRICAL ENGINEERING & POWER",
+    "credits": 16,
+    "nqf_level": 6,
+    "prerequisites": [
+      "MAM1000W",
+      "MAM1004F",
+      "MAM1008S",
+      "MAM1021S",
+      "PHY1004W",
+      "PHY1013F",
+      "PHY1032S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 129,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "PHY1013F/S (MEC), MAM1021S (MEC), PHY1004W or PHY1032S (CSC), MAM1004F (>60%) and MAM1008S (>60%) or MAM1000W (CSC)",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE2042S",
+    "name": "INTRODUCTION TO ANALOGUE AND DIGITAL ELECTRONICS",
+    "credits": 8,
+    "nqf_level": 6,
+    "prerequisites": [
+      "MAM1021F",
+      "PHY1004W",
+      "PHY1013F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 130,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM1021F/S (MEC), PHY1013F/S (MEC), PHY1004W or",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE2044S",
+    "name": "INTRODUCTION TO POWER ENGINEERING",
+    "credits": 16,
+    "nqf_level": 6,
+    "prerequisites": [
+      "EEE1007S",
+      "MAM1020F",
+      "MAM1023F",
+      "PHY1013F",
+      "PHY1015F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 130,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "(MAM1020F/S or MAM1023F/S) and, (PHY1013F/S or PHY1015F/S) and EEE1007S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE2045F",
+    "name": "ANALOGUE ELECTRONICS",
+    "credits": 16,
+    "nqf_level": 6,
+    "prerequisites": [
+      "EEE1006F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 131,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EEE1006F",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE2046F",
+    "name": "EMBEDDED SYSTEMS I",
+    "credits": 16,
+    "nqf_level": 6,
+    "prerequisites": [
+      "CSC1015F",
+      "CSC1019F",
+      "EEE1006F",
+      "EEE2042S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 131,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "(EEE1006F and CSC1015F/S) or (EEE2042S and CSC1019F)",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE2046S",
+    "name": "EMBEDDED SYSTEMS I",
+    "credits": 16,
+    "nqf_level": 6,
+    "prerequisites": [
+      "CSC1015F",
+      "CSC1019F",
+      "EEE1006F",
+      "EEE2042S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 132,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "(EEE1006F and CSC1015F/S) or (EEE2042S and CSC1019F)",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE2047S",
+    "name": "SIGNALS AND SYSTEMS I",
+    "credits": 16,
+    "nqf_level": 6,
+    "prerequisites": [
+      "MAM1021F",
+      "MAM1024S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 132,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM1021F/S or MAM1024S/F",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE2048S",
+    "name": "PROFESSIONAL COMMUNICATION FOR ELECTRICAL",
+    "credits": 8,
+    "nqf_level": 6,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 132,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE2050F",
+    "name": "EMBEDDED SYSTEMS I FOR SCIENCE STUDENTS",
+    "credits": 18,
+    "nqf_level": 6,
+    "prerequisites": [
+      "CSC1015F",
+      "EEE2042S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 132,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CSC1015F/S and EEE2042S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE3000X",
+    "name": "PRACTICAL TRAINING",
+    "credits": 0,
+    "nqf_level": 7,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Not classified"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 133,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE3088F",
+    "name": "ELECTRICAL ENGINEERING DESIGN PRINCIPLES",
+    "credits": 8,
+    "nqf_level": 7,
+    "prerequisites": [
+      "EEE2045F",
+      "EEE2046F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 133,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EEE2045F or EEE2046F/S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE3089F",
+    "name": "ELECTROMAGNETIC ENGINEERING",
+    "credits": 16,
+    "nqf_level": 7,
+    "prerequisites": [
+      "MAM2083F",
+      "PHY2010S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 133,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "PHY2010S, MAM2083F/S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE3090F",
+    "name": "ELECTRONIC DEVICES & CIRCUITS",
+    "credits": 16,
+    "nqf_level": 7,
+    "prerequisites": [
+      "EEE2045F",
+      "EEE2047S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 134,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EEE2045F and EEE2047S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE3091F",
+    "name": "ENERGY CONVERSION I",
+    "credits": 16,
+    "nqf_level": 7,
+    "prerequisites": [
+      "EEE2044S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 134,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EEE2044S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE3092F",
+    "name": "SIGNALS & SYSTEMS II",
+    "credits": 16,
+    "nqf_level": 7,
+    "prerequisites": [
+      "EEE2047S",
+      "MAM2083F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 135,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EEE2047S, MAM2083F/S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE3093S",
+    "name": "COMMUNICATION AND NETWORK ENGINEERING",
+    "credits": 16,
+    "nqf_level": 7,
+    "prerequisites": [
+      "EEE2046F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 135,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EEE2046F/S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE3094S",
+    "name": "CONTROL SYSTEMS ENGINEERING",
+    "credits": 16,
+    "nqf_level": 7,
+    "prerequisites": [
+      "EEE2045F",
+      "EEE2047S",
+      "MAM2084S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 135,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EEE2045F and EEE2047S and MAM2084S/F DEPARTMENTS IN THE FACULTY AND COURSES OFFERED 136",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE3095S",
+    "name": "EMBEDDED SYSTEMS II FOR SCIENCE STUDENTS",
+    "credits": 18,
+    "nqf_level": 7,
+    "prerequisites": [
+      "EEE2050F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 136,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EEE2050F",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE3096S",
+    "name": "EMBEDDED SYSTEMS II",
+    "credits": 16,
+    "nqf_level": 7,
+    "prerequisites": [
+      "EEE2046F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 136,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EEE2046F/S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE3097S",
+    "name": "ENGINEERING DESIGN: ELECTRICAL AND COMPUTER",
+    "credits": 8,
+    "nqf_level": 7,
+    "prerequisites": [
+      "EEE3088F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 137,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EEE3088F",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE3098S",
+    "name": "ENGINEERING DESIGN: ELECTRICAL ENGINEERING",
+    "credits": 8,
+    "nqf_level": 7,
+    "prerequisites": [
+      "EEE3088F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 137,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EEE3088F",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE3099S",
+    "name": "ENGINEERING DESIGN: MECHATRONICS",
+    "credits": 8,
+    "nqf_level": 7,
+    "prerequisites": [
+      "EEE3088F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 137,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EEE3088F",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE3100S",
+    "name": "ENERGY SYSTEMS AND GRIDS I",
+    "credits": 16,
+    "nqf_level": 7,
+    "prerequisites": [
+      "EEE2044S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 138,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EEE2044S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE4113F",
+    "name": "ENGINEERING SYSTEM DESIGN",
+    "credits": 16,
+    "nqf_level": 8,
+    "prerequisites": [
+      "EEE3097S",
+      "EEE3098S",
+      "EEE3099S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 138,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EEE3097S or EEE3098S or EEE3099S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE4114F",
+    "name": "DIGITAL SIGNAL PROCESSING",
+    "credits": 16,
+    "nqf_level": 8,
+    "prerequisites": [
+      "EEE3092F",
+      "EEE3094S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 139,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EEE3092F or EEE3094S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE4117F",
+    "name": "ENERGY CONVERSION II",
+    "credits": 16,
+    "nqf_level": 8,
+    "prerequisites": [
+      "EEE3091F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 139,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EEE3091F",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE4118F",
+    "name": "PROCESS CONTROL AND INSTRUMENTATION",
+    "credits": 16,
+    "nqf_level": 8,
+    "prerequisites": [
+      "EEE3094S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 139,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EEE3094S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE4119F",
+    "name": "MECHATRONICS",
+    "credits": 16,
+    "nqf_level": 8,
+    "prerequisites": [
+      "EEE3094S",
+      "MEC2045S",
+      "MEC2047F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 140,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MEC2047F and MEC2045S and EEE3094S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE4120F",
+    "name": "HIGH PERFORMANCE DIGITAL EMBEDDED SYSTEMS",
+    "credits": 16,
+    "nqf_level": 8,
+    "prerequisites": [
+      "EEE3096S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 140,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EEE3096S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE4121F",
+    "name": "MOBILE AND WIRELESS NETWORKS",
+    "credits": 16,
+    "nqf_level": 8,
+    "prerequisites": [
+      "EEE3093S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 140,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EEE3093S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE4124C",
+    "name": "IMPACT OF ENGINEERING ON THE NATURAL AND SOCIAL",
+    "credits": 8,
+    "nqf_level": 8,
+    "prerequisites": [
+      "EEE3088F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Third quarter"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 141,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EEE3088F",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE4125C",
+    "name": "NEW VENTURES: PLANNING, PRACTICE AND",
+    "credits": 16,
+    "nqf_level": 8,
+    "prerequisites": [
+      "EEE3097S",
+      "EEE3098S",
+      "EEE3099S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Third quarter"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 141,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EEE3097S or EEE3098S or EEE3099S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EEE4126F",
+    "name": "ENERGY SYSTEMS & GRIDS II",
+    "credits": 16,
+    "nqf_level": 8,
+    "prerequisites": [
+      "EEE3100S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 141,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EEE3100S DEPARTMENTS IN THE FACULTY AND COURSES OFFERED 142",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC1000X",
+    "name": "PRACTICAL TRAINING I",
+    "credits": 0,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Not classified"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 144,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC1003F",
+    "name": "ENGINEERING DRAWING",
+    "credits": 8,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 144,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC1007F",
+    "name": "INTRODUCTION TO ENGINEERING DRAWING",
+    "credits": 8,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 145,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC1009F",
+    "name": "INTRODUCTION TO ENGINEERING MECHANICS",
+    "credits": 16,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 145,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC1009S",
+    "name": "INTRODUCTION TO ENGINEERING MECHANICS",
+    "credits": 16,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 146,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC1010F",
+    "name": "INTRODUCTION TO ENGINEERING DRAWING A",
+    "credits": 8,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 146,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC1018S",
+    "name": "INTRODUCTION TO COMPUTER-AIDED DESIGN",
+    "credits": 6,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 146,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC1019S",
+    "name": "INTRODUCTION TO MATERIAL SCIENCE AND ENGINEERING",
+    "credits": 8,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 147,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC1020W",
+    "name": "INTRODUCTION TO MECHANICAL ENGINEERING",
+    "credits": 20,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Whole year"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 147,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC2000X",
+    "name": "PRACTICAL TRAINING II",
+    "credits": 0,
+    "nqf_level": 7,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Not classified"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 147,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC2045S",
+    "name": "APPLIED ENGINEERING MECHANICS",
+    "credits": 16,
+    "nqf_level": 6,
+    "prerequisites": [
+      "MEC1009F",
+      "MEC2023F",
+      "MEC2047F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 148,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MEC1009F/S and MEC2023F/S or MEC2047F/S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC2046F",
+    "name": "MATERIALS SCIENCE IN MECHANICAL ENGINEERING",
+    "credits": 12,
+    "nqf_level": 6,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "CEM1008F"
+    ],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 148,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None",
+    "co_requisite_text": "CEM1008F",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC2047F",
+    "name": "ENGINEERING DYNAMICS",
+    "credits": 16,
+    "nqf_level": 6,
+    "prerequisites": [
+      "MAM1021F",
+      "MEC1009F",
+      "PHY1012F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 148,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM1021F/S, PHY1012F/S and MEC1009F/S DEPARTMENTS IN THE FACULTY AND COURSES OFFERED 149",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC2047S",
+    "name": "ENGINEERING DYNAMICS",
+    "credits": 16,
+    "nqf_level": 6,
+    "prerequisites": [
+      "MAM1021F",
+      "MEC1009F",
+      "PHY1012F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 149,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM1021F/S, PHY1012F/S and MEC1009F/S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC2048S",
+    "name": "MECHANICAL ENGINEERING DESIGN",
+    "credits": 16,
+    "nqf_level": 6,
+    "prerequisites": [
+      "MEC1005W",
+      "MEC1008S",
+      "MEC2025F",
+      "MEC2042F",
+      "MEC2046F",
+      "MEC2049F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 149,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MEC1008S, MEC1005W, MEC2025F or MEC2049F, MEC2042F) or MEC2046F",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC2049F",
+    "name": "SOLID MECHANICS 1",
+    "credits": 16,
+    "nqf_level": 6,
+    "prerequisites": [
+      "MAM1020F",
+      "MEC1009F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 149,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MEC1009F/S, MAM1020F/S (or equivalent)",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC2050S",
+    "name": "THERMOFLUIDS 1",
+    "credits": 16,
+    "nqf_level": 6,
+    "prerequisites": [
+      "CEM1008F",
+      "MAM1020F",
+      "PHY1012F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 150,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CEM1008F and MAM1020F and PHY1012F",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC3074F",
+    "name": "MEASUREMENTS AND ACTUATORS",
+    "credits": 8,
+    "nqf_level": 7,
+    "prerequisites": [
+      "EEE2041F",
+      "EEE2042S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 150,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EEE2041F, EEE2042S",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC3075F",
+    "name": "COMPUTER METHODS FOR MECHANICAL ENGINEERING",
+    "credits": 12,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CSC1010H",
+      "CSC1015F",
+      "CSC1017F",
+      "CSC1019F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "MAM2084F"
+    ],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 150,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CSC1019F or CSC1017F or CSC1015F/S or CSC1010H",
+    "co_requisite_text": "MAM2084F",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC3076F",
+    "name": "STRESS ANALYSIS AND MATERIALS",
+    "credits": 16,
+    "nqf_level": 7,
+    "prerequisites": [
+      "MAM2083F",
+      "MAM2084F",
+      "MEC2025F",
+      "MEC2042F",
+      "MEC2046F",
+      "MEC2049F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 151,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MEC2046F or MEC2042F, MEC2025F or MEC2049F, MAM2083F/S (DP), MAM2084F/S (DP)",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC3077F",
+    "name": "THERMOFLUIDS II",
+    "credits": 16,
+    "nqf_level": 7,
+    "prerequisites": [
+      "MEC2022S",
+      "MEC2050S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 151,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MEC2022S or MEC2050S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC3078S",
+    "name": "MECHANICS OF MACHINES",
+    "credits": 8,
+    "nqf_level": 7,
+    "prerequisites": [
+      "MEC2047F",
+      "MEC2048S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 152,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MEC2048S (DP), MEC2047F/S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC3079S",
+    "name": "CONTROL SYSTEMS",
+    "credits": 12,
+    "nqf_level": 8,
+    "prerequisites": [
+      "MAM2083F",
+      "MAM2084F",
+      "MAM2085F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 152,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "(MAM2083F/S or MAM2085F/S) and MAM2084F/S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC3080S",
+    "name": "THERMOFLUIDS III",
+    "credits": 16,
+    "nqf_level": 7,
+    "prerequisites": [
+      "MEC3077F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 152,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MEC3077F (DP)",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC3081S",
+    "name": "MANUFACTURING SCIENCES",
+    "credits": 12,
+    "nqf_level": 7,
+    "prerequisites": [
+      "MEC3076F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 153,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MEC3076F",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC3082S",
+    "name": "MECHANICAL ENGINEERING MACHINE ELEMENT DESIGN",
+    "credits": 16,
+    "nqf_level": 7,
+    "prerequisites": [
+      "MEC2048S",
+      "MEC2049F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 153,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MEC2048S, MEC2049F",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC3083W",
+    "name": "ENGINEER IN SOCIETY",
+    "credits": 16,
+    "nqf_level": 8,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Whole year"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 154,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "AYOS 3",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC4047F",
+    "name": "MECHANICAL VIBRATIONS",
+    "credits": 12,
+    "nqf_level": 8,
+    "prerequisites": [
+      "MEC3031S",
+      "MEC3075F",
+      "MEC3078S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 154,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MEC3078S or MEC3031S and MEC3075F or equivalent",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC4108S",
+    "name": "SYSTEM DESIGN",
+    "credits": 12,
+    "nqf_level": 8,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "MEC4103F",
+      "MEC4124W"
+    ],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 154,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None",
+    "co_requisite_text": "MEC4124W or MEC4103F",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC4123F",
+    "name": "ENGINEER IN BUSINESS",
+    "credits": 16,
+    "nqf_level": 8,
+    "prerequisites": [
+      "MEC3083W"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 155,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MEC3083W",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC4124W",
+    "name": "ENGINEERING PRODUCT DESIGN",
+    "credits": 22,
+    "nqf_level": 8,
+    "prerequisites": [
+      "MEC3050W",
+      "MEC3072F",
+      "MEC3073S",
+      "MEC3082S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Whole year"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 155,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MEC3072F and MEC3073S or MEC3050W or MEC3082S",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC4125F",
+    "name": "THERMOFLUIDS IV",
+    "credits": 20,
+    "nqf_level": 8,
+    "prerequisites": [
+      "MEC3080S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 155,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MEC3080S (DP)",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC4126F",
+    "name": "INTEGRATING EMBEDDED SYSTEMS",
+    "credits": 16,
+    "nqf_level": 8,
+    "prerequisites": [
+      "EEE2046S",
+      "MEC3074F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 156,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EEE2046S, MEC3074F",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC4127F",
+    "name": "MECHATRONIC SYSTEMS",
+    "credits": 16,
+    "nqf_level": 8,
+    "prerequisites": [
+      "EEE2046S",
+      "MEC3074F",
+      "MEC3079S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 156,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MEC3074F, MEC3079S, EEE2046S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MEC4128Z",
+    "name": "FINAL-YEAR ENGINEERING PROJECT",
+    "credits": 20,
+    "nqf_level": 8,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Other/non-standard period"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 157,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "AYOS 4",
+    "co_requisite_text": "None",
+    "not_offered_2026": false
+  },
+  {
+    "code": "END1019Z",
+    "name": "SOCIAL INFRASTRUCTURES: ENGAGING WITH COMMUNITY",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Other/non-standard period"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 157,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "Enrolment is limited to 100 full-time EBE students.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "ACC2042H",
+    "name": "MANAGEMENT AND COST ACCOUNTING FOR NON-",
+    "credits": 16,
+    "nqf_level": 6,
+    "prerequisites": [
+      "ACC1006F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Half course over whole year"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 159,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "ACC1006F or equivalent.",
+    "co_requisite_text": "None.",
+    "not_offered_2026": false
+  },
+  {
+    "code": "ACC1021F",
+    "name": "ACCOUNTING FOR BUSINESS I",
+    "credits": 15,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 159,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "Admission to degree. NSC level 5 in Mathematics and level 4 in English HL (or level 5 in English FAL).",
+    "co_requisite_text": "None. Objective: This course aims to introduce non-accounting students to the basic principles of accounting that would benefit them in management and other roles they may fill in business in the future. The course includes a basic introduction to financial accounting and published financial statements, and management accounting. The course forms the first part of a two course pairing for non-accounting Commerce students.",
+    "not_offered_2026": false
+  },
+  {
+    "code": "FTX2020F",
+    "name": "BUSINESS FINANCE",
+    "credits": 18,
+    "nqf_level": 6,
+    "prerequisites": [
+      "MAM1010",
+      "STA1001F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "ACC1006F"
+    ],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 160,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "A DP in MAM1010 or equivalent, or a DP in STA1001F/S or equivalent",
+    "co_requisite_text": "ACC1006F Objective: The course is designed to provide an overview of activities, decisions and techniques used to fund and manage businesses efficiently. The course also provides an introduction to investment and financial markets.",
+    "not_offered_2026": false
+  },
+  {
+    "code": "ECO1007S",
+    "name": "ECONOMICS FOR ENGINEERS",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 160,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "ECO1008F",
+    "name": "supplementary/deferred exam will be scheduled during the last week of the mid-year",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [
+      "ECO1008F",
+      "ECO1009F",
+      "ECO1010F",
+      "ECO1110F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 161,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "A minimum mark of 50% for ECO1008F or ECO1010F/S or ECO1110F/S. ECO1008F/S may be taken concurrently with ECO1009F/S if ECO1008F/S has been previously attempted.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "HUB2005F",
+    "name": "INTRODUCTION TO MEDICAL ENGINEERING",
+    "credits": 8,
+    "nqf_level": 6,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 162,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "HUB4049F",
+    "name": "Introduction to Medical Imaging & Image Processing",
+    "credits": 16,
+    "nqf_level": 8,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 162,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "Students must be in their fourth year of study.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CML1001F",
+    "name": "BUSINESS LAW I",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 163,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CML1001S",
+    "name": "BUSINESS LAW I",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 163,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CML4607F",
+    "name": "LAW FOR ENGINEERS",
+    "credits": 10,
+    "nqf_level": 8,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 164,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "This course is only available to BSc(Eng) Electrical Engineering; BSc(Eng) Electrical and Computer Engineering and BSc(Eng) Mechatronics students.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CML1001P",
+    "name": "BUSINESS LAW I - SUMMER TERM",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Summer term session 2"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 165,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "None",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "BIO1000F",
+    "name": "CELL BIOLOGY",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [
+      "BIO1000H"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 165,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "Admission will be restricted to students who have passed either NSC Physical Science or Life Science with at least 60%. NOTE: Preference will be given to students registered in the Science Faculty. Students registered for this course will be assessed in week 5; if it is judged that they are not coping with the level and pace of the course and would benefit from an opportunity to strengthen foundational concepts and learn new material at a slower pace, they will be required to transfer to BIO1000H from week 7.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "BIO3022S",
+    "name": "PEOPLE AND THE SEA",
+    "credits": 36,
+    "nqf_level": 7,
+    "prerequisites": [
+      "BIO2014F",
+      "BIO3002F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 166,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "A pass or permission to write a SUPP exam in BIO2014F; BIO3002F",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CEM1000W",
+    "name": "CHEMISTRY 1000",
+    "credits": 36,
+    "nqf_level": 5,
+    "prerequisites": [
+      "CEM1000W"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Whole year"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 166,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "Students wishing to register for CEM1000W will normally be expected to have passed NSC Physical Science with at least 60% and NSC Mathematics with at least 70%.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CEM2005W",
+    "name": "INTERMEDIATE CHEMISTRY",
+    "credits": 48,
+    "nqf_level": 6,
+    "prerequisites": [
+      "CEM1000W",
+      "STA1000F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Whole year"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 167,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "For Science students: CEM1000W (or equivalent), 1000-level full course in Physics, 1000-level full or semester course in Mathematics. Concurrent registration for STA1000F/S (or equivalent) is highly recommended. For Chemical Engineering students:",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CEM3005W",
+    "name": "is the required course for students completing a major in Chemistry.",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [
+      "CSC1010H"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Whole year"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 167,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "At least 70% for NSC Mathematics. Students registered for this course will be assessed in week 5; if it is judged that they are not coping with the level and pace of the course, and would benefit from an opportunity to strengthen foundational concepts and learn new material at a slower pace, they will be required to transfer to CSC1010H from week 7.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CSC1016S",
+    "name": "COMPUTER SCIENCE 1016",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [
+      "CSC1015F",
+      "CSC1017S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 168,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CSC1015F (or at least 60% for CSC1017S)",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CSC1017S",
+    "name": "INTRODUCTION TO PROGRAMMING",
+    "credits": 16,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 169,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "At least 70% for NSC Mathematics.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CSC1019F",
+    "name": "FOUNDATIONS OF COMPUTER PROGRAMMING FOR ENGINEERS",
+    "credits": 12,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 169,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CSC2001F",
+    "name": "COMPUTER SCIENCE 2001",
+    "credits": 24,
+    "nqf_level": 6,
+    "prerequisites": [
+      "CSC1010H",
+      "CSC1011H",
+      "CSC1015F",
+      "CSC1016S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 169,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "(CSC1015F/S and CSC1016S) or (CSC1010H and CSC1011H)",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CSC2002S",
+    "name": "COMPUTER SCIENCE 2002",
+    "credits": 24,
+    "nqf_level": 6,
+    "prerequisites": [
+      "CSC2001F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 170,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CSC2001F (At least 45% for CSC2001F)",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CSC2004Z",
+    "name": "PROGRAMMING ASSESSMENT",
+    "credits": 0,
+    "nqf_level": 6,
+    "prerequisites": [
+      "CSC1010H",
+      "CSC1011H",
+      "CSC1015F",
+      "CSC1016S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Other/non-standard period"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 170,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "(CSC1015F/S and CSC1016S) or (CSC1010H and CSC1011H)",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CSC3002F",
+    "name": "NETWORKS AND OPERATING SYSTEMS",
+    "credits": 36,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CSC2001F",
+      "CSC2002S",
+      "CSC2004Z",
+      "MAM1000W",
+      "MAM1004F",
+      "MAM1008S",
+      "MAM1031F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 171,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CSC2001F, CSC2002S, CSC2004Z and ((MAM1004F+MAM1008S) or (MAM1000W) or (MAM1031F or equivalent)).",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CSC3003S",
+    "name": "ADVANCED PROGRAMMING & ALGORITHMS",
+    "credits": 36,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CSC2001F",
+      "CSC2002S",
+      "CSC2004Z",
+      "MAM1000W",
+      "MAM1004F",
+      "MAM1008S",
+      "MAM1031F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 171,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CSC2001F, CSC2002S, CSC2004Z and ((MAM1004F+MAM1008S) or (MAM1000W) or (MAM1031F or equivalent)).",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "CSC3024S",
+    "name": "INTRODUCTION TO C++ PROGRAMMING",
+    "credits": 18,
+    "nqf_level": 7,
+    "prerequisites": [
+      "CSC2001F",
+      "CSC2002S",
+      "CSC2004Z",
+      "MAM1000W",
+      "MAM1004F",
+      "MAM1008S",
+      "MAM1031F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 171,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CSC2001F, CSC2002S, CSC2004Z and ((MAM1004F+MAM1008S) or (MAM1000W) or (MAM1031F or equivalent)).",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EGS1005F",
+    "name": "CREATING SUSTAINABLE IMPACT",
+    "credits": 12,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [
+      "CIV4041F",
+      "CIV4042F",
+      "CIV4045F",
+      "CIV4046F"
+    ],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 172,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "Any one of CIV4041F, CIV4042F, CIV4045F and CIV4046F",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EGS1007S",
+    "name": "HUMAN & PHYSICAL SYSTEMS",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [
+      "GEO1009F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 172,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "At least 50% for NSC Geography or GEO1009F. For Humanities students: At least 50% for NSC Geography",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EGS2016F",
+    "name": "GEOGRAPHIES ACROSS SPACE",
+    "credits": 24,
+    "nqf_level": 6,
+    "prerequisites": [
+      "EGS1003S",
+      "EGS1007S",
+      "GEO1009F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 173,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "GEO1009F or EGS1007S or EGS1003S, for BA or BSocSci:",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EGS2017S",
+    "name": "GEOGRAPHIES ACROSS TIME",
+    "credits": 24,
+    "nqf_level": 6,
+    "prerequisites": [
+      "EGS1003S",
+      "EGS1007S",
+      "GEO1009F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 173,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "For BSc: GEO1009F or EGS1007S or EGS1003S, for BA or BSocSci:",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EGS3012S",
+    "name": "ATMOSPHERIC SCIENCE",
+    "credits": 36,
+    "nqf_level": 7,
+    "prerequisites": [
+      "GEO1009F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 174,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "At least 60% in NSC Mathematics, GEO1009F or equivalent,",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EGS3021F",
+    "name": "SUSTAINABILITY & ENVIRONMENT",
+    "credits": 36,
+    "nqf_level": 7,
+    "prerequisites": [
+      "EGS2013F",
+      "EGS2015S",
+      "EGS2016F",
+      "EGS2017S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 174,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EGS2016F (or EGS2013F), EGS2017S (or EGS2015S)",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EGS3022S",
+    "name": "GEOGRAPHIC THOUGHT",
+    "credits": 36,
+    "nqf_level": 7,
+    "prerequisites": [
+      "EGS2013F",
+      "EGS2015S",
+      "EGS2016F",
+      "EGS2017S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 174,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EGS2016F (or EGS2013F) and/or EGS2017S (or EGS2015S)",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "EGS3023F",
+    "name": "ANTHROPOCENE ENVIRONMENTS IN PERSPECTIVE",
+    "credits": 36,
+    "nqf_level": 7,
+    "prerequisites": [
+      "EGS2013F",
+      "EGS2015S",
+      "EGS2016F",
+      "EGS2017S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 175,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "EGS2016F (or EGS2013F) and/or EGS2017S (or EGS2015S)",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "GEO1008F",
+    "name": "INTRODUCTION TO GEOLOGY FOR CIVIL ENGINEERS",
+    "credits": 12,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 176,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "GEO1009F",
+    "name": "GEOSYSTEMS: AN INTRODUCTION TO EARTH &",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 176,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "At least 50% for NSC Geography or at least 60% for NSC Physical Science or Life Sciences. NOTE: Preference will be given to students majoring in Archaeology, Environmental and Geographical Science, Geology or Oceanography.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "GEO1010F",
+    "name": "GEOSYSTEMS: AN INTRODUCTION TO EARTH &",
+    "credits": 12,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 177,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "At least 50% for NSC Geography or at least 60% for NSC Physical Science or Life Sciences.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "GEO2006S",
+    "name": "APPLIED MINERALOGY FOR CHEMICAL ENGINEERS",
+    "credits": 24,
+    "nqf_level": 6,
+    "prerequisites": [
+      "CEM1000W",
+      "GEO1009F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 177,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "CEM1000W, GEO1009F",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM1010F",
+    "name": "MATHEMATICS 1010",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [
+      "MAM1014F",
+      "MAM1015S",
+      "MAM1022F",
+      "MAM1025F",
+      "MAM1026F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 178,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "At least 60% in NSC Mathematics. Students who do not meet the 60% NSC requirement may instead complete MAM1014F/MAM1022F followed by MAM1015S. From 2027 the 60% NSC requirement may be replaced by MAM1025F/MAM1026F followed by MAM1015S.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM1010S",
+    "name": "MATHEMATICS 1010",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [
+      "MAM1014F",
+      "MAM1015S",
+      "MAM1022F",
+      "MAM1025F",
+      "MAM1026F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 178,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "At least 60% in NSC Mathematics. Students who do not meet the 60% NSC requirement may instead complete MAM1014F/MAM1022F followed by MAM1015S. From 2027 the 60% NSC requirement may be replaced by MAM1025F/MAM1026F followed by MAM1015S.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM1020F",
+    "name": "MATHEMATICS 1A FOR ENGINEERS",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 178,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "A pass in NSC Mathematics with at least 70%, or at least a D symbol at A-level.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM1020S",
+    "name": "MATHEMATICS 1A FOR ENGINEERS",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 179,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "A pass in NSC Mathematics with at least 70%, or at least a D symbol at A-level.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM1021F",
+    "name": "MATHEMATICS 1B FOR ENGINEERS",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [
+      "MAM1020F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 179,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM1020F.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM1021S",
+    "name": "MATHEMATICS 1B FOR ENGINEERS",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [
+      "MAM1020F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 179,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM1020F.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM1023F",
+    "name": "MATHEMATICS 1A FOR ENGINEERS EXTENDED",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 180,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM1023S",
+    "name": "MATHEMATICS 1A FOR ENGINEERS EXTENDED",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 180,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM1024F",
+    "name": "MATHEMATICS 1B FOR ENGINEERS EXTENDED",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [
+      "MAM1020F",
+      "MAM1023F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 181,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM1020F/S or MAM1023F/S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM1024S",
+    "name": "MATHEMATICS 1B FOR ENGINEERS EXTENDED",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [
+      "MAM1020F",
+      "MAM1023F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 181,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM1020F/S or MAM1023F/S",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM1025F",
+    "name": "INTRODUCTORY MATHEMATICS FOR QUANTITATIVE SOCIAL",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [
+      "MAM1015S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 181,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "Either: (A) NSC 40% in Mathematics, or, (B) NSC 80% in Mathematical literacy. Objective: This course is intended to provide students with the necessary mathematical background to be able to continue with MAM1015S.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM1026F",
+    "name": "FOUNDATIONAL MATHEMATICS FOR QUANTITATIVE SOCIAL",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [
+      "MAM1015S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 182,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "Either: (A) NSC 40% in Mathematics, or, (B) NSC 80% in Mathematical literacy. Objective: This course is intended to provide students with the necessary mathematical background to be able to continue with MAM1015S.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM2083F",
+    "name": "VECTOR CALCULUS FOR ENGINEERS",
+    "credits": 16,
+    "nqf_level": 6,
+    "prerequisites": [
+      "MAM1020",
+      "MAM1021"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 182,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM1020 or equivalent and MAM1021 or equivalent.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM2083S",
+    "name": "VECTOR CALCULUS FOR ENGINEERS",
+    "credits": 16,
+    "nqf_level": 6,
+    "prerequisites": [
+      "MAM1020",
+      "MAM1021"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 182,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM1020 or equivalent and MAM1021 or equivalent.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM2084F",
+    "name": "LINEAR ALGEBRA & DIFFERENTIAL EQUATIONS FOR",
+    "credits": 16,
+    "nqf_level": 6,
+    "prerequisites": [
+      "MAM1021F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 183,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM1021F/S or equivalent.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM2084S",
+    "name": "LINEAR ALGEBRA & DIFFERENTIAL EQUATIONS FOR",
+    "credits": 16,
+    "nqf_level": 6,
+    "prerequisites": [
+      "MAM1021F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 183,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM1021F/S or equivalent.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM2085F",
+    "name": "VECTOR CALCULUS FOR ASPECT",
+    "credits": 16,
+    "nqf_level": 6,
+    "prerequisites": [
+      "MAM1023",
+      "MAM1024"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 183,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM1023 and MAM1024",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM2085S",
+    "name": "VECTOR CALCULUS FOR ASPECT",
+    "credits": 16,
+    "nqf_level": 6,
+    "prerequisites": [
+      "MAM1023",
+      "MAM1024"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 184,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM1023 and MAM1024",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM3010F",
+    "name": "METRIC SPACES (3MS)",
+    "credits": 18,
+    "nqf_level": 7,
+    "prerequisites": [
+      "MAM2010F",
+      "MAM2011F",
+      "MAM2014S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 184,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM2010F, MAM2011F, MAM2014S and at least one of",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM3011F",
+    "name": "MODERN ABSTRACT ALGEBRA (3AL)",
+    "credits": 18,
+    "nqf_level": 7,
+    "prerequisites": [
+      "MAM2010F",
+      "MAM2011F",
+      "MAM2013S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 184,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM2010F, MAM2011F, MAM2013S and at least one of",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM3012F",
+    "name": "DISCRETE MATHEMATICS (3DM)",
+    "credits": 18,
+    "nqf_level": 7,
+    "prerequisites": [
+      "MAM2010F",
+      "MAM2011F",
+      "MAM2012S",
+      "MAM2013S",
+      "MAM2014S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 185,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM2010F, MAM2011F, and two of MAM2012S, MAM2013S and MAM2014S.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM3013S",
+    "name": "TOPICS IN ALGEBRA (3TA)",
+    "credits": 18,
+    "nqf_level": 7,
+    "prerequisites": [
+      "MAM2010F",
+      "MAM2011F",
+      "MAM2012S",
+      "MAM2013S",
+      "MAM2014S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 185,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM2010F, MAM2011F, and two of MAM2012S, MAM2013S and MAM2014S.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM3014S",
+    "name": "TOPICS IN ANALYSIS (3TN)",
+    "credits": 18,
+    "nqf_level": 7,
+    "prerequisites": [
+      "MAM3010F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 185,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM3010F",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM3015S",
+    "name": "COMPLEX ANALYSIS (3CA)",
+    "credits": 18,
+    "nqf_level": 7,
+    "prerequisites": [
+      "MAM2010F",
+      "MAM2011F",
+      "MAM2014S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 185,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM2010F, MAM2011F, MAM2014S and at least one of",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM3042F",
+    "name": "ADVANCED NUMERICAL METHODS (3AN)",
+    "credits": 18,
+    "nqf_level": 7,
+    "prerequisites": [
+      "MAM2040F",
+      "MAM2041F",
+      "MAM2042S",
+      "MAM2043S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 186,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM2040F, MAM2041F, MAM2042S and MAM2043S.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM3044F",
+    "name": "FUNCTIONS OF A COMPLEX VARIABLE (3CV)",
+    "credits": 18,
+    "nqf_level": 7,
+    "prerequisites": [
+      "MAM2040F",
+      "MAM2041F",
+      "MAM2042S",
+      "MAM2043S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 186,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM2040F, MAM2041F, MAM2042S and MAM2043S.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM3045S",
+    "name": "INTRODUCTION TO GENERAL RELATIVITY (3GR)",
+    "credits": 18,
+    "nqf_level": 7,
+    "prerequisites": [
+      "MAM2040F",
+      "MAM2041F",
+      "MAM2042S",
+      "MAM2043S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 186,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM2040F, MAM2041F, MAM2042S and MAM2043S.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM3046S",
+    "name": "FLUID DYNAMICS (3FD)",
+    "credits": 18,
+    "nqf_level": 7,
+    "prerequisites": [
+      "MAM2040F",
+      "MAM2041F",
+      "MAM2042S",
+      "MAM2043S"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 187,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM2040F, MAM2041F, MAM2042S and MAM2043S.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "PHY1012F",
+    "name": "PHYSICS A FOR ENGINEERS",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [
+      "MAM1020F"
+    ],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 187,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "MAM1020F (or equivalent)",
+    "not_offered_2026": false
+  },
+  {
+    "code": "PHY1012S",
+    "name": "PHYSICS A FOR ENGINEERS",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [
+      "MAM1020F"
+    ],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 187,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "MAM1020F (or equivalent) DEPARTMENTS IN OTHER FACULTIES AND COURSES OFFERED 188",
+    "not_offered_2026": false
+  },
+  {
+    "code": "PHY1013F",
+    "name": "PHYSICS B FOR ENGINEERS",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [
+      "PHY1012F",
+      "PHY1014F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "MAM1020F"
+    ],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 188,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "PHY1012F/S or PHY1014F/S",
+    "co_requisite_text": "MAM1020F (or equivalent)",
+    "not_offered_2026": false
+  },
+  {
+    "code": "PHY1013S",
+    "name": "PHYSICS B FOR ENGINEERS",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [
+      "PHY1012F",
+      "PHY1014F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "MAM1020F"
+    ],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 188,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "PHY1012F/S or PHY1014F/S",
+    "co_requisite_text": "MAM1020F (or equivalent)",
+    "not_offered_2026": false
+  },
+  {
+    "code": "PHY1014F",
+    "name": "PHYSICS A FOR ASPECT",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [
+      "MAM1020F",
+      "MAM1023F"
+    ],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 189,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "MAM1020F/S or MAM1023F/S, or equivalent",
+    "not_offered_2026": false
+  },
+  {
+    "code": "PHY1014S",
+    "name": "PHYSICS A FOR ASPECT",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [],
+    "prerequisites_verified": false,
+    "co_requisites": [
+      "MAM1020F",
+      "MAM1023F"
+    ],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 189,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "",
+    "co_requisite_text": "MAM1020F/S or MAM1023F/S, or equivalent",
+    "not_offered_2026": false
+  },
+  {
+    "code": "PHY1015F",
+    "name": "PHYSICS B FOR ASPECT",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [
+      "PHY1012F",
+      "PHY1014F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "MAM1020F",
+      "MAM1023F"
+    ],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 189,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "PHY1014F/S or PHY1012F/S.",
+    "co_requisite_text": "MAM1020F/S or MAM1023F/S, or equivalent DEPARTMENTS IN OTHER FACULTIES AND COURSES OFFERED 190",
+    "not_offered_2026": false
+  },
+  {
+    "code": "PHY1015S",
+    "name": "PHYSICS B FOR ASPECT",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [
+      "PHY1012F",
+      "PHY1014F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "MAM1020F",
+      "MAM1023F"
+    ],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 190,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "PHY1014F/S or PHY1012F/S.",
+    "co_requisite_text": "MAM1020F/S or MAM1023F/S, or equivalent",
+    "not_offered_2026": false
+  },
+  {
+    "code": "PHY1031F",
+    "name": "GENERAL PHYSICS A",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [
+      "PHY1023H"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 190,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "At least 60% for NSC Physical Science. Note: Students registered for this course will be assessed in week 5; if it is judged that they are not coping with the level and pace of the course, and would benefit from an opportunity to strengthen foundational concepts and learn new material at a slower pace, they will be required to transfer to PHY1023H from week 7.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "PHY1032S",
+    "name": "GENERAL PHYSICS B",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [
+      "PHY1023H",
+      "PHY1031F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 191,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "PHY1031F or PHY1023H",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "PHY2010S",
+    "name": "ELECTROMAGNETISM FOR ENGINEERS",
+    "credits": 16,
+    "nqf_level": 6,
+    "prerequisites": [
+      "MAM2083F",
+      "PHY1012F",
+      "PHY1013F",
+      "PHY1014F",
+      "PHY1015F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "MAM2084F"
+    ],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 191,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "PHY1012F/S and PHY1013F/S; or PHY1014F/S and PHY1015F/S. MAM2083F/S.",
+    "co_requisite_text": "MAM2084F/S.",
+    "not_offered_2026": false
+  },
+  {
+    "code": "STA1000F",
+    "name": "INTRODUCTORY STATISTICS",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [
+      "MAM1004F",
+      "MAM1005H",
+      "MAM1031F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 192,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "A pass in any of MAM1004F/S or MAM1005H or MAM1031F or",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "MAM1033F",
+    "name": "or MAM1020F/S or MAM1010F/S or MAM1110F/H.",
+    "credits": 18,
+    "nqf_level": 5,
+    "prerequisites": [
+      "STA1000F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 193,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "Students should have obtained a DP for either STA1000F/S.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "STA1008F",
+    "name": "STATISTICS FOR ENGINEERS",
+    "credits": 12,
+    "nqf_level": 5,
+    "prerequisites": [
+      "MAM1020F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "CHE1005W",
+      "CIV1005W",
+      "EEE1006F",
+      "MEC1005W"
+    ],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 193,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM1020F (or equivalent)",
+    "co_requisite_text": "CHE1005W or CIV1005W or EEE1006F or MEC1005W DEPARTMENTS IN OTHER FACULTIES AND COURSES OFFERED 194",
+    "not_offered_2026": false
+  },
+  {
+    "code": "STA1008S",
+    "name": "STATISTICS FOR ENGINEERS",
+    "credits": 12,
+    "nqf_level": 5,
+    "prerequisites": [
+      "MAM1020F"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [
+      "CHE1005W",
+      "CIV1005W",
+      "EEE1007S",
+      "MEC1005W"
+    ],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 194,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "MAM1020F (or equivalent)",
+    "co_requisite_text": "CHE1005W or CIV1005W or EEE1007S or MEC1005W",
+    "not_offered_2026": false
+  },
+  {
+    "code": "STA2020F",
+    "name": "APPLIED STATISTICS",
+    "credits": 24,
+    "nqf_level": 6,
+    "prerequisites": [
+      "MAM1000W",
+      "MAM1004F",
+      "MAM1005H",
+      "MAM1010F",
+      "MAM1020F",
+      "MAM1031F",
+      "MAM1033F",
+      "MAM1110F",
+      "STA1000F",
+      "STA1006S",
+      "STA1007S",
+      "STA1008F",
+      "STA1100S",
+      "STA1106H"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "First semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 194,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "A pass in STA1000F/S/P/L or STA1006S or STA1106H or STA1100S or STA1007S or STA1008F/S and MAM1000W or MAM1031F or MAM1033F or MAM1004F/S or MAM1010F/S or MAM1020F/S or MAM1110F/H or MAM1005H.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  },
+  {
+    "code": "STA2020S",
+    "name": "APPLIED STATISTICS",
+    "credits": 24,
+    "nqf_level": 6,
+    "prerequisites": [
+      "MAM1000W",
+      "MAM1004F",
+      "MAM1005H",
+      "MAM1010F",
+      "MAM1020F",
+      "MAM1031F",
+      "MAM1033F",
+      "MAM1110F",
+      "STA1000F",
+      "STA1006S",
+      "STA1007S",
+      "STA1008F",
+      "STA1100S",
+      "STA1106H"
+    ],
+    "prerequisites_verified": true,
+    "co_requisites": [],
+    "offered": [
+      "Second semester"
+    ],
+    "offering_verified": true,
+    "verification_status": "verified",
+    "source": {
+      "document": "2026 EBE Undergraduate Handbook",
+      "page": 195,
+      "section": "Course outline"
+    },
+    "entry_requirement_text": "A pass in STA1000F/S/P/L or STA1006S or STA1106H or STA1100S or STA1007S or STA1008F/S and MAM1000W or MAM1031F or MAM1033F or MAM1004F/S or MAM1010F/S or MAM1020F/S or MAM1110F/H or MAM1005H.",
+    "co_requisite_text": "",
+    "not_offered_2026": false
+  }
+]

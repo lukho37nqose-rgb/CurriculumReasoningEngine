@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://curriculumadvisor.example/schemas/change-request-v1.json",
+  "title": "CurriculumAdvisor Curriculum Change Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "change_id",
+    "faculty",
+    "owner_unit",
+    "requested_by",
+    "requested_at",
+    "effective_academic_year",
+    "change_type",
+    "reason",
+    "source",
+    "status",
+    "affected_records"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "change_id": {"type": "string", "minLength": 1},
+    "faculty": {"type": "string", "minLength": 1},
+    "owner_unit": {"type": "string", "minLength": 1},
+    "requested_by": {"type": "string", "minLength": 1},
+    "requested_at": {"type": "string", "format": "date-time"},
+    "effective_academic_year": {"type": "integer", "minimum": 2000, "maximum": 2200},
+    "change_type": {"enum": ["add", "amend", "retire", "correct_source", "operational_only"]},
+    "reason": {"type": "string", "minLength": 1},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["document", "page_or_section"],
+      "properties": {
+        "document": {"type": "string", "minLength": 1},
+        "page_or_section": {"type": "string", "minLength": 1},
+        "authority_note": {"type": "string"}
+      }
+    },
+    "status": {"enum": ["draft", "submitted", "validated", "approved", "rejected", "published"]},
+    "affected_records": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "reviewed_by": {"type": "string"},
+    "approved_by": {"type": "string"},
+    "notes": {"type": "array", "items": {"type": "string"}}
+  }
+}

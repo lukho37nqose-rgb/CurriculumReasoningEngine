@@ -1,0 +1,935 @@
+{
+  "AAE2001F": [
+    "AAE2001F",
+    "AAE2001S"
+  ],
+  "AAE2001S": [
+    "AAE2001F",
+    "AAE2001S"
+  ],
+  "AAE4002W": [
+    "AAE4002W",
+    "AAE4102X",
+    "AAE4202X",
+    "AAE4302",
+    "AAE4402X",
+    "AAE4502X"
+  ],
+  "AAE4003W": [
+    "AAE4003W",
+    "AAE4103X",
+    "AAE4203X",
+    "AAE4303X",
+    "AAE4403X",
+    "AAE4503X"
+  ],
+  "AAE5000W": [
+    "AAE5000W",
+    "AAE5100X",
+    "AAE5200X",
+    "AAE5300X",
+    "AAE5400X",
+    "AAE5500X"
+  ],
+  "AAE6000W": [
+    "AAE6000W",
+    "AAE6100X",
+    "AAE6200X",
+    "AAE6300X",
+    "AAE6400X",
+    "AAE6500X"
+  ],
+  "PPH3000H": [
+    "PPH3000H"
+  ],
+  "FCE2003F": [
+    "FCE2003F",
+    "FCE2003S"
+  ],
+  "FCE2003S": [
+    "FCE2003F",
+    "FCE2003S"
+  ],
+  "FCE3000F": [
+    "FCE3000F"
+  ],
+  "FCE6000W": [
+    "FCE6000W",
+    "FCE6100X",
+    "FCE6200X",
+    "FCE6300X",
+    "FCE6400X",
+    "FCE6500X"
+  ],
+  "FCE6001W": [
+    "FCE6001W",
+    "FCE6101X",
+    "FCE6201X",
+    "FCE6301X",
+    "FCE6401X",
+    "FCE6501X"
+  ],
+  "FCE6005W": [
+    "FCE6005W",
+    "FCE6105X",
+    "FCE6205X",
+    "FCE6305X",
+    "FCE6405X",
+    "FCE6505X"
+  ],
+  "AHS1003F": [
+    "AHS1003F"
+  ],
+  "AHS1025S": [
+    "AHS1025S"
+  ],
+  "AHS1032S": [
+    "AHS1032S"
+  ],
+  "AHS1033F": [
+    "AHS1033F"
+  ],
+  "AHS1034S": [
+    "AHS1034S"
+  ],
+  "AHS1035F": [
+    "AHS1035F"
+  ],
+  "AHS1042F": [
+    "AHS1042F"
+  ],
+  "AHS1045S": [
+    "AHS1045S"
+  ],
+  "AHS1054W": [
+    "AHS1054W"
+  ],
+  "AHS1060F": [
+    "AHS1060F",
+    "AHS1060S"
+  ],
+  "AHS1060S": [
+    "AHS1060F",
+    "AHS1060S"
+  ],
+  "AHS1061F": [
+    "AHS1061F",
+    "AHS1061S"
+  ],
+  "AHS1061S": [
+    "AHS1061F",
+    "AHS1061S"
+  ],
+  "AHS1062F": [
+    "AHS1062F",
+    "AHS1062S"
+  ],
+  "AHS1062S": [
+    "AHS1062F",
+    "AHS1062S"
+  ],
+  "AHS1063F": [
+    "AHS1063F",
+    "AHS1063S"
+  ],
+  "AHS1063S": [
+    "AHS1063F",
+    "AHS1063S"
+  ],
+  "AHS1064F": [
+    "AHS1064F",
+    "AHS1064S"
+  ],
+  "AHS1064S": [
+    "AHS1064F",
+    "AHS1064S"
+  ],
+  "AHS1065F": [
+    "AHS1065F",
+    "AHS1065S"
+  ],
+  "AHS1065S": [
+    "AHS1065F",
+    "AHS1065S"
+  ],
+  "AHS1066F": [
+    "AHS1066F",
+    "AHS1066S"
+  ],
+  "AHS1066S": [
+    "AHS1066F",
+    "AHS1066S"
+  ],
+  "AHS1067F": [
+    "AHS1067F",
+    "AHS1067S"
+  ],
+  "AHS1067S": [
+    "AHS1067F",
+    "AHS1067S"
+  ],
+  "AHS1068W": [
+    "AHS1068W"
+  ],
+  "AHS1069W": [
+    "AHS1069W"
+  ],
+  "AHS1070W": [
+    "AHS1070W"
+  ],
+  "AHS2002W": [
+    "AHS2002W"
+  ],
+  "AHS2043W": [
+    "AHS2043W"
+  ],
+  "AHS2046F": [
+    "AHS2046F"
+  ],
+  "AHS2047S": [
+    "AHS2047S"
+  ],
+  "AHS2050H": [
+    "AHS2050H"
+  ],
+  "AHS2052H": [
+    "AHS2052H"
+  ],
+  "AHS2053H": [
+    "AHS2053H"
+  ],
+  "AHS2054F": [
+    "AHS2054F",
+    "AHS2054S"
+  ],
+  "AHS2054S": [
+    "AHS2054F",
+    "AHS2054S"
+  ],
+  "AHS2106F": [
+    "AHS2106F"
+  ],
+  "AHS2107F": [
+    "AHS2107F"
+  ],
+  "AHS2108W": [
+    "AHS2108W"
+  ],
+  "AHS2109S": [
+    "AHS2109S"
+  ],
+  "AHS2110W": [
+    "AHS2110W"
+  ],
+  "AHS2111S": [
+    "AHS2111S"
+  ],
+  "AHS3004W": [
+    "AHS3004W"
+  ],
+  "AHS3005W": [
+    "AHS3005W"
+  ],
+  "AHS3008W": [
+    "AHS3008W"
+  ],
+  "AHS3062F": [
+    "AHS3062F"
+  ],
+  "AHS3065S": [
+    "AHS3065S"
+  ],
+  "AHS3069W": [
+    "AHS3069W"
+  ],
+  "AHS3070H": [
+    "AHS3070H"
+  ],
+  "AHS3071F": [
+    "AHS3071F"
+  ],
+  "AHS3072S": [
+    "AHS3072S"
+  ],
+  "AHS3073F": [
+    "AHS3073F"
+  ],
+  "AHS3075F": [
+    "AHS3075F"
+  ],
+  "AHS3076H": [
+    "AHS3076H"
+  ],
+  "AHS3077H": [
+    "AHS3077H"
+  ],
+  "AHS3078H": [
+    "AHS3078H"
+  ],
+  "AHS3102S": [
+    "AHS3102S"
+  ],
+  "AHS3103F": [
+    "AHS3103F"
+  ],
+  "AHS3104S": [
+    "AHS3104S"
+  ],
+  "AHS3105F": [
+    "AHS3105F"
+  ],
+  "AHS3107W": [
+    "AHS3107W"
+  ],
+  "AHS3108W": [
+    "AHS3108W"
+  ],
+  "AHS3113W": [
+    "AHS3113W"
+  ],
+  "AHS4000W": [
+    "AHS4000W"
+  ],
+  "AHS4005H": [
+    "AHS4005H"
+  ],
+  "AHS4006H": [
+    "AHS4006H"
+  ],
+  "AHS4008H": [
+    "AHS4008H"
+  ],
+  "AHS4009H": [
+    "AHS4009H"
+  ],
+  "AHS4065W": [
+    "AHS4065W"
+  ],
+  "AHS4065X": [
+    "AHS4065X"
+  ],
+  "AHS4066F": [
+    "AHS4066F"
+  ],
+  "AHS4067S": [
+    "AHS4067S"
+  ],
+  "AHS4071F": [
+    "AHS4071F"
+  ],
+  "AHS4072H": [
+    "AHS4072H"
+  ],
+  "AHS4119W": [
+    "AHS4119W"
+  ],
+  "AHS4120W": [
+    "AHS4120W"
+  ],
+  "AHS4121W": [
+    "AHS4121W"
+  ],
+  "AHS4122X": [
+    "AHS4122X"
+  ],
+  "AHS4123X": [
+    "AHS4123X"
+  ],
+  "AHS4184S": [
+    "AHS4184S"
+  ],
+  "AHS4185S": [
+    "AHS4185S"
+  ],
+  "HSE1001F": [
+    "HSE1001F",
+    "HSE1001S"
+  ],
+  "HSE1001S": [
+    "HSE1001F",
+    "HSE1001S"
+  ],
+  "HSE1014S": [
+    "HSE1014S"
+  ],
+  "HSE2000W": [
+    "HSE2000W"
+  ],
+  "HSE2001F": [
+    "HSE2001F",
+    "HSE2001S"
+  ],
+  "HSE2001S": [
+    "HSE2001F",
+    "HSE2001S"
+  ],
+  "HSE3000F": [
+    "HSE3000F"
+  ],
+  "HSE6004W": [
+    "HSE6004W"
+  ],
+  "HUB1006F": [
+    "HUB1006F"
+  ],
+  "HUB1014S": [
+    "HUB1014S"
+  ],
+  "HUB1019F": [
+    "HUB1019F"
+  ],
+  "HUB1020S": [
+    "HUB1020S"
+  ],
+  "HUB1022F": [
+    "HUB1022F"
+  ],
+  "HUB1023S": [
+    "HUB1023S"
+  ],
+  "HUB2005F": [
+    "HUB2005F"
+  ],
+  "HUB2015W": [
+    "HUB2015W"
+  ],
+  "HUB2017H": [
+    "HUB2017H"
+  ],
+  "HUB2019F": [
+    "BIO1000F",
+    "BIO1004S",
+    "CEM1000W",
+    "HUB2019F"
+  ],
+  "HUB2020F": [
+    "HUB2020F",
+    "HUB2020S"
+  ],
+  "HUB2020S": [
+    "HUB2020F",
+    "HUB2020S"
+  ],
+  "HUB2021S": [
+    "HUB2021S"
+  ],
+  "HUB2023W": [
+    "HUB2023W"
+  ],
+  "HUB3006F": [
+    "HUB3006F"
+  ],
+  "HUB3007S": [
+    "HUB3007S"
+  ],
+  "HUB4071F": [
+    "HUB4071F"
+  ],
+  "IBS1007S": [
+    "IBS1007S"
+  ],
+  "IBS2001F": [
+    "IBS2001F",
+    "IBS2001S"
+  ],
+  "IBS2001S": [
+    "IBS2001F",
+    "IBS2001S"
+  ],
+  "IBS3020W": [
+    "IBS3020W"
+  ],
+  "MDN2001F": [
+    "MDN2001F",
+    "MDN2001S"
+  ],
+  "MDN2001S": [
+    "MDN2001F",
+    "MDN2001S"
+  ],
+  "MDN3001S": [
+    "MDN3001S"
+  ],
+  "MDN3003W": [
+    "MDN3003W"
+  ],
+  "MDN3005W": [
+    "MDN3005W"
+  ],
+  "MDN3006W": [
+    "MDN3006W"
+  ],
+  "MDN3007W": [
+    "MDN3007W"
+  ],
+  "MDN3008W": [
+    "MDN3008W"
+  ],
+  "MDN3009W": [
+    "MDN3009W"
+  ],
+  "MDN3010W": [
+    "MDN3010W"
+  ],
+  "MDN4001W": [
+    "MDN4001W"
+  ],
+  "MDN4011W": [
+    "MDN4011W"
+  ],
+  "MDN4015W": [
+    "MDN4015W",
+    "MDN4115X",
+    "MDN4215X",
+    "MDN4315X",
+    "MDN4415X",
+    "MDN4515X"
+  ],
+  "MDN4017W": [
+    "MDN4017W",
+    "MDN4117X",
+    "MDN4217X",
+    "MDN4317X",
+    "MDN4417X",
+    "MDN4517X"
+  ],
+  "MDN5000W": [
+    "MDN5000W",
+    "MDN5100X",
+    "MDN5200X",
+    "MDN5300X",
+    "MDN5400X",
+    "MDN5500X"
+  ],
+  "MDN5003H": [
+    "MDN4015W",
+    "MDN5003H",
+    "MDN5103X",
+    "MDN5203X",
+    "MDN5303X",
+    "MDN5403X",
+    "MDN5503X"
+  ],
+  "MDN5004W": [
+    "MDN4015W",
+    "MDN5004W",
+    "MDN5104X",
+    "MDN5204X",
+    "MDN5304X",
+    "MDN5404X",
+    "MDN5504X"
+  ],
+  "MDN5005W": [
+    "MDN5005W",
+    "MDN5105X",
+    "MDN5205X",
+    "MDN5305X",
+    "MDN5405X",
+    "MDN5505X"
+  ],
+  "MDN5006W": [
+    "MDN5006W",
+    "MDN5106X",
+    "MDN5206X",
+    "MDN5306X",
+    "MDN5406X",
+    "MDN5506X"
+  ],
+  "MDN6000W": [
+    "MDN6000W",
+    "MDN6100X",
+    "MDN6200X",
+    "MDN6300X",
+    "MDN6400X",
+    "MDN6500X"
+  ],
+  "MDN6003W": [
+    "MDN6003W",
+    "MDN6103X",
+    "MDN6203X",
+    "MDN6303X",
+    "MDN6403X",
+    "MDN6503X"
+  ],
+  "OBS2001F": [
+    "OBS2001F",
+    "OBS2001S"
+  ],
+  "OBS2001S": [
+    "OBS2001F",
+    "OBS2001S"
+  ],
+  "OBS4003W": [
+    "OBS4003W",
+    "OBS4103X",
+    "OBS4203X",
+    "OBS4303X",
+    "OBS4403X",
+    "OBS4503X",
+    "PED4016W"
+  ],
+  "OBS4006W": [
+    "OBS4006W",
+    "OBS4106X",
+    "OBS4206X",
+    "OBS4306X",
+    "OBS4406X",
+    "OBS4506X"
+  ],
+  "OBS5005W": [
+    "OBS5005W",
+    "OBS5105X",
+    "OBS5205X",
+    "OBS5305X",
+    "OBS5405X",
+    "OBS5505X"
+  ],
+  "OBS5006W": [
+    "OBS5006W",
+    "OBS5106X",
+    "OBS5206X",
+    "OBS5306X",
+    "OBS5406X",
+    "OBS5506X"
+  ],
+  "OBS5007W": [
+    "OBS5007W",
+    "OBS5107X",
+    "OBS5207X",
+    "OBS5307X",
+    "OBS5407X",
+    "OBS5507X"
+  ],
+  "OBS6000W": [
+    "OBS6000W",
+    "OBS6100X",
+    "OBS6200X",
+    "OBS6300X",
+    "OBS6400X",
+    "OBS6500X"
+  ],
+  "PED4017W": [
+    "PED4017W"
+  ],
+  "PED4049W": [
+    "PED4049W",
+    "PED4149X",
+    "PED4249X",
+    "PED4349X",
+    "PED4449X",
+    "PED4549X"
+  ],
+  "PED5005W": [
+    "PED5005W"
+  ],
+  "PED5006W": [
+    "PED5006W"
+  ],
+  "PED6004W": [
+    "PED6004W"
+  ],
+  "PTY2000S": [
+    "PTY2000S"
+  ],
+  "PTY2001S": [
+    "PTY2001S"
+  ],
+  "PTY2002F": [
+    "PTY2002F",
+    "PTY2002S"
+  ],
+  "PTY2002S": [
+    "PTY2002F",
+    "PTY2002S"
+  ],
+  "PTY3009F": [
+    "PTY3009F"
+  ],
+  "PTY3010F": [
+    "PTY3010F"
+  ],
+  "PTY4008S": [
+    "PTY4008S"
+  ],
+  "PTY5012W": [
+    "PTY5012W",
+    "PTY5112X",
+    "PTY5212X",
+    "PTY5312X",
+    "PTY5412X",
+    "PTY5512X"
+  ],
+  "PTY6012W": [
+    "PTY6012W",
+    "PTY6112X",
+    "PTY6212X",
+    "PTY6312X",
+    "PTY6412X",
+    "PTY6512X"
+  ],
+  "PRY2001F": [
+    "PRY2001F",
+    "PRY2001S"
+  ],
+  "PRY2001S": [
+    "PRY2001F",
+    "PRY2001S"
+  ],
+  "PRY2002W": [
+    "PRY2002W"
+  ],
+  "PRY4000W": [
+    "PRY4000W",
+    "PRY4100X",
+    "PRY4200X",
+    "PRY4300X",
+    "PRY4400X",
+    "PRY4500X"
+  ],
+  "PRY4001W": [
+    "PRY4001W",
+    "PRY4101X",
+    "PRY4201X",
+    "PRY4301X",
+    "PRY4401X",
+    "PRY4501X"
+  ],
+  "PRY5001W": [
+    "PRY5001W",
+    "PRY5101X",
+    "PRY5201X",
+    "PRY5301X",
+    "PRY5401X",
+    "PRY5501X"
+  ],
+  "PRY6000W": [
+    "PRY6000W",
+    "PRY6100X",
+    "PRY6200X",
+    "PRY6300X",
+    "PRY6400X",
+    "PRY6500X"
+  ],
+  "PPH1001F": [
+    "PPH1001F"
+  ],
+  "PPH1002S": [
+    "PPH1002S"
+  ],
+  "PPH2002F": [
+    "PPH2002F",
+    "PPH2002S"
+  ],
+  "PPH2002S": [
+    "PPH2002F",
+    "PPH2002S"
+  ],
+  "PPH4056W": [
+    "PPH4056W",
+    "PPH4156X",
+    "PPH4256X",
+    "PPH4356X",
+    "PPH4456X",
+    "PPH4556X"
+  ],
+  "RAY2001W": [
+    "RAY2001W"
+  ],
+  "RAY2004F": [
+    "RAY2004F",
+    "RAY2004S"
+  ],
+  "RAY2004S": [
+    "RAY2004F",
+    "RAY2004S"
+  ],
+  "CHM2001F": [
+    "CHM2001F",
+    "CHM2001S"
+  ],
+  "CHM2001S": [
+    "CHM2001F",
+    "CHM2001S"
+  ],
+  "CHM5003W": [
+    "CHM5003W",
+    "CHM5103X",
+    "CHM5203X",
+    "CHM5303X",
+    "CHM5403X",
+    "CHM5503X"
+  ],
+  "CHM5004W": [
+    "CHM5004W",
+    "CHM5104X",
+    "CHM5204X",
+    "CHM5304X",
+    "CHM5404X",
+    "CHM5504X"
+  ],
+  "CHM5005H": [
+    "CHM5005H",
+    "CHM5105X",
+    "CHM5205X",
+    "CHM5305X",
+    "CHM5405X",
+    "CHM5505X"
+  ],
+  "CHM5005W": [
+    "CHM5005W",
+    "CHM5105X",
+    "CHM5205X",
+    "CHM5305X",
+    "CHM5405X",
+    "CHM5505X"
+  ],
+  "CHM5006W": [
+    "CHM5006W",
+    "CHM5106X",
+    "CHM5206X",
+    "CHM5306X",
+    "CHM5406X",
+    "CHM5506X"
+  ],
+  "CHM5007W": [
+    "CHM5007W",
+    "CHM5107X",
+    "CHM5207X",
+    "CHM5307X",
+    "CHM5407X",
+    "CHM5507X"
+  ],
+  "CHM5008W": [
+    "CHM5008W",
+    "CHM5108X",
+    "CHM5208X",
+    "CHM5308X",
+    "CHM5408X",
+    "CHM5508X"
+  ],
+  "CHM5009W": [
+    "CHM5009W",
+    "CHM5109X",
+    "CHM5209X",
+    "CHM5309X",
+    "CHM5409X",
+    "CHM5509X"
+  ],
+  "CHM5010W": [
+    "CHM5010W",
+    "CHM5110X",
+    "CHM5210X",
+    "CHM5310X",
+    "CHM5410X",
+    "CHM5510X"
+  ],
+  "CHM5011W": [
+    "CHM5011W",
+    "CHM5211X",
+    "CHM5311X",
+    "CHM5411X",
+    "CHM5511X"
+  ],
+  "CHM6000W": [
+    "CHM6000W",
+    "CHM6100X",
+    "CHM6200X",
+    "CHM6300X",
+    "CHM6400X",
+    "CHM6500X"
+  ],
+  "CHM6020W": [
+    "CHM6020W",
+    "CHM6120X",
+    "CHM6220X",
+    "CHM6320X",
+    "CHM6420X",
+    "CHM6520X"
+  ],
+  "ASL1301S": [
+    "ASL1301S"
+  ],
+  "ASL1302S": [
+    "ASL1302S"
+  ],
+  "ASL1303F": [
+    "ASL1303F"
+  ],
+  "CEM1011F": [
+    "CEM1011F"
+  ],
+  "PSY1009F": [
+    "PSY1009F"
+  ],
+  "PSY1010S": [
+    "PSY1010S"
+  ],
+  "PSY1006F": [
+    "PSY1006F"
+  ],
+  "PSY1007S": [
+    "PSY1007S"
+  ],
+  "PSY2013F": [
+    "PSY2013F"
+  ],
+  "PSY2014S": [
+    "PSY2014S"
+  ],
+  "PSY2015F": [
+    "PSY2015F"
+  ],
+  "PHY1025F": [
+    "PHY1025F"
+  ],
+  "SLL1028H": [
+    "SLL1028H"
+  ],
+  "SLL1041S": [
+    "SLL1041S"
+  ],
+  "SLL1044S": [
+    "SLL1044S"
+  ],
+  "SLL1048H": [
+    "SLL1048H"
+  ],
+  "SLL2002H": [
+    "SLL2002H"
+  ],
+  "SLL3002F": [
+    "SLL3002F"
+  ],
+  "SLL3103X": [
+    "SLL3103X"
+  ],
+  "PSY1004F": [
+    "PSY1004F",
+    "PSY1009F"
+  ],
+  "PSY1005S": [
+    "PSY1005S",
+    "PSY1010S"
+  ],
+  "ASL1300F": [
+    "ASL1300F"
+  ],
+  "FCE2000W": [
+    "FCE2000W"
+  ],
+  "SLL3003W": [
+    "SLL3003W"
+  ],
+  "PED4016W": [
+    "PED4016W"
+  ],
+  "CHM5004H": [
+    "CHM5004H"
+  ],
+  "PED6000W": [
+    "PED6000W"
+  ],
+  "PED5004W": [
+    "PED5004W"
+  ]
+}

@@ -1,0 +1,5273 @@
+{
+  "source": "2026 EBE Undergraduate Handbook; 2026 General Rules and Policies Handbook",
+  "catalogue_version": "2026.1-ebe",
+  "programmes": {
+    "bas": {
+      "name": "Bachelor of Architectural Studies",
+      "minimum_nqf_credits": 432,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "APG1003W",
+        "APG1004F",
+        "APG1005S",
+        "APG1020W",
+        "APG1021W",
+        "APG2000F",
+        "APG2003S",
+        "APG2009F",
+        "APG2021W",
+        "APG2043F",
+        "APG2039W",
+        "APG2042Z",
+        "APG2027X",
+        "APG3000Z",
+        "APG3023W",
+        "APG3028X",
+        "APG3034Z",
+        "APG3035F",
+        "APG3036F",
+        "APG3041Z",
+        "APG3037W"
+      ],
+      "qualification_codes": [
+        "EB012APG01"
+      ],
+      "scope_verified": false,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 3,
+      "maximum_registration_years": 4,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "manual",
+          "id": "bas_credit_conflict",
+          "label": "Published BAS credit reconciliation",
+          "note": "FB3.2 states a 432-credit minimum, while the printed BAS curriculum table totals fewer credits. Faculty confirmation is required before a graduation conclusion can be definitive.",
+          "assumed_complete": true,
+          "blocking": true,
+          "status": "conflict"
+        }
+      ],
+      "pathways": {},
+      "pathway_required": false,
+      "default_pathway_key": "",
+      "availability": "open",
+      "availability_note": "",
+      "progression_rules": [
+        {
+          "type": "failed_any",
+          "label": "No failed BAS major course",
+          "course_codes": [
+            "APG1003W",
+            "APG1020W",
+            "APG2021W",
+            "APG2039W",
+            "APG3023W",
+            "APG3037W"
+          ]
+        },
+        {
+          "type": "repeat_failure",
+          "label": "No course failed more than once",
+          "maximum_failures": 1
+        },
+        {
+          "type": "pass_rate",
+          "label": "Pass at least 80% of annual registered credits",
+          "minimum": 0.8
+        },
+        {
+          "type": "maximum_years",
+          "label": "Complete within four years",
+          "maximum": 4
+        }
+      ],
+      "award_rules": [
+        {
+          "name": "Degree with distinction",
+          "complete_within_years": 3,
+          "curriculum_rules": [
+            {
+              "type": "minimum_mark",
+              "id": "studio3",
+              "label": "Design & Theory Studio III",
+              "course_codes": [
+                "APG3037W"
+              ],
+              "minimum_mark": 75
+            },
+            {
+              "type": "minimum_mark",
+              "id": "earlier_studio",
+              "label": "Earlier Design & Theory Studio examination",
+              "course_codes": [
+                "APG1020W",
+                "APG2039W"
+              ],
+              "minimum_mark": 70
+            },
+            {
+              "type": "passed_mark_count",
+              "id": "additional_firsts",
+              "label": "Three additional first-class BAS passes",
+              "required": 3,
+              "minimum_mark": 75,
+              "exclude_course_codes": [
+                "APG1020W",
+                "APG2039W",
+                "APG3037W"
+              ]
+            }
+          ]
+        }
+      ],
+      "progression_notes": [],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 22,
+        "section": "Programmes of Study"
+      }
+    },
+    "geomatics_surveying_4": {
+      "name": "BSc Geomatics — Surveying (4-year)",
+      "minimum_nqf_credits": 519,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "APG1024F",
+        "CSC1017S",
+        "GEO1010F",
+        "MAM1020F",
+        "MAM1021S",
+        "APG1023S",
+        "STA1008S",
+        "PHY1031F",
+        "APG2014S",
+        "APG2015F",
+        "APG2019X",
+        "APG2040F",
+        "APG2041S",
+        "MAM2083S",
+        "MAM2084F",
+        "PHY1032S",
+        "APG3012S",
+        "APG3013F",
+        "APG3016C",
+        "APG3017D",
+        "APG3027Z",
+        "APG3033W",
+        "APG3038F",
+        "APG3040C",
+        "CON2033F",
+        "APG4001S",
+        "APG4002Z",
+        "APG4003Z",
+        "APG4005F",
+        "APG4010X",
+        "APG4011F",
+        "APG4012S"
+      ],
+      "qualification_codes": [
+        "EB019APG09"
+      ],
+      "scope_verified": false,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 4,
+      "maximum_registration_years": null,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "approved_credit_pool",
+          "id": "surveying_elective",
+          "label": "Approved NQF level-7 elective",
+          "required": 12,
+          "course_codes": [
+            "APG3039B"
+          ],
+          "transcript_course_codes": [],
+          "exclude_course_codes": [],
+          "transcript_filters": {
+            "nqf_levels": [
+              7
+            ]
+          },
+          "approval_note": "The Surveying stream requires an approved 12-credit level-7 elective. APG3039B is recommended for an additional registration category, but other approvals require confirmation.",
+          "verification_status": "unverified",
+          "transcript_only": false,
+          "allow_unlisted_transcript_courses": true
+        },
+        {
+          "type": "manual",
+          "id": "geomatics_transition",
+          "label": "Cohort transition confirmation",
+          "note": "The handbook states that a new 519-credit curriculum is being phased in from 2026 while a 576-credit curriculum is phased out. The student's intake-year curriculum must be confirmed.",
+          "assumed_complete": true,
+          "blocking": true,
+          "status": "unverified"
+        }
+      ],
+      "pathways": {},
+      "pathway_required": false,
+      "default_pathway_key": "",
+      "availability": "open",
+      "availability_note": "",
+      "progression_rules": [
+        {
+          "type": "annual_credits",
+          "year": 1,
+          "minimum": 100,
+          "concession_minimum": 40,
+          "label": "First-year Geomatics progression"
+        },
+        {
+          "type": "manual",
+          "label": "Rolling two-year credit rule",
+          "note": "Subsequent progression uses a rolling two-year threshold (224 credits) and transfer/re-registration variants that require year-labelled records."
+        }
+      ],
+      "award_rules": [
+        {
+          "name": "First class honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "first_class_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 75
+            },
+            {
+              "type": "minimum_mark",
+              "id": "first_class_project",
+              "label": "Research project APG4003Z",
+              "course_codes": [
+                "APG4003Z"
+              ],
+              "minimum_mark": 75
+            }
+          ]
+        },
+        {
+          "name": "Honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "honours_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 65
+            },
+            {
+              "type": "minimum_mark",
+              "id": "honours_project",
+              "label": "Research project APG4003Z",
+              "course_codes": [
+                "APG4003Z"
+              ],
+              "minimum_mark": 60
+            }
+          ]
+        }
+      ],
+      "progression_notes": [
+        "Fieldwork, practical performance and professional registration conditions remain operational requirements."
+      ],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 25,
+        "section": "Programmes of Study"
+      }
+    },
+    "geomatics_surveying_5": {
+      "name": "BSc Geomatics — Surveying (5-year ASPECT)",
+      "minimum_nqf_credits": 519,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "APG1024F",
+        "APG1023S",
+        "CSC1017S",
+        "GEO1010F",
+        "MAM1020F",
+        "MAM1021S",
+        "APG2014S",
+        "APG2019X",
+        "APG2040F",
+        "MAM2084S",
+        "MAM2085F",
+        "PHY1031F",
+        "PHY1032S",
+        "APG2015F",
+        "APG2041S",
+        "APG3012S",
+        "APG3013F",
+        "APG3040C",
+        "APG3016C",
+        "APG3017D",
+        "APG3027Z",
+        "APG3038F",
+        "APG3033W",
+        "APG4002Z",
+        "APG4010X",
+        "APG4011F",
+        "CON2033F",
+        "APG4001S",
+        "APG4003Z",
+        "APG4005F",
+        "APG4012S"
+      ],
+      "qualification_codes": [
+        "EB819APG09"
+      ],
+      "scope_verified": false,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 5,
+      "maximum_registration_years": null,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "approved_credit_pool",
+          "id": "surveying_elective",
+          "label": "Approved NQF level-7 elective",
+          "required": 12,
+          "course_codes": [
+            "APG3039B"
+          ],
+          "transcript_course_codes": [],
+          "exclude_course_codes": [],
+          "transcript_filters": {
+            "nqf_levels": [
+              7
+            ]
+          },
+          "approval_note": "The Surveying stream requires an approved 12-credit level-7 elective. APG3039B is recommended for an additional registration category, but other approvals require confirmation.",
+          "verification_status": "unverified",
+          "transcript_only": false,
+          "allow_unlisted_transcript_courses": true
+        },
+        {
+          "type": "manual",
+          "id": "geomatics_transition",
+          "label": "Cohort transition confirmation",
+          "note": "The handbook states that a new 519-credit curriculum is being phased in from 2026 while a 576-credit curriculum is phased out. The student's intake-year curriculum must be confirmed.",
+          "assumed_complete": true,
+          "blocking": true,
+          "status": "unverified"
+        }
+      ],
+      "pathways": {},
+      "pathway_required": false,
+      "default_pathway_key": "",
+      "availability": "open",
+      "availability_note": "",
+      "progression_rules": [
+        {
+          "type": "annual_credits",
+          "year": 1,
+          "minimum": 80,
+          "concession_minimum": 32,
+          "label": "First-year Geomatics progression"
+        },
+        {
+          "type": "manual",
+          "label": "Rolling two-year credit rule",
+          "note": "Subsequent progression uses a rolling two-year threshold (192 credits) and transfer/re-registration variants that require year-labelled records."
+        }
+      ],
+      "award_rules": [
+        {
+          "name": "First class honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "first_class_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 75
+            },
+            {
+              "type": "minimum_mark",
+              "id": "first_class_project",
+              "label": "Research project APG4003Z",
+              "course_codes": [
+                "APG4003Z"
+              ],
+              "minimum_mark": 75
+            }
+          ]
+        },
+        {
+          "name": "Honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "honours_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 65
+            },
+            {
+              "type": "minimum_mark",
+              "id": "honours_project",
+              "label": "Research project APG4003Z",
+              "course_codes": [
+                "APG4003Z"
+              ],
+              "minimum_mark": 60
+            }
+          ]
+        }
+      ],
+      "progression_notes": [
+        "Fieldwork, practical performance and professional registration conditions remain operational requirements."
+      ],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 26,
+        "section": "Programmes of Study"
+      }
+    },
+    "geomatics_geoinformatics_cs_4": {
+      "name": "BSc Geomatics — Geoinformatics/Computer Science (4-year)",
+      "minimum_nqf_credits": 519,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "APG1024F",
+        "CSC1017S",
+        "GEO1010F",
+        "MAM1020F",
+        "MAM1021S",
+        "APG1023S",
+        "STA1008S",
+        "PHY1031F",
+        "APG2014S",
+        "APG2015F",
+        "APG2019X",
+        "APG2040F",
+        "APG2041S",
+        "MAM2083S",
+        "MAM2084F",
+        "PHY1032S",
+        "APG3012S",
+        "APG3013F",
+        "APG3016C",
+        "APG3038F",
+        "APG3039B",
+        "APG3040C",
+        "CSC2001F",
+        "CSC2002S",
+        "CSC2004Z",
+        "INF2009F",
+        "APG4002Z",
+        "APG4003Z",
+        "APG4010X",
+        "APG4011F",
+        "APG4012S",
+        "CSC3002F",
+        "CSC3003S"
+      ],
+      "qualification_codes": [
+        "EB019APG11"
+      ],
+      "scope_verified": false,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 4,
+      "maximum_registration_years": null,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "manual",
+          "id": "geomatics_transition",
+          "label": "Cohort transition confirmation",
+          "note": "The handbook states that a new 519-credit curriculum is being phased in from 2026 while a 576-credit curriculum is phased out. The student's intake-year curriculum must be confirmed.",
+          "assumed_complete": true,
+          "blocking": true,
+          "status": "unverified"
+        }
+      ],
+      "pathways": {},
+      "pathway_required": false,
+      "default_pathway_key": "",
+      "availability": "open",
+      "availability_note": "",
+      "progression_rules": [
+        {
+          "type": "annual_credits",
+          "year": 1,
+          "minimum": 100,
+          "concession_minimum": 40,
+          "label": "First-year Geomatics progression"
+        },
+        {
+          "type": "manual",
+          "label": "Rolling two-year credit rule",
+          "note": "Subsequent progression uses a rolling two-year threshold (224 credits) and transfer/re-registration variants that require year-labelled records."
+        }
+      ],
+      "award_rules": [
+        {
+          "name": "First class honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "first_class_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 75
+            },
+            {
+              "type": "minimum_mark",
+              "id": "first_class_project",
+              "label": "Research project APG4003Z",
+              "course_codes": [
+                "APG4003Z"
+              ],
+              "minimum_mark": 75
+            }
+          ]
+        },
+        {
+          "name": "Honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "honours_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 65
+            },
+            {
+              "type": "minimum_mark",
+              "id": "honours_project",
+              "label": "Research project APG4003Z",
+              "course_codes": [
+                "APG4003Z"
+              ],
+              "minimum_mark": 60
+            }
+          ]
+        }
+      ],
+      "progression_notes": [
+        "Fieldwork, practical performance and professional registration conditions remain operational requirements."
+      ],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 28,
+        "section": "Programmes of Study"
+      }
+    },
+    "geomatics_geoinformatics_cs_5": {
+      "name": "BSc Geomatics — Geoinformatics/Computer Science (5-year ASPECT)",
+      "minimum_nqf_credits": 519,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "APG1024F",
+        "APG1023S",
+        "CSC1017S",
+        "GEO1010F",
+        "MAM1023F",
+        "MAM1024S",
+        "APG2014S",
+        "APG2019X",
+        "APG2040F",
+        "CSC1016S",
+        "MAM2084S",
+        "MAM2085F",
+        "PHY1031F",
+        "PHY1032S",
+        "APG2015F",
+        "APG2041S",
+        "APG3012S",
+        "APG3013F",
+        "APG3039B",
+        "APG3040C",
+        "CSC2001F",
+        "CSC2002S",
+        "CSC2004Z",
+        "APG3016C",
+        "APG3038F",
+        "APG4010X",
+        "CSC3002F",
+        "CSC3003S",
+        "APG4012S",
+        "INF2009F",
+        "APG4002Z",
+        "APG4003Z",
+        "APG4011F"
+      ],
+      "qualification_codes": [
+        "EB819APG11"
+      ],
+      "scope_verified": false,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 5,
+      "maximum_registration_years": null,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "manual",
+          "id": "geomatics_transition",
+          "label": "Cohort transition confirmation",
+          "note": "The handbook states that a new 519-credit curriculum is being phased in from 2026 while a 576-credit curriculum is phased out. The student's intake-year curriculum must be confirmed.",
+          "assumed_complete": true,
+          "blocking": true,
+          "status": "unverified"
+        }
+      ],
+      "pathways": {},
+      "pathway_required": false,
+      "default_pathway_key": "",
+      "availability": "open",
+      "availability_note": "",
+      "progression_rules": [
+        {
+          "type": "annual_credits",
+          "year": 1,
+          "minimum": 80,
+          "concession_minimum": 32,
+          "label": "First-year Geomatics progression"
+        },
+        {
+          "type": "manual",
+          "label": "Rolling two-year credit rule",
+          "note": "Subsequent progression uses a rolling two-year threshold (192 credits) and transfer/re-registration variants that require year-labelled records."
+        }
+      ],
+      "award_rules": [
+        {
+          "name": "First class honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "first_class_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 75
+            },
+            {
+              "type": "minimum_mark",
+              "id": "first_class_project",
+              "label": "Research project APG4003Z",
+              "course_codes": [
+                "APG4003Z"
+              ],
+              "minimum_mark": 75
+            }
+          ]
+        },
+        {
+          "name": "Honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "honours_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 65
+            },
+            {
+              "type": "minimum_mark",
+              "id": "honours_project",
+              "label": "Research project APG4003Z",
+              "course_codes": [
+                "APG4003Z"
+              ],
+              "minimum_mark": 60
+            }
+          ]
+        }
+      ],
+      "progression_notes": [
+        "Fieldwork, practical performance and professional registration conditions remain operational requirements."
+      ],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 30,
+        "section": "Programmes of Study"
+      }
+    },
+    "geomatics_geoinformatics_egs_4": {
+      "name": "BSc Geomatics — Geoinformatics/EGS (4-year, continuing students)",
+      "minimum_nqf_credits": 576,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "APG1024F",
+        "APG1022X",
+        "CSC1017S",
+        "EGS1007S",
+        "GEO1009F",
+        "MAM1020F",
+        "MAM1021S",
+        "STA1000S",
+        "APG2014S",
+        "APG2015F",
+        "APG2019X",
+        "APG2040F",
+        "APG2041S",
+        "MAM2083S",
+        "MAM2084F",
+        "PHY1031F",
+        "PHY1032S",
+        "APG3012S",
+        "APG3013F",
+        "APG3016C",
+        "APG3038F",
+        "APG3039B",
+        "APG3040C",
+        "EGS2013F",
+        "EGS2015S",
+        "APG4002Z",
+        "APG4003Z",
+        "APG4010X",
+        "APG4011F",
+        "APG4012S"
+      ],
+      "qualification_codes": [
+        "EB019APG11"
+      ],
+      "scope_verified": false,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 4,
+      "maximum_registration_years": null,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "choose_n",
+          "id": "egs_level7",
+          "label": "Choose two approved EGS level-7 electives",
+          "course_codes": [
+            "EGS3012S",
+            "EGS3021F",
+            "EGS3022S",
+            "EGS3023F"
+          ],
+          "required": 2
+        },
+        {
+          "type": "manual",
+          "id": "geomatics_transition",
+          "label": "Cohort transition confirmation",
+          "note": "The handbook states that a new 519-credit curriculum is being phased in from 2026 while a 576-credit curriculum is phased out. The student's intake-year curriculum must be confirmed.",
+          "assumed_complete": true,
+          "blocking": true,
+          "status": "unverified"
+        }
+      ],
+      "pathways": {},
+      "pathway_required": false,
+      "default_pathway_key": "",
+      "availability": "continuing_only",
+      "availability_note": "This EGS specialisation is being phased out and is not open to new 2026 entrants.",
+      "progression_rules": [
+        {
+          "type": "annual_credits",
+          "year": 1,
+          "minimum": 100,
+          "concession_minimum": 40,
+          "label": "First-year Geomatics progression"
+        },
+        {
+          "type": "manual",
+          "label": "Rolling two-year credit rule",
+          "note": "Subsequent progression uses a rolling two-year threshold (224 credits) and transfer/re-registration variants that require year-labelled records."
+        }
+      ],
+      "award_rules": [
+        {
+          "name": "First class honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "first_class_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 75
+            },
+            {
+              "type": "minimum_mark",
+              "id": "first_class_project",
+              "label": "Research project APG4003Z",
+              "course_codes": [
+                "APG4003Z"
+              ],
+              "minimum_mark": 75
+            }
+          ]
+        },
+        {
+          "name": "Honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "honours_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 65
+            },
+            {
+              "type": "minimum_mark",
+              "id": "honours_project",
+              "label": "Research project APG4003Z",
+              "course_codes": [
+                "APG4003Z"
+              ],
+              "minimum_mark": 60
+            }
+          ]
+        }
+      ],
+      "progression_notes": [
+        "Fieldwork, practical performance and professional registration conditions remain operational requirements."
+      ],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 31,
+        "section": "Programmes of Study"
+      }
+    },
+    "geomatics_geoinformatics_egs_5": {
+      "name": "BSc Geomatics — Geoinformatics/EGS (5-year, continuing students)",
+      "minimum_nqf_credits": 576,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "APG1016H",
+        "APG1022X",
+        "CSC1017S",
+        "GEO1010F",
+        "MAM1023F",
+        "MAM1024S",
+        "STA1000S",
+        "APG2014S",
+        "APG2019X",
+        "APG2040F",
+        "EGS1007S",
+        "MAM2084S",
+        "MAM2085F",
+        "PHY1031F",
+        "PHY1032S",
+        "APG2015F",
+        "APG2041S",
+        "APG3012S",
+        "APG3013F",
+        "APG3039B",
+        "APG3040C",
+        "APG3016C",
+        "APG3038F",
+        "APG4002Z",
+        "APG4010X",
+        "APG4011F",
+        "APG4012S",
+        "EGS2013F",
+        "EGS2015S",
+        "APG4003Z"
+      ],
+      "qualification_codes": [
+        "EB819APG11"
+      ],
+      "scope_verified": false,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 5,
+      "maximum_registration_years": null,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "choose_n",
+          "id": "egs_level7",
+          "label": "Choose two approved EGS level-7 electives",
+          "course_codes": [
+            "EGS3012S",
+            "EGS3021F",
+            "EGS3022S",
+            "EGS3023F"
+          ],
+          "required": 2
+        },
+        {
+          "type": "manual",
+          "id": "geomatics_transition",
+          "label": "Cohort transition confirmation",
+          "note": "The handbook states that a new 519-credit curriculum is being phased in from 2026 while a 576-credit curriculum is phased out. The student's intake-year curriculum must be confirmed.",
+          "assumed_complete": true,
+          "blocking": true,
+          "status": "unverified"
+        }
+      ],
+      "pathways": {},
+      "pathway_required": false,
+      "default_pathway_key": "",
+      "availability": "continuing_only",
+      "availability_note": "This EGS specialisation is being phased out and is not open to new 2026 entrants.",
+      "progression_rules": [
+        {
+          "type": "annual_credits",
+          "year": 1,
+          "minimum": 80,
+          "concession_minimum": 32,
+          "label": "First-year Geomatics progression"
+        },
+        {
+          "type": "manual",
+          "label": "Rolling two-year credit rule",
+          "note": "Subsequent progression uses a rolling two-year threshold (192 credits) and transfer/re-registration variants that require year-labelled records."
+        }
+      ],
+      "award_rules": [
+        {
+          "name": "First class honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "first_class_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 75
+            },
+            {
+              "type": "minimum_mark",
+              "id": "first_class_project",
+              "label": "Research project APG4003Z",
+              "course_codes": [
+                "APG4003Z"
+              ],
+              "minimum_mark": 75
+            }
+          ]
+        },
+        {
+          "name": "Honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "honours_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 65
+            },
+            {
+              "type": "minimum_mark",
+              "id": "honours_project",
+              "label": "Research project APG4003Z",
+              "course_codes": [
+                "APG4003Z"
+              ],
+              "minimum_mark": 60
+            }
+          ]
+        }
+      ],
+      "progression_notes": [
+        "Fieldwork, practical performance and professional registration conditions remain operational requirements."
+      ],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 32,
+        "section": "Programmes of Study"
+      }
+    },
+    "chemical_engineering_4": {
+      "name": "BSc Engineering — Chemical Engineering (4-year)",
+      "minimum_nqf_credits": 560,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "CEM1000W",
+        "CHE1006F",
+        "CHE1007S",
+        "MAM1020F",
+        "MAM1021S",
+        "PHY1012F",
+        "STA1008S",
+        "CHE2000X",
+        "CHE2005W",
+        "MAM2083S",
+        "MAM2084F",
+        "CHE3006F",
+        "CHE3007S",
+        "CHE3000X",
+        "CHE4036Z",
+        "CHE4045Z",
+        "CHE4048F",
+        "CHE4049F"
+      ],
+      "qualification_codes": [
+        "EB001CHE01"
+      ],
+      "scope_verified": true,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 4,
+      "maximum_registration_years": null,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "credit_pool",
+          "id": "science_electives",
+          "label": "Science elective credits",
+          "course_codes": [
+            "BIO1000F",
+            "CHE2006S",
+            "CEM2005W",
+            "GEO1009F",
+            "GEO2006S"
+          ],
+          "required": 42
+        },
+        {
+          "type": "credit_pool",
+          "id": "science_level6",
+          "label": "Science elective credits at NQF level 6 or above",
+          "course_codes": [
+            "BIO1000F",
+            "CHE2006S",
+            "CEM2005W",
+            "GEO1009F",
+            "GEO2006S"
+          ],
+          "required": 24,
+          "filters": {
+            "nqf_levels": [
+              6,
+              7,
+              8
+            ]
+          }
+        },
+        {
+          "type": "manual",
+          "id": "other_science_combination",
+          "label": "Other approved Science-elective combination",
+          "note": "The Programme Convener may approve other Science-elective combinations; a transcript alone cannot establish that approval.",
+          "assumed_complete": true,
+          "blocking": false,
+          "status": "discretionary"
+        },
+        {
+          "type": "approved_credit_pool",
+          "id": "humanities_electives",
+          "label": "Approved Humanities elective credits",
+          "required": 15,
+          "course_codes": [
+            "AFS1100S",
+            "AFS2100F",
+            "AFS2102S",
+            "AFS3100F",
+            "AFS3101S",
+            "AGE1002S",
+            "AGE1005L",
+            "AGE2011S",
+            "AGE2012F",
+            "AGE3006H",
+            "AGE3011F",
+            "AGE3012S",
+            "AGE3013H",
+            "ANS1400F",
+            "ANS1401S",
+            "ANS1403S",
+            "ANS2400Z",
+            "ANS2401F",
+            "ANS2402S",
+            "ANS2404S",
+            "ANS3400F",
+            "ANS3401S",
+            "ASL1201S",
+            "ASL1202S",
+            "ASL1203S",
+            "ASL2200S",
+            "ASL2202F",
+            "ASL2203F",
+            "ASL3200F",
+            "ELL1013F",
+            "ELL1016S",
+            "ELL2000F",
+            "ELL2001S",
+            "END1019L",
+            "END1019Z",
+            "FAM1001F",
+            "FAM1001L",
+            "FAM1001P",
+            "HST1013F",
+            "HST1014S",
+            "HST1015F",
+            "HST2039FS",
+            "HST2040FS",
+            "HST2041F",
+            "HST2042FS",
+            "HST2044FS",
+            "HST2047FS",
+            "HST3037S",
+            "HST3043F",
+            "HST3044FS",
+            "HST3045S",
+            "HST3046S",
+            "PHI1010S",
+            "PHI1011S",
+            "PHI1024F",
+            "PHI1025F",
+            "PHI2012F",
+            "PHI2016S",
+            "PHI2037F",
+            "PHI2040S",
+            "PHI2041S",
+            "PHI2042F",
+            "PHI2043F",
+            "PHI2043S",
+            "PHI2044F",
+            "PHI2045S",
+            "PHI3023F",
+            "PHI3024S",
+            "POL1004F",
+            "POL1004L",
+            "POL1004P",
+            "REL1002F",
+            "REL1006S",
+            "SLL1054F",
+            "SLL1057F",
+            "SLL1097F",
+            "SLL2058F",
+            "SLL2090S",
+            "SOC1001F",
+            "SOC1005S",
+            "SOC1006F",
+            "SOC1007S",
+            "SOC2004S",
+            "SOC2015S",
+            "SOC2019S",
+            "SOC2030F",
+            "SOC2032F",
+            "SOC2034F",
+            "SOC2035S",
+            "SOC2036F",
+            "SOC3007F",
+            "SOC3027F",
+            "SOC3028S",
+            "SOC3029S",
+            "SOC3031S"
+          ],
+          "transcript_course_codes": [
+            "AFS1100S",
+            "AFS2100F",
+            "AFS2102S",
+            "AFS3100F",
+            "AFS3101S",
+            "AGE1002S",
+            "AGE1005L",
+            "AGE2011S",
+            "AGE2012F",
+            "AGE3006H",
+            "AGE3011F",
+            "AGE3012S",
+            "AGE3013H",
+            "ANS1400F",
+            "ANS1401S",
+            "ANS1403S",
+            "ANS2400Z",
+            "ANS2401F",
+            "ANS2402S",
+            "ANS2404S",
+            "ANS3400F",
+            "ANS3401S",
+            "ASL1201S",
+            "ASL1202S",
+            "ASL1203S",
+            "ASL2200S",
+            "ASL2202F",
+            "ASL2203F",
+            "ASL3200F",
+            "ELL1013F",
+            "ELL1016S",
+            "ELL2000F",
+            "ELL2001S",
+            "END1019L",
+            "END1019Z",
+            "FAM1001F",
+            "FAM1001L",
+            "FAM1001P",
+            "HST1013F",
+            "HST1014S",
+            "HST1015F",
+            "HST2039FS",
+            "HST2040FS",
+            "HST2041F",
+            "HST2042FS",
+            "HST2044FS",
+            "HST2047FS",
+            "HST3037S",
+            "HST3043F",
+            "HST3044FS",
+            "HST3045S",
+            "HST3046S",
+            "PHI1010S",
+            "PHI1011S",
+            "PHI1024F",
+            "PHI1025F",
+            "PHI2012F",
+            "PHI2016S",
+            "PHI2037F",
+            "PHI2040S",
+            "PHI2041S",
+            "PHI2042F",
+            "PHI2043F",
+            "PHI2043S",
+            "PHI2044F",
+            "PHI2045S",
+            "PHI3023F",
+            "PHI3024S",
+            "POL1004F",
+            "POL1004L",
+            "POL1004P",
+            "REL1002F",
+            "REL1006S",
+            "SLL1054F",
+            "SLL1057F",
+            "SLL1068F",
+            "SLL1068P",
+            "SLL1068S",
+            "SLL1097F",
+            "SLL2058F",
+            "SLL2090S",
+            "SOC1001F",
+            "SOC1005S",
+            "SOC1006F",
+            "SOC1007S",
+            "SOC2004S",
+            "SOC2015S",
+            "SOC2019S",
+            "SOC2030F",
+            "SOC2032F",
+            "SOC2034F",
+            "SOC2035S",
+            "SOC2036F",
+            "SOC3007F",
+            "SOC3027F",
+            "SOC3028S",
+            "SOC3029S",
+            "SOC3031S"
+          ],
+          "exclude_course_codes": [],
+          "transcript_filters": {},
+          "approval_note": "The EBE handbook lists these Humanities disciplines/courses, but offering, prerequisites and any exceptional approval still require confirmation.",
+          "verification_status": "unverified",
+          "transcript_only": false,
+          "allow_unlisted_transcript_courses": false
+        },
+        {
+          "type": "credit_pool",
+          "id": "advanced_engineering",
+          "label": "Advanced Engineering elective credits",
+          "course_codes": [
+            "CHE3067S",
+            "CHE3068S",
+            "CHE3069S",
+            "CHE3070S",
+            "CHE4057F",
+            "CHE4058Z",
+            "CHE4068F",
+            "CHE4069F",
+            "CHE4070F",
+            "CHE4072F"
+          ],
+          "required": 32
+        },
+        {
+          "type": "manual",
+          "id": "other_advanced_engineering",
+          "label": "Other approved advanced EBE elective",
+          "note": "A third- or fourth-year EBE course outside the printed list may count only with Programme Convener approval and where content has not already been covered.",
+          "assumed_complete": true,
+          "blocking": false,
+          "status": "discretionary"
+        },
+        {
+          "type": "credit_pool",
+          "id": "advanced_level8",
+          "label": "Advanced Engineering credits at NQF level 8",
+          "course_codes": [
+            "CHE3067S",
+            "CHE3068S",
+            "CHE3069S",
+            "CHE3070S",
+            "CHE4057F",
+            "CHE4058Z",
+            "CHE4068F",
+            "CHE4069F",
+            "CHE4070F",
+            "CHE4072F"
+          ],
+          "required": 16,
+          "filters": {
+            "nqf_levels": [
+              8
+            ]
+          }
+        },
+        {
+          "type": "approved_credit_pool",
+          "id": "free_elective",
+          "label": "Free elective credits",
+          "required": 15,
+          "course_codes": [],
+          "transcript_course_codes": [],
+          "exclude_course_codes": [],
+          "transcript_filters": {},
+          "approval_note": "The handbook permits any UCT course for which prerequisites are met and content is not duplicated; the static catalogue cannot verify those conditions.",
+          "verification_status": "unverified",
+          "transcript_only": true,
+          "allow_unlisted_transcript_courses": true
+        }
+      ],
+      "pathways": {},
+      "pathway_required": false,
+      "default_pathway_key": "",
+      "availability": "open",
+      "availability_note": "",
+      "progression_rules": [
+        {
+          "type": "annual_credits",
+          "year": 1,
+          "minimum": 102,
+          "concession_minimum": 66,
+          "label": "Chemical Engineering 4-year: first-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 2,
+          "minimum": 108,
+          "label": "Chemical Engineering 4-year: subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 3,
+          "minimum": 108,
+          "label": "Chemical Engineering 4-year: subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 4,
+          "minimum": 108,
+          "label": "Chemical Engineering 4-year: subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 5,
+          "minimum": 108,
+          "label": "Chemical Engineering 4-year: subsequent-year progression"
+        }
+      ],
+      "award_rules": [
+        {
+          "name": "First class honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "first_class_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 75
+            },
+            {
+              "type": "minimum_mark",
+              "id": "first_class_project",
+              "label": "Research project CHE4045Z",
+              "course_codes": [
+                "CHE4045Z"
+              ],
+              "minimum_mark": 75
+            }
+          ]
+        },
+        {
+          "name": "Honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "honours_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 65
+            },
+            {
+              "type": "minimum_mark",
+              "id": "honours_project",
+              "label": "Research project CHE4045Z",
+              "course_codes": [
+                "CHE4045Z"
+              ],
+              "minimum_mark": 60
+            }
+          ]
+        }
+      ],
+      "progression_notes": [
+        "Mandatory reassessment replaces supplementary examinations in specified Chemical Engineering courses."
+      ],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 34,
+        "section": "Programmes of Study"
+      }
+    },
+    "chemical_engineering_5": {
+      "name": "BSc Engineering — Chemical Engineering (5-year ASPECT)",
+      "minimum_nqf_credits": 560,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "CEM1000W",
+        "MAM1023F",
+        "MAM1024S",
+        "PHY1014F",
+        "STA1008S",
+        "CHE1006F",
+        "CHE1007S",
+        "MAM2084S",
+        "MAM2085F",
+        "CHE2000X",
+        "CHE2005W",
+        "CHE3006F",
+        "CHE3007S",
+        "CHE3000X",
+        "CHE4036Z",
+        "CHE4045Z",
+        "CHE4048F",
+        "CHE4049F"
+      ],
+      "qualification_codes": [
+        "EB801CHE01"
+      ],
+      "scope_verified": true,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 5,
+      "maximum_registration_years": null,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "credit_pool",
+          "id": "science_electives",
+          "label": "Science elective credits",
+          "course_codes": [
+            "BIO1000F",
+            "CHE2006S",
+            "CEM2005W",
+            "GEO1009F",
+            "GEO2006S"
+          ],
+          "required": 42
+        },
+        {
+          "type": "credit_pool",
+          "id": "science_level6",
+          "label": "Science elective credits at NQF level 6 or above",
+          "course_codes": [
+            "BIO1000F",
+            "CHE2006S",
+            "CEM2005W",
+            "GEO1009F",
+            "GEO2006S"
+          ],
+          "required": 24,
+          "filters": {
+            "nqf_levels": [
+              6,
+              7,
+              8
+            ]
+          }
+        },
+        {
+          "type": "manual",
+          "id": "other_science_combination",
+          "label": "Other approved Science-elective combination",
+          "note": "The Programme Convener may approve other Science-elective combinations; a transcript alone cannot establish that approval.",
+          "assumed_complete": true,
+          "blocking": false,
+          "status": "discretionary"
+        },
+        {
+          "type": "approved_credit_pool",
+          "id": "humanities_electives",
+          "label": "Approved Humanities elective credits",
+          "required": 15,
+          "course_codes": [
+            "AFS1100S",
+            "AFS2100F",
+            "AFS2102S",
+            "AFS3100F",
+            "AFS3101S",
+            "AGE1002S",
+            "AGE1005L",
+            "AGE2011S",
+            "AGE2012F",
+            "AGE3006H",
+            "AGE3011F",
+            "AGE3012S",
+            "AGE3013H",
+            "ANS1400F",
+            "ANS1401S",
+            "ANS1403S",
+            "ANS2400Z",
+            "ANS2401F",
+            "ANS2402S",
+            "ANS2404S",
+            "ANS3400F",
+            "ANS3401S",
+            "ASL1201S",
+            "ASL1202S",
+            "ASL1203S",
+            "ASL2200S",
+            "ASL2202F",
+            "ASL2203F",
+            "ASL3200F",
+            "ELL1013F",
+            "ELL1016S",
+            "ELL2000F",
+            "ELL2001S",
+            "END1019L",
+            "END1019Z",
+            "FAM1001F",
+            "FAM1001L",
+            "FAM1001P",
+            "HST1013F",
+            "HST1014S",
+            "HST1015F",
+            "HST2039FS",
+            "HST2040FS",
+            "HST2041F",
+            "HST2042FS",
+            "HST2044FS",
+            "HST2047FS",
+            "HST3037S",
+            "HST3043F",
+            "HST3044FS",
+            "HST3045S",
+            "HST3046S",
+            "PHI1010S",
+            "PHI1011S",
+            "PHI1024F",
+            "PHI1025F",
+            "PHI2012F",
+            "PHI2016S",
+            "PHI2037F",
+            "PHI2040S",
+            "PHI2041S",
+            "PHI2042F",
+            "PHI2043F",
+            "PHI2043S",
+            "PHI2044F",
+            "PHI2045S",
+            "PHI3023F",
+            "PHI3024S",
+            "POL1004F",
+            "POL1004L",
+            "POL1004P",
+            "REL1002F",
+            "REL1006S",
+            "SLL1054F",
+            "SLL1057F",
+            "SLL1097F",
+            "SLL2058F",
+            "SLL2090S",
+            "SOC1001F",
+            "SOC1005S",
+            "SOC1006F",
+            "SOC1007S",
+            "SOC2004S",
+            "SOC2015S",
+            "SOC2019S",
+            "SOC2030F",
+            "SOC2032F",
+            "SOC2034F",
+            "SOC2035S",
+            "SOC2036F",
+            "SOC3007F",
+            "SOC3027F",
+            "SOC3028S",
+            "SOC3029S",
+            "SOC3031S"
+          ],
+          "transcript_course_codes": [
+            "AFS1100S",
+            "AFS2100F",
+            "AFS2102S",
+            "AFS3100F",
+            "AFS3101S",
+            "AGE1002S",
+            "AGE1005L",
+            "AGE2011S",
+            "AGE2012F",
+            "AGE3006H",
+            "AGE3011F",
+            "AGE3012S",
+            "AGE3013H",
+            "ANS1400F",
+            "ANS1401S",
+            "ANS1403S",
+            "ANS2400Z",
+            "ANS2401F",
+            "ANS2402S",
+            "ANS2404S",
+            "ANS3400F",
+            "ANS3401S",
+            "ASL1201S",
+            "ASL1202S",
+            "ASL1203S",
+            "ASL2200S",
+            "ASL2202F",
+            "ASL2203F",
+            "ASL3200F",
+            "ELL1013F",
+            "ELL1016S",
+            "ELL2000F",
+            "ELL2001S",
+            "END1019L",
+            "END1019Z",
+            "FAM1001F",
+            "FAM1001L",
+            "FAM1001P",
+            "HST1013F",
+            "HST1014S",
+            "HST1015F",
+            "HST2039FS",
+            "HST2040FS",
+            "HST2041F",
+            "HST2042FS",
+            "HST2044FS",
+            "HST2047FS",
+            "HST3037S",
+            "HST3043F",
+            "HST3044FS",
+            "HST3045S",
+            "HST3046S",
+            "PHI1010S",
+            "PHI1011S",
+            "PHI1024F",
+            "PHI1025F",
+            "PHI2012F",
+            "PHI2016S",
+            "PHI2037F",
+            "PHI2040S",
+            "PHI2041S",
+            "PHI2042F",
+            "PHI2043F",
+            "PHI2043S",
+            "PHI2044F",
+            "PHI2045S",
+            "PHI3023F",
+            "PHI3024S",
+            "POL1004F",
+            "POL1004L",
+            "POL1004P",
+            "REL1002F",
+            "REL1006S",
+            "SLL1054F",
+            "SLL1057F",
+            "SLL1068F",
+            "SLL1068P",
+            "SLL1068S",
+            "SLL1097F",
+            "SLL2058F",
+            "SLL2090S",
+            "SOC1001F",
+            "SOC1005S",
+            "SOC1006F",
+            "SOC1007S",
+            "SOC2004S",
+            "SOC2015S",
+            "SOC2019S",
+            "SOC2030F",
+            "SOC2032F",
+            "SOC2034F",
+            "SOC2035S",
+            "SOC2036F",
+            "SOC3007F",
+            "SOC3027F",
+            "SOC3028S",
+            "SOC3029S",
+            "SOC3031S"
+          ],
+          "exclude_course_codes": [],
+          "transcript_filters": {},
+          "approval_note": "The EBE handbook lists these Humanities disciplines/courses, but offering, prerequisites and any exceptional approval still require confirmation.",
+          "verification_status": "unverified",
+          "transcript_only": false,
+          "allow_unlisted_transcript_courses": false
+        },
+        {
+          "type": "credit_pool",
+          "id": "advanced_engineering",
+          "label": "Advanced Engineering elective credits",
+          "course_codes": [
+            "CHE3067S",
+            "CHE3068S",
+            "CHE3069S",
+            "CHE3070S",
+            "CHE4057F",
+            "CHE4058Z",
+            "CHE4068F",
+            "CHE4069F",
+            "CHE4070F",
+            "CHE4072F"
+          ],
+          "required": 32
+        },
+        {
+          "type": "manual",
+          "id": "other_advanced_engineering",
+          "label": "Other approved advanced EBE elective",
+          "note": "A third- or fourth-year EBE course outside the printed list may count only with Programme Convener approval and where content has not already been covered.",
+          "assumed_complete": true,
+          "blocking": false,
+          "status": "discretionary"
+        },
+        {
+          "type": "credit_pool",
+          "id": "advanced_level8",
+          "label": "Advanced Engineering credits at NQF level 8",
+          "course_codes": [
+            "CHE3067S",
+            "CHE3068S",
+            "CHE3069S",
+            "CHE3070S",
+            "CHE4057F",
+            "CHE4058Z",
+            "CHE4068F",
+            "CHE4069F",
+            "CHE4070F",
+            "CHE4072F"
+          ],
+          "required": 16,
+          "filters": {
+            "nqf_levels": [
+              8
+            ]
+          }
+        },
+        {
+          "type": "approved_credit_pool",
+          "id": "free_elective",
+          "label": "Free elective credits",
+          "required": 15,
+          "course_codes": [],
+          "transcript_course_codes": [],
+          "exclude_course_codes": [],
+          "transcript_filters": {},
+          "approval_note": "The handbook permits any UCT course for which prerequisites are met and content is not duplicated; the static catalogue cannot verify those conditions.",
+          "verification_status": "unverified",
+          "transcript_only": true,
+          "allow_unlisted_transcript_courses": true
+        }
+      ],
+      "pathways": {},
+      "pathway_required": false,
+      "default_pathway_key": "",
+      "availability": "open",
+      "availability_note": "",
+      "progression_rules": [
+        {
+          "type": "annual_credits",
+          "year": 1,
+          "minimum": 66,
+          "concession_minimum": 48,
+          "label": "Chemical Engineering 5-year: first-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 2,
+          "minimum": 82,
+          "label": "Chemical Engineering 5-year: subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 3,
+          "minimum": 82,
+          "label": "Chemical Engineering 5-year: subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 4,
+          "minimum": 82,
+          "label": "Chemical Engineering 5-year: subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 5,
+          "minimum": 82,
+          "label": "Chemical Engineering 5-year: subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 6,
+          "minimum": 82,
+          "label": "Chemical Engineering 5-year: subsequent-year progression"
+        }
+      ],
+      "award_rules": [
+        {
+          "name": "First class honours",
+          "complete_within_years": 5,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "first_class_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 75
+            },
+            {
+              "type": "minimum_mark",
+              "id": "first_class_project",
+              "label": "Research project CHE4045Z",
+              "course_codes": [
+                "CHE4045Z"
+              ],
+              "minimum_mark": 75
+            }
+          ]
+        },
+        {
+          "name": "Honours",
+          "complete_within_years": 5,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "honours_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 65
+            },
+            {
+              "type": "minimum_mark",
+              "id": "honours_project",
+              "label": "Research project CHE4045Z",
+              "course_codes": [
+                "CHE4045Z"
+              ],
+              "minimum_mark": 60
+            }
+          ]
+        }
+      ],
+      "progression_notes": [],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 37,
+        "section": "Programmes of Study"
+      }
+    },
+    "civil_engineering_4": {
+      "name": "BSc Engineering — Civil Engineering (4-year)",
+      "minimum_nqf_credits": 560,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "CIV1013S",
+        "CIV1008F",
+        "CIV1012S",
+        "CIV1011S",
+        "MAM1020F",
+        "MAM1021S",
+        "CIV1014Z",
+        "CIV1009F",
+        "APG1023S",
+        "PHY1012F",
+        "GEO1008F",
+        "CIV2044F",
+        "CIV2045F",
+        "CIV2046F",
+        "CIV2047Z",
+        "CIV2048S",
+        "CIV2049Z",
+        "CIV2051S",
+        "CIV2050Z",
+        "MAM2083F",
+        "STA1008F",
+        "CSC1015S",
+        "ECO1007S",
+        "CIV3042F",
+        "CIV3043F",
+        "CIV3044F",
+        "CIV3045S",
+        "CIV3046S",
+        "CIV3047S",
+        "CIV3048F",
+        "CIV3049S",
+        "CIV4035C",
+        "CIV4041F",
+        "CIV4042F",
+        "CIV4044S",
+        "CIV4045F",
+        "CIV4046F",
+        "CIV2020X",
+        "EGS1005F"
+      ],
+      "qualification_codes": [
+        "EB002CIV01"
+      ],
+      "scope_verified": true,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 4,
+      "maximum_registration_years": null,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "approved_credit_pool",
+          "id": "civil_elective",
+          "label": "Approved Civil Engineering elective",
+          "required": 18,
+          "course_codes": [],
+          "transcript_course_codes": [],
+          "exclude_course_codes": [],
+          "transcript_filters": {},
+          "approval_note": "The handbook requires one approved elective of at least 18 credits but does not print the complete current list.",
+          "verification_status": "unverified",
+          "transcript_only": true,
+          "allow_unlisted_transcript_courses": true
+        }
+      ],
+      "pathways": {
+        "current_560": {
+          "name": "Current 560-credit curriculum",
+          "curriculum_rules": [],
+          "verification_status": "verified",
+          "availability": "open",
+          "availability_note": "",
+          "source": {
+            "document": "2026 EBE Undergraduate Handbook",
+            "page": 40
+          }
+        },
+        "legacy_576": {
+          "name": "Legacy 576-credit curriculum",
+          "curriculum_rules": [
+            {
+              "type": "credits",
+              "id": "legacy_credits",
+              "label": "Legacy curriculum credits",
+              "required": 576
+            }
+          ],
+          "verification_status": "provisional",
+          "availability": "open",
+          "availability_note": "",
+          "source": {
+            "document": "2026 EBE Undergraduate Handbook",
+            "page": 40
+          }
+        }
+      },
+      "pathway_required": true,
+      "default_pathway_key": "current_560",
+      "availability": "open",
+      "availability_note": "",
+      "progression_rules": [
+        {
+          "type": "annual_credits",
+          "year": 1,
+          "minimum": 112,
+          "concession_minimum": 68,
+          "label": "Civil Engineering 4-year: first-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 2,
+          "minimum": 112,
+          "label": "Civil Engineering 4-year: subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 3,
+          "minimum": 112,
+          "label": "Civil Engineering 4-year: subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 4,
+          "minimum": 112,
+          "label": "Civil Engineering 4-year: subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 5,
+          "minimum": 112,
+          "label": "Civil Engineering 4-year: subsequent-year progression"
+        }
+      ],
+      "award_rules": [
+        {
+          "name": "First class honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "first_class_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 75
+            },
+            {
+              "type": "minimum_mark",
+              "id": "first_class_project",
+              "label": "Research project CIV4044S",
+              "course_codes": [
+                "CIV4044S"
+              ],
+              "minimum_mark": 75
+            }
+          ]
+        },
+        {
+          "name": "Honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "honours_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 65
+            },
+            {
+              "type": "minimum_mark",
+              "id": "honours_project",
+              "label": "Research project CIV4044S",
+              "course_codes": [
+                "CIV4044S"
+              ],
+              "minimum_mark": 60
+            }
+          ]
+        }
+      ],
+      "progression_notes": [],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 40,
+        "section": "Programmes of Study"
+      }
+    },
+    "civil_engineering_5": {
+      "name": "BSc Engineering — Civil Engineering (5-year ASPECT)",
+      "minimum_nqf_credits": 560,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "CIV1008F",
+        "CIV1009F",
+        "CIV1012S",
+        "CIV1011S",
+        "MAM1023F",
+        "MAM1024S",
+        "PHY1014F",
+        "APG1023S",
+        "CIV1013S",
+        "CIV1014Z",
+        "STA1008F",
+        "CIV2044F",
+        "GEO1008F",
+        "CIV2048S",
+        "CIV2049Z",
+        "CIV2050Z",
+        "MAM2085F",
+        "CSC1015S",
+        "CIV2045F",
+        "CIV4042F",
+        "CIV2051S",
+        "CIV2046F",
+        "CIV2047Z",
+        "ECO1007S",
+        "CIV3042F",
+        "CIV3043F",
+        "CIV3044F",
+        "CIV3045S",
+        "CIV3047S",
+        "CIV4045F",
+        "CIV2020X",
+        "CIV4035C",
+        "CIV4041F",
+        "CIV4044S",
+        "CIV4046F",
+        "EGS1005F"
+      ],
+      "qualification_codes": [
+        "EB802CIV01"
+      ],
+      "scope_verified": true,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 5,
+      "maximum_registration_years": null,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "approved_credit_pool",
+          "id": "civil_elective",
+          "label": "Approved Civil Engineering elective",
+          "required": 18,
+          "course_codes": [],
+          "transcript_course_codes": [],
+          "exclude_course_codes": [],
+          "transcript_filters": {},
+          "approval_note": "The handbook requires one approved elective of at least 18 credits but does not print the complete current list.",
+          "verification_status": "unverified",
+          "transcript_only": true,
+          "allow_unlisted_transcript_courses": true
+        }
+      ],
+      "pathways": {
+        "current_560": {
+          "name": "Current 560-credit curriculum",
+          "curriculum_rules": [],
+          "verification_status": "verified",
+          "availability": "open",
+          "availability_note": "",
+          "source": {
+            "document": "2026 EBE Undergraduate Handbook",
+            "page": 40
+          }
+        },
+        "legacy_576": {
+          "name": "Legacy 576-credit curriculum",
+          "curriculum_rules": [
+            {
+              "type": "credits",
+              "id": "legacy_credits",
+              "label": "Legacy curriculum credits",
+              "required": 576
+            }
+          ],
+          "verification_status": "provisional",
+          "availability": "open",
+          "availability_note": "",
+          "source": {
+            "document": "2026 EBE Undergraduate Handbook",
+            "page": 40
+          }
+        }
+      },
+      "pathway_required": true,
+      "default_pathway_key": "current_560",
+      "availability": "open",
+      "availability_note": "",
+      "progression_rules": [
+        {
+          "type": "annual_credits",
+          "year": 1,
+          "minimum": 94,
+          "concession_minimum": 52,
+          "label": "Civil Engineering 5-year: first-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 2,
+          "minimum": 94,
+          "label": "Civil Engineering 5-year: subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 3,
+          "minimum": 94,
+          "label": "Civil Engineering 5-year: subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 4,
+          "minimum": 94,
+          "label": "Civil Engineering 5-year: subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 5,
+          "minimum": 94,
+          "label": "Civil Engineering 5-year: subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 6,
+          "minimum": 94,
+          "label": "Civil Engineering 5-year: subsequent-year progression"
+        }
+      ],
+      "award_rules": [
+        {
+          "name": "First class honours",
+          "complete_within_years": 5,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "first_class_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 75
+            },
+            {
+              "type": "minimum_mark",
+              "id": "first_class_project",
+              "label": "Research project CIV4044S",
+              "course_codes": [
+                "CIV4044S"
+              ],
+              "minimum_mark": 75
+            }
+          ]
+        },
+        {
+          "name": "Honours",
+          "complete_within_years": 5,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "honours_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 65
+            },
+            {
+              "type": "minimum_mark",
+              "id": "honours_project",
+              "label": "Research project CIV4044S",
+              "course_codes": [
+                "CIV4044S"
+              ],
+              "minimum_mark": 60
+            }
+          ]
+        }
+      ],
+      "progression_notes": [],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 43,
+        "section": "Programmes of Study"
+      }
+    },
+    "construction_studies": {
+      "name": "BSc Construction Studies",
+      "minimum_nqf_credits": 432,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "ACC1021F",
+        "CIV1006S",
+        "CON1004W",
+        "CON1010S",
+        "ECO1008F",
+        "ECO1009S",
+        "MAM1010F",
+        "MEC1010F",
+        "STA1000S",
+        "CON1007X",
+        "ACC2042H",
+        "APG1023S",
+        "CML1001F",
+        "CML2005F",
+        "CON2006W",
+        "CON2020S",
+        "CON2034S",
+        "CON2037W",
+        "CON2013X",
+        "CON3012W",
+        "CON3030F",
+        "CON3031W",
+        "CON3032W",
+        "CON3033S",
+        "CON3038W",
+        "CON3043W",
+        "CON3023X"
+      ],
+      "qualification_codes": [
+        "EB015CON04"
+      ],
+      "scope_verified": false,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 3,
+      "maximum_registration_years": 4,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "manual",
+          "id": "construction_credit_conflict",
+          "label": "Published credit reconciliation",
+          "note": "FB3.2 requires at least 432 credits, while the printed prescribed-course table totals 422 credits. Faculty confirmation of the missing/transition credit component is required.",
+          "assumed_complete": true,
+          "blocking": true,
+          "status": "conflict"
+        }
+      ],
+      "pathways": {},
+      "pathway_required": false,
+      "default_pathway_key": "",
+      "availability": "open",
+      "availability_note": "",
+      "progression_rules": [
+        {
+          "type": "cumulative_credits",
+          "year": 1,
+          "minimum": 100,
+          "concession_minimum": 54,
+          "label": "End of first year"
+        },
+        {
+          "type": "cumulative_credits",
+          "year": 2,
+          "minimum": 200,
+          "label": "End of second year"
+        },
+        {
+          "type": "cumulative_credits",
+          "year": 3,
+          "minimum": 325,
+          "label": "End of third year"
+        },
+        {
+          "type": "cumulative_credits",
+          "year": 4,
+          "minimum": 432,
+          "label": "End of fourth year"
+        }
+      ],
+      "award_rules": [
+        {
+          "name": "Degree with distinction",
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "distinction_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 75
+            }
+          ]
+        }
+      ],
+      "progression_notes": [],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 45,
+        "section": "Programmes of Study"
+      }
+    },
+    "property_studies": {
+      "name": "BSc Property Studies",
+      "minimum_nqf_credits": 452,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "CON1021F",
+        "CON1022F",
+        "CON1023S",
+        "CON1024S",
+        "CON1025S",
+        "ECO1008F",
+        "ECO1009S",
+        "MAM1010F",
+        "STA1000S",
+        "ACC1021F",
+        "CML1001F",
+        "CON2032S",
+        "CON2033F",
+        "CON2034S",
+        "CON2035S",
+        "CON2036F",
+        "FTX2020F",
+        "STA2020S",
+        "CON3046S",
+        "CON3047F",
+        "CON3048F",
+        "CON3050F",
+        "CON3051F",
+        "CON3052S",
+        "CON3053S",
+        "CON3054S",
+        "CSC1015F"
+      ],
+      "qualification_codes": [
+        "EB017CON03"
+      ],
+      "scope_verified": false,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 3,
+      "maximum_registration_years": 4,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "manual",
+          "id": "property_credit_conflict",
+          "label": "Published credit reconciliation",
+          "note": "The programme text requires at least 452 credits, while the printed prescribed-course table totals fewer credits. Faculty confirmation of the remaining approved component is required.",
+          "assumed_complete": true,
+          "blocking": true,
+          "status": "conflict"
+        }
+      ],
+      "pathways": {},
+      "pathway_required": false,
+      "default_pathway_key": "",
+      "availability": "open",
+      "availability_note": "",
+      "progression_rules": [
+        {
+          "type": "cumulative_credits",
+          "year": 1,
+          "minimum": 100,
+          "concession_minimum": 54,
+          "label": "End of first year"
+        },
+        {
+          "type": "cumulative_credits",
+          "year": 2,
+          "minimum": 200,
+          "label": "End of second year"
+        },
+        {
+          "type": "cumulative_credits",
+          "year": 3,
+          "minimum": 325,
+          "label": "End of third year"
+        },
+        {
+          "type": "cumulative_credits",
+          "year": 4,
+          "minimum": 452,
+          "label": "End of fourth year"
+        }
+      ],
+      "award_rules": [
+        {
+          "name": "Degree with distinction",
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "distinction_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 75
+            }
+          ]
+        }
+      ],
+      "progression_notes": [],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 46,
+        "section": "Programmes of Study"
+      }
+    },
+    "electrical_engineering_4": {
+      "name": "BSc Engineering — Electrical Engineering (4-year)",
+      "minimum_nqf_credits": 560,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "CSC1015F",
+        "EEE1008F",
+        "MAM1020F",
+        "PHY1012F",
+        "CSC1016S",
+        "EEE1009S",
+        "MAM1021S",
+        "PHY1013S",
+        "EEE1000X",
+        "EEE2045F",
+        "EEE2046F",
+        "MAM2083F",
+        "MEC1003F",
+        "MEC1009F",
+        "EEE2044S",
+        "EEE2047S",
+        "EEE2048S",
+        "MAM2084S",
+        "PHY2010S",
+        "EEE3088F",
+        "EEE3089F",
+        "EEE3090F",
+        "EEE3091F",
+        "EEE3092F",
+        "EEE3093S",
+        "EEE3094S",
+        "EEE3098S",
+        "EEE3100S",
+        "EEE4113F",
+        "CML4607F",
+        "EEE4125C",
+        "EEE4124C",
+        "EEE4022S"
+      ],
+      "qualification_codes": [
+        "EB009EEE01"
+      ],
+      "scope_verified": true,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 4,
+      "maximum_registration_years": null,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "approved_credit_pool",
+          "id": "complementary",
+          "label": "Approved complementary studies elective",
+          "required": 18,
+          "course_codes": [],
+          "transcript_course_codes": [],
+          "exclude_course_codes": [],
+          "transcript_filters": {
+            "exclude_prefixes": [
+              "APG",
+              "BIO",
+              "CEM",
+              "CHE",
+              "CIV",
+              "CON",
+              "CSC",
+              "EEE",
+              "END",
+              "GEO",
+              "MAM",
+              "MEC",
+              "PHY",
+              "STA"
+            ]
+          },
+          "approval_note": "The handbook refers to a separate approved complementary-studies list; course approval, prerequisites and live offering must be confirmed.",
+          "verification_status": "unverified",
+          "transcript_only": true,
+          "allow_unlisted_transcript_courses": true
+        },
+        {
+          "type": "choose_n",
+          "id": "elective_primary",
+          "label": "At least one primary Electrical Engineering elective",
+          "course_codes": [
+            "EEE4126F",
+            "EEE4118F",
+            "EEE4121F"
+          ],
+          "required": 1
+        },
+        {
+          "type": "credit_pool",
+          "id": "elective_total",
+          "label": "Fourth-year elective core credits",
+          "course_codes": [
+            "EEE4126F",
+            "EEE4118F",
+            "EEE4121F",
+            "EEE4114F",
+            "EEE4117F",
+            "HUB4049F"
+          ],
+          "required": 48
+        }
+      ],
+      "pathways": {
+        "current_560": {
+          "name": "Current 560-credit curriculum",
+          "curriculum_rules": [],
+          "verification_status": "verified",
+          "availability": "open",
+          "availability_note": "",
+          "source": {
+            "document": "2026 EBE Undergraduate Handbook",
+            "page": 48
+          }
+        },
+        "legacy_576": {
+          "name": "Legacy 576-credit curriculum",
+          "curriculum_rules": [
+            {
+              "type": "credits",
+              "id": "legacy_credits",
+              "label": "Legacy curriculum credits",
+              "required": 576
+            },
+            {
+              "type": "manual",
+              "id": "legacy_equivalents",
+              "label": "Legacy complementary-course equivalents",
+              "note": "Students on the 576-credit curriculum may need outstanding ASL1200S/CON2026S or approved equivalents.",
+              "assumed_complete": true,
+              "blocking": true,
+              "status": "discretionary"
+            }
+          ],
+          "verification_status": "provisional",
+          "availability": "open",
+          "availability_note": "",
+          "source": {
+            "document": "2026 EBE Undergraduate Handbook",
+            "page": 48
+          }
+        }
+      },
+      "pathway_required": true,
+      "default_pathway_key": "current_560",
+      "availability": "open",
+      "availability_note": "",
+      "progression_rules": [
+        {
+          "type": "annual_credits",
+          "year": 1,
+          "minimum": 96,
+          "concession_minimum": 66,
+          "label": "BSc Engineering — Electrical Engineering (4-year): first-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 2,
+          "minimum": 112,
+          "label": "BSc Engineering — Electrical Engineering (4-year): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 3,
+          "minimum": 112,
+          "label": "BSc Engineering — Electrical Engineering (4-year): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 4,
+          "minimum": 112,
+          "label": "BSc Engineering — Electrical Engineering (4-year): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 5,
+          "minimum": 112,
+          "label": "BSc Engineering — Electrical Engineering (4-year): subsequent-year progression"
+        }
+      ],
+      "award_rules": [
+        {
+          "name": "First class honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "first_class_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 75
+            },
+            {
+              "type": "minimum_mark",
+              "id": "first_class_project",
+              "label": "Research project EEE4022S",
+              "course_codes": [
+                "EEE4022S"
+              ],
+              "minimum_mark": 75
+            }
+          ]
+        },
+        {
+          "name": "Honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "honours_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 65
+            },
+            {
+              "type": "minimum_mark",
+              "id": "honours_project",
+              "label": "Research project EEE4022S",
+              "course_codes": [
+                "EEE4022S"
+              ],
+              "minimum_mark": 60
+            }
+          ]
+        }
+      ],
+      "progression_notes": [
+        "The legacy 576-credit curriculum uses a 116-credit subsequent-year progression threshold; the current route uses 112."
+      ],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 48,
+        "section": "Programmes of Study"
+      }
+    },
+    "electrical_engineering_5": {
+      "name": "BSc Engineering — Electrical Engineering (5-year ASPECT)",
+      "minimum_nqf_credits": 560,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "EEE1008F",
+        "MAM1023F",
+        "PHY1014F",
+        "EEE1009S",
+        "MAM1024S",
+        "PHY1015S",
+        "CSC1015F",
+        "EEE2045F",
+        "MAM2085F",
+        "MEC1003F",
+        "CSC1016S",
+        "EEE2047S",
+        "MAM2084S",
+        "EEE1000X",
+        "EEE2046F",
+        "EEE3090F",
+        "MEC1009F",
+        "EEE2044S",
+        "EEE2048S",
+        "EEE3094S",
+        "PHY2010S",
+        "EEE3088F",
+        "EEE3089F",
+        "EEE3091F",
+        "EEE3092F",
+        "CML4607F",
+        "EEE3093S",
+        "EEE3098S",
+        "EEE3100S",
+        "EEE4113F",
+        "EEE4125C",
+        "EEE4124C",
+        "EEE4022S"
+      ],
+      "qualification_codes": [
+        "EB809EEE01"
+      ],
+      "scope_verified": true,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 5,
+      "maximum_registration_years": null,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "approved_credit_pool",
+          "id": "complementary",
+          "label": "Approved complementary studies elective",
+          "required": 18,
+          "course_codes": [],
+          "transcript_course_codes": [],
+          "exclude_course_codes": [],
+          "transcript_filters": {
+            "exclude_prefixes": [
+              "APG",
+              "BIO",
+              "CEM",
+              "CHE",
+              "CIV",
+              "CON",
+              "CSC",
+              "EEE",
+              "END",
+              "GEO",
+              "MAM",
+              "MEC",
+              "PHY",
+              "STA"
+            ]
+          },
+          "approval_note": "The handbook refers to a separate approved complementary-studies list; course approval, prerequisites and live offering must be confirmed.",
+          "verification_status": "unverified",
+          "transcript_only": true,
+          "allow_unlisted_transcript_courses": true
+        },
+        {
+          "type": "choose_n",
+          "id": "elective_primary",
+          "label": "At least one primary Electrical Engineering elective",
+          "course_codes": [
+            "EEE4126F",
+            "EEE4118F",
+            "EEE4121F"
+          ],
+          "required": 1
+        },
+        {
+          "type": "credit_pool",
+          "id": "elective_total",
+          "label": "Fourth-year elective core credits",
+          "course_codes": [
+            "EEE4126F",
+            "EEE4118F",
+            "EEE4121F",
+            "EEE4114F",
+            "EEE4117F",
+            "HUB4049F"
+          ],
+          "required": 48
+        }
+      ],
+      "pathways": {
+        "current_560": {
+          "name": "Current 560-credit curriculum",
+          "curriculum_rules": [],
+          "verification_status": "verified",
+          "availability": "open",
+          "availability_note": "",
+          "source": {
+            "document": "2026 EBE Undergraduate Handbook",
+            "page": 49
+          }
+        },
+        "legacy_576": {
+          "name": "Legacy 576-credit curriculum",
+          "curriculum_rules": [
+            {
+              "type": "credits",
+              "id": "legacy_credits",
+              "label": "Legacy curriculum credits",
+              "required": 576
+            },
+            {
+              "type": "manual",
+              "id": "legacy_equivalents",
+              "label": "Legacy complementary-course equivalents",
+              "note": "Students on the 576-credit curriculum may need outstanding ASL1200S/CON2026S or approved equivalents.",
+              "assumed_complete": true,
+              "blocking": true,
+              "status": "discretionary"
+            }
+          ],
+          "verification_status": "provisional",
+          "availability": "open",
+          "availability_note": "",
+          "source": {
+            "document": "2026 EBE Undergraduate Handbook",
+            "page": 49
+          }
+        }
+      },
+      "pathway_required": true,
+      "default_pathway_key": "current_560",
+      "availability": "open",
+      "availability_note": "",
+      "progression_rules": [
+        {
+          "type": "annual_credits",
+          "year": 1,
+          "minimum": 60,
+          "concession_minimum": 48,
+          "label": "BSc Engineering — Electrical Engineering (5-year ASPECT): first-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 2,
+          "minimum": 92,
+          "label": "BSc Engineering — Electrical Engineering (5-year ASPECT): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 3,
+          "minimum": 92,
+          "label": "BSc Engineering — Electrical Engineering (5-year ASPECT): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 4,
+          "minimum": 92,
+          "label": "BSc Engineering — Electrical Engineering (5-year ASPECT): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 5,
+          "minimum": 92,
+          "label": "BSc Engineering — Electrical Engineering (5-year ASPECT): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 6,
+          "minimum": 92,
+          "label": "BSc Engineering — Electrical Engineering (5-year ASPECT): subsequent-year progression"
+        }
+      ],
+      "award_rules": [
+        {
+          "name": "First class honours",
+          "complete_within_years": 5,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "first_class_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 75
+            },
+            {
+              "type": "minimum_mark",
+              "id": "first_class_project",
+              "label": "Research project EEE4022S",
+              "course_codes": [
+                "EEE4022S"
+              ],
+              "minimum_mark": 75
+            }
+          ]
+        },
+        {
+          "name": "Honours",
+          "complete_within_years": 5,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "honours_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 65
+            },
+            {
+              "type": "minimum_mark",
+              "id": "honours_project",
+              "label": "Research project EEE4022S",
+              "course_codes": [
+                "EEE4022S"
+              ],
+              "minimum_mark": 60
+            }
+          ]
+        }
+      ],
+      "progression_notes": [
+        "The legacy 576-credit curriculum uses a 96-credit subsequent-year progression threshold; the current route uses 92."
+      ],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 49,
+        "section": "Programmes of Study"
+      }
+    },
+    "electrical_computer_engineering_4": {
+      "name": "BSc Engineering — Electrical & Computer Engineering (4-year)",
+      "minimum_nqf_credits": 560,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "CSC1015F",
+        "EEE1008F",
+        "MAM1020F",
+        "PHY1012F",
+        "CSC1016S",
+        "EEE1009S",
+        "MAM1021S",
+        "PHY1013S",
+        "EEE1000X",
+        "EEE2045F",
+        "EEE2046F",
+        "MAM2083F",
+        "MEC1009F",
+        "EEE2044S",
+        "EEE2047S",
+        "EEE2048S",
+        "MAM2084S",
+        "PHY2010S",
+        "CSC2001F",
+        "EEE3088F",
+        "EEE3089F",
+        "EEE3090F",
+        "EEE3092F",
+        "EEE3096S",
+        "EEE3097S",
+        "EEE4113F",
+        "CML4607F",
+        "EEE4125C",
+        "EEE4124C",
+        "EEE4022S"
+      ],
+      "qualification_codes": [
+        "EB022EEE02"
+      ],
+      "scope_verified": true,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 4,
+      "maximum_registration_years": null,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "approved_credit_pool",
+          "id": "complementary",
+          "label": "Approved complementary studies elective",
+          "required": 18,
+          "course_codes": [],
+          "transcript_course_codes": [],
+          "exclude_course_codes": [],
+          "transcript_filters": {
+            "exclude_prefixes": [
+              "APG",
+              "BIO",
+              "CEM",
+              "CHE",
+              "CIV",
+              "CON",
+              "CSC",
+              "EEE",
+              "END",
+              "GEO",
+              "MAM",
+              "MEC",
+              "PHY",
+              "STA"
+            ]
+          },
+          "approval_note": "The handbook refers to a separate approved complementary-studies list; course approval, prerequisites and live offering must be confirmed.",
+          "verification_status": "unverified",
+          "transcript_only": true,
+          "allow_unlisted_transcript_courses": true
+        },
+        {
+          "type": "choose_n",
+          "id": "third_year_options",
+          "label": "Choose two third-year options",
+          "course_codes": [
+            "CSC2002S",
+            "EEE3093S",
+            "EEE3094S"
+          ],
+          "required": 2
+        },
+        {
+          "type": "choose_n",
+          "id": "final_primary",
+          "label": "At least two ECE elective-core courses",
+          "course_codes": [
+            "EEE4114F",
+            "EEE4118F",
+            "EEE4120F",
+            "EEE4121F"
+          ],
+          "required": 2
+        },
+        {
+          "type": "approved_credit_pool",
+          "id": "final_total",
+          "label": "Final elective-core credits",
+          "required": 48,
+          "course_codes": [
+            "EEE4114F",
+            "EEE4118F",
+            "EEE4120F",
+            "EEE4121F",
+            "HUB4049F"
+          ],
+          "transcript_course_codes": [],
+          "exclude_course_codes": [],
+          "transcript_filters": {
+            "prefixes": [
+              "CSC"
+            ],
+            "year_levels": [
+              3,
+              4
+            ],
+            "nqf_levels": [
+              7,
+              8
+            ]
+          },
+          "approval_note": "An approved 3000-level Computer Science course may form part of the final elective total; departmental approval must be confirmed.",
+          "verification_status": "unverified",
+          "transcript_only": false,
+          "allow_unlisted_transcript_courses": true
+        }
+      ],
+      "pathways": {
+        "current_560": {
+          "name": "Current 560-credit curriculum",
+          "curriculum_rules": [],
+          "verification_status": "verified",
+          "availability": "open",
+          "availability_note": "",
+          "source": {
+            "document": "2026 EBE Undergraduate Handbook",
+            "page": 52
+          }
+        },
+        "legacy_576": {
+          "name": "Legacy 576-credit curriculum",
+          "curriculum_rules": [
+            {
+              "type": "credits",
+              "id": "legacy_credits",
+              "label": "Legacy curriculum credits",
+              "required": 576
+            },
+            {
+              "type": "manual",
+              "id": "legacy_equivalents",
+              "label": "Legacy complementary-course equivalents",
+              "note": "Students on the 576-credit curriculum may need outstanding ASL1200S/CON2026S or approved equivalents.",
+              "assumed_complete": true,
+              "blocking": true,
+              "status": "discretionary"
+            }
+          ],
+          "verification_status": "provisional",
+          "availability": "open",
+          "availability_note": "",
+          "source": {
+            "document": "2026 EBE Undergraduate Handbook",
+            "page": 52
+          }
+        }
+      },
+      "pathway_required": true,
+      "default_pathway_key": "current_560",
+      "availability": "open",
+      "availability_note": "",
+      "progression_rules": [
+        {
+          "type": "annual_credits",
+          "year": 1,
+          "minimum": 96,
+          "concession_minimum": 66,
+          "label": "BSc Engineering — Electrical & Computer Engineering (4-year): first-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 2,
+          "minimum": 112,
+          "label": "BSc Engineering — Electrical & Computer Engineering (4-year): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 3,
+          "minimum": 112,
+          "label": "BSc Engineering — Electrical & Computer Engineering (4-year): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 4,
+          "minimum": 112,
+          "label": "BSc Engineering — Electrical & Computer Engineering (4-year): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 5,
+          "minimum": 112,
+          "label": "BSc Engineering — Electrical & Computer Engineering (4-year): subsequent-year progression"
+        }
+      ],
+      "award_rules": [
+        {
+          "name": "First class honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "first_class_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 75
+            },
+            {
+              "type": "minimum_mark",
+              "id": "first_class_project",
+              "label": "Research project EEE4022S",
+              "course_codes": [
+                "EEE4022S"
+              ],
+              "minimum_mark": 75
+            }
+          ]
+        },
+        {
+          "name": "Honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "honours_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 65
+            },
+            {
+              "type": "minimum_mark",
+              "id": "honours_project",
+              "label": "Research project EEE4022S",
+              "course_codes": [
+                "EEE4022S"
+              ],
+              "minimum_mark": 60
+            }
+          ]
+        }
+      ],
+      "progression_notes": [
+        "The legacy 576-credit curriculum uses a 116-credit subsequent-year progression threshold; the current route uses 112."
+      ],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 52,
+        "section": "Programmes of Study"
+      }
+    },
+    "electrical_computer_engineering_5": {
+      "name": "BSc Engineering — Electrical & Computer Engineering (5-year ASPECT)",
+      "minimum_nqf_credits": 560,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "EEE1008F",
+        "MAM1023F",
+        "PHY1014F",
+        "EEE1009S",
+        "MAM1024S",
+        "PHY1015S",
+        "CSC1015F",
+        "EEE2045F",
+        "MAM2085F",
+        "MEC1003F",
+        "CSC1016S",
+        "EEE2047S",
+        "MAM2084S",
+        "EEE1000X",
+        "CSC2001F",
+        "EEE2046F",
+        "MEC1009F",
+        "EEE2044S",
+        "EEE2048S",
+        "PHY2010S",
+        "EEE3088F",
+        "EEE3089F",
+        "EEE3090F",
+        "EEE3092F",
+        "CML4607F",
+        "EEE3096S",
+        "EEE3097S",
+        "EEE4113F",
+        "EEE4125C",
+        "EEE4124C",
+        "EEE4022S"
+      ],
+      "qualification_codes": [
+        "EB822EEE02"
+      ],
+      "scope_verified": true,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 5,
+      "maximum_registration_years": null,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "approved_credit_pool",
+          "id": "complementary",
+          "label": "Approved complementary studies elective",
+          "required": 18,
+          "course_codes": [],
+          "transcript_course_codes": [],
+          "exclude_course_codes": [],
+          "transcript_filters": {
+            "exclude_prefixes": [
+              "APG",
+              "BIO",
+              "CEM",
+              "CHE",
+              "CIV",
+              "CON",
+              "CSC",
+              "EEE",
+              "END",
+              "GEO",
+              "MAM",
+              "MEC",
+              "PHY",
+              "STA"
+            ]
+          },
+          "approval_note": "The handbook refers to a separate approved complementary-studies list; course approval, prerequisites and live offering must be confirmed.",
+          "verification_status": "unverified",
+          "transcript_only": true,
+          "allow_unlisted_transcript_courses": true
+        },
+        {
+          "type": "choose_n",
+          "id": "third_year_options",
+          "label": "Choose two third-year options",
+          "course_codes": [
+            "CSC2002S",
+            "EEE3093S",
+            "EEE3094S"
+          ],
+          "required": 2
+        },
+        {
+          "type": "choose_n",
+          "id": "final_primary",
+          "label": "At least two ECE elective-core courses",
+          "course_codes": [
+            "EEE4114F",
+            "EEE4118F",
+            "EEE4120F",
+            "EEE4121F"
+          ],
+          "required": 2
+        },
+        {
+          "type": "approved_credit_pool",
+          "id": "final_total",
+          "label": "Final elective-core credits",
+          "required": 48,
+          "course_codes": [
+            "EEE4114F",
+            "EEE4118F",
+            "EEE4120F",
+            "EEE4121F",
+            "HUB4049F"
+          ],
+          "transcript_course_codes": [],
+          "exclude_course_codes": [],
+          "transcript_filters": {
+            "prefixes": [
+              "CSC"
+            ],
+            "year_levels": [
+              3,
+              4
+            ],
+            "nqf_levels": [
+              7,
+              8
+            ]
+          },
+          "approval_note": "An approved 3000-level Computer Science course may form part of the final elective total; departmental approval must be confirmed.",
+          "verification_status": "unverified",
+          "transcript_only": false,
+          "allow_unlisted_transcript_courses": true
+        }
+      ],
+      "pathways": {
+        "current_560": {
+          "name": "Current 560-credit curriculum",
+          "curriculum_rules": [],
+          "verification_status": "verified",
+          "availability": "open",
+          "availability_note": "",
+          "source": {
+            "document": "2026 EBE Undergraduate Handbook",
+            "page": 54
+          }
+        },
+        "legacy_576": {
+          "name": "Legacy 576-credit curriculum",
+          "curriculum_rules": [
+            {
+              "type": "credits",
+              "id": "legacy_credits",
+              "label": "Legacy curriculum credits",
+              "required": 576
+            },
+            {
+              "type": "manual",
+              "id": "legacy_equivalents",
+              "label": "Legacy complementary-course equivalents",
+              "note": "Students on the 576-credit curriculum may need outstanding ASL1200S/CON2026S or approved equivalents.",
+              "assumed_complete": true,
+              "blocking": true,
+              "status": "discretionary"
+            }
+          ],
+          "verification_status": "provisional",
+          "availability": "open",
+          "availability_note": "",
+          "source": {
+            "document": "2026 EBE Undergraduate Handbook",
+            "page": 54
+          }
+        }
+      },
+      "pathway_required": true,
+      "default_pathway_key": "current_560",
+      "availability": "open",
+      "availability_note": "",
+      "progression_rules": [
+        {
+          "type": "annual_credits",
+          "year": 1,
+          "minimum": 60,
+          "concession_minimum": 48,
+          "label": "BSc Engineering — Electrical & Computer Engineering (5-year ASPECT): first-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 2,
+          "minimum": 92,
+          "label": "BSc Engineering — Electrical & Computer Engineering (5-year ASPECT): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 3,
+          "minimum": 92,
+          "label": "BSc Engineering — Electrical & Computer Engineering (5-year ASPECT): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 4,
+          "minimum": 92,
+          "label": "BSc Engineering — Electrical & Computer Engineering (5-year ASPECT): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 5,
+          "minimum": 92,
+          "label": "BSc Engineering — Electrical & Computer Engineering (5-year ASPECT): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 6,
+          "minimum": 92,
+          "label": "BSc Engineering — Electrical & Computer Engineering (5-year ASPECT): subsequent-year progression"
+        }
+      ],
+      "award_rules": [
+        {
+          "name": "First class honours",
+          "complete_within_years": 5,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "first_class_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 75
+            },
+            {
+              "type": "minimum_mark",
+              "id": "first_class_project",
+              "label": "Research project EEE4022S",
+              "course_codes": [
+                "EEE4022S"
+              ],
+              "minimum_mark": 75
+            }
+          ]
+        },
+        {
+          "name": "Honours",
+          "complete_within_years": 5,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "honours_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 65
+            },
+            {
+              "type": "minimum_mark",
+              "id": "honours_project",
+              "label": "Research project EEE4022S",
+              "course_codes": [
+                "EEE4022S"
+              ],
+              "minimum_mark": 60
+            }
+          ]
+        }
+      ],
+      "progression_notes": [
+        "The legacy 576-credit curriculum uses a 96-credit subsequent-year progression threshold; the current route uses 92."
+      ],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 54,
+        "section": "Programmes of Study"
+      }
+    },
+    "mechatronics_engineering_eee_4": {
+      "name": "BSc Engineering — Mechatronics (Electrical Engineering, 4-year)",
+      "minimum_nqf_credits": 560,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "CSC1015F",
+        "EEE1008F",
+        "MAM1020F",
+        "PHY1012F",
+        "CSC1016S",
+        "EEE1009S",
+        "MAM1021S",
+        "PHY1013S",
+        "EEE1000X",
+        "EEE2045F",
+        "EEE2046F",
+        "EEE2048S",
+        "MAM2083F",
+        "MEC1009F",
+        "EEE2044S",
+        "EEE2047S",
+        "MAM2084S",
+        "PHY2010S",
+        "EEE3088F",
+        "EEE3090F",
+        "EEE3091F",
+        "EEE3092F",
+        "MEC2047F",
+        "EEE3094S",
+        "EEE3096S",
+        "EEE3099S",
+        "MEC2045S",
+        "EEE4113F",
+        "CML4607F",
+        "EEE4124C",
+        "EEE4125C",
+        "EEE4022S"
+      ],
+      "qualification_codes": [
+        "EB011EEE05"
+      ],
+      "scope_verified": true,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 4,
+      "maximum_registration_years": null,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "approved_credit_pool",
+          "id": "complementary",
+          "label": "Approved complementary studies elective",
+          "required": 18,
+          "course_codes": [],
+          "transcript_course_codes": [],
+          "exclude_course_codes": [],
+          "transcript_filters": {
+            "exclude_prefixes": [
+              "APG",
+              "BIO",
+              "CEM",
+              "CHE",
+              "CIV",
+              "CON",
+              "CSC",
+              "EEE",
+              "END",
+              "GEO",
+              "MAM",
+              "MEC",
+              "PHY",
+              "STA"
+            ]
+          },
+          "approval_note": "The handbook refers to a separate approved complementary-studies list; course approval, prerequisites and live offering must be confirmed.",
+          "verification_status": "unverified",
+          "transcript_only": true,
+          "allow_unlisted_transcript_courses": true
+        },
+        {
+          "type": "choose_n",
+          "id": "elective_primary",
+          "label": "Choose at least two Mechatronics elective-core courses",
+          "course_codes": [
+            "EEE4117F",
+            "EEE4118F",
+            "EEE4119F"
+          ],
+          "required": 2
+        },
+        {
+          "type": "credit_pool",
+          "id": "elective_total",
+          "label": "Final elective-core credits",
+          "course_codes": [
+            "EEE4117F",
+            "EEE4118F",
+            "EEE4119F",
+            "EEE4114F",
+            "EEE4120F",
+            "HUB4049F"
+          ],
+          "required": 48
+        }
+      ],
+      "pathways": {
+        "current_560": {
+          "name": "Current 560-credit curriculum",
+          "curriculum_rules": [],
+          "verification_status": "verified",
+          "availability": "open",
+          "availability_note": "",
+          "source": {
+            "document": "2026 EBE Undergraduate Handbook",
+            "page": 56
+          }
+        },
+        "legacy_576": {
+          "name": "Legacy 576-credit curriculum",
+          "curriculum_rules": [
+            {
+              "type": "credits",
+              "id": "legacy_credits",
+              "label": "Legacy curriculum credits",
+              "required": 576
+            },
+            {
+              "type": "manual",
+              "id": "legacy_equivalents",
+              "label": "Legacy complementary-course equivalents",
+              "note": "Students on the 576-credit curriculum may need outstanding ASL1200S/CON2026S or approved equivalents.",
+              "assumed_complete": true,
+              "blocking": true,
+              "status": "discretionary"
+            }
+          ],
+          "verification_status": "provisional",
+          "availability": "open",
+          "availability_note": "",
+          "source": {
+            "document": "2026 EBE Undergraduate Handbook",
+            "page": 56
+          }
+        }
+      },
+      "pathway_required": true,
+      "default_pathway_key": "current_560",
+      "availability": "open",
+      "availability_note": "",
+      "progression_rules": [
+        {
+          "type": "annual_credits",
+          "year": 1,
+          "minimum": 96,
+          "concession_minimum": 66,
+          "label": "BSc Engineering — Mechatronics (Electrical Engineering, 4-year): first-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 2,
+          "minimum": 112,
+          "label": "BSc Engineering — Mechatronics (Electrical Engineering, 4-year): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 3,
+          "minimum": 112,
+          "label": "BSc Engineering — Mechatronics (Electrical Engineering, 4-year): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 4,
+          "minimum": 112,
+          "label": "BSc Engineering — Mechatronics (Electrical Engineering, 4-year): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 5,
+          "minimum": 112,
+          "label": "BSc Engineering — Mechatronics (Electrical Engineering, 4-year): subsequent-year progression"
+        }
+      ],
+      "award_rules": [
+        {
+          "name": "First class honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "first_class_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 75
+            },
+            {
+              "type": "minimum_mark",
+              "id": "first_class_project",
+              "label": "Research project EEE4022S",
+              "course_codes": [
+                "EEE4022S"
+              ],
+              "minimum_mark": 75
+            }
+          ]
+        },
+        {
+          "name": "Honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "honours_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 65
+            },
+            {
+              "type": "minimum_mark",
+              "id": "honours_project",
+              "label": "Research project EEE4022S",
+              "course_codes": [
+                "EEE4022S"
+              ],
+              "minimum_mark": 60
+            }
+          ]
+        }
+      ],
+      "progression_notes": [
+        "The legacy 576-credit curriculum uses a 116-credit subsequent-year progression threshold; the current route uses 112."
+      ],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 56,
+        "section": "Programmes of Study"
+      }
+    },
+    "mechatronics_engineering_eee_5": {
+      "name": "BSc Engineering — Mechatronics (Electrical Engineering, 5-year ASPECT)",
+      "minimum_nqf_credits": 560,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "EEE1008F",
+        "MAM1023F",
+        "PHY1014F",
+        "EEE1009S",
+        "MAM1024S",
+        "PHY1015S",
+        "CSC1015F",
+        "EEE2045F",
+        "MAM2085F",
+        "MEC1003F",
+        "CSC1016S",
+        "EEE2047S",
+        "MAM2084S",
+        "EEE1000X",
+        "EEE2046F",
+        "EEE3090F",
+        "MEC1009F",
+        "EEE2044S",
+        "EEE2048S",
+        "EEE3094S",
+        "PHY2010S",
+        "EEE3088F",
+        "EEE3091F",
+        "EEE3092F",
+        "MEC2047F",
+        "EEE3096S",
+        "EEE3099S",
+        "MEC2045S",
+        "EEE4113F",
+        "CML4607F",
+        "EEE4125C",
+        "EEE4124C",
+        "EEE4022S"
+      ],
+      "qualification_codes": [
+        "EB811EEE05"
+      ],
+      "scope_verified": true,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 5,
+      "maximum_registration_years": null,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "approved_credit_pool",
+          "id": "complementary",
+          "label": "Approved complementary studies elective",
+          "required": 18,
+          "course_codes": [],
+          "transcript_course_codes": [],
+          "exclude_course_codes": [],
+          "transcript_filters": {
+            "exclude_prefixes": [
+              "APG",
+              "BIO",
+              "CEM",
+              "CHE",
+              "CIV",
+              "CON",
+              "CSC",
+              "EEE",
+              "END",
+              "GEO",
+              "MAM",
+              "MEC",
+              "PHY",
+              "STA"
+            ]
+          },
+          "approval_note": "The handbook refers to a separate approved complementary-studies list; course approval, prerequisites and live offering must be confirmed.",
+          "verification_status": "unverified",
+          "transcript_only": true,
+          "allow_unlisted_transcript_courses": true
+        },
+        {
+          "type": "choose_n",
+          "id": "elective_primary",
+          "label": "Choose at least two Mechatronics elective-core courses",
+          "course_codes": [
+            "EEE4117F",
+            "EEE4118F",
+            "EEE4119F"
+          ],
+          "required": 2
+        },
+        {
+          "type": "credit_pool",
+          "id": "elective_total",
+          "label": "Final elective-core credits",
+          "course_codes": [
+            "EEE4117F",
+            "EEE4118F",
+            "EEE4119F",
+            "EEE4114F",
+            "EEE4120F",
+            "HUB4049F"
+          ],
+          "required": 48
+        }
+      ],
+      "pathways": {
+        "current_560": {
+          "name": "Current 560-credit curriculum",
+          "curriculum_rules": [],
+          "verification_status": "verified",
+          "availability": "open",
+          "availability_note": "",
+          "source": {
+            "document": "2026 EBE Undergraduate Handbook",
+            "page": 58
+          }
+        },
+        "legacy_576": {
+          "name": "Legacy 576-credit curriculum",
+          "curriculum_rules": [
+            {
+              "type": "credits",
+              "id": "legacy_credits",
+              "label": "Legacy curriculum credits",
+              "required": 576
+            },
+            {
+              "type": "manual",
+              "id": "legacy_equivalents",
+              "label": "Legacy complementary-course equivalents",
+              "note": "Students on the 576-credit curriculum may need outstanding ASL1200S/CON2026S or approved equivalents.",
+              "assumed_complete": true,
+              "blocking": true,
+              "status": "discretionary"
+            }
+          ],
+          "verification_status": "provisional",
+          "availability": "open",
+          "availability_note": "",
+          "source": {
+            "document": "2026 EBE Undergraduate Handbook",
+            "page": 58
+          }
+        }
+      },
+      "pathway_required": true,
+      "default_pathway_key": "current_560",
+      "availability": "open",
+      "availability_note": "",
+      "progression_rules": [
+        {
+          "type": "annual_credits",
+          "year": 1,
+          "minimum": 60,
+          "concession_minimum": 48,
+          "label": "BSc Engineering — Mechatronics (Electrical Engineering, 5-year ASPECT): first-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 2,
+          "minimum": 92,
+          "label": "BSc Engineering — Mechatronics (Electrical Engineering, 5-year ASPECT): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 3,
+          "minimum": 92,
+          "label": "BSc Engineering — Mechatronics (Electrical Engineering, 5-year ASPECT): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 4,
+          "minimum": 92,
+          "label": "BSc Engineering — Mechatronics (Electrical Engineering, 5-year ASPECT): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 5,
+          "minimum": 92,
+          "label": "BSc Engineering — Mechatronics (Electrical Engineering, 5-year ASPECT): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 6,
+          "minimum": 92,
+          "label": "BSc Engineering — Mechatronics (Electrical Engineering, 5-year ASPECT): subsequent-year progression"
+        }
+      ],
+      "award_rules": [
+        {
+          "name": "First class honours",
+          "complete_within_years": 5,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "first_class_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 75
+            },
+            {
+              "type": "minimum_mark",
+              "id": "first_class_project",
+              "label": "Research project EEE4022S",
+              "course_codes": [
+                "EEE4022S"
+              ],
+              "minimum_mark": 75
+            }
+          ]
+        },
+        {
+          "name": "Honours",
+          "complete_within_years": 5,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "honours_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 65
+            },
+            {
+              "type": "minimum_mark",
+              "id": "honours_project",
+              "label": "Research project EEE4022S",
+              "course_codes": [
+                "EEE4022S"
+              ],
+              "minimum_mark": 60
+            }
+          ]
+        }
+      ],
+      "progression_notes": [
+        "The legacy 576-credit curriculum uses a 96-credit subsequent-year progression threshold; the current route uses 92."
+      ],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 58,
+        "section": "Programmes of Study"
+      }
+    },
+    "mechanical_engineering_4": {
+      "name": "BSc Engineering — Mechanical Engineering (4-year)",
+      "minimum_nqf_credits": 560,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "MAM1020F",
+        "MAM1021S",
+        "MEC1007F",
+        "MEC1009S",
+        "MEC1018S",
+        "MEC1019S",
+        "MEC1020W",
+        "PHY1012F",
+        "PHY1013S",
+        "CSC1019F",
+        "EEE2041F",
+        "EEE2042S",
+        "MAM2083F",
+        "MAM2084S",
+        "MEC1000X",
+        "MEC2046F",
+        "MEC2047S",
+        "MEC2048S",
+        "MEC2049F",
+        "MEC2050S",
+        "MEC2000X",
+        "MEC3074F",
+        "MEC3075F",
+        "MEC3076F",
+        "MEC3077F",
+        "MEC3078S",
+        "MEC3079S",
+        "MEC3080S",
+        "MEC3081S",
+        "MEC3082S",
+        "MEC3083W",
+        "STA1008F",
+        "MEC4047F",
+        "MEC4108S",
+        "MEC4123F",
+        "MEC4124W",
+        "MEC4125F",
+        "MEC4128Z"
+      ],
+      "qualification_codes": [
+        "EB005MEC01"
+      ],
+      "scope_verified": true,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 4,
+      "maximum_registration_years": null,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "approved_credit_pool",
+          "id": "complementary_open_electives",
+          "label": "Approved complementary and open elective credits",
+          "required": 42,
+          "course_codes": [],
+          "transcript_course_codes": [],
+          "exclude_course_codes": [],
+          "transcript_filters": {},
+          "approval_note": "The route requires 15 approved category-(b) complementary-studies credits and 27 approved open-elective credits. The transcript does not establish category allocation, prerequisites, timetable fit or advisor approval.",
+          "verification_status": "unverified",
+          "transcript_only": true,
+          "allow_unlisted_transcript_courses": true
+        },
+        {
+          "type": "manual",
+          "id": "elective_category_allocation",
+          "label": "Elective category allocation",
+          "note": "Faculty confirmation is required that at least 15 credits satisfy complementary-studies category (b) and at least 27 credits satisfy the open-elective requirement.",
+          "assumed_complete": true,
+          "blocking": true,
+          "status": "unverified"
+        }
+      ],
+      "pathways": {
+        "current_560": {
+          "name": "Current 560-credit curriculum",
+          "curriculum_rules": [],
+          "verification_status": "verified",
+          "availability": "open",
+          "availability_note": "",
+          "source": {
+            "document": "2026 EBE Undergraduate Handbook",
+            "page": 61
+          }
+        },
+        "legacy_576": {
+          "name": "Legacy 576-credit curriculum",
+          "curriculum_rules": [
+            {
+              "type": "credits",
+              "id": "legacy_credits",
+              "label": "Legacy curriculum credits",
+              "required": 576
+            }
+          ],
+          "verification_status": "provisional",
+          "availability": "open",
+          "availability_note": "",
+          "source": {
+            "document": "2026 EBE Undergraduate Handbook",
+            "page": 61
+          }
+        }
+      },
+      "pathway_required": true,
+      "default_pathway_key": "current_560",
+      "availability": "open",
+      "availability_note": "",
+      "progression_rules": [
+        {
+          "type": "annual_credits",
+          "year": 1,
+          "minimum": 116,
+          "concession_minimum": 90,
+          "label": "BSc Engineering — Mechanical Engineering (4-year): first-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 2,
+          "minimum": 116,
+          "label": "BSc Engineering — Mechanical Engineering (4-year): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 3,
+          "minimum": 116,
+          "label": "BSc Engineering — Mechanical Engineering (4-year): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 4,
+          "minimum": 116,
+          "label": "BSc Engineering — Mechanical Engineering (4-year): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 5,
+          "minimum": 116,
+          "label": "BSc Engineering — Mechanical Engineering (4-year): subsequent-year progression"
+        }
+      ],
+      "award_rules": [
+        {
+          "name": "First class honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "first_class_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 75
+            },
+            {
+              "type": "minimum_mark",
+              "id": "first_class_project",
+              "label": "Research project MEC4128Z",
+              "course_codes": [
+                "MEC4128Z"
+              ],
+              "minimum_mark": 75
+            }
+          ]
+        },
+        {
+          "name": "Honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "honours_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 65
+            },
+            {
+              "type": "minimum_mark",
+              "id": "honours_project",
+              "label": "Research project MEC4128Z",
+              "course_codes": [
+                "MEC4128Z"
+              ],
+              "minimum_mark": 60
+            }
+          ]
+        }
+      ],
+      "progression_notes": [],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 61,
+        "section": "Programmes of Study"
+      }
+    },
+    "mechanical_engineering_5": {
+      "name": "BSc Engineering — Mechanical Engineering (5-year ASPECT)",
+      "minimum_nqf_credits": 560,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "MAM1023F",
+        "MAM1024S",
+        "MEC1007F",
+        "MEC1018S",
+        "MEC1019S",
+        "MEC1020W",
+        "PHY1014S",
+        "PHY1015S",
+        "CSC1019F",
+        "MAM2085F",
+        "MAM2084S",
+        "MEC1000X",
+        "MEC1008S",
+        "MEC1009F",
+        "MEC2046F",
+        "EEE2041F",
+        "EEE2042S",
+        "MEC2000X",
+        "MEC2047S",
+        "MEC2048S",
+        "MEC2049F",
+        "MEC2050S",
+        "MEC3075F",
+        "MEC3074F",
+        "MEC3076F",
+        "MEC3077F",
+        "MEC3078S",
+        "MEC3079S",
+        "MEC3080S",
+        "MEC3081S",
+        "MEC3082S",
+        "MEC3083W",
+        "STA1008F",
+        "MEC4047F",
+        "MEC4108S",
+        "MEC4123F",
+        "MEC4124W",
+        "MEC4125F",
+        "MEC4128Z"
+      ],
+      "qualification_codes": [
+        "EB805MEC01"
+      ],
+      "scope_verified": true,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 5,
+      "maximum_registration_years": null,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "approved_credit_pool",
+          "id": "complementary_open_electives",
+          "label": "Approved complementary and open elective credits",
+          "required": 42,
+          "course_codes": [],
+          "transcript_course_codes": [],
+          "exclude_course_codes": [],
+          "transcript_filters": {},
+          "approval_note": "The route requires 15 approved category-(b) complementary-studies credits and 27 approved open-elective credits. The transcript does not establish category allocation, prerequisites, timetable fit or advisor approval.",
+          "verification_status": "unverified",
+          "transcript_only": true,
+          "allow_unlisted_transcript_courses": true
+        },
+        {
+          "type": "manual",
+          "id": "elective_category_allocation",
+          "label": "Elective category allocation",
+          "note": "Faculty confirmation is required that at least 15 credits satisfy complementary-studies category (b) and at least 27 credits satisfy the open-elective requirement.",
+          "assumed_complete": true,
+          "blocking": true,
+          "status": "unverified"
+        }
+      ],
+      "pathways": {
+        "current_560": {
+          "name": "Current 560-credit curriculum",
+          "curriculum_rules": [],
+          "verification_status": "verified",
+          "availability": "open",
+          "availability_note": "",
+          "source": {
+            "document": "2026 EBE Undergraduate Handbook",
+            "page": 63
+          }
+        },
+        "legacy_576": {
+          "name": "Legacy 576-credit curriculum",
+          "curriculum_rules": [
+            {
+              "type": "credits",
+              "id": "legacy_credits",
+              "label": "Legacy curriculum credits",
+              "required": 576
+            }
+          ],
+          "verification_status": "provisional",
+          "availability": "open",
+          "availability_note": "",
+          "source": {
+            "document": "2026 EBE Undergraduate Handbook",
+            "page": 63
+          }
+        }
+      },
+      "pathway_required": true,
+      "default_pathway_key": "current_560",
+      "availability": "open",
+      "availability_note": "",
+      "progression_rules": [
+        {
+          "type": "annual_credits",
+          "year": 1,
+          "minimum": 96,
+          "concession_minimum": 70,
+          "label": "BSc Engineering — Mechanical Engineering (5-year ASPECT): first-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 2,
+          "minimum": 96,
+          "label": "BSc Engineering — Mechanical Engineering (5-year ASPECT): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 3,
+          "minimum": 96,
+          "label": "BSc Engineering — Mechanical Engineering (5-year ASPECT): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 4,
+          "minimum": 96,
+          "label": "BSc Engineering — Mechanical Engineering (5-year ASPECT): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 5,
+          "minimum": 96,
+          "label": "BSc Engineering — Mechanical Engineering (5-year ASPECT): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 6,
+          "minimum": 96,
+          "label": "BSc Engineering — Mechanical Engineering (5-year ASPECT): subsequent-year progression"
+        }
+      ],
+      "award_rules": [
+        {
+          "name": "First class honours",
+          "complete_within_years": 5,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "first_class_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 75
+            },
+            {
+              "type": "minimum_mark",
+              "id": "first_class_project",
+              "label": "Research project MEC4128Z",
+              "course_codes": [
+                "MEC4128Z"
+              ],
+              "minimum_mark": 75
+            }
+          ]
+        },
+        {
+          "name": "Honours",
+          "complete_within_years": 5,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "honours_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 65
+            },
+            {
+              "type": "minimum_mark",
+              "id": "honours_project",
+              "label": "Research project MEC4128Z",
+              "course_codes": [
+                "MEC4128Z"
+              ],
+              "minimum_mark": 60
+            }
+          ]
+        }
+      ],
+      "progression_notes": [],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 63,
+        "section": "Programmes of Study"
+      }
+    },
+    "mechanical_mechatronic_engineering_4": {
+      "name": "BSc Engineering — Mechanical & Mechatronic Engineering (4-year)",
+      "minimum_nqf_credits": 560,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "MAM1020F",
+        "MAM1021S",
+        "MEC1007F",
+        "MEC1009S",
+        "MEC1018S",
+        "MEC1019S",
+        "MEC1020W",
+        "PHY1012F",
+        "PHY1013S",
+        "CSC1019F",
+        "EEE2041F",
+        "EEE2042S",
+        "MAM2083F",
+        "MAM2084S",
+        "MEC1000X",
+        "MEC2046F",
+        "MEC2047S",
+        "MEC2048S",
+        "MEC2049F",
+        "MEC2050S",
+        "EEE2046S",
+        "MEC2000X",
+        "MEC3074F",
+        "MEC3075F",
+        "MEC3076F",
+        "MEC3077F",
+        "MEC3078S",
+        "MEC3079S",
+        "MEC3081S",
+        "MEC3082S",
+        "MEC3083W",
+        "STA1008F",
+        "MEC4047F",
+        "MEC4108S",
+        "MEC4123F",
+        "MEC4124W",
+        "MEC4126F",
+        "MEC4127F",
+        "MEC4128Z"
+      ],
+      "qualification_codes": [
+        "EB010MEC05"
+      ],
+      "scope_verified": true,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 4,
+      "maximum_registration_years": null,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "approved_credit_pool",
+          "id": "complementary_open_electives",
+          "label": "Approved complementary and open elective credits",
+          "required": 30,
+          "course_codes": [],
+          "transcript_course_codes": [],
+          "exclude_course_codes": [],
+          "transcript_filters": {},
+          "approval_note": "The route requires 15 approved category-(b) complementary-studies credits and 15 approved open-elective credits. The transcript does not establish category allocation, prerequisites, timetable fit or advisor approval.",
+          "verification_status": "unverified",
+          "transcript_only": true,
+          "allow_unlisted_transcript_courses": true
+        },
+        {
+          "type": "manual",
+          "id": "elective_category_allocation",
+          "label": "Elective category allocation",
+          "note": "Faculty confirmation is required that at least 15 credits satisfy complementary-studies category (b) and at least 15 credits satisfy the open-elective requirement.",
+          "assumed_complete": true,
+          "blocking": true,
+          "status": "unverified"
+        }
+      ],
+      "pathways": {
+        "current_560": {
+          "name": "Current 560-credit curriculum",
+          "curriculum_rules": [],
+          "verification_status": "verified",
+          "availability": "open",
+          "availability_note": "",
+          "source": {
+            "document": "2026 EBE Undergraduate Handbook",
+            "page": 65
+          }
+        },
+        "legacy_576": {
+          "name": "Legacy 576-credit curriculum",
+          "curriculum_rules": [
+            {
+              "type": "credits",
+              "id": "legacy_credits",
+              "label": "Legacy curriculum credits",
+              "required": 576
+            }
+          ],
+          "verification_status": "provisional",
+          "availability": "open",
+          "availability_note": "",
+          "source": {
+            "document": "2026 EBE Undergraduate Handbook",
+            "page": 65
+          }
+        }
+      },
+      "pathway_required": true,
+      "default_pathway_key": "current_560",
+      "availability": "open",
+      "availability_note": "",
+      "progression_rules": [
+        {
+          "type": "annual_credits",
+          "year": 1,
+          "minimum": 116,
+          "concession_minimum": 90,
+          "label": "BSc Engineering — Mechanical & Mechatronic Engineering (4-year): first-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 2,
+          "minimum": 116,
+          "label": "BSc Engineering — Mechanical & Mechatronic Engineering (4-year): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 3,
+          "minimum": 116,
+          "label": "BSc Engineering — Mechanical & Mechatronic Engineering (4-year): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 4,
+          "minimum": 116,
+          "label": "BSc Engineering — Mechanical & Mechatronic Engineering (4-year): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 5,
+          "minimum": 116,
+          "label": "BSc Engineering — Mechanical & Mechatronic Engineering (4-year): subsequent-year progression"
+        }
+      ],
+      "award_rules": [
+        {
+          "name": "First class honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "first_class_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 75
+            },
+            {
+              "type": "minimum_mark",
+              "id": "first_class_project",
+              "label": "Research project MEC4128Z",
+              "course_codes": [
+                "MEC4128Z"
+              ],
+              "minimum_mark": 75
+            }
+          ]
+        },
+        {
+          "name": "Honours",
+          "complete_within_years": 4,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "honours_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 65
+            },
+            {
+              "type": "minimum_mark",
+              "id": "honours_project",
+              "label": "Research project MEC4128Z",
+              "course_codes": [
+                "MEC4128Z"
+              ],
+              "minimum_mark": 60
+            }
+          ]
+        }
+      ],
+      "progression_notes": [],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 65,
+        "section": "Programmes of Study"
+      }
+    },
+    "mechanical_mechatronic_engineering_5": {
+      "name": "BSc Engineering — Mechanical & Mechatronic Engineering (5-year ASPECT)",
+      "minimum_nqf_credits": 560,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "MAM1023F",
+        "MAM1024S",
+        "MEC1007F",
+        "MEC1018S",
+        "MEC1019S",
+        "MEC1020W",
+        "PHY1014S",
+        "PHY1015S",
+        "CSC1019F",
+        "MAM2085F",
+        "MAM2084S",
+        "MEC1000X",
+        "MEC1008S",
+        "MEC1009F",
+        "MEC2046F",
+        "EEE2041F",
+        "EEE2042S",
+        "MEC2000X",
+        "MEC2047S",
+        "MEC2048S",
+        "MEC2049F",
+        "MEC2050S",
+        "MEC3075F",
+        "EEE2046F",
+        "MEC3074F",
+        "MEC3076F",
+        "MEC3077F",
+        "MEC3078S",
+        "MEC3079S",
+        "MEC3081S",
+        "MEC3082S",
+        "MEC3083W",
+        "STA1008F",
+        "MEC4108S",
+        "MEC4047F",
+        "MEC4123F",
+        "MEC4124W",
+        "MEC4126F",
+        "MEC4127F",
+        "MEC4128Z"
+      ],
+      "qualification_codes": [
+        "EB810MEC05"
+      ],
+      "scope_verified": true,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 5,
+      "maximum_registration_years": null,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "approved_credit_pool",
+          "id": "complementary_open_electives",
+          "label": "Approved complementary and open elective credits",
+          "required": 30,
+          "course_codes": [],
+          "transcript_course_codes": [],
+          "exclude_course_codes": [],
+          "transcript_filters": {},
+          "approval_note": "The route requires 15 approved category-(b) complementary-studies credits and 15 approved open-elective credits. The transcript does not establish category allocation, prerequisites, timetable fit or advisor approval.",
+          "verification_status": "unverified",
+          "transcript_only": true,
+          "allow_unlisted_transcript_courses": true
+        },
+        {
+          "type": "manual",
+          "id": "elective_category_allocation",
+          "label": "Elective category allocation",
+          "note": "Faculty confirmation is required that at least 15 credits satisfy complementary-studies category (b) and at least 15 credits satisfy the open-elective requirement.",
+          "assumed_complete": true,
+          "blocking": true,
+          "status": "unverified"
+        }
+      ],
+      "pathways": {
+        "current_560": {
+          "name": "Current 560-credit curriculum",
+          "curriculum_rules": [],
+          "verification_status": "verified",
+          "availability": "open",
+          "availability_note": "",
+          "source": {
+            "document": "2026 EBE Undergraduate Handbook",
+            "page": 67
+          }
+        },
+        "legacy_576": {
+          "name": "Legacy 576-credit curriculum",
+          "curriculum_rules": [
+            {
+              "type": "credits",
+              "id": "legacy_credits",
+              "label": "Legacy curriculum credits",
+              "required": 576
+            }
+          ],
+          "verification_status": "provisional",
+          "availability": "open",
+          "availability_note": "",
+          "source": {
+            "document": "2026 EBE Undergraduate Handbook",
+            "page": 67
+          }
+        }
+      },
+      "pathway_required": true,
+      "default_pathway_key": "current_560",
+      "availability": "open",
+      "availability_note": "",
+      "progression_rules": [
+        {
+          "type": "annual_credits",
+          "year": 1,
+          "minimum": 96,
+          "concession_minimum": 70,
+          "label": "BSc Engineering — Mechanical & Mechatronic Engineering (5-year ASPECT): first-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 2,
+          "minimum": 96,
+          "label": "BSc Engineering — Mechanical & Mechatronic Engineering (5-year ASPECT): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 3,
+          "minimum": 96,
+          "label": "BSc Engineering — Mechanical & Mechatronic Engineering (5-year ASPECT): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 4,
+          "minimum": 96,
+          "label": "BSc Engineering — Mechanical & Mechatronic Engineering (5-year ASPECT): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 5,
+          "minimum": 96,
+          "label": "BSc Engineering — Mechanical & Mechatronic Engineering (5-year ASPECT): subsequent-year progression"
+        },
+        {
+          "type": "annual_credits",
+          "year": 6,
+          "minimum": 96,
+          "label": "BSc Engineering — Mechanical & Mechatronic Engineering (5-year ASPECT): subsequent-year progression"
+        }
+      ],
+      "award_rules": [
+        {
+          "name": "First class honours",
+          "complete_within_years": 5,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "first_class_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 75
+            },
+            {
+              "type": "minimum_mark",
+              "id": "first_class_project",
+              "label": "Research project MEC4128Z",
+              "course_codes": [
+                "MEC4128Z"
+              ],
+              "minimum_mark": 75
+            }
+          ]
+        },
+        {
+          "name": "Honours",
+          "complete_within_years": 5,
+          "curriculum_rules": [
+            {
+              "type": "weighted_average",
+              "id": "honours_cwa",
+              "label": "Cumulative credit-weighted average",
+              "minimum_average": 65
+            },
+            {
+              "type": "minimum_mark",
+              "id": "honours_project",
+              "label": "Research project MEC4128Z",
+              "course_codes": [
+                "MEC4128Z"
+              ],
+              "minimum_mark": 60
+            }
+          ]
+        }
+      ],
+      "progression_notes": [],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 67,
+        "section": "Programmes of Study"
+      }
+    },
+    "chemical_engineering_transfer_conversion": {
+      "name": "Chemical Engineering — transferee/conversion route",
+      "minimum_nqf_credits": 560,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "CEM1000W",
+        "CHE1006F",
+        "CHE1007S",
+        "MAM1020F",
+        "MAM1021S",
+        "PHY1012F",
+        "STA1008S",
+        "CHE2000X",
+        "CHE2005W",
+        "MAM2083S",
+        "MAM2084F",
+        "CHE3006F",
+        "CHE3007S",
+        "CHE3000X",
+        "CHE4036Z",
+        "CHE4045Z",
+        "CHE4048F",
+        "CHE4049F"
+      ],
+      "qualification_codes": [
+        "EB001CHE06"
+      ],
+      "scope_verified": false,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 3,
+      "maximum_registration_years": null,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "manual",
+          "id": "individual_curriculum",
+          "label": "Approved individual transfer curriculum",
+          "note": "Prior qualification credits, CHE1001P and individual exemption decisions must be confirmed.",
+          "assumed_complete": true,
+          "blocking": true,
+          "status": "discretionary"
+        }
+      ],
+      "pathways": {},
+      "pathway_required": false,
+      "default_pathway_key": "",
+      "availability": "restricted",
+      "availability_note": "Prior qualification credits, CHE1001P and individual exemption decisions must be confirmed.",
+      "progression_rules": [
+        {
+          "type": "manual",
+          "label": "Transfer-specific progression",
+          "note": "Faculty progression must be applied to the formally approved transfer curriculum."
+        }
+      ],
+      "award_rules": [],
+      "progression_notes": [],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 39,
+        "section": "Programmes of Study"
+      }
+    },
+    "chemical_engineering_uot_access": {
+      "name": "Chemical Engineering — University of Technology access route",
+      "minimum_nqf_credits": 560,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "CEM1000W",
+        "CHE1006F",
+        "CHE1007S",
+        "MAM1020F",
+        "MAM1021S",
+        "PHY1012F",
+        "STA1008S",
+        "CHE2000X",
+        "CHE2005W",
+        "MAM2083S",
+        "MAM2084F",
+        "CHE3006F",
+        "CHE3007S",
+        "CHE3000X",
+        "CHE4036Z",
+        "CHE4045Z",
+        "CHE4048F",
+        "CHE4049F"
+      ],
+      "qualification_codes": [
+        "EB001CHE06"
+      ],
+      "scope_verified": false,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 3,
+      "maximum_registration_years": null,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "manual",
+          "id": "individual_curriculum",
+          "label": "Approved individual transfer curriculum",
+          "note": "Admission, exemption and the 436-credit access curriculum depend on an approved prior diploma record.",
+          "assumed_complete": true,
+          "blocking": true,
+          "status": "discretionary"
+        }
+      ],
+      "pathways": {},
+      "pathway_required": false,
+      "default_pathway_key": "",
+      "availability": "restricted",
+      "availability_note": "Admission, exemption and the 436-credit access curriculum depend on an approved prior diploma record.",
+      "progression_rules": [
+        {
+          "type": "manual",
+          "label": "Transfer-specific progression",
+          "note": "Faculty progression must be applied to the formally approved transfer curriculum."
+        }
+      ],
+      "award_rules": [],
+      "progression_notes": [],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 40,
+        "section": "Programmes of Study"
+      }
+    },
+    "civil_engineering_uot_access": {
+      "name": "Civil Engineering — University of Technology transferee route",
+      "minimum_nqf_credits": 560,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [
+        "CIV1013S",
+        "CIV1008F",
+        "CIV1012S",
+        "CIV1011S",
+        "MAM1020F",
+        "MAM1021S",
+        "CIV1014Z",
+        "CIV1009F",
+        "APG1023S",
+        "PHY1012F",
+        "GEO1008F",
+        "CIV2044F",
+        "CIV2045F",
+        "CIV2046F",
+        "CIV2047Z",
+        "CIV2048S",
+        "CIV2049Z",
+        "CIV2051S",
+        "CIV2050Z",
+        "MAM2083F",
+        "STA1008F",
+        "CSC1015S",
+        "ECO1007S",
+        "CIV3042F",
+        "CIV3043F",
+        "CIV3044F",
+        "CIV3045S",
+        "CIV3046S",
+        "CIV3047S",
+        "CIV3048F",
+        "CIV3049S",
+        "CIV4035C",
+        "CIV4041F",
+        "CIV4042F",
+        "CIV4044S",
+        "CIV4045F",
+        "CIV4046F",
+        "CIV2020X",
+        "EGS1005F"
+      ],
+      "qualification_codes": [
+        "EB002CIV01"
+      ],
+      "scope_verified": false,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 3,
+      "maximum_registration_years": null,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "manual",
+          "id": "individual_curriculum",
+          "label": "Approved individual transfer curriculum",
+          "note": "The department must approve transfer credits and the resulting individual curriculum.",
+          "assumed_complete": true,
+          "blocking": true,
+          "status": "discretionary"
+        }
+      ],
+      "pathways": {},
+      "pathway_required": false,
+      "default_pathway_key": "",
+      "availability": "restricted",
+      "availability_note": "The department must approve transfer credits and the resulting individual curriculum.",
+      "progression_rules": [
+        {
+          "type": "manual",
+          "label": "Transfer-specific progression",
+          "note": "Faculty progression must be applied to the formally approved transfer curriculum."
+        }
+      ],
+      "award_rules": [],
+      "progression_notes": [],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 45,
+        "section": "Programmes of Study"
+      }
+    },
+    "electrical_engineering_uot_access": {
+      "name": "Electrical Engineering programmes — University of Technology access",
+      "minimum_nqf_credits": 560,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [],
+      "qualification_codes": [
+        "EB009EEE01"
+      ],
+      "scope_verified": false,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 3,
+      "maximum_registration_years": null,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "manual",
+          "id": "individual_curriculum",
+          "label": "Approved individual transfer curriculum",
+          "note": "Admission and course exemptions are individually determined from the prior diploma and cannot be inferred from the UCT transcript alone.",
+          "assumed_complete": true,
+          "blocking": true,
+          "status": "discretionary"
+        }
+      ],
+      "pathways": {},
+      "pathway_required": false,
+      "default_pathway_key": "",
+      "availability": "restricted",
+      "availability_note": "Admission and course exemptions are individually determined from the prior diploma and cannot be inferred from the UCT transcript alone.",
+      "progression_rules": [
+        {
+          "type": "manual",
+          "label": "Transfer-specific progression",
+          "note": "Faculty progression must be applied to the formally approved transfer curriculum."
+        }
+      ],
+      "award_rules": [],
+      "progression_notes": [],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 61,
+        "section": "Programmes of Study"
+      }
+    },
+    "mechanical_engineering_uot_access": {
+      "name": "Mechanical Engineering programmes — University of Technology access",
+      "minimum_nqf_credits": 560,
+      "minimum_nqf_level_7_credits": 0,
+      "minimum_semester_courses": 0,
+      "minimum_senior_semester_courses": 0,
+      "minimum_majors": 0,
+      "minimum_humanities_semester_courses": 0,
+      "minimum_humanities_majors": 0,
+      "required_courses": [],
+      "qualification_codes": [
+        "EB005MEC01"
+      ],
+      "scope_verified": false,
+      "route_type": "structured",
+      "degree_category": "EBE",
+      "minimum_duration_years": 3,
+      "maximum_registration_years": null,
+      "programme_type": "structured",
+      "curriculum_rules": [
+        {
+          "type": "manual",
+          "id": "individual_curriculum",
+          "label": "Approved individual transfer curriculum",
+          "note": "Admission and course exemptions are individually determined from the prior diploma and cannot be inferred from the UCT transcript alone.",
+          "assumed_complete": true,
+          "blocking": true,
+          "status": "discretionary"
+        }
+      ],
+      "pathways": {},
+      "pathway_required": false,
+      "default_pathway_key": "",
+      "availability": "restricted",
+      "availability_note": "Admission and course exemptions are individually determined from the prior diploma and cannot be inferred from the UCT transcript alone.",
+      "progression_rules": [
+        {
+          "type": "manual",
+          "label": "Transfer-specific progression",
+          "note": "Faculty progression must be applied to the formally approved transfer curriculum."
+        }
+      ],
+      "award_rules": [],
+      "progression_notes": [],
+      "award_notes": [
+        "Awards remain subject to Senate approval under FB9."
+      ],
+      "source": {
+        "document": "2026 EBE Undergraduate Handbook",
+        "page": 69,
+        "section": "Programmes of Study"
+      }
+    }
+  },
+  "majors": {},
+  "forbidden_major_combinations": [],
+  "cross_credit_exclusions": []
+}

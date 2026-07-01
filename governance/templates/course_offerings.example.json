@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "academic_year": 2027,
+  "term": "first_semester",
+  "source": "Official institutional timetable export",
+  "verification_status": "provisional",
+  "last_updated": "2026-12-01T10:00:00+02:00",
+  "offerings": [
+    {
+      "course_code": "POL1004F",
+      "status": "scheduled",
+      "campus": "Upper Campus",
+      "section": "default",
+      "department": "Political Studies",
+      "notes": "Example only; not live timetable data.",
+      "meetings": [
+        {
+          "day": "monday",
+          "start": "10:00",
+          "end": "11:00",
+          "type": "lecture",
+          "venue": "TBC"
+        }
+      ]
+    }
+  ]
+}

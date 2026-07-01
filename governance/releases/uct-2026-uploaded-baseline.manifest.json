@@ -1,0 +1,128 @@
+{
+  "academic_year": 2026,
+  "catalogue_root_name": "data",
+  "content_sha256": "efb358b5dc9e0b1ae137db4a24a18a23ed180ab408f7ee953cebb7637c2497fe",
+  "created_at": "2026-07-01T12:05:23+00:00",
+  "created_by": "CurriculumAdvisor governance merge",
+  "file_count": 22,
+  "files": [
+    {
+      "path": "uct_commerce/courses.json",
+      "sha256": "2ededb9a30da8821ea1ec01fe3f044eb2cc20ed8063484c95716fa6e73d855b8",
+      "size": 426604
+    },
+    {
+      "path": "uct_commerce/degree_requirements.json",
+      "sha256": "1d2780675b7d3720aad1edeee7d4bf91b85fcc38013a388ccb8d4243d81724b4",
+      "size": 1596983
+    },
+    {
+      "path": "uct_commerce/source_extraction/course_fact_conflicts.json",
+      "sha256": "4621f341c00ef530c3fbfb51f100bee54abb2733bff8c7a12d31e4925f824bff",
+      "size": 23311
+    },
+    {
+      "path": "uct_commerce/source_extraction/programme_extraction_summary.json",
+      "sha256": "422a359cb387b759585dda145d1becbb9e229e24ac24f302acae19752830cfe4",
+      "size": 7785
+    },
+    {
+      "path": "uct_ebe/courses.json",
+      "sha256": "256387162be475bbfe9e31807fa0277a271530b24bd39aa26116d68527773872",
+      "size": 298813
+    },
+    {
+      "path": "uct_ebe/degree_requirements.json",
+      "sha256": "a75c531f9ee8aae1fdb8f964a19d0808e9cd3d5b6c33fc8d2d93a017a63d99bb",
+      "size": 156830
+    },
+    {
+      "path": "uct_ebe/source_extraction/README.md",
+      "sha256": "b233eca9df0880916dfec730f575faa0b0904d358db7218df0f0a2550b8f6ac3",
+      "size": 556
+    },
+    {
+      "path": "uct_ebe/source_extraction/course_descriptions.json",
+      "sha256": "934c16d7c08557ad9e2ffa09a3f2f4458bb045e56c58893c8f440e67f99daba9",
+      "size": 180290
+    },
+    {
+      "path": "uct_ebe/source_extraction/programme_rows.json",
+      "sha256": "f97f8fcc742f3cd81a8c875f166a618b6c02236fcd562ba9fa501e5ae01c343e",
+      "size": 128452
+    },
+    {
+      "path": "uct_health/courses.json",
+      "sha256": "311cc1c146a01ec21cce5ff907c1555f2196c5d42ca2e11cdc3fac67d5735d1c",
+      "size": 716138
+    },
+    {
+      "path": "uct_health/degree_requirements.json",
+      "sha256": "47f131a43c393ca5644d5f9d923e8b60674fbb7b3504c0a0a78709d361a4d59c",
+      "size": 150758
+    },
+    {
+      "path": "uct_health/source_extraction/course_descriptions.json",
+      "sha256": "311cc1c146a01ec21cce5ff907c1555f2196c5d42ca2e11cdc3fac67d5735d1c",
+      "size": 716138
+    },
+    {
+      "path": "uct_health/source_extraction/equivalent_course_map.json",
+      "sha256": "b6f826a1c9f5ff85c412e60db9d4a4064841ec101bac585d43e3c8e0896dc474",
+      "size": 12242
+    },
+    {
+      "path": "uct_humanities/courses.json",
+      "sha256": "31f346b88d74de2c441134fab587d219bc8d3967230261edacf92b4b2018ac5e",
+      "size": 726041
+    },
+    {
+      "path": "uct_humanities/degree_requirements.json",
+      "sha256": "36d3345715f99d5ca6d33ad76dbd98ae2db72e1e344c0ddb834abbb806563f70",
+      "size": 280063
+    },
+    {
+      "path": "uct_humanities/music_pathways_2026.json",
+      "sha256": "0a5e4fca50c468b812d5879228b10c8562a29fad55f69c2365584cab0663f10b",
+      "size": 87641
+    },
+    {
+      "path": "uct_humanities/structured_course_additions_2026.json",
+      "sha256": "40f4bfbf954003bd3aba3bdf6b7aa2e836f342423d6b1f77be694214254d21c8",
+      "size": 17682
+    },
+    {
+      "path": "uct_law/courses.json",
+      "sha256": "ed204ce442b51100fa4b598ae3f414491a2e4bff22d49e7e830e049ce8025dd8",
+      "size": 421950
+    },
+    {
+      "path": "uct_law/degree_requirements.json",
+      "sha256": "161f6165c69f383731e3c9e2e0b1a6937564eaead30b0353ad644ac7b828c210",
+      "size": 179173
+    },
+    {
+      "path": "uct_science/courses.json",
+      "sha256": "9337d765aa2b1bf6a80f446b3deca8c639cdb3d65dca37bfa8f0dca703b63229",
+      "size": 331165
+    },
+    {
+      "path": "uct_science/degree_requirements.json",
+      "sha256": "17463a80877440323dc5b713108acb8dc179d7c9604d463a532b0a8754fa8ec1",
+      "size": 201620
+    },
+    {
+      "path": "uct_science/source_extraction/course_descriptions.json",
+      "sha256": "9337d765aa2b1bf6a80f446b3deca8c639cdb3d65dca37bfa8f0dca703b63229",
+      "size": 331165
+    }
+  ],
+  "notes": [
+    "This manifest records existing files without changing them.",
+    "A matching manifest does not itself establish institutional authority."
+  ],
+  "release_id": "uct-2026-uploaded-baseline-cb0670cf",
+  "schema_version": 1,
+  "source_status": "uploaded_source_checksum_mismatch_unverified",
+  "state": "baseline"
+}

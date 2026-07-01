@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "change_id": "HUM-POL-2027-001",
+  "faculty": "Humanities",
+  "owner_unit": "Department of Political Studies",
+  "requested_by": "Authorised departmental editor",
+  "requested_at": "2026-11-15T09:00:00+02:00",
+  "effective_academic_year": 2027,
+  "change_type": "amend",
+  "reason": "Example replacement of a curriculum option from the next academic year.",
+  "source": {
+    "document": "Approved 2027 faculty curriculum record",
+    "page_or_section": "Example section",
+    "authority_note": "Example only; requires actual approval evidence."
+  },
+  "status": "draft",
+  "affected_records": ["programme:example", "course:POL0000X"],
+  "notes": ["This template does not authorise a change by itself."]
+}

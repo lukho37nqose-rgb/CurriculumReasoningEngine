@@ -1,0 +1,6342 @@
+{
+  "bas": [
+    {
+      "code": "APG1003W",
+      "name": "Technology I (major course)",
+      "credits": 20,
+      "level": "5",
+      "line": 1160,
+      "page": 24
+    },
+    {
+      "code": "APG1004F",
+      "name": "History & Theory of Architecture I",
+      "credits": 10,
+      "level": "5",
+      "line": 1161,
+      "page": 24
+    },
+    {
+      "code": "APG1005S",
+      "name": "History & Theory of Architecture II",
+      "credits": 10,
+      "level": "5",
+      "line": 1162,
+      "page": 24
+    },
+    {
+      "code": "APG1020W",
+      "name": "Design & Theory Studio I (major course)",
+      "credits": 60,
+      "level": "5",
+      "line": 1163,
+      "page": 24
+    },
+    {
+      "code": "APG1021W",
+      "name": "Representation I",
+      "credits": 20,
+      "level": "5",
+      "line": 1164,
+      "page": 24
+    },
+    {
+      "code": "APG2000F",
+      "name": "History & Theory of Architecture III",
+      "credits": 10,
+      "level": "6",
+      "line": 1171,
+      "page": 24
+    },
+    {
+      "code": "APG2003S",
+      "name": "History & Theory of Architecture IV",
+      "credits": 10,
+      "level": "6",
+      "line": 1172,
+      "page": 24
+    },
+    {
+      "code": "APG2009F",
+      "name": "Theory of Structures I",
+      "credits": 10,
+      "level": "6",
+      "line": 1173,
+      "page": 24
+    },
+    {
+      "code": "APG2021W",
+      "name": "Technology II (Major Course)",
+      "credits": 20,
+      "level": "6",
+      "line": 1174,
+      "page": 24
+    },
+    {
+      "code": "APG2043F",
+      "name": "Environment & Services I",
+      "credits": 10,
+      "level": "6",
+      "line": 1175,
+      "page": 24
+    },
+    {
+      "code": "APG2039W",
+      "name": "Design & Theory Studio II (Major Course)",
+      "credits": 60,
+      "level": "6",
+      "line": 1176,
+      "page": 24
+    },
+    {
+      "code": "APG2042Z",
+      "name": "Representation II",
+      "credits": 8,
+      "level": "6",
+      "line": 1177,
+      "page": 24
+    },
+    {
+      "code": "APG2027X",
+      "name": "Work Experience",
+      "credits": 0,
+      "level": "6",
+      "line": 1178,
+      "page": 24
+    },
+    {
+      "code": "APG3000Z",
+      "name": "History & Theory of Architecture V",
+      "credits": 10,
+      "level": "7",
+      "line": 1185,
+      "page": 24
+    },
+    {
+      "code": "APG3023W",
+      "name": "Technology III (major course)",
+      "credits": 20,
+      "level": "7",
+      "line": 1186,
+      "page": 24
+    },
+    {
+      "code": "APG3028X",
+      "name": "Independent Research",
+      "credits": 0,
+      "level": "7",
+      "line": 1187,
+      "page": 24
+    },
+    {
+      "code": "APG3034Z",
+      "name": "Environment & Services II",
+      "credits": 10,
+      "level": "7",
+      "line": 1188,
+      "page": 24
+    },
+    {
+      "code": "APG3035F",
+      "name": "Theory of Structures II",
+      "credits": 10,
+      "level": "7",
+      "line": 1189,
+      "page": 24
+    },
+    {
+      "code": "APG3036F",
+      "name": "Management Practice Law",
+      "credits": 10,
+      "level": "7",
+      "line": 1190,
+      "page": 24
+    },
+    {
+      "code": "APG3041Z",
+      "name": "Representation III",
+      "credits": 8,
+      "level": "7",
+      "line": 1191,
+      "page": 24
+    },
+    {
+      "code": "APG3037W",
+      "name": "Design & Theory Studio III (major course)",
+      "credits": 60,
+      "level": "7",
+      "line": 1192,
+      "page": 24
+    }
+  ],
+  "geom_survey4": [
+    {
+      "code": "APG1024F",
+      "name": "Introduction to Geo-Spacial Sciences",
+      "credits": 8,
+      "level": "5",
+      "line": 1291,
+      "page": 26
+    },
+    {
+      "code": "CSC1017S",
+      "name": "Introduction to Programming",
+      "credits": 16,
+      "level": "5",
+      "line": 1292,
+      "page": 26
+    },
+    {
+      "code": "GEO1010F",
+      "name": "Introduction to Earth and Environmental Sciences",
+      "credits": 12,
+      "level": "5",
+      "line": 1293,
+      "page": 26
+    },
+    {
+      "code": "MAM1020F",
+      "name": "Mathematics IA for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 1294,
+      "page": 26
+    },
+    {
+      "code": "MAM1021S",
+      "name": "Mathematics I B for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 1295,
+      "page": 26
+    },
+    {
+      "code": "APG1023S",
+      "name": "Surveying and GIS",
+      "credits": 15,
+      "level": "5",
+      "line": 1296,
+      "page": 26
+    },
+    {
+      "code": "STA1008S",
+      "name": "Introductory Statistics",
+      "credits": 12,
+      "level": "5",
+      "line": 1297,
+      "page": 26
+    },
+    {
+      "code": "PHY1031F",
+      "name": "General Physics A",
+      "credits": 18,
+      "level": "5",
+      "line": 1298,
+      "page": 26
+    },
+    {
+      "code": "APG2014S",
+      "name": "Geomatics II",
+      "credits": 24,
+      "level": "6",
+      "line": 1307,
+      "page": 26
+    },
+    {
+      "code": "APG2015F",
+      "name": "Geographic Information Systems I",
+      "credits": 24,
+      "level": "6",
+      "line": 1308,
+      "page": 26
+    },
+    {
+      "code": "APG2019X",
+      "name": "Practical Training I",
+      "credits": 0,
+      "level": "6",
+      "line": 1309,
+      "page": 26
+    },
+    {
+      "code": "APG2040F",
+      "name": "Surveying I",
+      "credits": 18,
+      "level": "6",
+      "line": 1310,
+      "page": 26
+    },
+    {
+      "code": "APG2041S",
+      "name": "Applied Surveying & GISc",
+      "credits": 14,
+      "level": "6",
+      "line": 1311,
+      "page": 26
+    },
+    {
+      "code": "MAM2083S",
+      "name": "Vector Calculus for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 1312,
+      "page": 26
+    },
+    {
+      "code": "MAM2084F",
+      "name": "Linear Algebra and Differential Equations for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 1313,
+      "page": 26
+    },
+    {
+      "code": "PHY1032S",
+      "name": "General Physics B",
+      "credits": 18,
+      "level": "5",
+      "line": 1315,
+      "page": 26
+    },
+    {
+      "code": "APG3012S",
+      "name": "Geomatics III",
+      "credits": 24,
+      "level": "7",
+      "line": 1320,
+      "page": 26
+    },
+    {
+      "code": "APG3013F",
+      "name": "Numerical Methods in Geomatics",
+      "credits": 16,
+      "level": "7",
+      "line": 1321,
+      "page": 26
+    },
+    {
+      "code": "APG3016C",
+      "name": "Surveying II",
+      "credits": 12,
+      "level": "7",
+      "line": 1327,
+      "page": 27
+    },
+    {
+      "code": "APG3017D",
+      "name": "Surveying III",
+      "credits": 12,
+      "level": "7",
+      "line": 1328,
+      "page": 27
+    },
+    {
+      "code": "APG3027Z",
+      "name": "Cadastral Survey & Registration Projects",
+      "credits": 24,
+      "level": "7",
+      "line": 1329,
+      "page": 27
+    },
+    {
+      "code": "APG3033W",
+      "name": "Land & Cadastral Survey Law",
+      "credits": 16,
+      "level": "7",
+      "line": 1330,
+      "page": 27
+    },
+    {
+      "code": "APG3038F",
+      "name": "Professional Communication Studies",
+      "credits": 12,
+      "level": "7",
+      "line": 1331,
+      "page": 27
+    },
+    {
+      "code": "APG3040C",
+      "name": "Advanced Spatial Data Analysis",
+      "credits": 12,
+      "level": "7",
+      "line": 1332,
+      "page": 27
+    },
+    {
+      "code": "CON2033F",
+      "name": "Real Property Law",
+      "credits": 14,
+      "level": "6",
+      "line": 1333,
+      "page": 27
+    },
+    {
+      "code": "APG4001S",
+      "name": "Geodesy",
+      "credits": 24,
+      "level": "8",
+      "line": 1339,
+      "page": 27
+    },
+    {
+      "code": "APG4002Z",
+      "name": "Land Use Planning & Township Design",
+      "credits": 16,
+      "level": "8",
+      "line": 1340,
+      "page": 27
+    },
+    {
+      "code": "APG4003Z",
+      "name": "Geomatics Project",
+      "credits": 40,
+      "level": "8",
+      "line": 1341,
+      "page": 27
+    },
+    {
+      "code": "APG4005F",
+      "name": "Engineering Surveying & Adjustment",
+      "credits": 18,
+      "level": "8",
+      "line": 1342,
+      "page": 27
+    },
+    {
+      "code": "APG4010X",
+      "name": "Geoinformatics Camp",
+      "credits": 4,
+      "level": "8",
+      "line": 1343,
+      "page": 27
+    },
+    {
+      "code": "APG4011F",
+      "name": "Geomatics IV",
+      "credits": 24,
+      "level": "8",
+      "line": 1344,
+      "page": 27
+    },
+    {
+      "code": "APG4012S",
+      "name": "Geomatics Management & Professionalism",
+      "credits": 24,
+      "level": "8",
+      "line": 1345,
+      "page": 27
+    }
+  ],
+  "geom_survey5": [
+    {
+      "code": "APG1024F",
+      "name": "Introduction to Geo-Spatial Sciences",
+      "credits": 8,
+      "level": "5",
+      "line": 1381,
+      "page": 28
+    },
+    {
+      "code": "APG1023S",
+      "name": "Surveying and GIS",
+      "credits": 15,
+      "level": "5",
+      "line": 1382,
+      "page": 28
+    },
+    {
+      "code": "CSC1017S",
+      "name": "Introduction to Programming",
+      "credits": 16,
+      "level": "5",
+      "line": 1383,
+      "page": 28
+    },
+    {
+      "code": "GEO1010F",
+      "name": "Introduction to Earth and Environmental Sciences",
+      "credits": 12,
+      "level": "5",
+      "line": 1384,
+      "page": 28
+    },
+    {
+      "code": "MAM1020F",
+      "name": "Mathematics IA for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 1385,
+      "page": 28
+    },
+    {
+      "code": "MAM1021S",
+      "name": "Mathematics I B for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 1386,
+      "page": 28
+    },
+    {
+      "code": "APG2014S",
+      "name": "Geomatics II",
+      "credits": 24,
+      "level": "6",
+      "line": 1395,
+      "page": 28
+    },
+    {
+      "code": "APG2019X",
+      "name": "Practical Training I",
+      "credits": 0,
+      "level": "6",
+      "line": 1396,
+      "page": 28
+    },
+    {
+      "code": "APG2040F",
+      "name": "Surveying I",
+      "credits": 18,
+      "level": "6",
+      "line": 1397,
+      "page": 28
+    },
+    {
+      "code": "MAM2084S",
+      "name": "Linear Algebra and Differential Equations for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 1398,
+      "page": 28
+    },
+    {
+      "code": "MAM2085F",
+      "name": "Vector Calculus for Aspect",
+      "credits": 16,
+      "level": "6",
+      "line": 1399,
+      "page": 28
+    },
+    {
+      "code": "PHY1031F",
+      "name": "General Physics A",
+      "credits": 18,
+      "level": "5",
+      "line": 1400,
+      "page": 28
+    },
+    {
+      "code": "PHY1032S",
+      "name": "General Physics B",
+      "credits": 18,
+      "level": "5",
+      "line": 1401,
+      "page": 28
+    },
+    {
+      "code": "APG2015F",
+      "name": "Geographic Information Systems I",
+      "credits": 24,
+      "level": "6",
+      "line": 1408,
+      "page": 28
+    },
+    {
+      "code": "APG2041S",
+      "name": "Applied Surveying & GISc",
+      "credits": 14,
+      "level": "6",
+      "line": 1409,
+      "page": 28
+    },
+    {
+      "code": "APG3012S",
+      "name": "Geomatics III",
+      "credits": 24,
+      "level": "7",
+      "line": 1410,
+      "page": 28
+    },
+    {
+      "code": "APG3013F",
+      "name": "Numerical Methods in Geomatics",
+      "credits": 16,
+      "level": "7",
+      "line": 1411,
+      "page": 28
+    },
+    {
+      "code": "APG3040C",
+      "name": "Advanced Spatial Data Analysis",
+      "credits": 12,
+      "level": "7",
+      "line": 1412,
+      "page": 28
+    },
+    {
+      "code": "APG3016C",
+      "name": "Surveying II",
+      "credits": 12,
+      "level": "7",
+      "line": 1423,
+      "page": 28
+    },
+    {
+      "code": "APG3017D",
+      "name": "Surveying III",
+      "credits": 12,
+      "level": "7",
+      "line": 1424,
+      "page": 28
+    },
+    {
+      "code": "APG3027Z",
+      "name": "Cadastral Survey & Registration Projects",
+      "credits": 24,
+      "level": "7",
+      "line": 1425,
+      "page": 28
+    },
+    {
+      "code": "APG3038F",
+      "name": "Professional Communication Studies",
+      "credits": 12,
+      "level": "7",
+      "line": 1426,
+      "page": 28
+    },
+    {
+      "code": "APG3033W",
+      "name": "Land & Cadastral Survey Law",
+      "credits": 16,
+      "level": "7",
+      "line": 1427,
+      "page": 28
+    },
+    {
+      "code": "APG4002Z",
+      "name": "Land Use Planning & Township Design",
+      "credits": 16,
+      "level": "8",
+      "line": 1428,
+      "page": 28
+    },
+    {
+      "code": "APG4010X",
+      "name": "Geoinformatics Camp",
+      "credits": 4,
+      "level": "8",
+      "line": 1429,
+      "page": 28
+    },
+    {
+      "code": "APG4011F",
+      "name": "Geomatics IV",
+      "credits": 24,
+      "level": "8",
+      "line": 1430,
+      "page": 28
+    },
+    {
+      "code": "CON2033F",
+      "name": "Real Property Law",
+      "credits": 14,
+      "level": "6",
+      "line": 1431,
+      "page": 28
+    },
+    {
+      "code": "APG4001S",
+      "name": "Geodesy",
+      "credits": 24,
+      "level": "8",
+      "line": 1441,
+      "page": 29
+    },
+    {
+      "code": "APG4003Z",
+      "name": "Geomatics Project",
+      "credits": 40,
+      "level": "8",
+      "line": 1442,
+      "page": 29
+    },
+    {
+      "code": "APG4005F",
+      "name": "Engineering Surveying & Adjustment",
+      "credits": 18,
+      "level": "8",
+      "line": 1443,
+      "page": 29
+    },
+    {
+      "code": "APG4012S",
+      "name": "Geomatics Management & Professionalism",
+      "credits": 24,
+      "level": "8",
+      "line": 1444,
+      "page": 29
+    }
+  ],
+  "geom_geo_cs4": [
+    {
+      "code": "APG1024F",
+      "name": "Introduction to Geo-Spatial Sciences",
+      "credits": 8,
+      "level": "5",
+      "line": 1459,
+      "page": 29
+    },
+    {
+      "code": "CSC1017S",
+      "name": "Introduction to Programming",
+      "credits": 16,
+      "level": "5",
+      "line": 1460,
+      "page": 29
+    },
+    {
+      "code": "GEO1010F",
+      "name": "Introduction to Earth and Environmental Sciences",
+      "credits": 12,
+      "level": "5",
+      "line": 1461,
+      "page": 29
+    },
+    {
+      "code": "MAM1020F",
+      "name": "Mathematics IA for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 1462,
+      "page": 29
+    },
+    {
+      "code": "MAM1021S",
+      "name": "Mathematics IB for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 1463,
+      "page": 29
+    },
+    {
+      "code": "APG1023S",
+      "name": "Surveying and GIS",
+      "credits": 15,
+      "level": "5",
+      "line": 1464,
+      "page": 29
+    },
+    {
+      "code": "STA1008S",
+      "name": "Introductory Statistics",
+      "credits": 12,
+      "level": "5",
+      "line": 1465,
+      "page": 29
+    },
+    {
+      "code": "PHY1031F",
+      "name": "General Physics A",
+      "credits": 18,
+      "level": "5",
+      "line": 1466,
+      "page": 29
+    },
+    {
+      "code": "APG2014S",
+      "name": "Geomatics II",
+      "credits": 24,
+      "level": "6",
+      "line": 1477,
+      "page": 29
+    },
+    {
+      "code": "APG2015F",
+      "name": "Geographic Information Systems I",
+      "credits": 24,
+      "level": "6",
+      "line": 1478,
+      "page": 29
+    },
+    {
+      "code": "APG2019X",
+      "name": "Practical Training I",
+      "credits": 0,
+      "level": "6",
+      "line": 1479,
+      "page": 29
+    },
+    {
+      "code": "APG2040F",
+      "name": "Surveying I",
+      "credits": 18,
+      "level": "6",
+      "line": 1480,
+      "page": 29
+    },
+    {
+      "code": "APG2041S",
+      "name": "Applied Surveying & GISc",
+      "credits": 14,
+      "level": "6",
+      "line": 1481,
+      "page": 29
+    },
+    {
+      "code": "MAM2083S",
+      "name": "Vector Calculus for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 1482,
+      "page": 29
+    },
+    {
+      "code": "MAM2084F",
+      "name": "Linear Algebra and Differential Equations for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 1483,
+      "page": 29
+    },
+    {
+      "code": "PHY1032S",
+      "name": "General Physics B",
+      "credits": 18,
+      "level": "5",
+      "line": 1485,
+      "page": 29
+    },
+    {
+      "code": "APG3012S",
+      "name": "Geomatics III",
+      "credits": 24,
+      "level": "7",
+      "line": 1494,
+      "page": 30
+    },
+    {
+      "code": "APG3013F",
+      "name": "Numerical Methods in Geomatics",
+      "credits": 16,
+      "level": "7",
+      "line": 1495,
+      "page": 30
+    },
+    {
+      "code": "APG3016C",
+      "name": "Surveying II",
+      "credits": 12,
+      "level": "7",
+      "line": 1496,
+      "page": 30
+    },
+    {
+      "code": "APG3038F",
+      "name": "Professional Communication Studies",
+      "credits": 12,
+      "level": "7",
+      "line": 1497,
+      "page": 30
+    },
+    {
+      "code": "APG3039B",
+      "name": "Spatial Data Infrastructures",
+      "credits": 12,
+      "level": "7",
+      "line": 1498,
+      "page": 30
+    },
+    {
+      "code": "APG3040C",
+      "name": "Advanced Spatial Data Analysis",
+      "credits": 12,
+      "level": "7",
+      "line": 1499,
+      "page": 30
+    },
+    {
+      "code": "CSC2001F",
+      "name": "Computer Science 2001",
+      "credits": 24,
+      "level": "6",
+      "line": 1500,
+      "page": 30
+    },
+    {
+      "code": "CSC2002S",
+      "name": "Computer Science 2002",
+      "credits": 24,
+      "level": "6",
+      "line": 1501,
+      "page": 30
+    },
+    {
+      "code": "CSC2004Z",
+      "name": "Programming Assessment",
+      "credits": 0,
+      "level": "6",
+      "line": 1502,
+      "page": 30
+    },
+    {
+      "code": "INF2009F",
+      "name": "Systems Analysis",
+      "credits": 18,
+      "level": "6",
+      "line": 1503,
+      "page": 30
+    },
+    {
+      "code": "APG4002Z",
+      "name": "Land Use Planning & Township Design",
+      "credits": 16,
+      "level": "8",
+      "line": 1508,
+      "page": 30
+    },
+    {
+      "code": "APG4003Z",
+      "name": "Geomatics Project",
+      "credits": 40,
+      "level": "8",
+      "line": 1509,
+      "page": 30
+    },
+    {
+      "code": "APG4010X",
+      "name": "Geoinformatics Camp",
+      "credits": 4,
+      "level": "8",
+      "line": 1510,
+      "page": 30
+    },
+    {
+      "code": "APG4011F",
+      "name": "Geomatics IV",
+      "credits": 24,
+      "level": "8",
+      "line": 1511,
+      "page": 30
+    },
+    {
+      "code": "APG4012S",
+      "name": "Geomatics Management & Professionalism",
+      "credits": 24,
+      "level": "8",
+      "line": 1512,
+      "page": 30
+    },
+    {
+      "code": "CSC3002F",
+      "name": "Computer Science 3002",
+      "credits": 36,
+      "level": "7",
+      "line": 1513,
+      "page": 30
+    },
+    {
+      "code": "CSC3003S",
+      "name": "Computer Science 3003",
+      "credits": 36,
+      "level": "7",
+      "line": 1514,
+      "page": 30
+    }
+  ],
+  "geom_geo_cs5": [
+    {
+      "code": "APG1024F",
+      "name": "Introduction to Geo-Spatial Sciences",
+      "credits": 8,
+      "level": "5",
+      "line": 1546,
+      "page": 31
+    },
+    {
+      "code": "APG1023S",
+      "name": "Surveying and GIS",
+      "credits": 15,
+      "level": "5",
+      "line": 1547,
+      "page": 31
+    },
+    {
+      "code": "CSC1017S",
+      "name": "Introduction to Programming",
+      "credits": 16,
+      "level": "5",
+      "line": 1548,
+      "page": 31
+    },
+    {
+      "code": "GEO1010F",
+      "name": "Introduction to Earth and Environmental Sciences",
+      "credits": 12,
+      "level": "5",
+      "line": 1549,
+      "page": 31
+    },
+    {
+      "code": "MAM1023F",
+      "name": "Mathematics IA for Engineers Extended",
+      "credits": 18,
+      "level": "5",
+      "line": 1550,
+      "page": 31
+    },
+    {
+      "code": "MAM1024S",
+      "name": "Mathematics I B for Engineers Extended",
+      "credits": 18,
+      "level": "5",
+      "line": 1551,
+      "page": 31
+    },
+    {
+      "code": "APG2014S",
+      "name": "Geomatics II",
+      "credits": 24,
+      "level": "6",
+      "line": 1562,
+      "page": 31
+    },
+    {
+      "code": "APG2019X",
+      "name": "Practical Training I",
+      "credits": 0,
+      "level": "6",
+      "line": 1563,
+      "page": 31
+    },
+    {
+      "code": "APG2040F",
+      "name": "Surveying I",
+      "credits": 18,
+      "level": "6",
+      "line": 1564,
+      "page": 31
+    },
+    {
+      "code": "CSC1016S",
+      "name": "Computer Science 1016",
+      "credits": 18,
+      "level": "5",
+      "line": 1565,
+      "page": 31
+    },
+    {
+      "code": "MAM2084S",
+      "name": "Linear Algebra and Differential Equations for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 1566,
+      "page": 31
+    },
+    {
+      "code": "MAM2085F",
+      "name": "Vector Calculus for Aspect",
+      "credits": 16,
+      "level": "6",
+      "line": 1567,
+      "page": 31
+    },
+    {
+      "code": "PHY1031F",
+      "name": "General Physics A",
+      "credits": 18,
+      "level": "5",
+      "line": 1568,
+      "page": 31
+    },
+    {
+      "code": "PHY1032S",
+      "name": "General Physics B",
+      "credits": 18,
+      "level": "5",
+      "line": 1569,
+      "page": 31
+    },
+    {
+      "code": "APG2015F",
+      "name": "Geographic Information Systems I",
+      "credits": 24,
+      "level": "6",
+      "line": 1575,
+      "page": 31
+    },
+    {
+      "code": "APG2041S",
+      "name": "Applied Surveying GISc",
+      "credits": 14,
+      "level": "6",
+      "line": 1576,
+      "page": 31
+    },
+    {
+      "code": "APG3012S",
+      "name": "Geomatics III",
+      "credits": 24,
+      "level": "7",
+      "line": 1577,
+      "page": 31
+    },
+    {
+      "code": "APG3013F",
+      "name": "Numerical Methods in Geomatics",
+      "credits": 16,
+      "level": "7",
+      "line": 1578,
+      "page": 31
+    },
+    {
+      "code": "APG3039B",
+      "name": "Spatial Data Infrastructures",
+      "credits": 12,
+      "level": "7",
+      "line": 1579,
+      "page": 31
+    },
+    {
+      "code": "APG3040C",
+      "name": "Advanced Spatial Data Analysis",
+      "credits": 12,
+      "level": "7",
+      "line": 1580,
+      "page": 31
+    },
+    {
+      "code": "CSC2001F",
+      "name": "Computer Science 2001",
+      "credits": 24,
+      "level": "6",
+      "line": 1581,
+      "page": 31
+    },
+    {
+      "code": "CSC2002S",
+      "name": "Computer Science 2002",
+      "credits": 24,
+      "level": "6",
+      "line": 1582,
+      "page": 31
+    },
+    {
+      "code": "CSC2004Z",
+      "name": "Programming Assessment",
+      "credits": 0,
+      "level": "6",
+      "line": 1583,
+      "page": 31
+    },
+    {
+      "code": "APG3016C",
+      "name": "Surveying II",
+      "credits": 12,
+      "level": "7",
+      "line": 1588,
+      "page": 31
+    },
+    {
+      "code": "APG3038F",
+      "name": "Professional Communication Studies",
+      "credits": 12,
+      "level": "7",
+      "line": 1589,
+      "page": 31
+    },
+    {
+      "code": "APG4010X",
+      "name": "Geoinformatics Camp",
+      "credits": 4,
+      "level": "8",
+      "line": 1590,
+      "page": 31
+    },
+    {
+      "code": "CSC3002F",
+      "name": "Computer Science 3002",
+      "credits": 36,
+      "level": "7",
+      "line": 1591,
+      "page": 31
+    },
+    {
+      "code": "CSC3003S",
+      "name": "Computer Science 3003",
+      "credits": 36,
+      "level": "7",
+      "line": 1592,
+      "page": 31
+    },
+    {
+      "code": "APG4012S",
+      "name": "Geomatics Management & Professionalism",
+      "credits": 24,
+      "level": "8",
+      "line": 1593,
+      "page": 31
+    },
+    {
+      "code": "INF2009F",
+      "name": "Systems Analysis",
+      "credits": 18,
+      "level": "6",
+      "line": 1594,
+      "page": 31
+    },
+    {
+      "code": "APG4002Z",
+      "name": "Land Use Planning & Township Design",
+      "credits": 16,
+      "level": "8",
+      "line": 1602,
+      "page": 32
+    },
+    {
+      "code": "APG4003Z",
+      "name": "Geomatics Project",
+      "credits": 40,
+      "level": "8",
+      "line": 1603,
+      "page": 32
+    },
+    {
+      "code": "APG4011F",
+      "name": "Geomatics IV",
+      "credits": 24,
+      "level": "8",
+      "line": 1604,
+      "page": 32
+    }
+  ],
+  "geom_geo_egs4": [
+    {
+      "code": "APG1024F",
+      "name": "Introduction to Geo-Spatial Sciences",
+      "credits": 8,
+      "level": "5",
+      "line": 1623,
+      "page": 32
+    },
+    {
+      "code": "APG1022X",
+      "name": "Practical Training in Geomatics",
+      "credits": 0,
+      "level": "5",
+      "line": 1624,
+      "page": 32
+    },
+    {
+      "code": "CSC1017S",
+      "name": "Introduction to Programming",
+      "credits": 16,
+      "level": "5",
+      "line": 1625,
+      "page": 32
+    },
+    {
+      "code": "EGS1007S",
+      "name": "Human & Physical Systems",
+      "credits": 18,
+      "level": "5",
+      "line": 1626,
+      "page": 32
+    },
+    {
+      "code": "GEO1009F",
+      "name": "Introduction to Earth and Environmental Sciences",
+      "credits": 18,
+      "level": "5",
+      "line": 1627,
+      "page": 32
+    },
+    {
+      "code": "MAM1020F",
+      "name": "Mathematics IA for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 1628,
+      "page": 32
+    },
+    {
+      "code": "MAM1021S",
+      "name": "Mathematics IB for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 1629,
+      "page": 32
+    },
+    {
+      "code": "STA1000S",
+      "name": "Introductory Statistics",
+      "credits": 18,
+      "level": "5",
+      "line": 1630,
+      "page": 32
+    },
+    {
+      "code": "APG2014S",
+      "name": "Geomatics II",
+      "credits": 24,
+      "level": "6",
+      "line": 1636,
+      "page": 32
+    },
+    {
+      "code": "APG2015F",
+      "name": "Geographic Information Systems I",
+      "credits": 24,
+      "level": "6",
+      "line": 1637,
+      "page": 32
+    },
+    {
+      "code": "APG2019X",
+      "name": "Practical Training I",
+      "credits": 0,
+      "level": "6",
+      "line": 1638,
+      "page": 32
+    },
+    {
+      "code": "APG2040F",
+      "name": "Surveying I",
+      "credits": 18,
+      "level": "6",
+      "line": 1639,
+      "page": 32
+    },
+    {
+      "code": "APG2041S",
+      "name": "Applied Surveying & GISc",
+      "credits": 14,
+      "level": "6",
+      "line": 1640,
+      "page": 32
+    },
+    {
+      "code": "MAM2083S",
+      "name": "Vector Calculus for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 1641,
+      "page": 32
+    },
+    {
+      "code": "MAM2084F",
+      "name": "Linear Algebra and Differential Equations for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 1642,
+      "page": 32
+    },
+    {
+      "code": "PHY1031F",
+      "name": "General Physics A",
+      "credits": 18,
+      "level": "5",
+      "line": 1643,
+      "page": 32
+    },
+    {
+      "code": "PHY1032S",
+      "name": "General Physics B",
+      "credits": 18,
+      "level": "5",
+      "line": 1644,
+      "page": 32
+    },
+    {
+      "code": "APG3012S",
+      "name": "Geomatics III",
+      "credits": 24,
+      "level": "7",
+      "line": 1650,
+      "page": 32
+    },
+    {
+      "code": "APG3013F",
+      "name": "Numerical Methods in Geomatics",
+      "credits": 16,
+      "level": "7",
+      "line": 1651,
+      "page": 32
+    },
+    {
+      "code": "APG3016C",
+      "name": "Surveying II",
+      "credits": 12,
+      "level": "7",
+      "line": 1652,
+      "page": 32
+    },
+    {
+      "code": "APG3038F",
+      "name": "Professional Communication Studies",
+      "credits": 12,
+      "level": "7",
+      "line": 1653,
+      "page": 32
+    },
+    {
+      "code": "APG3039B",
+      "name": "Spatial Data Infrastructures",
+      "credits": 12,
+      "level": "7",
+      "line": 1659,
+      "page": 33
+    },
+    {
+      "code": "APG3040C",
+      "name": "Advanced Spatial Data Analysis",
+      "credits": 12,
+      "level": "7",
+      "line": 1660,
+      "page": 33
+    },
+    {
+      "code": "EGS2013F",
+      "name": "The Physical Environment",
+      "credits": 24,
+      "level": "6",
+      "line": 1661,
+      "page": 33
+    },
+    {
+      "code": "EGS2015S",
+      "name": "Society and Space",
+      "credits": 24,
+      "level": "6",
+      "line": 1662,
+      "page": 33
+    },
+    {
+      "code": "APG4002Z",
+      "name": "Land Use Planning & Township Design",
+      "credits": 16,
+      "level": "8",
+      "line": 1667,
+      "page": 33
+    },
+    {
+      "code": "APG4003Z",
+      "name": "Geomatics Project",
+      "credits": 40,
+      "level": "8",
+      "line": 1668,
+      "page": 33
+    },
+    {
+      "code": "APG4010X",
+      "name": "Geoinformatics Camp",
+      "credits": 4,
+      "level": "8",
+      "line": 1669,
+      "page": 33
+    },
+    {
+      "code": "APG4011F",
+      "name": "Geomatics IV",
+      "credits": 24,
+      "level": "8",
+      "line": 1670,
+      "page": 33
+    },
+    {
+      "code": "APG4012S",
+      "name": "Geomatics Management & Professionalism",
+      "credits": 24,
+      "level": "8",
+      "line": 1671,
+      "page": 33
+    },
+    {
+      "code": "EGS3012S",
+      "name": "Atmospheric Science",
+      "credits": 36,
+      "level": "7",
+      "line": 1674,
+      "page": 33
+    },
+    {
+      "code": "EGS3021F",
+      "name": "Sustainability & Environment",
+      "credits": 36,
+      "level": "7",
+      "line": 1675,
+      "page": 33
+    },
+    {
+      "code": "EGS3022S",
+      "name": "Geographic Thought",
+      "credits": 36,
+      "level": "7",
+      "line": 1676,
+      "page": 33
+    },
+    {
+      "code": "EGS3023F",
+      "name": "Anthropocene Environments in Perspective",
+      "credits": 36,
+      "level": "7",
+      "line": 1677,
+      "page": 33
+    }
+  ],
+  "geom_geo_egs5": [
+    {
+      "code": "APG1016H",
+      "name": "Geomatics I",
+      "credits": 18,
+      "level": "5",
+      "line": 1710,
+      "page": 33
+    },
+    {
+      "code": "APG1022X",
+      "name": "Practical Training in Geomatics",
+      "credits": 0,
+      "level": "5",
+      "line": 1711,
+      "page": 33
+    },
+    {
+      "code": "CSC1017S",
+      "name": "Introduction to Programming",
+      "credits": 16,
+      "level": "5",
+      "line": 1717,
+      "page": 34
+    },
+    {
+      "code": "GEO1010F",
+      "name": "Introduction to Earth and Environmental Sciences",
+      "credits": 12,
+      "level": "5",
+      "line": 1718,
+      "page": 34
+    },
+    {
+      "code": "MAM1023F",
+      "name": "Mathematics IA for Engineers Extended",
+      "credits": 18,
+      "level": "5",
+      "line": 1719,
+      "page": 34
+    },
+    {
+      "code": "MAM1024S",
+      "name": "Mathematics I B for Engineers Extended",
+      "credits": 18,
+      "level": "5",
+      "line": 1720,
+      "page": 34
+    },
+    {
+      "code": "STA1000S",
+      "name": "Introductory Statistics",
+      "credits": 18,
+      "level": "5",
+      "line": 1721,
+      "page": 34
+    },
+    {
+      "code": "APG2014S",
+      "name": "Geomatics II",
+      "credits": 24,
+      "level": "6",
+      "line": 1727,
+      "page": 34
+    },
+    {
+      "code": "APG2019X",
+      "name": "Practical Training I",
+      "credits": 0,
+      "level": "6",
+      "line": 1728,
+      "page": 34
+    },
+    {
+      "code": "APG2040F",
+      "name": "Surveying I",
+      "credits": 18,
+      "level": "6",
+      "line": 1729,
+      "page": 34
+    },
+    {
+      "code": "EGS1007S",
+      "name": "Human & Physical Systems",
+      "credits": 18,
+      "level": "5",
+      "line": 1730,
+      "page": 34
+    },
+    {
+      "code": "MAM2084S",
+      "name": "Linear Algebra and Differential Equations for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 1731,
+      "page": 34
+    },
+    {
+      "code": "MAM2085F",
+      "name": "Vector Calculus for Aspect",
+      "credits": 16,
+      "level": "6",
+      "line": 1732,
+      "page": 34
+    },
+    {
+      "code": "PHY1031F",
+      "name": "General Physics A",
+      "credits": 18,
+      "level": "5",
+      "line": 1733,
+      "page": 34
+    },
+    {
+      "code": "PHY1032S",
+      "name": "General Physics B",
+      "credits": 18,
+      "level": "5",
+      "line": 1734,
+      "page": 34
+    },
+    {
+      "code": "APG2015F",
+      "name": "Geographic Information Systems I",
+      "credits": 24,
+      "level": "6",
+      "line": 1740,
+      "page": 34
+    },
+    {
+      "code": "APG2041S",
+      "name": "Applied Surveying & GISc",
+      "credits": 14,
+      "level": "6",
+      "line": 1741,
+      "page": 34
+    },
+    {
+      "code": "APG3012S",
+      "name": "Geomatics III",
+      "credits": 24,
+      "level": "7",
+      "line": 1742,
+      "page": 34
+    },
+    {
+      "code": "APG3013F",
+      "name": "Numerical Methods in Geomatics",
+      "credits": 16,
+      "level": "7",
+      "line": 1743,
+      "page": 34
+    },
+    {
+      "code": "APG3039B",
+      "name": "Spatial Data Analysis",
+      "credits": 12,
+      "level": "7",
+      "line": 1744,
+      "page": 34
+    },
+    {
+      "code": "APG3040C",
+      "name": "Advanced Spatial Data Analysis",
+      "credits": 12,
+      "level": "7",
+      "line": 1745,
+      "page": 34
+    },
+    {
+      "code": "APG3016C",
+      "name": "Surveying II",
+      "credits": 12,
+      "level": "7",
+      "line": 1751,
+      "page": 34
+    },
+    {
+      "code": "APG3038F",
+      "name": "Professional Communication Studies",
+      "credits": 12,
+      "level": "7",
+      "line": 1752,
+      "page": 34
+    },
+    {
+      "code": "APG4002Z",
+      "name": "Land Use Planning & Township Design",
+      "credits": 16,
+      "level": "8",
+      "line": 1753,
+      "page": 34
+    },
+    {
+      "code": "APG4010X",
+      "name": "Geoinformatics Camp",
+      "credits": 4,
+      "level": "8",
+      "line": 1754,
+      "page": 34
+    },
+    {
+      "code": "APG4011F",
+      "name": "Geomatics IV",
+      "credits": 24,
+      "level": "8",
+      "line": 1755,
+      "page": 34
+    },
+    {
+      "code": "APG4012S",
+      "name": "Geomatics Management & Professionalism",
+      "credits": 24,
+      "level": "8",
+      "line": 1756,
+      "page": 34
+    },
+    {
+      "code": "EGS2013F",
+      "name": "The Physical Environment",
+      "credits": 24,
+      "level": "6",
+      "line": 1757,
+      "page": 34
+    },
+    {
+      "code": "EGS2015S",
+      "name": "Society and Space",
+      "credits": 24,
+      "level": "6",
+      "line": 1758,
+      "page": 34
+    },
+    {
+      "code": "APG4003Z",
+      "name": "Geomatics Project",
+      "credits": 40,
+      "level": "8",
+      "line": 1763,
+      "page": 34
+    },
+    {
+      "code": "EGS3012S",
+      "name": "Atmospheric Science",
+      "credits": 36,
+      "level": "7",
+      "line": 1766,
+      "page": 34
+    },
+    {
+      "code": "EGS3021F",
+      "name": "Sustainability & Environment",
+      "credits": 36,
+      "level": "7",
+      "line": 1767,
+      "page": 34
+    },
+    {
+      "code": "EGS3022S",
+      "name": "Geographic Thought",
+      "credits": 36,
+      "level": "7",
+      "line": 1768,
+      "page": 34
+    },
+    {
+      "code": "EGS3023F",
+      "name": "Anthropocene Environments in Perspective",
+      "credits": 36,
+      "level": "7",
+      "line": 1769,
+      "page": 34
+    }
+  ],
+  "geom_transfer": [],
+  "chem4": [
+    {
+      "code": "CEM1000W",
+      "name": "Chemistry 1000",
+      "credits": 36,
+      "level": "5",
+      "line": 1820,
+      "page": 35
+    },
+    {
+      "code": "CHE1006F",
+      "name": "Chemical Engineering IA",
+      "credits": 18,
+      "level": "5",
+      "line": 1821,
+      "page": 35
+    },
+    {
+      "code": "CHE1007S",
+      "name": "Chemical Engineering IB",
+      "credits": 18,
+      "level": "5",
+      "line": 1827,
+      "page": 36
+    },
+    {
+      "code": "MAM1020F",
+      "name": "Mathematics IA for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 1828,
+      "page": 36
+    },
+    {
+      "code": "MAM1021S",
+      "name": "Mathematics IB for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 1829,
+      "page": 36
+    },
+    {
+      "code": "PHY1012F",
+      "name": "Physics A for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 1830,
+      "page": 36
+    },
+    {
+      "code": "STA1008S",
+      "name": "Statistics for Engineers",
+      "credits": 12,
+      "level": "5",
+      "line": 1831,
+      "page": 36
+    },
+    {
+      "code": "CHE2000X",
+      "name": "Field Trip",
+      "credits": 4,
+      "level": "6",
+      "line": 1837,
+      "page": 36
+    },
+    {
+      "code": "CHE2005W",
+      "name": "Chemical Engineering II",
+      "credits": 72,
+      "level": "6",
+      "line": 1838,
+      "page": 36
+    },
+    {
+      "code": "MAM2083S",
+      "name": "Vector Calculus for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 1839,
+      "page": 36
+    },
+    {
+      "code": "MAM2084F",
+      "name": "Linear Algebra and Differential Equations for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 1840,
+      "page": 36
+    },
+    {
+      "code": "CHE3006F",
+      "name": "Fundamentals of Chemical Engineering III",
+      "credits": 54,
+      "level": "7",
+      "line": 1847,
+      "page": 36
+    },
+    {
+      "code": "CHE3007S",
+      "name": "Data Science, System Dynamics and Process Control",
+      "credits": 24,
+      "level": "7",
+      "line": 1848,
+      "page": 36
+    },
+    {
+      "code": "CHE3000X",
+      "name": "Workplace Experience",
+      "credits": 0,
+      "level": "7",
+      "line": 1851,
+      "page": 36
+    },
+    {
+      "code": "CHE4036Z",
+      "name": "Chemical Engineering Design",
+      "credits": 36,
+      "level": "8",
+      "line": 1861,
+      "page": 36
+    },
+    {
+      "code": "CHE4045Z",
+      "name": "Chemical Engineering Research",
+      "credits": 36,
+      "level": "8",
+      "line": 1862,
+      "page": 36
+    },
+    {
+      "code": "CHE4048F",
+      "name": "Business, Society & Environment",
+      "credits": 20,
+      "level": "8",
+      "line": 1863,
+      "page": 36
+    },
+    {
+      "code": "CHE4049F",
+      "name": "Process Synthesis & Equipment Design",
+      "credits": 20,
+      "level": "8",
+      "line": 1864,
+      "page": 36
+    },
+    {
+      "code": "BIO1000F",
+      "name": "Cell Biology",
+      "credits": 18,
+      "level": "5",
+      "line": 1876,
+      "page": 36
+    },
+    {
+      "code": "CHE2006S",
+      "name": "Introduction to Biotechnology",
+      "credits": 24,
+      "level": "6",
+      "line": 1877,
+      "page": 36
+    },
+    {
+      "code": "CEM2005W",
+      "name": "Intermediate Chemistry",
+      "credits": 48,
+      "level": "6",
+      "line": 1884,
+      "page": 37
+    },
+    {
+      "code": "GEO1009F",
+      "name": "Introduction to Earth and Environmental Sciences",
+      "credits": 18,
+      "level": "5",
+      "line": 1887,
+      "page": 37
+    },
+    {
+      "code": "GEO2006S",
+      "name": "Applied Mineralogy for Chemical Engineering",
+      "credits": 24,
+      "level": "6",
+      "line": 1888,
+      "page": 37
+    },
+    {
+      "code": "CHE3067S",
+      "name": "Design and Operation of Catalytic Reactors",
+      "credits": 16,
+      "level": "7",
+      "line": 1923,
+      "page": 37
+    },
+    {
+      "code": "CHE3068S",
+      "name": "Bioprocess Engineering",
+      "credits": 16,
+      "level": "7",
+      "line": 1924,
+      "page": 37
+    },
+    {
+      "code": "CHE3069S",
+      "name": "Mineral and Metallurgical Processing",
+      "credits": 16,
+      "level": "7",
+      "line": 1925,
+      "page": 37
+    },
+    {
+      "code": "CHE3070S",
+      "name": "Numerical Simulation for Chemical Engineers",
+      "credits": 16,
+      "level": "7",
+      "line": 1926,
+      "page": 37
+    }
+  ],
+  "chem5": [
+    {
+      "code": "CEM1000W",
+      "name": "Chemistry 1000",
+      "credits": 36,
+      "level": "5",
+      "line": 1980,
+      "page": 38
+    },
+    {
+      "code": "MAM1023F",
+      "name": "Mathematics IA for Engineers Extended",
+      "credits": 18,
+      "level": "5",
+      "line": 1981,
+      "page": 38
+    },
+    {
+      "code": "MAM1024S",
+      "name": "Mathematics IB for Engineers Extended",
+      "credits": 18,
+      "level": "5",
+      "line": 1982,
+      "page": 38
+    },
+    {
+      "code": "PHY1014F",
+      "name": "Physics A for ASPECT",
+      "credits": 18,
+      "level": "5",
+      "line": 1983,
+      "page": 38
+    },
+    {
+      "code": "STA1008S",
+      "name": "Statistics for Engineers",
+      "credits": 12,
+      "level": "5",
+      "line": 1984,
+      "page": 38
+    },
+    {
+      "code": "CHE1006F",
+      "name": "Chemical Engineering IA",
+      "credits": 18,
+      "level": "5",
+      "line": 1990,
+      "page": 38
+    },
+    {
+      "code": "CHE1007S",
+      "name": "Chemical Engineering IB",
+      "credits": 18,
+      "level": "5",
+      "line": 1991,
+      "page": 38
+    },
+    {
+      "code": "MAM2084S",
+      "name": "Linear Algebra and Differential Equations for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 1992,
+      "page": 38
+    },
+    {
+      "code": "MAM2085F",
+      "name": "Vector Calculus for ASPECT",
+      "credits": 16,
+      "level": "6",
+      "line": 1998,
+      "page": 39
+    },
+    {
+      "code": "CHE2000X",
+      "name": "Field Trip",
+      "credits": 4,
+      "level": "6",
+      "line": 2011,
+      "page": 39
+    },
+    {
+      "code": "CHE2005W",
+      "name": "Chemical Engineering II",
+      "credits": 72,
+      "level": "6",
+      "line": 2012,
+      "page": 39
+    },
+    {
+      "code": "CHE3006F",
+      "name": "Fundamentals of Chemical Engineering III",
+      "credits": 54,
+      "level": "7",
+      "line": 2023,
+      "page": 39
+    },
+    {
+      "code": "CHE3007S",
+      "name": "Data Science, System Dynamics and Process Control",
+      "credits": 24,
+      "level": "7",
+      "line": 2024,
+      "page": 39
+    },
+    {
+      "code": "CHE3000X",
+      "name": "Workplace Experience",
+      "credits": 0,
+      "level": "7",
+      "line": 2027,
+      "page": 39
+    },
+    {
+      "code": "CHE4036Z",
+      "name": "Chemical Engineering Design",
+      "credits": 36,
+      "level": "8",
+      "line": 2040,
+      "page": 39
+    },
+    {
+      "code": "CHE4045Z",
+      "name": "Chemical Engineering Research",
+      "credits": 36,
+      "level": "8",
+      "line": 2041,
+      "page": 39
+    },
+    {
+      "code": "CHE4048F",
+      "name": "Business, Society & Environment",
+      "credits": 20,
+      "level": "8",
+      "line": 2042,
+      "page": 39
+    },
+    {
+      "code": "CHE4049F",
+      "name": "Process Synthesis & Equipment Design",
+      "credits": 20,
+      "level": "8",
+      "line": 2043,
+      "page": 39
+    }
+  ],
+  "chem_transfer3": [],
+  "chem_conversion3": [],
+  "chem_uot": [],
+  "civil4": [
+    {
+      "code": "CIV1013S",
+      "name": "Environmental Chemistry for Civil Engineers",
+      "credits": 12,
+      "level": "5",
+      "line": 2180,
+      "page": 42
+    },
+    {
+      "code": "CIV1008F",
+      "name": "Introduction to Civil Engineering",
+      "credits": 12,
+      "level": "5",
+      "line": 2181,
+      "page": 42
+    },
+    {
+      "code": "CIV1012S",
+      "name": "Sustainable Urban Infrastructure",
+      "credits": 8,
+      "level": "5",
+      "line": 2182,
+      "page": 42
+    },
+    {
+      "code": "CIV1011S",
+      "name": "Introduction to Engineering Mechanics",
+      "credits": 15,
+      "level": "5",
+      "line": 2183,
+      "page": 42
+    },
+    {
+      "code": "MAM1020F",
+      "name": "Mathematics IA for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 2184,
+      "page": 42
+    },
+    {
+      "code": "MAM1021S",
+      "name": "Mathematics IB for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 2185,
+      "page": 42
+    },
+    {
+      "code": "CIV1014Z",
+      "name": "Water Challenge Scenario Project",
+      "credits": 4,
+      "level": "6",
+      "line": 2186,
+      "page": 42
+    },
+    {
+      "code": "CIV1009F",
+      "name": "Civil Engineering Drawing",
+      "credits": 8,
+      "level": "5",
+      "line": 2187,
+      "page": 42
+    },
+    {
+      "code": "APG1023S",
+      "name": "Surveying and Geographic Information Systems for Engineers",
+      "credits": 15,
+      "level": "5",
+      "line": 2188,
+      "page": 42
+    },
+    {
+      "code": "PHY1012F",
+      "name": "Physics A for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 2189,
+      "page": 42
+    },
+    {
+      "code": "GEO1008F",
+      "name": "Introduction to Geology for Civil Engineers",
+      "credits": 12,
+      "level": "5",
+      "line": 2190,
+      "page": 42
+    },
+    {
+      "code": "CIV2044F",
+      "name": "Mechanics of Materials",
+      "credits": 15,
+      "level": "6",
+      "line": 2196,
+      "page": 42
+    },
+    {
+      "code": "CIV2045F",
+      "name": "Geotechnical Engineering I",
+      "credits": 8,
+      "level": "6",
+      "line": 2197,
+      "page": 42
+    },
+    {
+      "code": "CIV2046F",
+      "name": "Transportation Engineering I",
+      "credits": 15,
+      "level": "6",
+      "line": 2198,
+      "page": 42
+    },
+    {
+      "code": "CIV2047Z",
+      "name": "Transportation Infrastructure Project",
+      "credits": 4,
+      "level": "6",
+      "line": 2199,
+      "page": 42
+    },
+    {
+      "code": "CIV2048S",
+      "name": "Hydraulics I",
+      "credits": 15,
+      "level": "7",
+      "line": 2200,
+      "page": 42
+    },
+    {
+      "code": "CIV2049Z",
+      "name": "Water and Sanitation Infrastructure Project",
+      "credits": 4,
+      "level": "6",
+      "line": 2201,
+      "page": 42
+    },
+    {
+      "code": "CIV2051S",
+      "name": "Analysis of Statistically Determinate Structures",
+      "credits": 15,
+      "level": "7",
+      "line": 2202,
+      "page": 42
+    },
+    {
+      "code": "CIV2050Z",
+      "name": "Structural Systems Project",
+      "credits": 4,
+      "level": "6",
+      "line": 2203,
+      "page": 42
+    },
+    {
+      "code": "MAM2083F",
+      "name": "Vector Calculus for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 2204,
+      "page": 42
+    },
+    {
+      "code": "STA1008F",
+      "name": "Statistics for Engineers",
+      "credits": 12,
+      "level": "5",
+      "line": 2205,
+      "page": 42
+    },
+    {
+      "code": "CSC1015S",
+      "name": "Computer Science",
+      "credits": 18,
+      "level": "5",
+      "line": 2206,
+      "page": 42
+    },
+    {
+      "code": "ECO1007S",
+      "name": "Economics for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 2207,
+      "page": 42
+    },
+    {
+      "code": "CIV3042F",
+      "name": "Geotechnical Engineering II",
+      "credits": 16,
+      "level": "7",
+      "line": 2215,
+      "page": 43
+    },
+    {
+      "code": "CIV3043F",
+      "name": "Hydraulic Engineering",
+      "credits": 16,
+      "level": "7",
+      "line": 2216,
+      "page": 43
+    },
+    {
+      "code": "CIV3044F",
+      "name": "Engineering Hydrology",
+      "credits": 8,
+      "level": "7",
+      "line": 2217,
+      "page": 43
+    },
+    {
+      "code": "CIV3045S",
+      "name": "Transportation Planning",
+      "credits": 16,
+      "level": "7",
+      "line": 2218,
+      "page": 43
+    },
+    {
+      "code": "CIV3046S",
+      "name": "Water Treatment",
+      "credits": 12,
+      "level": "7",
+      "line": 2219,
+      "page": 43
+    },
+    {
+      "code": "CIV3047S",
+      "name": "Urban Water Services",
+      "credits": 16,
+      "level": "7",
+      "line": 2220,
+      "page": 43
+    },
+    {
+      "code": "CIV3048F",
+      "name": "Structural Analysis II",
+      "credits": 16,
+      "level": "7",
+      "line": 2221,
+      "page": 43
+    },
+    {
+      "code": "CIV3049S",
+      "name": "Structural Design I",
+      "credits": 16,
+      "level": "7",
+      "line": 2222,
+      "page": 43
+    },
+    {
+      "code": "CIV4035C",
+      "name": "Design Project",
+      "credits": 24,
+      "level": "8",
+      "line": 2230,
+      "page": 43
+    },
+    {
+      "code": "CIV4041F",
+      "name": "Professional Practice",
+      "credits": 12,
+      "level": "8",
+      "line": 2231,
+      "page": 43
+    },
+    {
+      "code": "CIV4042F",
+      "name": "Wastewater Treatment",
+      "credits": 12,
+      "level": "8",
+      "line": 2232,
+      "page": 43
+    },
+    {
+      "code": "CIV4044S",
+      "name": "Research Project",
+      "credits": 48,
+      "level": "8",
+      "line": 2233,
+      "page": 43
+    },
+    {
+      "code": "CIV4045F",
+      "name": "Structural Design II",
+      "credits": 18,
+      "level": "8",
+      "line": 2234,
+      "page": 43
+    },
+    {
+      "code": "CIV4046F",
+      "name": "Transportation Engineering",
+      "credits": 18,
+      "level": "8",
+      "line": 2235,
+      "page": 43
+    },
+    {
+      "code": "CIV2020X",
+      "name": "Practical Experience",
+      "credits": 0,
+      "level": "6",
+      "line": 2236,
+      "page": 43
+    },
+    {
+      "code": "EGS1005F",
+      "name": "Creating Sustainable Impact",
+      "credits": 12,
+      "level": "5",
+      "line": 2237,
+      "page": 43
+    }
+  ],
+  "civil5": [
+    {
+      "code": "CIV1008F",
+      "name": "Introduction to Civil Engineering",
+      "credits": 12,
+      "level": "5",
+      "line": 2293,
+      "page": 44
+    },
+    {
+      "code": "CIV1009F",
+      "name": "Civil Engineering Drawing",
+      "credits": 8,
+      "level": "5",
+      "line": 2294,
+      "page": 44
+    },
+    {
+      "code": "CIV1012S",
+      "name": "Sustainable Urban Infrastructure",
+      "credits": 8,
+      "level": "5",
+      "line": 2295,
+      "page": 44
+    },
+    {
+      "code": "CIV1011S",
+      "name": "Introduction to Engineering Mechanics",
+      "credits": 15,
+      "level": "5",
+      "line": 2296,
+      "page": 44
+    },
+    {
+      "code": "MAM1023F",
+      "name": "Mathematics IA for Engineers Extended",
+      "credits": 18,
+      "level": "5",
+      "line": 2297,
+      "page": 44
+    },
+    {
+      "code": "MAM1024S",
+      "name": "Mathematics IB for Engineers Extended",
+      "credits": 18,
+      "level": "5",
+      "line": 2298,
+      "page": 44
+    },
+    {
+      "code": "PHY1014F",
+      "name": "Physics A for ASPECT",
+      "credits": 18,
+      "level": "5",
+      "line": 2299,
+      "page": 44
+    },
+    {
+      "code": "APG1023S",
+      "name": "Surveying and Geographic Information Systems for Engineers",
+      "credits": 15,
+      "level": "5",
+      "line": 2300,
+      "page": 44
+    },
+    {
+      "code": "CIV1013S",
+      "name": "Environmental Chemistry for Civil Engineers",
+      "credits": 12,
+      "level": "5",
+      "line": 2306,
+      "page": 44
+    },
+    {
+      "code": "CIV1014Z",
+      "name": "Water Challenge Scenario Project",
+      "credits": 4,
+      "level": "6",
+      "line": 2307,
+      "page": 44
+    },
+    {
+      "code": "STA1008F",
+      "name": "Statistics for Engineers",
+      "credits": 12,
+      "level": "5",
+      "line": 2308,
+      "page": 44
+    },
+    {
+      "code": "CIV2044F",
+      "name": "Mechanics of Materials",
+      "credits": 15,
+      "level": "6",
+      "line": 2309,
+      "page": 44
+    },
+    {
+      "code": "GEO1008F",
+      "name": "Introduction to Geology for Civil Engineers",
+      "credits": 12,
+      "level": "5",
+      "line": 2310,
+      "page": 44
+    },
+    {
+      "code": "CIV2048S",
+      "name": "Hydraulics I",
+      "credits": 15,
+      "level": "7",
+      "line": 2311,
+      "page": 44
+    },
+    {
+      "code": "CIV2049Z",
+      "name": "Water and Sanitisation Infrastructure Project",
+      "credits": 4,
+      "level": "6",
+      "line": 2312,
+      "page": 44
+    },
+    {
+      "code": "CIV2050Z",
+      "name": "Structural Systems Project",
+      "credits": 4,
+      "level": "6",
+      "line": 2313,
+      "page": 44
+    },
+    {
+      "code": "MAM2085F",
+      "name": "Vector Calculus for ASPECT",
+      "credits": 16,
+      "level": "6",
+      "line": 2314,
+      "page": 44
+    },
+    {
+      "code": "CSC1015S",
+      "name": "Computer Science 1015",
+      "credits": 18,
+      "level": "5",
+      "line": 2315,
+      "page": 44
+    },
+    {
+      "code": "CIV2045F",
+      "name": "Geotechnical Engineering I",
+      "credits": 8,
+      "level": "6",
+      "line": 2324,
+      "page": 45
+    },
+    {
+      "code": "CIV4042F",
+      "name": "Water Waste Treatment",
+      "credits": 12,
+      "level": "8",
+      "line": 2327,
+      "page": 45
+    },
+    {
+      "code": "CIV2051S",
+      "name": "Analysis of Statistically Determinate Structures",
+      "credits": 15,
+      "level": "7",
+      "line": 2328,
+      "page": 45
+    },
+    {
+      "code": "CIV2046F",
+      "name": "Transportation Engineering I",
+      "credits": 15,
+      "level": "6",
+      "line": 2329,
+      "page": 45
+    },
+    {
+      "code": "CIV2047Z",
+      "name": "Transportation Infrastructure Project",
+      "credits": 4,
+      "level": "6",
+      "line": 2330,
+      "page": 45
+    },
+    {
+      "code": "ECO1007S",
+      "name": "Economics for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 2332,
+      "page": 45
+    },
+    {
+      "code": "CIV3042F",
+      "name": "Geotechnical Engineering II",
+      "credits": 16,
+      "level": "7",
+      "line": 2337,
+      "page": 45
+    },
+    {
+      "code": "CIV3043F",
+      "name": "Hydraulic Engineering",
+      "credits": 16,
+      "level": "7",
+      "line": 2338,
+      "page": 45
+    },
+    {
+      "code": "CIV3044F",
+      "name": "Engineering Hydrology",
+      "credits": 8,
+      "level": "7",
+      "line": 2339,
+      "page": 45
+    },
+    {
+      "code": "CIV3045S",
+      "name": "Transportation Planning",
+      "credits": 16,
+      "level": "7",
+      "line": 2340,
+      "page": 45
+    },
+    {
+      "code": "CIV3047S",
+      "name": "Urban Water Services",
+      "credits": 16,
+      "level": "7",
+      "line": 2341,
+      "page": 45
+    },
+    {
+      "code": "CIV4045F",
+      "name": "Structural Design II",
+      "credits": 18,
+      "level": "8",
+      "line": 2342,
+      "page": 45
+    },
+    {
+      "code": "CIV2020X",
+      "name": "Practical Experience",
+      "credits": 0,
+      "level": "6",
+      "line": 2350,
+      "page": 45
+    },
+    {
+      "code": "CIV4035C",
+      "name": "Design Project",
+      "credits": 24,
+      "level": "8",
+      "line": 2351,
+      "page": 45
+    },
+    {
+      "code": "CIV4041F",
+      "name": "Professional Practice",
+      "credits": 12,
+      "level": "8",
+      "line": 2352,
+      "page": 45
+    },
+    {
+      "code": "CIV4044S",
+      "name": "Research Project",
+      "credits": 48,
+      "level": "8",
+      "line": 2354,
+      "page": 45
+    },
+    {
+      "code": "CIV4046F",
+      "name": "Transportation Engineering",
+      "credits": 18,
+      "level": "8",
+      "line": 2355,
+      "page": 45
+    },
+    {
+      "code": "EGS1005F",
+      "name": "Creating Sustainable Impact",
+      "credits": 12,
+      "level": "5",
+      "line": 2356,
+      "page": 45
+    }
+  ],
+  "construction": [
+    {
+      "code": "ACC1021F",
+      "name": "Accounting for Business I",
+      "credits": 15,
+      "level": "5",
+      "line": 2420,
+      "page": 46
+    },
+    {
+      "code": "CIV1006S",
+      "name": "Building Science I",
+      "credits": 16,
+      "level": "5",
+      "line": 2421,
+      "page": 46
+    },
+    {
+      "code": "CON1004W",
+      "name": "Construction Technology I",
+      "credits": 26,
+      "level": "5",
+      "line": 2422,
+      "page": 46
+    },
+    {
+      "code": "CON1010S",
+      "name": "Construction Information Systems",
+      "credits": 8,
+      "level": "5",
+      "line": 2423,
+      "page": 46
+    },
+    {
+      "code": "ECO1008F",
+      "name": "Microeconomics for EBE",
+      "credits": 18,
+      "level": "5",
+      "line": 2424,
+      "page": 46
+    },
+    {
+      "code": "ECO1009S",
+      "name": "Macroeconomics for EBE",
+      "credits": 18,
+      "level": "5",
+      "line": 2425,
+      "page": 46
+    },
+    {
+      "code": "MAM1010F",
+      "name": "Mathematics 1010",
+      "credits": 18,
+      "level": "5",
+      "line": 2426,
+      "page": 46
+    },
+    {
+      "code": "MEC1010F",
+      "name": "Introduction to Engineering Drawing A",
+      "credits": 8,
+      "level": "5",
+      "line": 2427,
+      "page": 46
+    },
+    {
+      "code": "STA1000S",
+      "name": "Introductory Statistics",
+      "credits": 18,
+      "level": "5",
+      "line": 2428,
+      "page": 46
+    },
+    {
+      "code": "CON1007X",
+      "name": "Practical Training",
+      "credits": 0,
+      "level": "5",
+      "line": 2429,
+      "page": 46
+    },
+    {
+      "code": "ACC2042H",
+      "name": "Management and Cost Accounting for Non-Specialists",
+      "credits": 16,
+      "level": "6",
+      "line": 2439,
+      "page": 47
+    },
+    {
+      "code": "APG1023S",
+      "name": "Construction Surveying",
+      "credits": 15,
+      "level": "5",
+      "line": 2440,
+      "page": 47
+    },
+    {
+      "code": "CML1001F",
+      "name": "Business Law I",
+      "credits": 18,
+      "level": "5",
+      "line": 2441,
+      "page": 47
+    },
+    {
+      "code": "CML2005F",
+      "name": "Labour Law",
+      "credits": 16,
+      "level": "6",
+      "line": 2442,
+      "page": 47
+    },
+    {
+      "code": "CON2006W",
+      "name": "Construction Technology II",
+      "credits": 28,
+      "level": "6",
+      "line": 2443,
+      "page": 47
+    },
+    {
+      "code": "CON2020S",
+      "name": "Construction Management I",
+      "credits": 16,
+      "level": "6",
+      "line": 2444,
+      "page": 47
+    },
+    {
+      "code": "CON2034S",
+      "name": "Professionalism in the Built Environment",
+      "credits": 12,
+      "level": "6",
+      "line": 2445,
+      "page": 47
+    },
+    {
+      "code": "CON2037W",
+      "name": "Measurement & Design Appraisal I",
+      "credits": 20,
+      "level": "6",
+      "line": 2446,
+      "page": 47
+    },
+    {
+      "code": "CON2013X",
+      "name": "Practical Training",
+      "credits": 0,
+      "level": "6",
+      "line": 2447,
+      "page": 47
+    },
+    {
+      "code": "CON3012W",
+      "name": "Construction Technology III",
+      "credits": 28,
+      "level": "7",
+      "line": 2453,
+      "page": 47
+    },
+    {
+      "code": "CON3030F",
+      "name": "Construction Costing",
+      "credits": 14,
+      "level": "7",
+      "line": 2454,
+      "page": 47
+    },
+    {
+      "code": "CON3031W",
+      "name": "Measurement & Design Appraisal II",
+      "credits": 26,
+      "level": "7",
+      "line": 2455,
+      "page": 47
+    },
+    {
+      "code": "CON3032W",
+      "name": "Applied Contract Law I",
+      "credits": 12,
+      "level": "7",
+      "line": 2456,
+      "page": 47
+    },
+    {
+      "code": "CON3033S",
+      "name": "Property Studies I",
+      "credits": 14,
+      "level": "7",
+      "line": 2457,
+      "page": 47
+    },
+    {
+      "code": "CON3038W",
+      "name": "Construction Management II",
+      "credits": 28,
+      "level": "7",
+      "line": 2458,
+      "page": 47
+    },
+    {
+      "code": "CON3043W",
+      "name": "Cost Engineering under Uncertainty",
+      "credits": 14,
+      "level": "7",
+      "line": 2459,
+      "page": 47
+    },
+    {
+      "code": "CON3023X",
+      "name": "Practical Training",
+      "credits": 0,
+      "level": "7",
+      "line": 2460,
+      "page": 47
+    }
+  ],
+  "property": [
+    {
+      "code": "CON1021F",
+      "name": "Property and Planning I",
+      "credits": 14,
+      "level": "5",
+      "line": 2497,
+      "page": 48
+    },
+    {
+      "code": "CON1022F",
+      "name": "Building Construction I",
+      "credits": 14,
+      "level": "5",
+      "line": 2498,
+      "page": 48
+    },
+    {
+      "code": "CON1023S",
+      "name": "Building Construction II",
+      "credits": 14,
+      "level": "5",
+      "line": 2499,
+      "page": 48
+    },
+    {
+      "code": "CON1024S",
+      "name": "Property Economics I",
+      "credits": 14,
+      "level": "5",
+      "line": 2500,
+      "page": 48
+    },
+    {
+      "code": "CON1025S",
+      "name": "Property and Technology",
+      "credits": 14,
+      "level": "5",
+      "line": 2501,
+      "page": 48
+    },
+    {
+      "code": "ECO1008F",
+      "name": "Microeconomics for EBE",
+      "credits": 18,
+      "level": "5",
+      "line": 2502,
+      "page": 48
+    },
+    {
+      "code": "ECO1009S",
+      "name": "Macroeconomics for EBE",
+      "credits": 18,
+      "level": "5",
+      "line": 2503,
+      "page": 48
+    },
+    {
+      "code": "MAM1010F",
+      "name": "Mathematics 1010",
+      "credits": 18,
+      "level": "5",
+      "line": 2504,
+      "page": 48
+    },
+    {
+      "code": "STA1000S",
+      "name": "Introductory Statistics",
+      "credits": 18,
+      "level": "5",
+      "line": 2505,
+      "page": 48
+    },
+    {
+      "code": "ACC1021F",
+      "name": "Accounting for Business I",
+      "credits": 15,
+      "level": "5",
+      "line": 2512,
+      "page": 48
+    },
+    {
+      "code": "CML1001F",
+      "name": "Business Law I",
+      "credits": 18,
+      "level": "5",
+      "line": 2513,
+      "page": 48
+    },
+    {
+      "code": "CON2032S",
+      "name": "Property Investment and Finance I",
+      "credits": 14,
+      "level": "6",
+      "line": 2514,
+      "page": 48
+    },
+    {
+      "code": "CON2033F",
+      "name": "Real Property Law I",
+      "credits": 14,
+      "level": "6",
+      "line": 2515,
+      "page": 48
+    },
+    {
+      "code": "CON2034S",
+      "name": "Professionalism in the Built Environment",
+      "credits": 12,
+      "level": "6",
+      "line": 2516,
+      "page": 48
+    },
+    {
+      "code": "CON2035S",
+      "name": "Property and Planning II",
+      "credits": 14,
+      "level": "6",
+      "line": 2517,
+      "page": 48
+    },
+    {
+      "code": "CON2036F",
+      "name": "Property Valuation I",
+      "credits": 14,
+      "level": "6",
+      "line": 2518,
+      "page": 48
+    },
+    {
+      "code": "FTX2020F",
+      "name": "Business Finance",
+      "credits": 18,
+      "level": "6",
+      "line": 2519,
+      "page": 48
+    },
+    {
+      "code": "STA2020S",
+      "name": "Applied Statistics",
+      "credits": 24,
+      "level": "6",
+      "line": 2520,
+      "page": 48
+    },
+    {
+      "code": "CON3046S",
+      "name": "Property and Facilities Management",
+      "credits": 14,
+      "level": "7",
+      "line": 2527,
+      "page": 48
+    },
+    {
+      "code": "CON3047F",
+      "name": "Property Investment and Finance II",
+      "credits": 14,
+      "level": "7",
+      "line": 2528,
+      "page": 48
+    },
+    {
+      "code": "CON3048F",
+      "name": "Property Development I",
+      "credits": 14,
+      "level": "7",
+      "line": 2529,
+      "page": 48
+    },
+    {
+      "code": "CON3050F",
+      "name": "Property and Contract Law",
+      "credits": 14,
+      "level": "7",
+      "line": 2530,
+      "page": 48
+    },
+    {
+      "code": "CON3051F",
+      "name": "Property Valuation II",
+      "credits": 14,
+      "level": "7",
+      "line": 2531,
+      "page": 48
+    },
+    {
+      "code": "CON3052S",
+      "name": "Property Economics II",
+      "credits": 14,
+      "level": "7",
+      "line": 2532,
+      "page": 48
+    },
+    {
+      "code": "CON3053S",
+      "name": "Property and Environment",
+      "credits": 14,
+      "level": "7",
+      "line": 2533,
+      "page": 48
+    },
+    {
+      "code": "CON3054S",
+      "name": "Property Development II",
+      "credits": 10,
+      "level": "7",
+      "line": 2534,
+      "page": 48
+    },
+    {
+      "code": "CSC1015F",
+      "name": "Computer Science 1015",
+      "credits": 18,
+      "level": "5",
+      "line": 2535,
+      "page": 48
+    }
+  ],
+  "ee4": [
+    {
+      "code": "CSC1015F",
+      "name": "Computer Science 1015",
+      "credits": 18,
+      "level": "5",
+      "line": 2566,
+      "page": 49
+    },
+    {
+      "code": "EEE1008F",
+      "name": "Introduction to Electrical Engineering A",
+      "credits": 12,
+      "level": "5",
+      "line": 2567,
+      "page": 49
+    },
+    {
+      "code": "MAM1020F",
+      "name": "Mathematics IA for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 2568,
+      "page": 49
+    },
+    {
+      "code": "PHY1012F",
+      "name": "Physics A for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 2569,
+      "page": 49
+    },
+    {
+      "code": "CSC1016S",
+      "name": "Computer Science 1016",
+      "credits": 18,
+      "level": "5",
+      "line": 2570,
+      "page": 49
+    },
+    {
+      "code": "EEE1009S",
+      "name": "Introduction to Electrical Engineering B",
+      "credits": 12,
+      "level": "5",
+      "line": 2571,
+      "page": 49
+    },
+    {
+      "code": "MAM1021S",
+      "name": "Mathematics IB for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 2572,
+      "page": 49
+    },
+    {
+      "code": "PHY1013S",
+      "name": "Physics B for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 2573,
+      "page": 49
+    },
+    {
+      "code": "EEE1000X",
+      "name": "Practical Training",
+      "credits": 0,
+      "level": "5",
+      "line": 2574,
+      "page": 49
+    },
+    {
+      "code": "EEE2045F",
+      "name": "Analogue Electronics",
+      "credits": 16,
+      "level": "6",
+      "line": 2585,
+      "page": 49
+    },
+    {
+      "code": "EEE2046F",
+      "name": "Embedded Systems I",
+      "credits": 16,
+      "level": "6",
+      "line": 2586,
+      "page": 49
+    },
+    {
+      "code": "MAM2083F",
+      "name": "Vector Calculus for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 2587,
+      "page": 49
+    },
+    {
+      "code": "MEC1003F",
+      "name": "Engineering Drawing",
+      "credits": 8,
+      "level": "5",
+      "line": 2588,
+      "page": 49
+    },
+    {
+      "code": "MEC1009F",
+      "name": "Introduction to Engineering Mechanics",
+      "credits": 16,
+      "level": "5",
+      "line": 2589,
+      "page": 49
+    },
+    {
+      "code": "EEE2044S",
+      "name": "Introduction to Power Engineering",
+      "credits": 16,
+      "level": "6",
+      "line": 2590,
+      "page": 49
+    },
+    {
+      "code": "EEE2047S",
+      "name": "Signals and Systems I",
+      "credits": 16,
+      "level": "6",
+      "line": 2591,
+      "page": 49
+    },
+    {
+      "code": "EEE2048S",
+      "name": "Professional Communication for Electrical Engineering",
+      "credits": 8,
+      "level": "6",
+      "line": 2592,
+      "page": 49
+    },
+    {
+      "code": "MAM2084S",
+      "name": "Linear Algebra and Differential Equations for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 2593,
+      "page": 49
+    },
+    {
+      "code": "PHY2010S",
+      "name": "Electromagnetism for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 2594,
+      "page": 49
+    },
+    {
+      "code": "EEE3088F",
+      "name": "Electrical Engineering Design Principles",
+      "credits": 8,
+      "level": "7",
+      "line": 2609,
+      "page": 50
+    },
+    {
+      "code": "EEE3089F",
+      "name": "Electromagnetic Engineering",
+      "credits": 16,
+      "level": "7",
+      "line": 2610,
+      "page": 50
+    },
+    {
+      "code": "EEE3090F",
+      "name": "Electronic Devices and Circuits",
+      "credits": 16,
+      "level": "7",
+      "line": 2611,
+      "page": 50
+    },
+    {
+      "code": "EEE3091F",
+      "name": "Energy Conversion I",
+      "credits": 16,
+      "level": "7",
+      "line": 2612,
+      "page": 50
+    },
+    {
+      "code": "EEE3092F",
+      "name": "Signals & Systems II",
+      "credits": 16,
+      "level": "7",
+      "line": 2613,
+      "page": 50
+    },
+    {
+      "code": "EEE3093S",
+      "name": "Communication & Network Engineering",
+      "credits": 16,
+      "level": "7",
+      "line": 2614,
+      "page": 50
+    },
+    {
+      "code": "EEE3094S",
+      "name": "Control Systems Engineering",
+      "credits": 16,
+      "level": "7",
+      "line": 2615,
+      "page": 50
+    },
+    {
+      "code": "EEE3098S",
+      "name": "Engineering Design: Electrical Engineering",
+      "credits": 8,
+      "level": "7",
+      "line": 2616,
+      "page": 50
+    },
+    {
+      "code": "EEE3100S",
+      "name": "Energy Systems & Grids I",
+      "credits": 16,
+      "level": "7",
+      "line": 2617,
+      "page": 50
+    },
+    {
+      "code": "EEE3000X",
+      "name": "Practical Training",
+      "credits": 0,
+      "level": "7",
+      "line": 2619,
+      "page": 50
+    },
+    {
+      "code": "EEE4113F",
+      "name": "Engineering System Design",
+      "credits": 16,
+      "level": "8",
+      "line": 2626,
+      "page": 50
+    },
+    {
+      "code": "CML4607F",
+      "name": "Law for Engineers",
+      "credits": 10,
+      "level": "8",
+      "line": 2627,
+      "page": 50
+    },
+    {
+      "code": "EEE4125C",
+      "name": "New Ventures: Planning, Practice & Professionalism",
+      "credits": 16,
+      "level": "8",
+      "line": 2628,
+      "page": 50
+    },
+    {
+      "code": "EEE4124C",
+      "name": "Impact of Engineering on the Natural & Social Environment",
+      "credits": 8,
+      "level": "8",
+      "line": 2629,
+      "page": 50
+    },
+    {
+      "code": "EEE4022S",
+      "name": "Research Project",
+      "credits": 40,
+      "level": "8",
+      "line": 2630,
+      "page": 50
+    },
+    {
+      "code": "EEE4126F",
+      "name": "Energy Systems & Grids II",
+      "credits": 16,
+      "level": "8",
+      "line": 2637,
+      "page": 50
+    },
+    {
+      "code": "EEE4118F",
+      "name": "Process Control & Instrumentation",
+      "credits": 16,
+      "level": "8",
+      "line": 2638,
+      "page": 50
+    },
+    {
+      "code": "EEE4121F",
+      "name": "Mobile and Wireless Networks",
+      "credits": 16,
+      "level": "8",
+      "line": 2639,
+      "page": 50
+    },
+    {
+      "code": "EEE4114F",
+      "name": "Digital Signal Processing",
+      "credits": 16,
+      "level": "8",
+      "line": 2642,
+      "page": 50
+    },
+    {
+      "code": "EEE4117F",
+      "name": "Energy Conversion II",
+      "credits": 16,
+      "level": "8",
+      "line": 2643,
+      "page": 50
+    },
+    {
+      "code": "HUB4049F",
+      "name": "Introduction to Medical Imaging & Image Processing",
+      "credits": 16,
+      "level": "8",
+      "line": 2644,
+      "page": 50
+    }
+  ],
+  "ee5": [
+    {
+      "code": "EEE1008F",
+      "name": "Introduction to Electrical Engineering A",
+      "credits": 12,
+      "level": "5",
+      "line": 2681,
+      "page": 51
+    },
+    {
+      "code": "MAM1023F",
+      "name": "Mathematics IA for Engineers Extended",
+      "credits": 18,
+      "level": "5",
+      "line": 2682,
+      "page": 51
+    },
+    {
+      "code": "PHY1014F",
+      "name": "Physics A for ASPECT",
+      "credits": 18,
+      "level": "5",
+      "line": 2683,
+      "page": 51
+    },
+    {
+      "code": "EEE1009S",
+      "name": "Introduction to Electrical Engineering B",
+      "credits": 12,
+      "level": "5",
+      "line": 2684,
+      "page": 51
+    },
+    {
+      "code": "MAM1024S",
+      "name": "Mathematics IB for Engineers Extended",
+      "credits": 18,
+      "level": "5",
+      "line": 2685,
+      "page": 51
+    },
+    {
+      "code": "PHY1015S",
+      "name": "Physics B for ASPECT",
+      "credits": 18,
+      "level": "5",
+      "line": 2686,
+      "page": 51
+    },
+    {
+      "code": "CSC1015F",
+      "name": "Computer Science 1015",
+      "credits": 18,
+      "level": "5",
+      "line": 2693,
+      "page": 51
+    },
+    {
+      "code": "EEE2045F",
+      "name": "Analogue Electronics",
+      "credits": 16,
+      "level": "6",
+      "line": 2694,
+      "page": 51
+    },
+    {
+      "code": "MAM2085F",
+      "name": "Vector Calculus for ASPECT",
+      "credits": 16,
+      "level": "6",
+      "line": 2695,
+      "page": 51
+    },
+    {
+      "code": "MEC1003F",
+      "name": "Engineering Drawing",
+      "credits": 8,
+      "level": "5",
+      "line": 2696,
+      "page": 51
+    },
+    {
+      "code": "CSC1016S",
+      "name": "Computer Science 1016",
+      "credits": 18,
+      "level": "5",
+      "line": 2697,
+      "page": 51
+    },
+    {
+      "code": "EEE2047S",
+      "name": "Signals and Systems I",
+      "credits": 16,
+      "level": "6",
+      "line": 2698,
+      "page": 51
+    },
+    {
+      "code": "MAM2084S",
+      "name": "Linear Algebra and Differential Equations for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 2699,
+      "page": 51
+    },
+    {
+      "code": "EEE1000X",
+      "name": "Practical Training",
+      "credits": 0,
+      "level": "5",
+      "line": 2700,
+      "page": 51
+    },
+    {
+      "code": "EEE2046F",
+      "name": "Embedded Systems I",
+      "credits": 16,
+      "level": "6",
+      "line": 2716,
+      "page": 52
+    },
+    {
+      "code": "EEE3090F",
+      "name": "Electronic Devices and Circuits",
+      "credits": 16,
+      "level": "7",
+      "line": 2717,
+      "page": 52
+    },
+    {
+      "code": "MEC1009F",
+      "name": "Introduction to Engineering Mechanics",
+      "credits": 16,
+      "level": "5",
+      "line": 2718,
+      "page": 52
+    },
+    {
+      "code": "EEE2044S",
+      "name": "Introduction to Power Engineering",
+      "credits": 16,
+      "level": "6",
+      "line": 2720,
+      "page": 52
+    },
+    {
+      "code": "EEE2048S",
+      "name": "Professional Communication for Electrical Engineering",
+      "credits": 8,
+      "level": "6",
+      "line": 2721,
+      "page": 52
+    },
+    {
+      "code": "EEE3094S",
+      "name": "Control Systems Engineering",
+      "credits": 16,
+      "level": "7",
+      "line": 2722,
+      "page": 52
+    },
+    {
+      "code": "PHY2010S",
+      "name": "Electromagnetism for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 2723,
+      "page": 52
+    },
+    {
+      "code": "EEE3088F",
+      "name": "Electrical Engineering Design Principles",
+      "credits": 8,
+      "level": "7",
+      "line": 2734,
+      "page": 52
+    },
+    {
+      "code": "EEE3089F",
+      "name": "Electromagnetic Engineering",
+      "credits": 16,
+      "level": "7",
+      "line": 2735,
+      "page": 52
+    },
+    {
+      "code": "EEE3091F",
+      "name": "Energy Conversion I",
+      "credits": 16,
+      "level": "7",
+      "line": 2736,
+      "page": 52
+    },
+    {
+      "code": "EEE3092F",
+      "name": "Signals & Systems II",
+      "credits": 16,
+      "level": "7",
+      "line": 2737,
+      "page": 52
+    },
+    {
+      "code": "CML4607F",
+      "name": "Law for Engineers",
+      "credits": 10,
+      "level": "8",
+      "line": 2738,
+      "page": 52
+    },
+    {
+      "code": "EEE3093S",
+      "name": "Communication & Network Engineering",
+      "credits": 16,
+      "level": "7",
+      "line": 2739,
+      "page": 52
+    },
+    {
+      "code": "EEE3098S",
+      "name": "Engineering Design: Electrical Engineering",
+      "credits": 8,
+      "level": "7",
+      "line": 2740,
+      "page": 52
+    },
+    {
+      "code": "EEE3100S",
+      "name": "Energy Systems & Grids I",
+      "credits": 16,
+      "level": "7",
+      "line": 2741,
+      "page": 52
+    },
+    {
+      "code": "EEE3000X",
+      "name": "Practical Training",
+      "credits": 0,
+      "level": "7",
+      "line": 2743,
+      "page": 52
+    },
+    {
+      "code": "EEE4113F",
+      "name": "Engineering System Design",
+      "credits": 16,
+      "level": "8",
+      "line": 2750,
+      "page": 52
+    },
+    {
+      "code": "EEE4125C",
+      "name": "New Ventures: Planning, Practice & Professionalism",
+      "credits": 16,
+      "level": "8",
+      "line": 2751,
+      "page": 52
+    },
+    {
+      "code": "EEE4124C",
+      "name": "Impact of Engineering on the Natural & Social Environment",
+      "credits": 8,
+      "level": "8",
+      "line": 2752,
+      "page": 52
+    },
+    {
+      "code": "EEE4022S",
+      "name": "Research Project",
+      "credits": 40,
+      "level": "8",
+      "line": 2753,
+      "page": 52
+    },
+    {
+      "code": "EEE4126F",
+      "name": "Energy Systems & Grids II",
+      "credits": 16,
+      "level": "8",
+      "line": 2760,
+      "page": 52
+    },
+    {
+      "code": "EEE4118F",
+      "name": "Process Control & Instrumentation",
+      "credits": 16,
+      "level": "8",
+      "line": 2761,
+      "page": 52
+    },
+    {
+      "code": "EEE4121F",
+      "name": "Mobile and Wireless Networks",
+      "credits": 16,
+      "level": "8",
+      "line": 2762,
+      "page": 52
+    },
+    {
+      "code": "EEE4114F",
+      "name": "Digital Signal Processing",
+      "credits": 16,
+      "level": "8",
+      "line": 2769,
+      "page": 53
+    },
+    {
+      "code": "EEE4117F",
+      "name": "Energy Conversion II",
+      "credits": 16,
+      "level": "8",
+      "line": 2770,
+      "page": 53
+    },
+    {
+      "code": "HUB4049F",
+      "name": "Introduction to Medical Imaging & Image Processing",
+      "credits": 16,
+      "level": "8",
+      "line": 2771,
+      "page": 53
+    }
+  ],
+  "ece4": [
+    {
+      "code": "CSC1015F",
+      "name": "Computer Science 1015",
+      "credits": 18,
+      "level": "5",
+      "line": 2810,
+      "page": 53
+    },
+    {
+      "code": "EEE1008F",
+      "name": "Introduction to Electrical Engineering A",
+      "credits": 12,
+      "level": "5",
+      "line": 2811,
+      "page": 53
+    },
+    {
+      "code": "MAM1020F",
+      "name": "Mathematics IA for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 2812,
+      "page": 53
+    },
+    {
+      "code": "PHY1012F",
+      "name": "Physics A for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 2813,
+      "page": 53
+    },
+    {
+      "code": "CSC1016S",
+      "name": "Computer Science 1016",
+      "credits": 18,
+      "level": "5",
+      "line": 2814,
+      "page": 53
+    },
+    {
+      "code": "EEE1009S",
+      "name": "Introduction to Electrical Engineering B",
+      "credits": 12,
+      "level": "5",
+      "line": 2815,
+      "page": 53
+    },
+    {
+      "code": "MAM1021S",
+      "name": "Mathematics IB for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 2816,
+      "page": 53
+    },
+    {
+      "code": "PHY1013S",
+      "name": "Physics B for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 2817,
+      "page": 53
+    },
+    {
+      "code": "EEE1000X",
+      "name": "Practical Training",
+      "credits": 0,
+      "level": "5",
+      "line": 2818,
+      "page": 53
+    },
+    {
+      "code": "EEE2045F",
+      "name": "Analogue Electronics",
+      "credits": 16,
+      "level": "6",
+      "line": 2833,
+      "page": 54
+    },
+    {
+      "code": "EEE2046F",
+      "name": "Embedded Systems I",
+      "credits": 16,
+      "level": "6",
+      "line": 2834,
+      "page": 54
+    },
+    {
+      "code": "MAM2083F",
+      "name": "Vector Calculus for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 2836,
+      "page": 54
+    },
+    {
+      "code": "MEC1009F",
+      "name": "Introduction to Engineering Mechanics",
+      "credits": 16,
+      "level": "5",
+      "line": 2837,
+      "page": 54
+    },
+    {
+      "code": "EEE2044S",
+      "name": "Introduction to Power Engineering",
+      "credits": 16,
+      "level": "6",
+      "line": 2838,
+      "page": 54
+    },
+    {
+      "code": "EEE2047S",
+      "name": "Signals and Systems I",
+      "credits": 16,
+      "level": "6",
+      "line": 2839,
+      "page": 54
+    },
+    {
+      "code": "EEE2048S",
+      "name": "Professional Communication for Electrical Engineering",
+      "credits": 8,
+      "level": "6",
+      "line": 2840,
+      "page": 54
+    },
+    {
+      "code": "MAM2084S",
+      "name": "Linear Algebra and Differential Equations for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 2841,
+      "page": 54
+    },
+    {
+      "code": "PHY2010S",
+      "name": "Electromagnetism for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 2842,
+      "page": 54
+    },
+    {
+      "code": "CSC2001F",
+      "name": "Computer Science 2001",
+      "credits": 24,
+      "level": "6",
+      "line": 2852,
+      "page": 54
+    },
+    {
+      "code": "EEE3088F",
+      "name": "Electrical Engineering Design Principles",
+      "credits": 8,
+      "level": "7",
+      "line": 2853,
+      "page": 54
+    },
+    {
+      "code": "EEE3089F",
+      "name": "Electromagnetic Engineering",
+      "credits": 16,
+      "level": "7",
+      "line": 2854,
+      "page": 54
+    },
+    {
+      "code": "EEE3090F",
+      "name": "Electronic Devices and Circuits",
+      "credits": 16,
+      "level": "7",
+      "line": 2855,
+      "page": 54
+    },
+    {
+      "code": "EEE3092F",
+      "name": "Signals & Systems II",
+      "credits": 16,
+      "level": "7",
+      "line": 2856,
+      "page": 54
+    },
+    {
+      "code": "EEE3096S",
+      "name": "Embedded Systems II",
+      "credits": 16,
+      "level": "7",
+      "line": 2857,
+      "page": 54
+    },
+    {
+      "code": "EEE3097S",
+      "name": "Engineering Design: Electrical & Computer Engineering",
+      "credits": 8,
+      "level": "7",
+      "line": 2858,
+      "page": 54
+    },
+    {
+      "code": "EEE3000X",
+      "name": "Practical Training",
+      "credits": 0,
+      "level": "7",
+      "line": 2860,
+      "page": 54
+    },
+    {
+      "code": "CSC2002S",
+      "name": "Computer Science 2002",
+      "credits": 24,
+      "level": "6",
+      "line": 2868,
+      "page": 54
+    },
+    {
+      "code": "EEE3093S",
+      "name": "Communication & Network Engineering",
+      "credits": 16,
+      "level": "7",
+      "line": 2869,
+      "page": 54
+    },
+    {
+      "code": "EEE3094S",
+      "name": "Control Systems Engineering",
+      "credits": 16,
+      "level": "7",
+      "line": 2870,
+      "page": 54
+    },
+    {
+      "code": "EEE4113F",
+      "name": "Engineering System Design",
+      "credits": 16,
+      "level": "8",
+      "line": 2886,
+      "page": 55
+    },
+    {
+      "code": "CML4607F",
+      "name": "Law for Engineers",
+      "credits": 10,
+      "level": "8",
+      "line": 2887,
+      "page": 55
+    },
+    {
+      "code": "EEE4125C",
+      "name": "New Ventures: Planning, Practice & Professionalism",
+      "credits": 16,
+      "level": "8",
+      "line": 2888,
+      "page": 55
+    },
+    {
+      "code": "EEE4124C",
+      "name": "Impact of Engineering on the Natural & Social Environment",
+      "credits": 8,
+      "level": "8",
+      "line": 2889,
+      "page": 55
+    },
+    {
+      "code": "EEE4022S",
+      "name": "Research Project",
+      "credits": 40,
+      "level": "8",
+      "line": 2890,
+      "page": 55
+    },
+    {
+      "code": "EEE4114F",
+      "name": "Digital Signal Processing",
+      "credits": 16,
+      "level": "8",
+      "line": 2897,
+      "page": 55
+    },
+    {
+      "code": "EEE4118F",
+      "name": "Process Control & Instrumentation",
+      "credits": 16,
+      "level": "8",
+      "line": 2898,
+      "page": 55
+    },
+    {
+      "code": "EEE4120F",
+      "name": "High Performance Digital Embedded Systems",
+      "credits": 16,
+      "level": "8",
+      "line": 2899,
+      "page": 55
+    },
+    {
+      "code": "EEE4121F",
+      "name": "Mobile and Wireless Networks",
+      "credits": 16,
+      "level": "8",
+      "line": 2900,
+      "page": 55
+    },
+    {
+      "code": "HUB4049F",
+      "name": "Introduction to Medical Imaging & Image Processing",
+      "credits": 16,
+      "level": "8",
+      "line": 2904,
+      "page": 55
+    }
+  ],
+  "ece5": [
+    {
+      "code": "EEE1008F",
+      "name": "Introduction to Electrical Engineering A",
+      "credits": 12,
+      "level": "5",
+      "line": 2941,
+      "page": 56
+    },
+    {
+      "code": "MAM1023F",
+      "name": "Mathematics IA for Engineers Extended",
+      "credits": 18,
+      "level": "5",
+      "line": 2942,
+      "page": 56
+    },
+    {
+      "code": "PHY1014F",
+      "name": "Physics A for ASPECT",
+      "credits": 18,
+      "level": "5",
+      "line": 2943,
+      "page": 56
+    },
+    {
+      "code": "EEE1009S",
+      "name": "Introduction to Electrical Engineering B",
+      "credits": 12,
+      "level": "5",
+      "line": 2944,
+      "page": 56
+    },
+    {
+      "code": "MAM1024S",
+      "name": "Mathematics IB for Engineers Extended",
+      "credits": 18,
+      "level": "5",
+      "line": 2945,
+      "page": 56
+    },
+    {
+      "code": "PHY1015S",
+      "name": "Physics B for ASPECT",
+      "credits": 18,
+      "level": "5",
+      "line": 2946,
+      "page": 56
+    },
+    {
+      "code": "CSC1015F",
+      "name": "Computer Science 1015",
+      "credits": 18,
+      "level": "5",
+      "line": 2952,
+      "page": 56
+    },
+    {
+      "code": "EEE2045F",
+      "name": "Analogue Electronics",
+      "credits": 16,
+      "level": "6",
+      "line": 2953,
+      "page": 56
+    },
+    {
+      "code": "MAM2085F",
+      "name": "Vector Calculus for ASPECT",
+      "credits": 16,
+      "level": "6",
+      "line": 2954,
+      "page": 56
+    },
+    {
+      "code": "MEC1003F",
+      "name": "Engineering Drawing",
+      "credits": 8,
+      "level": "5",
+      "line": 2955,
+      "page": 56
+    },
+    {
+      "code": "CSC1016S",
+      "name": "Computer Science 1016",
+      "credits": 18,
+      "level": "5",
+      "line": 2956,
+      "page": 56
+    },
+    {
+      "code": "EEE2047S",
+      "name": "Signals and Systems I",
+      "credits": 16,
+      "level": "6",
+      "line": 2957,
+      "page": 56
+    },
+    {
+      "code": "MAM2084S",
+      "name": "Linear Algebra and Differential Equations for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 2958,
+      "page": 56
+    },
+    {
+      "code": "EEE1000X",
+      "name": "Practical Training",
+      "credits": 0,
+      "level": "5",
+      "line": 2959,
+      "page": 56
+    },
+    {
+      "code": "CSC2001F",
+      "name": "Computer Science 2001",
+      "credits": 24,
+      "level": "6",
+      "line": 2969,
+      "page": 56
+    },
+    {
+      "code": "EEE2046F",
+      "name": "Embedded Systems I",
+      "credits": 16,
+      "level": "6",
+      "line": 2970,
+      "page": 56
+    },
+    {
+      "code": "MEC1009F",
+      "name": "Introduction to Engineering Mechanics",
+      "credits": 16,
+      "level": "5",
+      "line": 2971,
+      "page": 56
+    },
+    {
+      "code": "EEE2044S",
+      "name": "Introduction to Power Engineering",
+      "credits": 16,
+      "level": "6",
+      "line": 2973,
+      "page": 56
+    },
+    {
+      "code": "EEE2048S",
+      "name": "Professional Communication for Electrical Engineering",
+      "credits": 8,
+      "level": "6",
+      "line": 2974,
+      "page": 56
+    },
+    {
+      "code": "PHY2010S",
+      "name": "Electromagnetism for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 2975,
+      "page": 56
+    },
+    {
+      "code": "EEE3088F",
+      "name": "Electrical Engineering Design Principles",
+      "credits": 8,
+      "level": "7",
+      "line": 2986,
+      "page": 56
+    },
+    {
+      "code": "EEE3089F",
+      "name": "Electromagnetic Engineering",
+      "credits": 16,
+      "level": "7",
+      "line": 2987,
+      "page": 56
+    },
+    {
+      "code": "EEE3090F",
+      "name": "Electronic Devices and Circuits",
+      "credits": 16,
+      "level": "7",
+      "line": 2988,
+      "page": 56
+    },
+    {
+      "code": "EEE3092F",
+      "name": "Signals & Systems II",
+      "credits": 16,
+      "level": "7",
+      "line": 2989,
+      "page": 56
+    },
+    {
+      "code": "CML4607F",
+      "name": "Law for Engineers",
+      "credits": 10,
+      "level": "8",
+      "line": 2995,
+      "page": 57
+    },
+    {
+      "code": "EEE3096S",
+      "name": "Embedded Systems II",
+      "credits": 16,
+      "level": "7",
+      "line": 2996,
+      "page": 57
+    },
+    {
+      "code": "EEE3097S",
+      "name": "Engineering Design: Electrical & Computer Engineering",
+      "credits": 8,
+      "level": "7",
+      "line": 2997,
+      "page": 57
+    },
+    {
+      "code": "EEE3000X",
+      "name": "Practical Training",
+      "credits": 0,
+      "level": "7",
+      "line": 2998,
+      "page": 57
+    },
+    {
+      "code": "CSC2002S",
+      "name": "Computer Science 2002",
+      "credits": 24,
+      "level": "6",
+      "line": 3005,
+      "page": 57
+    },
+    {
+      "code": "EEE3093S",
+      "name": "Communication & Network Engineering",
+      "credits": 16,
+      "level": "7",
+      "line": 3006,
+      "page": 57
+    },
+    {
+      "code": "EEE3094S",
+      "name": "Control Systems Engineering",
+      "credits": 16,
+      "level": "7",
+      "line": 3007,
+      "page": 57
+    },
+    {
+      "code": "EEE4113F",
+      "name": "Engineering System Design",
+      "credits": 16,
+      "level": "8",
+      "line": 3019,
+      "page": 57
+    },
+    {
+      "code": "EEE4125C",
+      "name": "New Ventures: Planning, Practice & Professionalism",
+      "credits": 16,
+      "level": "8",
+      "line": 3020,
+      "page": 57
+    },
+    {
+      "code": "EEE4124C",
+      "name": "Impact of Engineering on the Natural & Social Environment",
+      "credits": 8,
+      "level": "8",
+      "line": 3021,
+      "page": 57
+    },
+    {
+      "code": "EEE4022S",
+      "name": "Research Project",
+      "credits": 40,
+      "level": "8",
+      "line": 3022,
+      "page": 57
+    },
+    {
+      "code": "EEE4114F",
+      "name": "Digital Signal Processing",
+      "credits": 16,
+      "level": "8",
+      "line": 3029,
+      "page": 57
+    },
+    {
+      "code": "EEE4118F",
+      "name": "Process Control & Instrumentation",
+      "credits": 16,
+      "level": "8",
+      "line": 3030,
+      "page": 57
+    },
+    {
+      "code": "EEE4120F",
+      "name": "High Performance Digital Embedded Systems",
+      "credits": 16,
+      "level": "8",
+      "line": 3031,
+      "page": 57
+    },
+    {
+      "code": "EEE4121F",
+      "name": "Mobile and Wireless Networks",
+      "credits": 16,
+      "level": "8",
+      "line": 3032,
+      "page": 57
+    },
+    {
+      "code": "HUB4049F",
+      "name": "Introduction to Medical Imaging & Image Processing",
+      "credits": 16,
+      "level": "8",
+      "line": 3036,
+      "page": 57
+    }
+  ],
+  "mechatronics_eee4": [
+    {
+      "code": "CSC1015F",
+      "name": "Computer Science 1015",
+      "credits": 18,
+      "level": "5",
+      "line": 3073,
+      "page": 58
+    },
+    {
+      "code": "EEE1008F",
+      "name": "Introduction to Electrical Engineering A",
+      "credits": 12,
+      "level": "5",
+      "line": 3074,
+      "page": 58
+    },
+    {
+      "code": "MAM1020F",
+      "name": "Mathematics IA for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 3075,
+      "page": 58
+    },
+    {
+      "code": "PHY1012F",
+      "name": "Physics A for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 3076,
+      "page": 58
+    },
+    {
+      "code": "CSC1016S",
+      "name": "Computer Science 1016",
+      "credits": 18,
+      "level": "5",
+      "line": 3077,
+      "page": 58
+    },
+    {
+      "code": "EEE1009S",
+      "name": "Introduction to Electrical Engineering A",
+      "credits": 12,
+      "level": "5",
+      "line": 3078,
+      "page": 58
+    },
+    {
+      "code": "MAM1021S",
+      "name": "Mathematics IB for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 3079,
+      "page": 58
+    },
+    {
+      "code": "PHY1013S",
+      "name": "Physics B for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 3080,
+      "page": 58
+    },
+    {
+      "code": "EEE1000X",
+      "name": "Practical Training",
+      "credits": 0,
+      "level": "5",
+      "line": 3081,
+      "page": 58
+    },
+    {
+      "code": "EEE2045F",
+      "name": "Analogue Electronics",
+      "credits": 16,
+      "level": "6",
+      "line": 3091,
+      "page": 58
+    },
+    {
+      "code": "EEE2046F",
+      "name": "Embedded Systems I",
+      "credits": 16,
+      "level": "6",
+      "line": 3092,
+      "page": 58
+    },
+    {
+      "code": "EEE2048S",
+      "name": "Professional Communication for Electrical Engineering",
+      "credits": 8,
+      "level": "6",
+      "line": 3093,
+      "page": 58
+    },
+    {
+      "code": "MAM2083F",
+      "name": "Vector Calculus for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 3094,
+      "page": 58
+    },
+    {
+      "code": "MEC1009F",
+      "name": "Introduction to Engineering Mechanics",
+      "credits": 16,
+      "level": "5",
+      "line": 3096,
+      "page": 58
+    },
+    {
+      "code": "EEE2044S",
+      "name": "Introduction to Power Engineering",
+      "credits": 16,
+      "level": "6",
+      "line": 3097,
+      "page": 58
+    },
+    {
+      "code": "EEE2047S",
+      "name": "Signals and Systems I",
+      "credits": 16,
+      "level": "6",
+      "line": 3098,
+      "page": 58
+    },
+    {
+      "code": "MAM2084S",
+      "name": "Linear Algebra and Differential Equations for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 3100,
+      "page": 58
+    },
+    {
+      "code": "PHY2010S",
+      "name": "Electromagnetism for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 3102,
+      "page": 58
+    },
+    {
+      "code": "EEE3088F",
+      "name": "Electrical Engineering Design Principles",
+      "credits": 8,
+      "level": "7",
+      "line": 3116,
+      "page": 59
+    },
+    {
+      "code": "EEE3090F",
+      "name": "Electronic Devices and Circuits",
+      "credits": 16,
+      "level": "7",
+      "line": 3117,
+      "page": 59
+    },
+    {
+      "code": "EEE3091F",
+      "name": "Energy Conversion I",
+      "credits": 16,
+      "level": "7",
+      "line": 3118,
+      "page": 59
+    },
+    {
+      "code": "EEE3092F",
+      "name": "Signals & Systems II",
+      "credits": 16,
+      "level": "7",
+      "line": 3119,
+      "page": 59
+    },
+    {
+      "code": "MEC2047F",
+      "name": "Engineering Dynamics",
+      "credits": 16,
+      "level": "6",
+      "line": 3120,
+      "page": 59
+    },
+    {
+      "code": "EEE3094S",
+      "name": "Control Systems Engineering",
+      "credits": 16,
+      "level": "7",
+      "line": 3121,
+      "page": 59
+    },
+    {
+      "code": "EEE3096S",
+      "name": "Embedded Systems II",
+      "credits": 16,
+      "level": "7",
+      "line": 3122,
+      "page": 59
+    },
+    {
+      "code": "EEE3099S",
+      "name": "Engineering Design: Mechatronics",
+      "credits": 8,
+      "level": "7",
+      "line": 3123,
+      "page": 59
+    },
+    {
+      "code": "MEC2045S",
+      "name": "Applied Engineering Mechanics",
+      "credits": 16,
+      "level": "6",
+      "line": 3124,
+      "page": 59
+    },
+    {
+      "code": "EEE3000X",
+      "name": "Practical Training",
+      "credits": 0,
+      "level": "7",
+      "line": 3126,
+      "page": 59
+    },
+    {
+      "code": "EEE4113F",
+      "name": "Engineering System Design",
+      "credits": 16,
+      "level": "8",
+      "line": 3133,
+      "page": 59
+    },
+    {
+      "code": "CML4607F",
+      "name": "Law for Engineers",
+      "credits": 10,
+      "level": "8",
+      "line": 3134,
+      "page": 59
+    },
+    {
+      "code": "EEE4124C",
+      "name": "Impact of Engineering on the Natural & Social Environment",
+      "credits": 8,
+      "level": "8",
+      "line": 3135,
+      "page": 59
+    },
+    {
+      "code": "EEE4125C",
+      "name": "New Ventures: Planning, Practice & Professionalism",
+      "credits": 16,
+      "level": "8",
+      "line": 3136,
+      "page": 59
+    },
+    {
+      "code": "EEE4022S",
+      "name": "Research Project",
+      "credits": 40,
+      "level": "8",
+      "line": 3137,
+      "page": 59
+    },
+    {
+      "code": "EEE4117F",
+      "name": "Energy Conversion II",
+      "credits": 16,
+      "level": "8",
+      "line": 3144,
+      "page": 59
+    },
+    {
+      "code": "EEE4118F",
+      "name": "Process Control & Instrumentation",
+      "credits": 16,
+      "level": "8",
+      "line": 3145,
+      "page": 59
+    },
+    {
+      "code": "EEE4119F",
+      "name": "Mechatronics",
+      "credits": 16,
+      "level": "8",
+      "line": 3146,
+      "page": 59
+    },
+    {
+      "code": "EEE4114F",
+      "name": "Digital Signal Processing",
+      "credits": 16,
+      "level": "8",
+      "line": 3151,
+      "page": 59
+    },
+    {
+      "code": "EEE4120F",
+      "name": "High Performance Digital Embedded Systems",
+      "credits": 16,
+      "level": "8",
+      "line": 3152,
+      "page": 59
+    },
+    {
+      "code": "HUB4049F",
+      "name": "Introduction to Medical Imaging & Image Processing",
+      "credits": 16,
+      "level": "8",
+      "line": 3153,
+      "page": 59
+    }
+  ],
+  "mechatronics_eee5": [
+    {
+      "code": "EEE1008F",
+      "name": "Introduction to Electrical Engineering A",
+      "credits": 12,
+      "level": "5",
+      "line": 3192,
+      "page": 60
+    },
+    {
+      "code": "MAM1023F",
+      "name": "Mathematics IA for Engineers Extended",
+      "credits": 18,
+      "level": "5",
+      "line": 3193,
+      "page": 60
+    },
+    {
+      "code": "PHY1014F",
+      "name": "Physics A for ASPECT",
+      "credits": 18,
+      "level": "5",
+      "line": 3194,
+      "page": 60
+    },
+    {
+      "code": "EEE1009S",
+      "name": "Introduction to Electrical Engineering B",
+      "credits": 12,
+      "level": "5",
+      "line": 3195,
+      "page": 60
+    },
+    {
+      "code": "MAM1024S",
+      "name": "Mathematics IB for Engineers Extended",
+      "credits": 18,
+      "level": "5",
+      "line": 3196,
+      "page": 60
+    },
+    {
+      "code": "PHY1015S",
+      "name": "Physics B for ASPECT",
+      "credits": 18,
+      "level": "5",
+      "line": 3197,
+      "page": 60
+    },
+    {
+      "code": "CSC1015F",
+      "name": "Computer Science 1015",
+      "credits": 18,
+      "level": "5",
+      "line": 3204,
+      "page": 60
+    },
+    {
+      "code": "EEE2045F",
+      "name": "Analogue Electronics",
+      "credits": 16,
+      "level": "6",
+      "line": 3205,
+      "page": 60
+    },
+    {
+      "code": "MAM2085F",
+      "name": "Vector Calculus for ASPECT",
+      "credits": 16,
+      "level": "6",
+      "line": 3206,
+      "page": 60
+    },
+    {
+      "code": "MEC1003F",
+      "name": "Engineering Drawing",
+      "credits": 8,
+      "level": "5",
+      "line": 3207,
+      "page": 60
+    },
+    {
+      "code": "CSC1016S",
+      "name": "Computer Science 1016",
+      "credits": 18,
+      "level": "5",
+      "line": 3208,
+      "page": 60
+    },
+    {
+      "code": "EEE2047S",
+      "name": "Signals and Systems I",
+      "credits": 16,
+      "level": "6",
+      "line": 3209,
+      "page": 60
+    },
+    {
+      "code": "MAM2084S",
+      "name": "Linear Algebra and Differential Equations for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 3210,
+      "page": 60
+    },
+    {
+      "code": "EEE1000X",
+      "name": "Practical Training",
+      "credits": 0,
+      "level": "5",
+      "line": 3211,
+      "page": 60
+    },
+    {
+      "code": "EEE2046F",
+      "name": "Embedded Systems I",
+      "credits": 16,
+      "level": "6",
+      "line": 3223,
+      "page": 61
+    },
+    {
+      "code": "EEE3090F",
+      "name": "Electronic Devices and Circuits",
+      "credits": 16,
+      "level": "7",
+      "line": 3224,
+      "page": 61
+    },
+    {
+      "code": "MEC1009F",
+      "name": "Introduction to Engineering Mechanics",
+      "credits": 16,
+      "level": "5",
+      "line": 3225,
+      "page": 61
+    },
+    {
+      "code": "EEE2044S",
+      "name": "Introduction to Power Engineering",
+      "credits": 16,
+      "level": "6",
+      "line": 3227,
+      "page": 61
+    },
+    {
+      "code": "EEE2048S",
+      "name": "Professional Communication for Electrical Engineering",
+      "credits": 8,
+      "level": "6",
+      "line": 3228,
+      "page": 61
+    },
+    {
+      "code": "EEE3094S",
+      "name": "Control Systems Engineering",
+      "credits": 16,
+      "level": "7",
+      "line": 3229,
+      "page": 61
+    },
+    {
+      "code": "PHY2010S",
+      "name": "Electromagnetism for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 3230,
+      "page": 61
+    },
+    {
+      "code": "EEE3088F",
+      "name": "Electrical Engineering Design Principles",
+      "credits": 8,
+      "level": "7",
+      "line": 3240,
+      "page": 61
+    },
+    {
+      "code": "EEE3091F",
+      "name": "Energy Conversion I",
+      "credits": 16,
+      "level": "7",
+      "line": 3241,
+      "page": 61
+    },
+    {
+      "code": "EEE3092F",
+      "name": "Signals & Systems II",
+      "credits": 16,
+      "level": "7",
+      "line": 3242,
+      "page": 61
+    },
+    {
+      "code": "MEC2047F",
+      "name": "Engineering Dynamics",
+      "credits": 16,
+      "level": "6",
+      "line": 3243,
+      "page": 61
+    },
+    {
+      "code": "EEE3096S",
+      "name": "Embedded Systems II",
+      "credits": 16,
+      "level": "7",
+      "line": 3244,
+      "page": 61
+    },
+    {
+      "code": "EEE3099S",
+      "name": "Engineering Design: Mechatronics",
+      "credits": 8,
+      "level": "7",
+      "line": 3245,
+      "page": 61
+    },
+    {
+      "code": "MEC2045S",
+      "name": "Applied Engineering Mechanics",
+      "credits": 16,
+      "level": "6",
+      "line": 3246,
+      "page": 61
+    },
+    {
+      "code": "EEE3000X",
+      "name": "Practical Training",
+      "credits": 0,
+      "level": "7",
+      "line": 3247,
+      "page": 61
+    },
+    {
+      "code": "EEE4113F",
+      "name": "Engineering System Design",
+      "credits": 16,
+      "level": "8",
+      "line": 3255,
+      "page": 61
+    },
+    {
+      "code": "CML4607F",
+      "name": "Law for Engineers",
+      "credits": 10,
+      "level": "8",
+      "line": 3256,
+      "page": 61
+    },
+    {
+      "code": "EEE4125C",
+      "name": "New Ventures: Planning, Practice & Professionalism",
+      "credits": 16,
+      "level": "8",
+      "line": 3257,
+      "page": 61
+    },
+    {
+      "code": "EEE4124C",
+      "name": "Impact of Engineering on the Natural & Social Environment",
+      "credits": 8,
+      "level": "8",
+      "line": 3258,
+      "page": 61
+    },
+    {
+      "code": "EEE4022S",
+      "name": "Research Project",
+      "credits": 40,
+      "level": "8",
+      "line": 3259,
+      "page": 61
+    },
+    {
+      "code": "EEE4117F",
+      "name": "Energy Conversion II",
+      "credits": 16,
+      "level": "8",
+      "line": 3266,
+      "page": 61
+    },
+    {
+      "code": "EEE4118F",
+      "name": "Process Control & Instrumentation",
+      "credits": 16,
+      "level": "8",
+      "line": 3267,
+      "page": 61
+    },
+    {
+      "code": "EEE4119F",
+      "name": "Mechatronics",
+      "credits": 16,
+      "level": "8",
+      "line": 3268,
+      "page": 61
+    },
+    {
+      "code": "EEE4114F",
+      "name": "Digital Signal Processing",
+      "credits": 16,
+      "level": "8",
+      "line": 3275,
+      "page": 62
+    },
+    {
+      "code": "EEE4120F",
+      "name": "High Performance Digital Embedded Systems",
+      "credits": 16,
+      "level": "8",
+      "line": 3276,
+      "page": 62
+    },
+    {
+      "code": "HUB4049F",
+      "name": "Introduction to Medical Imaging & Image Processing",
+      "credits": 16,
+      "level": "8",
+      "line": 3277,
+      "page": 62
+    }
+  ],
+  "eee_uot": [],
+  "mech4": [
+    {
+      "code": "MAM1020F",
+      "name": "Mathematics IA for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 3331,
+      "page": 63
+    },
+    {
+      "code": "MAM1021S",
+      "name": "Mathematics IB for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 3332,
+      "page": 63
+    },
+    {
+      "code": "MEC1007F",
+      "name": "Introduction to Engineering Drawing",
+      "credits": 8,
+      "level": "5",
+      "line": 3333,
+      "page": 63
+    },
+    {
+      "code": "MEC1009S",
+      "name": "Introduction to Engineering Mechanics",
+      "credits": 16,
+      "level": "5",
+      "line": 3334,
+      "page": 63
+    },
+    {
+      "code": "MEC1018S",
+      "name": "Introduction to Computer-Aided Design",
+      "credits": 6,
+      "level": "5",
+      "line": 3335,
+      "page": 63
+    },
+    {
+      "code": "MEC1019S",
+      "name": "Introduction to Materials Science and Engineering",
+      "credits": 8,
+      "level": "5",
+      "line": 3336,
+      "page": 63
+    },
+    {
+      "code": "MEC1020W",
+      "name": "Introduction to Mechanical Engineering",
+      "credits": 20,
+      "level": "5",
+      "line": 3337,
+      "page": 63
+    },
+    {
+      "code": "PHY1012F",
+      "name": "Physics A for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 3338,
+      "page": 63
+    },
+    {
+      "code": "PHY1013S",
+      "name": "Physics B for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 3339,
+      "page": 63
+    },
+    {
+      "code": "CSC1019F",
+      "name": "Foundations of Computer Programming for Engineers",
+      "credits": 12,
+      "level": "5",
+      "line": 3345,
+      "page": 63
+    },
+    {
+      "code": "EEE2041F",
+      "name": "Introduction to Electrical Engineering & Power Utilisation",
+      "credits": 16,
+      "level": "6",
+      "line": 3346,
+      "page": 63
+    },
+    {
+      "code": "EEE2042S",
+      "name": "Introduction to Analogue & Digital Electronics",
+      "credits": 8,
+      "level": "6",
+      "line": 3347,
+      "page": 63
+    },
+    {
+      "code": "MAM2083F",
+      "name": "Vector Calculus for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 3348,
+      "page": 63
+    },
+    {
+      "code": "MAM2084S",
+      "name": "Linear Algebra and Differential Equations for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 3349,
+      "page": 63
+    },
+    {
+      "code": "MEC1000X",
+      "name": "Practical Training",
+      "credits": 0,
+      "level": "5",
+      "line": 3350,
+      "page": 63
+    },
+    {
+      "code": "MEC2046F",
+      "name": "Materials Science in Mechanical Engineering",
+      "credits": 12,
+      "level": "6",
+      "line": 3351,
+      "page": 63
+    },
+    {
+      "code": "MEC2047S",
+      "name": "Engineering Dynamics",
+      "credits": 16,
+      "level": "6",
+      "line": 3352,
+      "page": 63
+    },
+    {
+      "code": "MEC2048S",
+      "name": "Mechanical Engineering Design",
+      "credits": 16,
+      "level": "6",
+      "line": 3353,
+      "page": 63
+    },
+    {
+      "code": "MEC2049F",
+      "name": "Solid Mechanics I",
+      "credits": 16,
+      "level": "6",
+      "line": 3354,
+      "page": 63
+    },
+    {
+      "code": "MEC2050S",
+      "name": "Thermofluids 1",
+      "credits": 16,
+      "level": "6",
+      "line": 3355,
+      "page": 63
+    },
+    {
+      "code": "MEC2000X",
+      "name": "Practical Training II",
+      "credits": 0,
+      "level": "7",
+      "line": 3361,
+      "page": 63
+    },
+    {
+      "code": "MEC3074F",
+      "name": "Measurement and Actuators",
+      "credits": 8,
+      "level": "7",
+      "line": 3362,
+      "page": 63
+    },
+    {
+      "code": "MEC3075F",
+      "name": "Computer Methods for Mechanical Engineers",
+      "credits": 12,
+      "level": "7",
+      "line": 3363,
+      "page": 63
+    },
+    {
+      "code": "MEC3076F",
+      "name": "Stress Analysis and Materials",
+      "credits": 16,
+      "level": "7",
+      "line": 3364,
+      "page": 63
+    },
+    {
+      "code": "MEC3077F",
+      "name": "Thermofluids II",
+      "credits": 16,
+      "level": "7",
+      "line": 3365,
+      "page": 63
+    },
+    {
+      "code": "MEC3078S",
+      "name": "Mechanics of Machines",
+      "credits": 8,
+      "level": "7",
+      "line": 3366,
+      "page": 63
+    },
+    {
+      "code": "MEC3079S",
+      "name": "Control Systems",
+      "credits": 12,
+      "level": "8",
+      "line": 3367,
+      "page": 63
+    },
+    {
+      "code": "MEC3080S",
+      "name": "Thermofluids III",
+      "credits": 16,
+      "level": "7",
+      "line": 3368,
+      "page": 63
+    },
+    {
+      "code": "MEC3081S",
+      "name": "Manufacturing Sciences",
+      "credits": 12,
+      "level": "7",
+      "line": 3369,
+      "page": 63
+    },
+    {
+      "code": "MEC3082S",
+      "name": "Mechanical Engineering Machine Element Design",
+      "credits": 16,
+      "level": "7",
+      "line": 3370,
+      "page": 63
+    },
+    {
+      "code": "MEC3083W",
+      "name": "Engineer in Society",
+      "credits": 16,
+      "level": "8",
+      "line": 3371,
+      "page": 63
+    },
+    {
+      "code": "STA1008F",
+      "name": "Statistics for Engineers",
+      "credits": 12,
+      "level": "5",
+      "line": 3372,
+      "page": 63
+    },
+    {
+      "code": "MEC4047F",
+      "name": "Mechanical Vibrations",
+      "credits": 12,
+      "level": "8",
+      "line": 3378,
+      "page": 63
+    },
+    {
+      "code": "MEC4108S",
+      "name": "System Design",
+      "credits": 12,
+      "level": "8",
+      "line": 3379,
+      "page": 63
+    },
+    {
+      "code": "MEC4123F",
+      "name": "Engineer in Business",
+      "credits": 16,
+      "level": "8",
+      "line": 3380,
+      "page": 63
+    },
+    {
+      "code": "MEC4124W",
+      "name": "Engineering Product Design",
+      "credits": 22,
+      "level": "8",
+      "line": 3386,
+      "page": 64
+    },
+    {
+      "code": "MEC4125F",
+      "name": "Thermofluids IV",
+      "credits": 20,
+      "level": "8",
+      "line": 3387,
+      "page": 64
+    },
+    {
+      "code": "MEC4128Z",
+      "name": "Final Year Engineering Project",
+      "credits": 20,
+      "level": "8",
+      "line": 3388,
+      "page": 64
+    }
+  ],
+  "mech5": [
+    {
+      "code": "MAM1023F",
+      "name": "Mathematics IA for Engineers Extended",
+      "credits": 18,
+      "level": "5",
+      "line": 3442,
+      "page": 65
+    },
+    {
+      "code": "MAM1024S",
+      "name": "Mathematics IB for Engineers Extended",
+      "credits": 18,
+      "level": "5",
+      "line": 3443,
+      "page": 65
+    },
+    {
+      "code": "MEC1007F",
+      "name": "Introduction to Engineering Drawing",
+      "credits": 8,
+      "level": "5",
+      "line": 3444,
+      "page": 65
+    },
+    {
+      "code": "MEC1018S",
+      "name": "Introduction to Computer-Aided Design",
+      "credits": 6,
+      "level": "5",
+      "line": 3445,
+      "page": 65
+    },
+    {
+      "code": "MEC1019S",
+      "name": "Introduction to Materials Science and Engineering",
+      "credits": 8,
+      "level": "5",
+      "line": 3446,
+      "page": 65
+    },
+    {
+      "code": "MEC1020W",
+      "name": "Introduction to Mechanical Engineering",
+      "credits": 20,
+      "level": "5",
+      "line": 3447,
+      "page": 65
+    },
+    {
+      "code": "PHY1014S",
+      "name": "Physics A for ASPECT",
+      "credits": 18,
+      "level": "5",
+      "line": 3448,
+      "page": 65
+    },
+    {
+      "code": "PHY1015S",
+      "name": "Physics B for ASPECT",
+      "credits": 18,
+      "level": "5",
+      "line": 3449,
+      "page": 65
+    },
+    {
+      "code": "CSC1019F",
+      "name": "Foundations of Computer Programming for Engineers",
+      "credits": 12,
+      "level": "5",
+      "line": 3459,
+      "page": 65
+    },
+    {
+      "code": "MAM2085F",
+      "name": "Vector Calculus for ASPECT",
+      "credits": 16,
+      "level": "6",
+      "line": 3460,
+      "page": 65
+    },
+    {
+      "code": "MAM2084S",
+      "name": "Linear Algebra and Differential Equations for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 3461,
+      "page": 65
+    },
+    {
+      "code": "MEC1000X",
+      "name": "Practical Training I",
+      "credits": 0,
+      "level": "5",
+      "line": 3462,
+      "page": 65
+    },
+    {
+      "code": "MEC1008S",
+      "name": "Introduction to Mechanical Design",
+      "credits": 8,
+      "level": "5",
+      "line": 3463,
+      "page": 65
+    },
+    {
+      "code": "MEC1009F",
+      "name": "Introduction to Engineering Mechanics",
+      "credits": 16,
+      "level": "5",
+      "line": 3464,
+      "page": 65
+    },
+    {
+      "code": "MEC2046F",
+      "name": "Materials Science in Mechanical Engineering",
+      "credits": 12,
+      "level": "6",
+      "line": 3465,
+      "page": 65
+    },
+    {
+      "code": "EEE2041F",
+      "name": "Introduction to Electrical Engineering & Power Utilisation",
+      "credits": 16,
+      "level": "6",
+      "line": 3472,
+      "page": 65
+    },
+    {
+      "code": "EEE2042S",
+      "name": "Introduction to Analogue & Digital Electronics",
+      "credits": 8,
+      "level": "6",
+      "line": 3473,
+      "page": 65
+    },
+    {
+      "code": "MEC2000X",
+      "name": "Practical Training II",
+      "credits": 0,
+      "level": "7",
+      "line": 3474,
+      "page": 65
+    },
+    {
+      "code": "MEC2047S",
+      "name": "Engineering Dynamics",
+      "credits": 16,
+      "level": "6",
+      "line": 3475,
+      "page": 65
+    },
+    {
+      "code": "MEC2048S",
+      "name": "Mechanical Engineering Design",
+      "credits": 16,
+      "level": "6",
+      "line": 3476,
+      "page": 65
+    },
+    {
+      "code": "MEC2049F",
+      "name": "Solid Mechanics I",
+      "credits": 16,
+      "level": "6",
+      "line": 3477,
+      "page": 65
+    },
+    {
+      "code": "MEC2050S",
+      "name": "Thermofluids 1",
+      "credits": 16,
+      "level": "6",
+      "line": 3478,
+      "page": 65
+    },
+    {
+      "code": "MEC3075F",
+      "name": "Computer Methods for Mechanical Engineers",
+      "credits": 12,
+      "level": "7",
+      "line": 3479,
+      "page": 65
+    },
+    {
+      "code": "MEC3074F",
+      "name": "Measurements and Actuators",
+      "credits": 8,
+      "level": "7",
+      "line": 3486,
+      "page": 65
+    },
+    {
+      "code": "MEC3076F",
+      "name": "Stress Analysis and Materials",
+      "credits": 16,
+      "level": "7",
+      "line": 3487,
+      "page": 65
+    },
+    {
+      "code": "MEC3077F",
+      "name": "Thermofluids II",
+      "credits": 16,
+      "level": "7",
+      "line": 3488,
+      "page": 65
+    },
+    {
+      "code": "MEC3078S",
+      "name": "Mechanics of Machines",
+      "credits": 8,
+      "level": "7",
+      "line": 3489,
+      "page": 65
+    },
+    {
+      "code": "MEC3079S",
+      "name": "Control Systems",
+      "credits": 12,
+      "level": "8",
+      "line": 3490,
+      "page": 65
+    },
+    {
+      "code": "MEC3080S",
+      "name": "Thermofluids III",
+      "credits": 16,
+      "level": "7",
+      "line": 3491,
+      "page": 65
+    },
+    {
+      "code": "MEC3081S",
+      "name": "Manufacturing Sciences",
+      "credits": 12,
+      "level": "7",
+      "line": 3497,
+      "page": 66
+    },
+    {
+      "code": "MEC3082S",
+      "name": "Mechanical Engineering Machine Element Design",
+      "credits": 16,
+      "level": "7",
+      "line": 3498,
+      "page": 66
+    },
+    {
+      "code": "MEC3083W",
+      "name": "Engineer in Society",
+      "credits": 16,
+      "level": "8",
+      "line": 3499,
+      "page": 66
+    },
+    {
+      "code": "STA1008F",
+      "name": "Statistics for Engineers",
+      "credits": 12,
+      "level": "5",
+      "line": 3500,
+      "page": 66
+    },
+    {
+      "code": "MEC4047F",
+      "name": "Mechanical Vibrations",
+      "credits": 12,
+      "level": "8",
+      "line": 3506,
+      "page": 66
+    },
+    {
+      "code": "MEC4108S",
+      "name": "System Design",
+      "credits": 12,
+      "level": "8",
+      "line": 3507,
+      "page": 66
+    },
+    {
+      "code": "MEC4123F",
+      "name": "Engineer in Business",
+      "credits": 16,
+      "level": "8",
+      "line": 3508,
+      "page": 66
+    },
+    {
+      "code": "MEC4124W",
+      "name": "Engineering Product Design",
+      "credits": 22,
+      "level": "8",
+      "line": 3509,
+      "page": 66
+    },
+    {
+      "code": "MEC4125F",
+      "name": "Thermofluids IV",
+      "credits": 20,
+      "level": "8",
+      "line": 3510,
+      "page": 66
+    },
+    {
+      "code": "MEC4128Z",
+      "name": "Final Year Engineering Project",
+      "credits": 20,
+      "level": "8",
+      "line": 3511,
+      "page": 66
+    }
+  ],
+  "mechmech4": [
+    {
+      "code": "MAM1020F",
+      "name": "Mathematics IA for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 3561,
+      "page": 67
+    },
+    {
+      "code": "MAM1021S",
+      "name": "Mathematics IB for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 3562,
+      "page": 67
+    },
+    {
+      "code": "MEC1007F",
+      "name": "Introduction to Engineering Drawing",
+      "credits": 8,
+      "level": "5",
+      "line": 3563,
+      "page": 67
+    },
+    {
+      "code": "MEC1009S",
+      "name": "Introduction to Engineering Mechanics",
+      "credits": 16,
+      "level": "5",
+      "line": 3564,
+      "page": 67
+    },
+    {
+      "code": "MEC1018S",
+      "name": "Introduction to Computer-Aided Design",
+      "credits": 6,
+      "level": "5",
+      "line": 3565,
+      "page": 67
+    },
+    {
+      "code": "MEC1019S",
+      "name": "Introduction to Materials Science and Engineering",
+      "credits": 8,
+      "level": "5",
+      "line": 3566,
+      "page": 67
+    },
+    {
+      "code": "MEC1020W",
+      "name": "Introduction to Mechanical Engineering",
+      "credits": 20,
+      "level": "5",
+      "line": 3567,
+      "page": 67
+    },
+    {
+      "code": "PHY1012F",
+      "name": "Physics A for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 3568,
+      "page": 67
+    },
+    {
+      "code": "PHY1013S",
+      "name": "Physics B for Engineers",
+      "credits": 18,
+      "level": "5",
+      "line": 3569,
+      "page": 67
+    },
+    {
+      "code": "CSC1019F",
+      "name": "Foundations of Computer Programming for Engineers",
+      "credits": 12,
+      "level": "5",
+      "line": 3575,
+      "page": 67
+    },
+    {
+      "code": "EEE2041F",
+      "name": "Introduction to Electrical Engineering & Power Utilisation",
+      "credits": 16,
+      "level": "6",
+      "line": 3576,
+      "page": 67
+    },
+    {
+      "code": "EEE2042S",
+      "name": "Introduction to Analogue & Digital Electronics",
+      "credits": 8,
+      "level": "6",
+      "line": 3577,
+      "page": 67
+    },
+    {
+      "code": "MAM2083F",
+      "name": "Vector Calculus for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 3578,
+      "page": 67
+    },
+    {
+      "code": "MAM2084S",
+      "name": "Linear Algebra and Differential Equations for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 3579,
+      "page": 67
+    },
+    {
+      "code": "MEC1000X",
+      "name": "Practical Training I",
+      "credits": 0,
+      "level": "5",
+      "line": 3580,
+      "page": 67
+    },
+    {
+      "code": "MEC2046F",
+      "name": "Materials Science in Mechanical Engineering",
+      "credits": 12,
+      "level": "6",
+      "line": 3581,
+      "page": 67
+    },
+    {
+      "code": "MEC2047S",
+      "name": "Engineering Dynamics",
+      "credits": 16,
+      "level": "6",
+      "line": 3582,
+      "page": 67
+    },
+    {
+      "code": "MEC2048S",
+      "name": "Mechanical Engineering Design",
+      "credits": 16,
+      "level": "6",
+      "line": 3583,
+      "page": 67
+    },
+    {
+      "code": "MEC2049F",
+      "name": "Solid Mechanics I",
+      "credits": 16,
+      "level": "6",
+      "line": 3584,
+      "page": 67
+    },
+    {
+      "code": "MEC2050S",
+      "name": "Thermofluids I",
+      "credits": 16,
+      "level": "6",
+      "line": 3585,
+      "page": 67
+    },
+    {
+      "code": "EEE2046S",
+      "name": "Embedded Systems I",
+      "credits": 16,
+      "level": "6",
+      "line": 3591,
+      "page": 67
+    },
+    {
+      "code": "MEC2000X",
+      "name": "Practical Training II",
+      "credits": 0,
+      "level": "7",
+      "line": 3592,
+      "page": 67
+    },
+    {
+      "code": "MEC3074F",
+      "name": "Measurement and Actuators",
+      "credits": 8,
+      "level": "7",
+      "line": 3593,
+      "page": 67
+    },
+    {
+      "code": "MEC3075F",
+      "name": "Computer Methods for Mechanical Engineering",
+      "credits": 12,
+      "level": "7",
+      "line": 3594,
+      "page": 67
+    },
+    {
+      "code": "MEC3076F",
+      "name": "Stress Analysis and Materials",
+      "credits": 16,
+      "level": "7",
+      "line": 3595,
+      "page": 67
+    },
+    {
+      "code": "MEC3077F",
+      "name": "Thermofluids II",
+      "credits": 16,
+      "level": "7",
+      "line": 3596,
+      "page": 67
+    },
+    {
+      "code": "MEC3078S",
+      "name": "Mechanics of Machines",
+      "credits": 8,
+      "level": "7",
+      "line": 3597,
+      "page": 67
+    },
+    {
+      "code": "MEC3079S",
+      "name": "Control Systems",
+      "credits": 12,
+      "level": "8",
+      "line": 3598,
+      "page": 67
+    },
+    {
+      "code": "MEC3081S",
+      "name": "Manufacturing Sciences",
+      "credits": 12,
+      "level": "7",
+      "line": 3599,
+      "page": 67
+    },
+    {
+      "code": "MEC3082S",
+      "name": "Mechanical Engineering Machine Element Design",
+      "credits": 16,
+      "level": "7",
+      "line": 3600,
+      "page": 67
+    },
+    {
+      "code": "MEC3083W",
+      "name": "Engineer in Society",
+      "credits": 16,
+      "level": "8",
+      "line": 3601,
+      "page": 67
+    },
+    {
+      "code": "STA1008F",
+      "name": "Statistics for Engineers",
+      "credits": 12,
+      "level": "5",
+      "line": 3602,
+      "page": 67
+    },
+    {
+      "code": "MEC4047F",
+      "name": "Mechanical Vibrations",
+      "credits": 12,
+      "level": "8",
+      "line": 3612,
+      "page": 68
+    },
+    {
+      "code": "MEC4108S",
+      "name": "System Design",
+      "credits": 12,
+      "level": "8",
+      "line": 3613,
+      "page": 68
+    },
+    {
+      "code": "MEC4123F",
+      "name": "Engineer in Business",
+      "credits": 16,
+      "level": "8",
+      "line": 3614,
+      "page": 68
+    },
+    {
+      "code": "MEC4124W",
+      "name": "Engineering Product Design",
+      "credits": 22,
+      "level": "8",
+      "line": 3615,
+      "page": 68
+    },
+    {
+      "code": "MEC4126F",
+      "name": "Integrating Embedded Systems",
+      "credits": 16,
+      "level": "8",
+      "line": 3616,
+      "page": 68
+    },
+    {
+      "code": "MEC4127F",
+      "name": "Mechatronic Systems",
+      "credits": 16,
+      "level": "8",
+      "line": 3617,
+      "page": 68
+    },
+    {
+      "code": "MEC4128Z",
+      "name": "Final Year Engineering Project",
+      "credits": 20,
+      "level": "8",
+      "line": 3618,
+      "page": 68
+    }
+  ],
+  "mechmech5": [
+    {
+      "code": "MAM1023F",
+      "name": "Mathematics IA for Engineers Extended",
+      "credits": 18,
+      "level": "5",
+      "line": 3672,
+      "page": 69
+    },
+    {
+      "code": "MAM1024S",
+      "name": "Mathematics IB for Engineers Extended",
+      "credits": 18,
+      "level": "5",
+      "line": 3673,
+      "page": 69
+    },
+    {
+      "code": "MEC1007F",
+      "name": "Introduction to Engineering Drawing",
+      "credits": 8,
+      "level": "5",
+      "line": 3674,
+      "page": 69
+    },
+    {
+      "code": "MEC1018S",
+      "name": "Introduction to Computer-Aided Design",
+      "credits": 6,
+      "level": "5",
+      "line": 3675,
+      "page": 69
+    },
+    {
+      "code": "MEC1019S",
+      "name": "Introduction to Materials Science and Engineering",
+      "credits": 8,
+      "level": "5",
+      "line": 3676,
+      "page": 69
+    },
+    {
+      "code": "MEC1020W",
+      "name": "Introduction to Mechanical Engineering",
+      "credits": 20,
+      "level": "5",
+      "line": 3677,
+      "page": 69
+    },
+    {
+      "code": "PHY1014S",
+      "name": "Physics A for ASPECT",
+      "credits": 18,
+      "level": "5",
+      "line": 3678,
+      "page": 69
+    },
+    {
+      "code": "PHY1015S",
+      "name": "Physics B for ASPECT",
+      "credits": 18,
+      "level": "5",
+      "line": 3679,
+      "page": 69
+    },
+    {
+      "code": "CSC1019F",
+      "name": "Foundations of Computer Programming for Engineers",
+      "credits": 12,
+      "level": "5",
+      "line": 3689,
+      "page": 69
+    },
+    {
+      "code": "MAM2085F",
+      "name": "Vector Calculus for ASPECT",
+      "credits": 16,
+      "level": "6",
+      "line": 3690,
+      "page": 69
+    },
+    {
+      "code": "MAM2084S",
+      "name": "Linear Algebra and Differential Equations for Engineers",
+      "credits": 16,
+      "level": "6",
+      "line": 3691,
+      "page": 69
+    },
+    {
+      "code": "MEC1000X",
+      "name": "Practical Training I",
+      "credits": 0,
+      "level": "5",
+      "line": 3692,
+      "page": 69
+    },
+    {
+      "code": "MEC1008S",
+      "name": "Introduction to Mechanical Design",
+      "credits": 8,
+      "level": "5",
+      "line": 3693,
+      "page": 69
+    },
+    {
+      "code": "MEC1009F",
+      "name": "Introduction to Engineering Mechanics",
+      "credits": 16,
+      "level": "5",
+      "line": 3694,
+      "page": 69
+    },
+    {
+      "code": "MEC2046F",
+      "name": "Material Science in Mechanical Engineering",
+      "credits": 12,
+      "level": "6",
+      "line": 3695,
+      "page": 69
+    },
+    {
+      "code": "EEE2041F",
+      "name": "Introduction to Electrical Engineering & Power Utilisation",
+      "credits": 16,
+      "level": "6",
+      "line": 3702,
+      "page": 69
+    },
+    {
+      "code": "EEE2042S",
+      "name": "Introduction to Analogue & Digital Electronics",
+      "credits": 8,
+      "level": "6",
+      "line": 3703,
+      "page": 69
+    },
+    {
+      "code": "MEC2000X",
+      "name": "Practical Training II",
+      "credits": 0,
+      "level": "7",
+      "line": 3704,
+      "page": 69
+    },
+    {
+      "code": "MEC2047S",
+      "name": "Engineering Dynamics",
+      "credits": 16,
+      "level": "6",
+      "line": 3705,
+      "page": 69
+    },
+    {
+      "code": "MEC2048S",
+      "name": "Mechanical Engineering Design",
+      "credits": 16,
+      "level": "6",
+      "line": 3706,
+      "page": 69
+    },
+    {
+      "code": "MEC2049F",
+      "name": "Solid Mechanics I",
+      "credits": 16,
+      "level": "6",
+      "line": 3707,
+      "page": 69
+    },
+    {
+      "code": "MEC2050S",
+      "name": "Thermofluids 1",
+      "credits": 16,
+      "level": "6",
+      "line": 3708,
+      "page": 69
+    },
+    {
+      "code": "MEC3075F",
+      "name": "Computer Methods for Mechanical Engineers",
+      "credits": 12,
+      "level": "7",
+      "line": 3709,
+      "page": 69
+    },
+    {
+      "code": "EEE2046F",
+      "name": "Embedded Systems I",
+      "credits": 16,
+      "level": "6",
+      "line": 3719,
+      "page": 70
+    },
+    {
+      "code": "MEC3074F",
+      "name": "Measurements and Actuators",
+      "credits": 8,
+      "level": "7",
+      "line": 3720,
+      "page": 70
+    },
+    {
+      "code": "MEC3076F",
+      "name": "Stress Analysis and Materials",
+      "credits": 16,
+      "level": "7",
+      "line": 3721,
+      "page": 70
+    },
+    {
+      "code": "MEC3077F",
+      "name": "Thermofluids II",
+      "credits": 16,
+      "level": "7",
+      "line": 3722,
+      "page": 70
+    },
+    {
+      "code": "MEC3078S",
+      "name": "Mechanics of Machines",
+      "credits": 8,
+      "level": "7",
+      "line": 3723,
+      "page": 70
+    },
+    {
+      "code": "MEC3079S",
+      "name": "Control Systems",
+      "credits": 12,
+      "level": "8",
+      "line": 3724,
+      "page": 70
+    },
+    {
+      "code": "MEC3081S",
+      "name": "Manufacturing Sciences",
+      "credits": 12,
+      "level": "7",
+      "line": 3725,
+      "page": 70
+    },
+    {
+      "code": "MEC3082S",
+      "name": "Mechanical Engineering Machine Element Design",
+      "credits": 16,
+      "level": "7",
+      "line": 3726,
+      "page": 70
+    },
+    {
+      "code": "MEC3083W",
+      "name": "Engineer in Society",
+      "credits": 16,
+      "level": "8",
+      "line": 3727,
+      "page": 70
+    },
+    {
+      "code": "STA1008F",
+      "name": "Statistics for Engineers",
+      "credits": 12,
+      "level": "5",
+      "line": 3728,
+      "page": 70
+    },
+    {
+      "code": "MEC4108S",
+      "name": "System Design",
+      "credits": 12,
+      "level": "8",
+      "line": 3734,
+      "page": 70
+    },
+    {
+      "code": "MEC4047F",
+      "name": "Mechanical Vibrations",
+      "credits": 12,
+      "level": "8",
+      "line": 3735,
+      "page": 70
+    },
+    {
+      "code": "MEC4123F",
+      "name": "Engineer in Business",
+      "credits": 16,
+      "level": "8",
+      "line": 3736,
+      "page": 70
+    },
+    {
+      "code": "MEC4124W",
+      "name": "Engineering Product Design",
+      "credits": 22,
+      "level": "8",
+      "line": 3737,
+      "page": 70
+    },
+    {
+      "code": "MEC4126F",
+      "name": "Integrating Embedded Systems",
+      "credits": 16,
+      "level": "8",
+      "line": 3738,
+      "page": 70
+    },
+    {
+      "code": "MEC4127F",
+      "name": "Mechatronic Systems",
+      "credits": 16,
+      "level": "8",
+      "line": 3739,
+      "page": 70
+    },
+    {
+      "code": "MEC4128Z",
+      "name": "Final Year Engineering Project",
+      "credits": 20,
+      "level": "8",
+      "line": 3740,
+      "page": 70
+    }
+  ],
+  "mec_uot": []
+}

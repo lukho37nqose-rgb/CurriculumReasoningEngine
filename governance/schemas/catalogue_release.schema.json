@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://curriculumadvisor.example/schemas/catalogue-release-v1.json",
+  "title": "CurriculumAdvisor Catalogue Release Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "release_id",
+    "academic_year",
+    "state",
+    "created_at",
+    "created_by",
+    "source_status",
+    "catalogue_root_name",
+    "file_count",
+    "content_sha256",
+    "files",
+    "notes"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "release_id": {"type": "string", "minLength": 1},
+    "academic_year": {"type": "integer", "minimum": 2000, "maximum": 2200},
+    "state": {"enum": ["baseline", "draft", "reviewed", "approved", "published", "superseded"]},
+    "created_at": {"type": "string", "format": "date-time"},
+    "created_by": {"type": "string", "minLength": 1},
+    "source_status": {"type": "string", "minLength": 1},
+    "catalogue_root_name": {"type": "string", "minLength": 1},
+    "file_count": {"type": "integer", "minimum": 0},
+    "content_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "size", "sha256"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "size": {"type": "integer", "minimum": 0},
+          "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+        }
+      }
+    },
+    "notes": {"type": "array", "items": {"type": "string"}}
+  }
+}

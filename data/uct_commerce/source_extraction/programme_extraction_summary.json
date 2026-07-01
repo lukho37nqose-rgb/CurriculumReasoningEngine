@@ -1,0 +1,380 @@
+{
+  "cu020bus01": {
+    "course_rows": 30,
+    "codes": 33,
+    "unresolved": [
+      "The distinction paragraph refers to five prescribed courses while the curriculum table lists six; the award calculation uses the best four of the six listed courses and is flagged for confirmation."
+    ]
+  },
+  "cu021gsb48": {
+    "course_rows": 7,
+    "codes": 14,
+    "unresolved": []
+  },
+  "cu017acc01": {
+    "course_rows": 8,
+    "codes": 8,
+    "unresolved": []
+  },
+  "cb003bus01": {
+    "course_rows": 35,
+    "codes": 39,
+    "unresolved": []
+  },
+  "cb003bus09": {
+    "course_rows": 37,
+    "codes": 42,
+    "unresolved": []
+  },
+  "cb004sta13": {
+    "course_rows": 43,
+    "codes": 47,
+    "unresolved": []
+  },
+  "cb004ftx05": {
+    "course_rows": 30,
+    "codes": 36,
+    "unresolved": []
+  },
+  "cb004ftx04": {
+    "course_rows": 34,
+    "codes": 39,
+    "unresolved": []
+  },
+  "cb004csc05": {
+    "course_rows": 40,
+    "codes": 43,
+    "unresolved": []
+  },
+  "cb004inf01": {
+    "course_rows": 31,
+    "codes": 35,
+    "unresolved": []
+  },
+  "cb004eco01": {
+    "course_rows": 48,
+    "codes": 52,
+    "unresolved": []
+  },
+  "cb004eco03": {
+    "course_rows": 46,
+    "codes": 50,
+    "unresolved": []
+  },
+  "cb004bus07": {
+    "course_rows": 25,
+    "codes": 34,
+    "unresolved": []
+  },
+  "cb004bus28": {
+    "course_rows": 27,
+    "codes": 32,
+    "unresolved": []
+  },
+  "cb025bus01": {
+    "course_rows": 36,
+    "codes": 43,
+    "unresolved": []
+  },
+  "cb025bus09": {
+    "course_rows": 38,
+    "codes": 46,
+    "unresolved": []
+  },
+  "cb024sta13": {
+    "course_rows": 44,
+    "codes": 52,
+    "unresolved": []
+  },
+  "cb024ftx05": {
+    "course_rows": 32,
+    "codes": 38,
+    "unresolved": []
+  },
+  "cb024ftx04": {
+    "course_rows": 35,
+    "codes": 41,
+    "unresolved": []
+  },
+  "cb024csc05": {
+    "course_rows": 42,
+    "codes": 48,
+    "unresolved": []
+  },
+  "cb024inf01": {
+    "course_rows": 32,
+    "codes": 39,
+    "unresolved": []
+  },
+  "cb024eco01": {
+    "course_rows": 49,
+    "codes": 55,
+    "unresolved": []
+  },
+  "cb024eco03": {
+    "course_rows": 46,
+    "codes": 51,
+    "unresolved": []
+  },
+  "cb024bus07": {
+    "course_rows": 26,
+    "codes": 36,
+    "unresolved": []
+  },
+  "cb024bus28": {
+    "course_rows": 27,
+    "codes": 35,
+    "unresolved": []
+  },
+  "cb018bus01": {
+    "course_rows": 36,
+    "codes": 42,
+    "unresolved": []
+  },
+  "cb018bus09": {
+    "course_rows": 38,
+    "codes": 44,
+    "unresolved": []
+  },
+  "cb015sta13": {
+    "course_rows": 44,
+    "codes": 49,
+    "unresolved": []
+  },
+  "cb015ftx05": {
+    "course_rows": 32,
+    "codes": 41,
+    "unresolved": []
+  },
+  "cb015ftx04": {
+    "course_rows": 36,
+    "codes": 43,
+    "unresolved": []
+  },
+  "cb015inf01": {
+    "course_rows": 32,
+    "codes": 40,
+    "unresolved": []
+  },
+  "cb015eco01": {
+    "course_rows": 49,
+    "codes": 56,
+    "unresolved": []
+  },
+  "cb015eco03": {
+    "course_rows": 48,
+    "codes": 54,
+    "unresolved": []
+  },
+  "cb015bus07": {
+    "course_rows": 26,
+    "codes": 34,
+    "unresolved": []
+  },
+  "cb015bus28": {
+    "course_rows": 27,
+    "codes": 32,
+    "unresolved": []
+  },
+  "cb019bus01": {
+    "course_rows": 29,
+    "codes": 33,
+    "unresolved": []
+  },
+  "cb019bus09": {
+    "course_rows": 30,
+    "codes": 34,
+    "unresolved": []
+  },
+  "cb001acc08": {
+    "course_rows": 22,
+    "codes": 26,
+    "unresolved": []
+  },
+  "cb001acc04": {
+    "course_rows": 24,
+    "codes": 28,
+    "unresolved": []
+  },
+  "cb001inf01": {
+    "course_rows": 22,
+    "codes": 26,
+    "unresolved": []
+  },
+  "cb001inf06": {
+    "course_rows": 26,
+    "codes": 29,
+    "unresolved": []
+  },
+  "cb001inf11": {
+    "course_rows": 28,
+    "codes": 33,
+    "unresolved": []
+  },
+  "cb001phi03": {
+    "course_rows": 28,
+    "codes": 30,
+    "unresolved": [
+      "Plus 2 Courses from the list below,",
+      "Any PHI NQF Level 6 course .........................................................",
+      "Any POL NQF Level 6 course ........................................................",
+      "Any POL NQF Level 7 course ........................................................",
+      "Any PHI NQF Level 7 course .........................................................",
+      "Any ECO NQF Level 7 course........................................................"
+    ]
+  },
+  "cb001eco02": {
+    "course_rows": 25,
+    "codes": 28,
+    "unresolved": []
+  },
+  "cb001eco04": {
+    "course_rows": 42,
+    "codes": 46,
+    "unresolved": []
+  },
+  "cb001eco03": {
+    "course_rows": 28,
+    "codes": 28,
+    "unresolved": []
+  },
+  "cb001bus06": {
+    "course_rows": 15,
+    "codes": 23,
+    "unresolved": []
+  },
+  "cb026bus01": {
+    "course_rows": 30,
+    "codes": 36,
+    "unresolved": []
+  },
+  "cb026bus09": {
+    "course_rows": 31,
+    "codes": 36,
+    "unresolved": []
+  },
+  "cb023acc08": {
+    "course_rows": 23,
+    "codes": 29,
+    "unresolved": []
+  },
+  "cb023acc04": {
+    "course_rows": 25,
+    "codes": 31,
+    "unresolved": []
+  },
+  "cb023phi03": {
+    "course_rows": 29,
+    "codes": 33,
+    "unresolved": [
+      "Plus 2 courses from the list below, 1 of which must be at NQF Level 7",
+      "Any PHI NQF Level 6 course .........................................................",
+      "Any POL NQF Level 6 course ........................................................",
+      "Any POL NQF Level 7 course ........................................................",
+      "Any PHI NQF Level 7 course .........................................................",
+      "Any ECO NQF Level 7 course........................................................"
+    ]
+  },
+  "cb023eco02": {
+    "course_rows": 26,
+    "codes": 33,
+    "unresolved": []
+  },
+  "cb023eco04": {
+    "course_rows": 37,
+    "codes": 43,
+    "unresolved": []
+  },
+  "cb023eco03": {
+    "course_rows": 29,
+    "codes": 31,
+    "unresolved": []
+  },
+  "cb023inf01": {
+    "course_rows": 23,
+    "codes": 31,
+    "unresolved": []
+  },
+  "cb023inf06": {
+    "course_rows": 27,
+    "codes": 32,
+    "unresolved": []
+  },
+  "cb023inf11": {
+    "course_rows": 29,
+    "codes": 36,
+    "unresolved": []
+  },
+  "cb023bus06": {
+    "course_rows": 16,
+    "codes": 24,
+    "unresolved": []
+  },
+  "cb020bus01": {
+    "course_rows": 30,
+    "codes": 36,
+    "unresolved": []
+  },
+  "cb020bus09": {
+    "course_rows": 31,
+    "codes": 38,
+    "unresolved": []
+  },
+  "cb011acc08": {
+    "course_rows": 23,
+    "codes": 29,
+    "unresolved": []
+  },
+  "cb011acc04": {
+    "course_rows": 26,
+    "codes": 32,
+    "unresolved": []
+  },
+  "cb011phi03": {
+    "course_rows": 29,
+    "codes": 33,
+    "unresolved": [
+      "Plus 2 courses from the list below, 1 of which must be NQF Level 7",
+      "Any POL NQF Level 6 course ........................................................",
+      "Any PHI NQF Level 6 course .........................................................",
+      "Any POL NQF Level 7 course ........................................................",
+      "Any PHI NQF Level 7 course .........................................................",
+      "Any ECO NQF Level 7 course........................................................"
+    ]
+  },
+  "cb011eco02": {
+    "course_rows": 26,
+    "codes": 33,
+    "unresolved": []
+  },
+  "cb011eco04": {
+    "course_rows": 38,
+    "codes": 45,
+    "unresolved": []
+  },
+  "cb011eco03": {
+    "course_rows": 29,
+    "codes": 31,
+    "unresolved": []
+  },
+  "cb011inf01": {
+    "course_rows": 23,
+    "codes": 28,
+    "unresolved": []
+  },
+  "cb011inf06": {
+    "course_rows": 27,
+    "codes": 32,
+    "unresolved": []
+  },
+  "cb011inf11": {
+    "course_rows": 29,
+    "codes": 35,
+    "unresolved": []
+  },
+  "cb011bus06": {
+    "course_rows": 16,
+    "codes": 23,
+    "unresolved": []
+  }
+}

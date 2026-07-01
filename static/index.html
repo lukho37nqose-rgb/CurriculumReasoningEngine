@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CurriculumAdvisor turns a UCT transcript and selected academic route into a transparent, programme-scoped academic progress account.">
+  <meta name="theme-color" content="#102b27">
+  <title>CurriculumAdvisor · Understand your degree</title>
+  <link rel="stylesheet" href="/static/app.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div id="liveRegion" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <header class="site-header">
+    <div class="shell header-inner">
+      <button class="brand" id="homeButton" type="button" aria-label="CurriculumAdvisor home">
+        <span class="brand-symbol" aria-hidden="true">CA</span>
+        <span>
+          <strong>CurriculumAdvisor</strong>
+          <small>Institutional reasoning for students</small>
+        </span>
+      </button>
+      <nav class="header-actions" aria-label="Utility navigation">
+        <button class="text-button" id="methodButton" type="button">How it reasons</button>
+        <button class="status-button" id="statusButton" type="button">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span id="statusLabel">Checking service</span>
+        </button>
+        <a class="admin-link" href="/admin">Data desk</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="landingView">
+      <div class="hero-grid shell">
+        <div class="hero-copy">
+          <p class="kicker">UCT undergraduate curriculum · 2026</p>
+          <h1>Your degree should not become clear only when something goes wrong.</h1>
+          <p class="hero-lead">Select the route that governs you, upload your transcript, and receive a traceable account of where you stand, what remains, and what requires a real institutional decision.</p>
+          <div class="hero-actions">
+            <a class="primary-action" href="#facultySection">Start with your faculty</a>
+            <button class="secondary-action" id="exploreMethodButton" type="button">See the reasoning model</button>
+          </div>
+          <div class="privacy-line">
+            <span aria-hidden="true">◌</span>
+            <span>Your transcript is processed for the request and is not part of the curriculum catalogue.</span>
+          </div>
+        </div>
+        <aside class="hero-argument" aria-label="What CurriculumAdvisor answers">
+          <p class="argument-label">The three decisions</p>
+          <ol id="decisionLensList" class="decision-lenses">
+            <li><span>01</span><div><strong>Where am I now?</strong><p>Progress, credits, requirements and represented standing.</p></div></li>
+            <li><span>02</span><div><strong>What is blocking me?</strong><p>Outstanding rules, failures, prerequisites and uncertainty.</p></div></li>
+            <li><span>03</span><div><strong>What can I do next?</strong><p>Route-visible options without pretending that live registration is settled.</p></div></li>
+          </ol>
+        </aside>
+      </div>
+
+      <section class="trust-band" aria-label="Reasoning safeguards">
+        <div class="shell trust-grid">
+          <article><span>Scope</span><strong>One selected academic route</strong><p>Rules from another faculty or programme cannot leak into a positive conclusion.</p></article>
+          <article><span>Evidence</span><strong>Handbook facts remain traceable</strong><p>Verified, provisional and unrepresented conditions are not collapsed together.</p></article>
+          <article><span>Judgment</span><strong>Discretion remains human</strong><p>Concessions, substitutions and institutional approval are never inferred from marks.</p></article>
+        </div>
+      </section>
+
+      <section class="faculty-section shell" id="facultySection" aria-labelledby="facultyHeading">
+        <div class="section-heading">
+          <div>
+            <p class="kicker dark">Begin with institutional location</p>
+            <h2 id="facultyHeading">Which faculty governs your qualification?</h2>
+          </div>
+          <p>Select the faculty printed on the academic record. You will choose the exact programme, stream or curriculum cohort next.</p>
+        </div>
+        <div class="faculty-grid" id="facultyGrid" aria-live="polite">
+          <div class="loading-card"><span class="spinner" aria-hidden="true"></span> Loading faculty routes…</div>
+        </div>
+      </section>
+
+      <section class="principle-section shell">
+        <div class="principle-copy">
+          <p class="kicker dark">A boundary, not a disclaimer</p>
+          <h2>CurriculumAdvisor does not replace academic advice. It changes what academic advice can be used for.</h2>
+        </div>
+        <p>Procedural rule-checking can be prepared before the meeting. The scarce human conversation can then concern intellectual direction, exceptions, judgment and the shape of the student’s degree.</p>
+      </section>
+    </section>
+
+    <section id="workspaceView" class="workspace-view hidden">
+      <div class="shell workspace-shell">
+        <aside class="route-rail" aria-label="Analysis progress">
+          <button class="back-link" id="backToFaculties" type="button">← Change faculty</button>
+          <div class="rail-faculty">
+            <span class="rail-code" id="railFacultyCode">HUM</span>
+            <div><small>Selected faculty</small><strong id="railFacultyName">Humanities</strong></div>
+          </div>
+          <ol class="step-list" id="stepList">
+            <li class="active" data-step="route"><span>1</span><div><strong>Academic route</strong><small>Programme and pathway</small></div></li>
+            <li data-step="intent"><span>2</span><div><strong>Academic intent</strong><small>Majors and registration years</small></div></li>
+            <li data-step="evidence"><span>3</span><div><strong>Transcript evidence</strong><small>Official PDF upload</small></div></li>
+            <li data-step="account"><span>4</span><div><strong>Your account</strong><small>Position, blockers and next moves</small></div></li>
+          </ol>
+          <div class="rail-note">
+            <strong>Why route selection comes first</strong>
+            <p>The same course result can count differently across qualifications. The route is part of the evidence, not a decorative filter.</p>
+          </div>
+        </aside>
+
+        <section class="workspace-panel" id="setupPanel">
+          <div class="workspace-heading">
+            <div>
+              <p class="kicker dark" id="workspaceKicker">Step 1 of 3</p>
+              <h1 id="workspaceTitle">Choose the qualification that governs you</h1>
+            </div>
+            <button class="route-summary-button hidden" id="routeSummaryButton" type="button">View route summary</button>
+          </div>
+
+          <div id="setupError" class="message error hidden" role="alert"></div>
+
+          <section class="setup-step" id="routeStep">
+            <div class="field-grid">
+              <label class="field field-wide">
+                <span>Qualification or programme</span>
+                <select id="programmeSelect"><option value="">Choose your programme</option></select>
+                <small>Use the programme or qualification description on your transcript.</small>
+              </label>
+              <label class="field hidden" id="pathwayField">
+                <span>Stream, specialisation or curriculum cohort</span>
+                <select id="pathwaySelect"><option value="">Choose the applicable pathway</option></select>
+                <small>This narrows the rule set further.</small>
+              </label>
+            </div>
+            <div id="programmePreview" class="programme-preview empty-state">
+              <div class="empty-symbol" aria-hidden="true">↳</div>
+              <div><strong>Your programme defines the reasoning boundary.</strong><p>Select it to see duration, credit expectations, majors and source status.</p></div>
+            </div>
+            <div class="step-actions">
+              <span></span>
+              <button class="primary-action button" id="routeContinue" type="button" disabled>Continue to academic intent</button>
+            </div>
+          </section>
+
+          <section class="setup-step hidden" id="intentStep">
+            <div class="intent-intro">
+              <h2>Tell the system what you are trying to complete.</h2>
+              <p>For flexible degrees, intended majors affect requirement and course reasoning. Structured qualifications may not use majors at all.</p>
+            </div>
+            <div class="field-grid">
+              <label class="field hidden" id="majorOneField"><span>First major</span><select id="majorOne"><option value="">Choose a major</option></select></label>
+              <label class="field hidden" id="majorTwoField"><span>Second major</span><select id="majorTwo"><option value="">Choose a major</option></select></label>
+              <label class="field hidden" id="majorThreeField"><span>Additional major <em>optional</em></span><select id="majorThree"><option value="">No additional major</option></select></label>
+              <label class="field"><span>Years registered <em>optional</em></span><input id="yearsRegistered" type="number" min="1" max="20" inputmode="numeric" placeholder="e.g. 3"><small>Used only where duration or readmission rules require it.</small></label>
+            </div>
+            <div id="intentNotice" class="message neutral"></div>
+            <div class="step-actions">
+              <button class="secondary-action button" data-back-step="route" type="button">Back</button>
+              <button class="primary-action button" id="intentContinue" type="button">Continue to transcript</button>
+            </div>
+          </section>
+
+          <section class="setup-step hidden" id="evidenceStep">
+            <div class="evidence-grid">
+              <div>
+                <p class="kicker dark">Official academic evidence</p>
+                <h2>Upload your UCT transcript PDF</h2>
+                <p>The parser extracts course attempts, marks, grades and programme text. The selected route then controls how those facts are interpreted.</p>
+                <ul class="evidence-rules">
+                  <li>PDF only, up to 20 MB</li>
+                  <li>Use the official downloadable transcript</li>
+                  <li>Scans and screenshots may not contain readable text</li>
+                  <li>The report distinguishes missing data from failed requirements</li>
+                </ul>
+              </div>
+              <div class="upload-card" id="uploadCard">
+                <input id="transcriptFile" type="file" accept="application/pdf,.pdf">
+                <div class="upload-mark" aria-hidden="true">↑</div>
+                <strong>Drop the transcript here</strong>
+                <p>or choose a PDF from your device</p>
+                <span id="selectedFile">No file selected</span>
+              </div>
+            </div>
+            <div id="analysisError" class="message error hidden" role="alert"></div>
+            <div id="analysisProgress" class="analysis-progress hidden" role="status">
+              <span class="spinner large" aria-hidden="true"></span>
+              <div><strong>Building your academic account</strong><p id="analysisProgressText">Reading transcript evidence and applying the selected route…</p></div>
+            </div>
+            <div class="step-actions">
+              <button class="secondary-action button" data-back-step="intent" type="button">Back</button>
+              <button class="primary-action button" id="analyseButton" type="button" disabled>Generate my academic account</button>
+            </div>
+          </section>
+        </section>
+
+        <section class="report-panel hidden" id="reportPanel">
+          <div class="report-toolbar">
+            <button class="back-link" id="newAnalysisButton" type="button">← New analysis</button>
+            <div>
+              <button class="text-button" id="copySummaryButton" type="button">Copy summary</button>
+              <button class="secondary-action button compact" id="printButton" type="button">Print report</button>
+            </div>
+          </div>
+          <div id="reportContent"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div><strong>CurriculumAdvisor</strong><p>A student-facing reasoning layer between curriculum rules, transcript evidence and meaningful academic advice.</p></div>
+      <div><span>Current scope</span><p>UCT undergraduate 2026 catalogues. Live offerings, capacity and concessions remain institutionally confirmable.</p></div>
+      <div><a href="/admin">Open the data governance desk</a></div>
+    </div>
+  </footer>
+
+  <dialog id="methodDialog" class="modal">
+    <form method="dialog" class="modal-shell">
+      <button class="modal-close" aria-label="Close" value="close">×</button>
+      <p class="kicker dark">Reasoning model</p>
+      <h2>Four kinds of claims are kept apart.</h2>
+      <div class="method-grid">
+        <article><span>01</span><strong>Transcript facts</strong><p>What the academic record appears to say: attempts, marks, grades, programme text and years.</p></article>
+        <article><span>02</span><strong>Curriculum rules</strong><p>What the selected handbook route requires and which courses or majors belong within its scope.</p></article>
+        <article><span>03</span><strong>Computed conclusions</strong><p>What follows when represented rules are applied to represented evidence.</p></article>
+        <article><span>04</span><strong>Institutional judgment</strong><p>What cannot be inferred: concessions, substitutions, capacity, placement evidence and discretionary decisions.</p></article>
+      </div>
+      <div id="trustBoundaryList" class="trust-boundary-list"></div>
+    </form>
+  </dialog>
+
+  <dialog id="statusDialog" class="modal small-modal">
+    <form method="dialog" class="modal-shell">
+      <button class="modal-close" aria-label="Close" value="close">×</button>
+      <p class="kicker dark">Service and catalogue status</p>
+      <h2 id="statusDialogHeading">Checking readiness</h2>
+      <div id="statusDialogBody" class="status-dialog-body"><span class="spinner"></span></div>
+    </form>
+  </dialog>
+
+  <dialog id="routeDialog" class="modal">
+    <form method="dialog" class="modal-shell">
+      <button class="modal-close" aria-label="Close" value="close">×</button>
+      <p class="kicker dark">Selected academic route</p>
+      <div id="routeDialogContent"></div>
+    </form>
+  </dialog>
+</body>
+</html>
