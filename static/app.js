@@ -37,11 +37,160 @@ const titleCase = value => String(value || "")
   .replaceAll("_", " ")
   .replace(/\b\w/g, character => character.toUpperCase());
 const asArray = value => Array.isArray(value) ? value : [];
+const STATUS_EXPLANATIONS = {
+  complete: "This item is satisfied by the represented transcript and route evidence.",
+  eligible: "All represented blocking rules are complete and verified within the selected route.",
+  verified: "The source and rule evidence are represented strongly enough for the engine to rely on it.",
+  incomplete: "The transcript evidence does not yet satisfy this represented requirement.",
+  not_eligible: "At least one represented blocking rule is incomplete in the selected route.",
+  requires_verification: "The represented blockers may be complete, but at least one conclusion still needs source or faculty confirmation.",
+  unverified: "The system can see relevant evidence, but the source, approval, or rule authority is not fully verified.",
+  not_verified: "The system can see relevant evidence, but the source, approval, or rule authority is not fully verified.",
+  provisional: "This is a route-visible possibility, not a final registration or faculty approval.",
+  conflict: "Two represented sources or rules disagree, so the system will not turn this into a final conclusion.",
+  missing: "A required piece of evidence is not present in the selected route or transcript.",
+  discretionary: "This depends on institutional judgment and cannot be decided by the rule engine alone.",
+  not_recognised: "The course or result was found, but it was not counted automatically under the selected programme route.",
+  not_recognized: "The course or result was found, but it was not counted automatically under the selected programme route.",
+  unknown: "The evidence could not be matched confidently to a represented programme, course, or rule.",
+  unscoped: "No verified programme scope has been selected for this conclusion.",
+  attention_required: "The catalogue or source record needs human review before it should be treated as final.",
+};
 
 function announce(message) {
   const region = $("liveRegion");
   region.textContent = "";
   window.setTimeout(() => { region.textContent = message; }, 20);
+}
+
+function statusKey(value) {
+  return String(value || "unverified").trim().toLowerCase().replace(/[\s-]+/g, "_");
+}
+
+function uniqueLines(lines) {
+  const seen = new Set();
+  return lines.map(line => String(line || "").trim()).filter(line => {
+    if (!line || seen.has(line)) return false;
+    seen.add(line);
+    return true;
+  });
+}
+
+function confidenceLine(value) {
+  const confidence = Number(value);
+  if (!Number.isFinite(confidence) || confidence >= 0.995) return "";
+  return `Confidence: ${Math.max(0, Math.min(100, Math.round(confidence * 100)))}%.`;
+}
+
+function sourceLine(source) {
+  if (!source || typeof source !== "object") return "";
+  const parts = [
+    source.document,
+    source.handbook,
+    source.section,
+    source.page ? `page ${source.page}` : "",
+    source.pages ? `pages ${source.pages}` : "",
+    source.rule,
+  ].filter(Boolean);
+  return parts.length ? `Source: ${parts.join(", ")}.` : "";
+}
+
+function statusBadge(status, label = "") {
+  const key = statusKey(status);
+  return `<span class="badge ${esc(key)}">${esc(label || titleCase(key))}</span>`;
+}
+
+function statusDisclosure(lines, label = "Why?") {
+  const clean = uniqueLines(lines);
+  if (!clean.length) return "";
+  return `
+    <details class="status-explanation">
+      <summary title="Show why this status appears">${esc(label)}</summary>
+      <div><ul>${clean.map(line => `<li>${esc(line)}</li>`).join("")}</ul></div>
+    </details>
+  `;
+}
+
+function statusWidget(status, lines, label = "") {
+  return `
+    <div class="status-widget">
+      ${statusBadge(status, label)}
+      ${statusDisclosure(lines)}
+    </div>
+  `;
+}
+
+function requirementExplanation(requirement) {
+  const key = statusKey(requirement.status);
+  const lines = [];
+  if (!requirement.complete) lines.push(STATUS_EXPLANATIONS.incomplete);
+  if (key !== "verified" && STATUS_EXPLANATIONS[key]) lines.push(STATUS_EXPLANATIONS[key]);
+  if (requirement.detail || requirement.explanation) {
+    lines.push(`Basis: ${requirement.detail || requirement.explanation}`);
+  }
+  if (requirement.required || requirement.current) {
+    lines.push(`Progress used: ${requirement.current ?? 0} of ${requirement.required ?? 0}.`);
+  }
+  if (asArray(requirement.assumptions).length) {
+    lines.push(`Still needs confirmation: ${asArray(requirement.assumptions).join(" ")}`);
+  }
+  lines.push(confidenceLine(requirement.confidence));
+  lines.push(sourceLine(requirement.source));
+  return uniqueLines(lines);
+}
+
+function majorExplanation(major) {
+  const key = statusKey(major.status);
+  const lines = [];
+  if (!major.complete) lines.push(STATUS_EXPLANATIONS.incomplete);
+  if (key !== "verified" && STATUS_EXPLANATIONS[key]) lines.push(STATUS_EXPLANATIONS[key]);
+  if (asArray(major.outstanding_requirements).length) {
+    lines.push(`Outstanding: ${asArray(major.outstanding_requirements).join("; ")}`);
+  }
+  lines.push(confidenceLine(major.confidence));
+  return uniqueLines(lines);
+}
+
+function courseExplanation(course) {
+  const key = statusKey(course.status);
+  const lines = [];
+  if (key !== "verified" && STATUS_EXPLANATIONS[key]) lines.push(STATUS_EXPLANATIONS[key]);
+  if (course.reason) lines.push(`Basis: ${course.reason}`);
+  if (asArray(course.limitations).length) lines.push(`Limits: ${asArray(course.limitations).join(" ")}`);
+  lines.push(confidenceLine(course.confidence));
+  return uniqueLines(lines);
+}
+
+function reportStatusExplanation(report) {
+  const key = statusKey(report.graduation_status);
+  const lines = [];
+  if (STATUS_EXPLANATIONS[key]) lines.push(STATUS_EXPLANATIONS[key]);
+  lines.push(blockersSummary());
+  if (statusKey(report.scope_status) !== "verified") {
+    lines.push("The selected programme scope is not fully verified, so the result cannot be treated as final.");
+  }
+  return uniqueLines(lines);
+}
+
+function isRecognitionNotice(item) {
+  const text = String(item || "").toLowerCase();
+  return text.includes("not counted automatically")
+    || text.includes("not recognised")
+    || text.includes("not recognized")
+    || text.includes("recognition");
+}
+
+function noticeGroup(title, items, kind = "") {
+  const rows = asArray(items);
+  if (!rows.length) return "";
+  return `
+    <details class="notice-group ${esc(kind)}">
+      <summary><span>${esc(title)}</span><strong>${rows.length}</strong></summary>
+      <div class="notice-group-body">
+        ${rows.map(item => `<div class="notice-row ${kind === "info" ? "info" : ""}">${esc(item)}</div>`).join("")}
+      </div>
+    </details>
+  `;
 }
 
 function detailMessage(detail) {
@@ -531,7 +680,7 @@ function requirementCard(requirement) {
         <p>${esc(requirement.detail || requirement.explanation || "No further explanation is represented.")}</p>
         <div class="progress-track" aria-label="${esc(requirement.label)} progress"><i style="width:${percent}%"></i></div>
       </div>
-      <span class="badge ${esc(requirement.status || "unverified")}">${esc(requirement.status || "unverified")}</span>
+      ${statusWidget(requirement.status || "unverified", requirementExplanation(requirement))}
     </article>
   `;
 }
@@ -583,7 +732,7 @@ function majorsSection() {
       <div class="report-section-heading"><div><h2>Major progress</h2></div><p>Only majors represented within the selected route are assessed.</p></div>
       <div class="major-grid">${majors.map(major => `
         <article class="major-card">
-          <div class="major-card-head"><h3>${esc(major.name)}</h3><span class="badge ${major.complete ? "complete" : esc(major.status)}">${major.complete ? "complete" : esc(major.status)}</span></div>
+          <div class="major-card-head"><h3>${esc(major.name)}</h3>${statusWidget(major.complete ? "complete" : (major.status || "unverified"), majorExplanation(major))}</div>
           ${asArray(major.completed_requirements).length ? `<ul>${major.completed_requirements.map(item => `<li>✓ ${esc(item)}</li>`).join("")}</ul>` : ""}
           ${asArray(major.outstanding_requirements).length ? `<ul>${major.outstanding_requirements.map(item => `<li>${esc(item)}</li>`).join("")}</ul>` : ""}
         </article>
@@ -606,7 +755,7 @@ function nextCoursesSection() {
 function renderCourseCards(courses) {
   return courses.map(course => `
     <article class="course-card" data-course-search="${esc(`${course.code} ${course.name} ${course.department}`.toLowerCase())}" data-course-status="${esc(course.status || "unverified")}">
-      <div class="course-card-head"><div><div class="course-code">${esc(course.code)}</div><h3>${esc(course.name)}</h3></div><span class="badge ${esc(course.status || "unverified")}">${esc(course.status || "unverified")}</span></div>
+      <div class="course-card-head"><div><div class="course-code">${esc(course.code)}</div><h3>${esc(course.name)}</h3></div>${statusWidget(course.status || "unverified", courseExplanation(course))}</div>
       <p>${esc(course.reason || "Visible within the selected route.")}</p>
       <div class="course-meta"><span>${esc(course.credits)} credits</span><span>${esc(course.department || "Department not recorded")}</span>${asArray(course.offered).length ? `<span>${esc(course.offered.join(", "))}</span>` : ""}</div>
     </article>
@@ -619,6 +768,8 @@ function evidenceSection() {
   const pathway = selectedPathway();
   const warnings = asArray(report.warnings);
   const verifications = asArray(report.verification_messages);
+  const recognitionWarnings = warnings.filter(isRecognitionNotice);
+  const otherWarnings = warnings.filter(item => !isRecognitionNotice(item));
   return `
     <section class="report-section">
       <div class="report-section-heading"><div><h2>Evidence and limits</h2></div><p>This is the audit surface: what was selected, what was computed, and what remains outside the model.</p></div>
@@ -632,8 +783,9 @@ function evidenceSection() {
     <section class="report-section">
       <div class="report-section-heading"><div><h2>Warnings and verification questions</h2></div></div>
       <div class="notice-stack">
-        ${verifications.map(item => `<div class="notice-row info">${esc(item)}</div>`).join("")}
-        ${warnings.map(item => `<div class="notice-row">${esc(item)}</div>`).join("")}
+        ${noticeGroup("Verification questions", verifications, "info")}
+        ${noticeGroup("Recognition notes", recognitionWarnings, "recognition")}
+        ${noticeGroup("Warnings and limits", otherWarnings)}
         ${!verifications.length && !warnings.length ? '<div class="empty-report">No additional warning was produced.</div>' : ""}
       </div>
     </section>
@@ -673,7 +825,7 @@ function renderReport() {
   $("reportContent").innerHTML = `
     <section class="report-hero">
       <div>
-        <span class="badge ${esc(report.graduation_status)}">${esc(titleCase(report.graduation_status))}</span>
+        ${statusWidget(report.graduation_status, reportStatusExplanation(report))}
         <h1>${esc(report.student_name || "Academic account")}</h1>
         <p>${esc(report.programme_name)}${report.pathway_name ? ` · ${esc(report.pathway_name)}` : ""} · ${esc(titleCase(report.scope_status))} scope</p>
       </div>
