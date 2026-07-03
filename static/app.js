@@ -931,7 +931,7 @@ function bindEvents() {
   $("copySummaryButton").addEventListener("click", copySummary);
   $("printButton").addEventListener("click", () => window.print());
   $("routeSummaryButton").addEventListener("click", showRouteDialog);
-  for (const id of ["methodButton", "exploreMethodButton"]) $(id).addEventListener("click", () => $("methodDialog").showModal());
+  for (const id of ["methodButton", "exploreButton"]) $(id).addEventListener("click", () => $("methodDialog").showModal());
   $("statusButton").addEventListener("click", () => checkReadiness({ openDialog: true }));
   window.addEventListener("popstate", () => {
     if (location.pathname.startsWith("/faculty/")) {
