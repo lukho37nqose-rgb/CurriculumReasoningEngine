@@ -2,8 +2,15 @@
 const $ = id => document.getElementById(id);
 const esc = value => String(value ?? "").replace(/[&<>"']/g, character => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[character]));
 
-async function api(url) {
-  const response = await fetch(url, { headers: { Accept: "application/json" }, credentials: "same-origin" });
+const adminState = { permissions: null };
+
+async function api(url, options = {}) {
+  const { headers = {}, ...fetchOptions } = options;
+  const response = await fetch(url, {
+    ...fetchOptions,
+    headers: { Accept: "application/json", ...headers },
+    credentials: "same-origin",
+  });
   const payload = await response.json();
   if (!response.ok) throw new Error(payload.detail || "The governance status could not be loaded.");
   return payload;
@@ -43,4 +50,134 @@ async function loadGovernance() {
   }
 }
 
+function setMessage(id, kind, message) {
+  const node = $(id);
+  if (!node) return;
+  node.className = `message ${kind}`;
+  node.textContent = message;
+}
+
+function populateAdminForm(permissions) {
+  const roleSelect = $("actorRole");
+  const fieldSelect = $("editField");
+  roleSelect.innerHTML = permissions.roles
+    .map(role => `<option value="${esc(role.role)}">${esc(role.label)}</option>`)
+    .join("");
+  fieldSelect.innerHTML = permissions.quick_edit.allowed_fields
+    .map(field => `<option value="${esc(field.field)}">${esc(field.label)}</option>`)
+    .join("");
+  $("submitQuickEdit").disabled = !(permissions.writes_enabled && permissions.write_token_configured);
+}
+
+function renderRoleMatrix(permissions) {
+  $("roleMatrix").innerHTML = `
+    <div class="role-row heading">
+      <span>Role</span><span>Scope</span><span>Tier 1 fields</span><span>Review</span><span>Release</span>
+    </div>
+    ${permissions.roles.map(role => `
+      <div class="role-row">
+        <strong>${esc(role.label)}</strong>
+        <span>${esc(role.scope)}</span>
+        <span>${role.tier_1_quick_edit.length ? role.tier_1_quick_edit.map(esc).join(", ") : "None"}</span>
+        <span>${role.tier_2_review ? "Yes" : "No"}</span>
+        <span>${role.tier_3_release_approval ? "Yes" : "No"}</span>
+      </div>
+    `).join("")}
+  `;
+}
+
+function renderWriteState(permissions) {
+  const enabled = permissions.writes_enabled && permissions.write_token_configured;
+  $("writeStateBadge").className = `badge ${enabled ? "verified" : "provisional"}`;
+  $("writeStateBadge").textContent = enabled ? "Write gated" : "Disabled";
+  const message = enabled
+    ? "Tier 1 edits require the configured token and are written only to the audit overlay."
+    : "Tier 1 edits are disabled until ADMIN_WRITES_ENABLED=1 and ADMIN_WRITE_TOKEN are configured.";
+  setMessage("adminWriteState", enabled ? "neutral" : "warning", message);
+}
+
+async function loadAdminPermissions() {
+  try {
+    const permissions = await api("/api/v1/admin/permissions");
+    adminState.permissions = permissions;
+    populateAdminForm(permissions);
+    renderRoleMatrix(permissions);
+    renderWriteState(permissions);
+  } catch (error) {
+    setMessage("adminWriteState", "error", error.message);
+    $("roleMatrix").innerHTML = `<div class="message error">${esc(error.message)}</div>`;
+  }
+}
+
+function quickEditPayload() {
+  return {
+    actor_name: $("actorName").value,
+    actor_email: $("actorEmail").value,
+    actor_role: $("actorRole").value,
+    faculty_key: $("editFaculty").value,
+    course_code: $("editCourseCode").value,
+    field: $("editField").value,
+    new_value: $("editNewValue").value,
+    reason: $("editReason").value,
+    owner_unit: $("editOwnerUnit").value,
+    source_page_or_section: $("editSourcePage").value,
+  };
+}
+
+function tokenHeader() {
+  const token = $("adminToken").value.trim();
+  return token ? { "X-Admin-Token": token } : {};
+}
+
+function renderAudit(edits) {
+  if (!edits.length) {
+    $("quickEditAudit").innerHTML = `<div class="message neutral">No quick edits have been recorded.</div>`;
+    return;
+  }
+  $("quickEditAudit").innerHTML = edits.map(edit => `
+    <div class="audit-event">
+      <strong>${esc(edit.course_code)} ${esc(edit.field_label || edit.field)}</strong>
+      <span>${esc(edit.faculty_key)} · ${esc(edit.applied_at)}</span>
+      <p>${esc(edit.actor?.name || "Unknown editor")} changed ${esc(edit.old_value)} to ${esc(edit.new_value)}</p>
+    </div>
+  `).join("");
+}
+
+async function loadRecentQuickEdits() {
+  try {
+    const payload = await api("/api/v1/admin/quick-edits", { headers: tokenHeader() });
+    renderAudit(payload.edits || []);
+  } catch (error) {
+    $("quickEditAudit").innerHTML = `<div class="message error">${esc(error.message)}</div>`;
+  }
+}
+
+async function submitQuickEdit(event) {
+  event.preventDefault();
+  $("submitQuickEdit").disabled = true;
+  setMessage("quickEditResult", "neutral", "Applying quick edit.");
+  try {
+    const payload = await api("/api/v1/admin/quick-edit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", ...tokenHeader() },
+      body: JSON.stringify(quickEditPayload()),
+    });
+    setMessage(
+      "quickEditResult",
+      "success",
+      `Applied ${payload.change_id}. Publication effect: ${payload.publication_effect}.`
+    );
+    await loadRecentQuickEdits();
+  } catch (error) {
+    setMessage("quickEditResult", "error", error.message);
+  } finally {
+    const permissions = adminState.permissions;
+    $("submitQuickEdit").disabled = !(permissions?.writes_enabled && permissions?.write_token_configured);
+  }
+}
+
+$("quickEditForm").addEventListener("submit", submitQuickEdit);
+$("loadQuickEdits").addEventListener("click", loadRecentQuickEdits);
+
 loadGovernance();
+loadAdminPermissions();

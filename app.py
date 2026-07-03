@@ -16,12 +16,20 @@ import os
 from pathlib import Path
 from typing import Any
 
-from fastapi import FastAPI, File, HTTPException, UploadFile
+from fastapi import FastAPI, File, Header, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
+from curriculum_advisor.admin_governance import (
+    AdminGovernanceError,
+    apply_quick_edit_overlays,
+    create_quick_edit_event,
+    permission_matrix_payload,
+    recent_quick_edit_events,
+    verify_admin_write_gate,
+)
 from curriculum_advisor.governance_status import governance_status
 from curriculum_advisor.product import PRODUCT_VERSION, bootstrap_payload
 from engine.catalogue import load_catalogue
@@ -107,6 +115,23 @@ _graphs: dict[tuple[str, str, str], KnowledgeGraph] = {}
 _faculty_contexts: dict[str, dict[str, Any]] = {}
 
 
+def _clear_catalogue_caches(faculty_key: str | None = None) -> None:
+    if faculty_key is None:
+        _catalogues.clear()
+        _scoped_catalogues.clear()
+        _scopes.clear()
+        _graphs.clear()
+        _faculty_contexts.clear()
+        return
+
+    _catalogues.pop(faculty_key, None)
+    _faculty_contexts.pop(faculty_key, None)
+    for cache in (_scoped_catalogues, _scopes, _graphs):
+        for key in list(cache):
+            if key[0] == faculty_key:
+                cache.pop(key, None)
+
+
 def get_catalogue(faculty_key: str) -> Catalogue:
     if faculty_key not in AVAILABLE_FACULTIES:
         raise ValueError(
@@ -114,7 +139,9 @@ def get_catalogue(faculty_key: str) -> Catalogue:
             f"{', '.join(sorted(AVAILABLE_FACULTIES))}."
         )
     if faculty_key not in _catalogues:
-        _catalogues[faculty_key] = load_catalogue(faculty_key)
+        catalogue = load_catalogue(faculty_key)
+        apply_quick_edit_overlays(catalogue, _BASE)
+        _catalogues[faculty_key] = catalogue
     return _catalogues[faculty_key]
 
 
@@ -473,6 +500,44 @@ def product_bootstrap():
 def catalogue_governance_status():
     """Read-only release integrity. This endpoint cannot publish curriculum data."""
     return governance_status(_BASE)
+
+
+@app.get("/api/v1/admin/permissions")
+def admin_permissions():
+    """Role and field matrix for the controlled Tier 1 administration lane."""
+    return permission_matrix_payload()
+
+
+@app.get("/api/v1/admin/quick-edits")
+def admin_recent_quick_edits(x_admin_token: str | None = Header(default=None)):
+    """Recent Tier 1 audit events. Requires the same gate as quick edits."""
+    try:
+        verify_admin_write_gate(x_admin_token)
+    except AdminGovernanceError as exc:
+        raise HTTPException(status_code=exc.status_code, detail=str(exc)) from exc
+    return {"edits": recent_quick_edit_events(_BASE)}
+
+
+@app.post("/api/v1/admin/quick-edit")
+async def admin_quick_edit(body: dict, x_admin_token: str | None = Header(default=None)):
+    """Apply a low-risk metadata overlay and append an immutable audit event."""
+    try:
+        verify_admin_write_gate(x_admin_token)
+        faculty_key = str(body.get("faculty_key", "")).strip()
+        catalogue = _full_catalogue_or_422(faculty_key)
+        event = create_quick_edit_event(_BASE, catalogue, body)
+        _clear_catalogue_caches(faculty_key)
+    except AdminGovernanceError as exc:
+        raise HTTPException(status_code=exc.status_code, detail=str(exc)) from exc
+    return {
+        "status": "applied",
+        "change_id": event["change_id"],
+        "event_hash": event["event_hash"],
+        "faculty_key": event["faculty_key"],
+        "course_code": event["course_code"],
+        "field": event["field"],
+        "publication_effect": event["publication_effect"],
+    }
 
 
 @app.get("/api/v1/catalogue")

@@ -45,6 +45,39 @@
         <div class="disabled-control"><button type="button" disabled>Approve departmental change</button><p>Approval requires named authority, source evidence and a separate reviewer.</p></div>
       </article>
 
+      <article class="admin-card span-2">
+        <div class="admin-card-heading"><div><span>Tier 1</span><h2>Quick metadata edit</h2></div><span class="badge provisional" id="writeStateBadge">Checking</span></div>
+        <div id="adminWriteState" class="message neutral">Checking write controls.</div>
+        <form id="quickEditForm" class="quick-edit-form">
+          <label><span>Admin token</span><input id="adminToken" type="password" autocomplete="off"></label>
+          <label><span>Your name</span><input id="actorName" type="text" autocomplete="name"></label>
+          <label><span>Your email</span><input id="actorEmail" type="email" autocomplete="email"></label>
+          <label><span>Role</span><select id="actorRole"></select></label>
+          <label><span>Faculty</span><select id="editFaculty">
+            <option value="uct_commerce">Commerce</option>
+            <option value="uct_ebe">Engineering &amp; the Built Environment</option>
+            <option value="uct_health">Health Sciences</option>
+            <option value="uct_humanities">Humanities</option>
+            <option value="uct_law">Law</option>
+            <option value="uct_science">Science</option>
+          </select></label>
+          <label><span>Course code</span><input id="editCourseCode" type="text" maxlength="12" autocapitalize="characters"></label>
+          <label><span>Field</span><select id="editField"></select></label>
+          <label class="span-form"><span>New value</span><textarea id="editNewValue" rows="4"></textarea></label>
+          <label class="span-form"><span>Reason</span><textarea id="editReason" rows="3"></textarea></label>
+          <label><span>Owner unit</span><input id="editOwnerUnit" type="text"></label>
+          <label><span>Source page/section</span><input id="editSourcePage" type="text"></label>
+          <button class="primary-action button span-form" id="submitQuickEdit" type="submit">Apply audited edit</button>
+        </form>
+        <div id="quickEditResult"></div>
+      </article>
+
+      <article class="admin-card">
+        <div class="admin-card-heading"><div><span>Audit</span><h2>Recent quick edits</h2></div></div>
+        <button class="secondary-action button" id="loadQuickEdits" type="button">Load audit log</button>
+        <div id="quickEditAudit" class="audit-list"><div class="message neutral">No audit events loaded.</div></div>
+      </article>
+
       <article class="admin-card span-3">
         <div class="admin-card-heading"><div><span>Workflow</span><h2>A curriculum change is a governed release, not an overwrite</h2></div></div>
         <ol class="release-flow" id="releaseFlow">
@@ -55,6 +88,11 @@
           <li><span>5</span><strong>Publish</strong><p>A new version is issued; history is not rewritten.</p></li>
           <li><span>6</span><strong>Supersede</strong><p>Older cohorts remain attached to their governing rules.</p></li>
         </ol>
+      </article>
+
+      <article class="admin-card span-3">
+        <div class="admin-card-heading"><div><span>Permissions</span><h2>Faculty role matrix</h2></div></div>
+        <div id="roleMatrix" class="role-matrix"><div class="admin-loading"><span class="spinner"></span> Loading roles.</div></div>
       </article>
 
       <article class="admin-card span-2">
