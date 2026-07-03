@@ -338,7 +338,7 @@ function resetRouteState() {
   $("analyseButton").disabled = true;
   $("routeContinue").disabled = true;
   $("programmePreview").className = "programme-preview empty-state";
-  $("programmePreview").innerHTML = '<div class="empty-symbol" aria-hidden="true">↳</div><div><strong>Your programme defines the reasoning boundary.</strong><p>Select it to see duration, credit expectations, majors and source status.</p></div>';
+  $("programmePreview").innerHTML = '<div class="empty-symbol" aria-hidden="true">↳</div><div><strong>Your programme sets what we\'ll check.</strong><p>Select it to see the length, credits needed, and what majors are available.</p></div>';
 }
 
 async function openFaculty(key, { historyMode = "push" } = {}) {
@@ -524,9 +524,9 @@ function setStep(step) {
   $("intentStep").classList.toggle("hidden", step !== "intent");
   $("evidenceStep").classList.toggle("hidden", step !== "evidence");
   const labels = {
-    route: ["Step 1 of 3", "Choose the qualification that governs you"],
-    intent: ["Step 2 of 3", "Define the academic route you are trying to complete"],
-    evidence: ["Step 3 of 3", "Bring the transcript into the reasoning process"],
+    route: ["Step 1 of 3", "Which degree are you doing?"],
+    intent: ["Step 2 of 3", "What are you working towards?"],
+    evidence: ["Step 3 of 3", "Upload your transcript"],
   };
   if (labels[step]) {
     $("workspaceKicker").textContent = labels[step][0];
@@ -547,7 +547,7 @@ async function continueFromRoute() {
     $("setupError").classList.remove("hidden");
   } finally {
     $("routeContinue").disabled = !routeIsReady();
-    $("routeContinue").textContent = "Continue to academic intent";
+    $("routeContinue").textContent = "Next: Your plan";
   }
 }
 
@@ -612,7 +612,7 @@ async function analyse() {
   $("analysisError").classList.add("hidden");
   $("analysisProgress").classList.remove("hidden");
   $("analyseButton").disabled = true;
-  $("analysisProgressText").textContent = "Reading transcript evidence and applying only the selected route…";
+  $("analysisProgressText").textContent = "Reading your transcript and checking your program rules…";
   try {
     state.report = await api(`/api/v1/analyse?${params}`, { method: "POST", body: form });
     state.reportTab = "overview";
@@ -693,7 +693,7 @@ function overviewSection() {
   const distinction = report.distinction || {};
   return `
     <section class="report-section">
-      <div class="report-section-heading"><div><h2>Academic position</h2></div><p>These figures are computed within ${esc(report.programme_name)}${report.pathway_name ? ` · ${esc(report.pathway_name)}` : ""}.</p></div>
+      <div class="report-section-heading"><div><h2>Academic position</h2></div><p>These figures are computed within ${esc(report.programme_name)}${report.pathway_name ? ` · ${esc(report.pathway_name)}` : ""} using the 2026 catalogue.</p></div>
       <div class="metric-grid">
         <article class="metric-card"><strong>${esc(report.credits_completed)}</strong><span>NQF credits counted</span></article>
         <article class="metric-card"><strong>${esc(report.level_7_credits)}</strong><span>NQF level 7 credits</span></article>
@@ -704,8 +704,8 @@ function overviewSection() {
     <section class="report-section">
       <div class="report-section-heading"><div><h2>Immediate judgment</h2></div><p>The system separates represented thresholds from matters that still require faculty confirmation.</p></div>
       <div class="notice-stack">
-        <div class="notice-row ${risk.at_risk ? "" : "info"}"><strong>${risk.at_risk ? "Possible readmission risk" : "Readmission indicator"}</strong><br>${esc(risk.basis || "No programme-specific readmission conclusion could be produced.")} ${esc(asArray(risk.reasons).join(" "))}</div>
-        <div class="notice-row info"><strong>${distinction.qualification_eligible ? "Represented distinction threshold appears met" : "Distinction is not confirmed"}</strong><br>${esc(distinction.reason || "The represented evidence does not establish a distinction conclusion.")}</div>
+        <div class="notice-row ${risk.at_risk ? "" : "info"}"><strong>${risk.at_risk ? "Possible readmission risk" : "Readmission indicator"}</strong><br>${esc(risk.basis || "No programme-specific readmission threshold is represented.")}</div>
+        <div class="notice-row info"><strong>${distinction.qualification_eligible ? "Represented distinction threshold appears met" : "Distinction is not confirmed"}</strong><br>${esc(distinction.basis || "See requirements tab for detail.")}</div>
       </div>
     </section>
     <section class="report-section">
@@ -774,10 +774,10 @@ function evidenceSection() {
     <section class="report-section">
       <div class="report-section-heading"><div><h2>Evidence and limits</h2></div><p>This is the audit surface: what was selected, what was computed, and what remains outside the model.</p></div>
       <div class="evidence-grid-report">
-        <article class="evidence-card"><span>Scope</span><h3>${esc(report.programme_name)}</h3><p>${pathway ? esc(pathway.name) : "No additional pathway selected."} Scope status: ${esc(report.scope_status)}.</p></article>
-        <article class="evidence-card"><span>Curriculum source</span><h3>${esc(state.context?.catalogue_version || "2026 catalogue")}</h3><p>${esc(state.context?.source || programme.source?.document || "Faculty handbook-derived catalogue")}</p></article>
-        <article class="evidence-card"><span>Computed conclusion</span><h3>${esc(titleCase(report.graduation_status))}</h3><p>${report.graduation_eligible ? "All represented blocking rules are complete." : "At least one represented blocking rule is incomplete or cannot be verified."}</p></article>
-        <article class="evidence-card"><span>Operational boundary</span><h3>Timetable not connected</h3><p>Live offering, clash, venue, capacity and registration-window information must still be confirmed institutionally.</p></article>
+        <article class="evidence-card"><span>Scope</span><h3>${esc(report.programme_name)}</h3><p>${pathway ? esc(pathway.name) : "No additional pathway selected."} Scope status: ${esc(report.scope_status)}</p></article>
+        <article class="evidence-card"><span>Curriculum source</span><h3>${esc(state.context?.catalogue_version || "2026 catalogue")}</h3><p>${esc(state.context?.source || programme.source?.document || "Official handbook")}</p></article>
+        <article class="evidence-card"><span>Computed conclusion</span><h3>${esc(titleCase(report.graduation_status))}</h3><p>${report.graduation_eligible ? "All represented blocking rules are complete and verified." : "Not all blocking requirements are currently satisfied."}</p></article>
+        <article class="evidence-card"><span>Operational boundary</span><h3>Timetable not connected</h3><p>Live offering, clash, venue, capacity and registration-window information must still be confirmed with the institution.</p></article>
       </div>
     </section>
     <section class="report-section">
@@ -832,7 +832,7 @@ function renderReport() {
       <div class="report-score"><strong>${percent}%</strong><span>represented blockers complete</span></div>
     </section>
     <section class="decision-grid" aria-label="Decision summary">
-      <article class="decision-card good"><span>Where am I now?</span><h2>${esc(report.credits_completed)} credits counted</h2><p>${blockingRequirements().filter(row => row.complete).length} of ${blockingRequirements().length} blocking requirements are represented as complete.</p></article>
+      <article class="decision-card good"><span>Where am I now?</span><h2>${esc(report.credits_completed)} credits counted</h2><p>${blockingRequirements().filter(row => row.complete).length} of ${blockingRequirements().length} requirements met</p></article>
       <article class="decision-card ${blockersClass}"><span>What is blocking me?</span><h2>${risk.at_risk ? "Attention may be urgent" : "Outstanding academic conditions"}</h2><p>${esc(blockersSummary())}</p></article>
       <article class="decision-card caution"><span>What can I do next?</span><h2>${asArray(report.eligible_courses).length} route-visible options</h2><p>${esc(nextSummary())}</p></article>
     </section>
@@ -883,7 +883,7 @@ function showRouteDialog() {
       <div><strong>${esc(state.programme.required_majors || 0)}</strong><span>required majors</span></div>
       <div><strong>${esc(state.programme.scope_status || "—")}</strong><span>scope state</span></div>
     </div>
-    <div class="trust-boundary-list"><div><span>→</span><span>Faculty: ${esc(state.context?.name)}</span></div><div><span>→</span><span>Selected majors: ${esc(selectedMajors().join(", ") || "None required or selected")}</span></div><div><span>→</span><span>Catalogue: ${esc(state.context?.catalogue_version || "2026")}</span></div></div>
+    <div class="trust-boundary-list"><div><span>→</span><span>Faculty: ${esc(state.context?.name)}</span></div><div><span>→</span><span>Selected majors: ${esc(selectedMajors().join(", ") || "(none selected)")}</span></div></div>
   `;
   $("routeDialog").showModal();
 }
