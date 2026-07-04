@@ -528,7 +528,7 @@ function setStep(step) {
   const labels = {
     route: ["Step 1 of 3", "Which degree are you doing?"],
     intent: ["Step 2 of 3", "What are you working towards?"],
-    evidence: ["Step 3 of 3", "Upload your transcript"],
+    evidence: ["Step 3 of 3", "Build your profile"],
   };
   if (labels[step]) {
     $("workspaceKicker").textContent = labels[step][0];
@@ -948,12 +948,26 @@ function bindEvents() {
     if (validateIntent()) {
       setStep("evidence");
       if (state.startInManualMode) {
-        toggleManualEntry(true);
+        toggleEvidenceMode('manual');
+      } else {
+        toggleEvidenceMode('default');
       }
     }
   });
-  document.querySelectorAll("[data-back-step]").forEach(button => button.addEventListener("click", () => setStep(button.dataset.backStep)));
-  $("uploadCard").addEventListener("click", () => $("transcriptFile").click());
+  document.querySelectorAll("[data-back-step]").forEach(button => button.addEventListener("click", () => {
+      if (button.dataset.backStep === "intent" && (state.isManualEntry || state.isEmptyEntry)) {
+          toggleEvidenceMode('default');
+      } else {
+          setStep(button.dataset.backStep);
+      }
+  }));
+  $("uploadCard")?.addEventListener("click", () => $("transcriptFile").click());
+  $("manualEntryToggle")?.addEventListener("click", () => toggleEvidenceMode('manual'));
+  $("startEmptyToggle")?.addEventListener("click", () => toggleEvidenceMode('empty'));
+  $("analyseEmptyBtn")?.addEventListener("click", () => {
+    // "Start Empty" bypasses file upload and uses an empty transcript representation
+    analyseEmpty();
+  });
   $("transcriptFile").addEventListener("change", event => chooseFile(event.target.files[0]));
   for (const eventName of ["dragenter", "dragover"]) {
     $("uploadCard").addEventListener(eventName, event => { event.preventDefault(); $("uploadCard").classList.add("drag"); });
@@ -973,7 +987,7 @@ function bindEvents() {
     if (buildManualBtn) {
         buildManualBtn.addEventListener("click", () => {
             if ($("landingView").classList.contains("hidden")) {
-                toggleManualEntry(true);
+                toggleEvidenceMode('manual');
             } else {
                 $("facultySection").scrollIntoView({ behavior: "smooth" });
                 state.startInManualMode = true; // flag to open manual mode after faculty selection
@@ -998,36 +1012,68 @@ boot();
 
 
 
-function toggleManualEntry(show) {
-    if (show) {
+function toggleEvidenceMode(mode) {
+    state.isManualEntry = (mode === 'manual');
+    state.isEmptyEntry = (mode === 'empty');
+
+    if (mode === 'manual') {
         $("uploadCard")?.classList.add("hidden");
+        $("manualEntryToggle")?.classList.add("hidden");
+        $("startEmptyToggle")?.classList.add("hidden");
         $("manualEntryArea")?.classList.remove("hidden");
 
-        // Find the title and change it
-        const title = document.querySelector("#evidenceStep h2");
-        if (title) title.textContent = "Build your profile manually";
-
-        // Find the subtitle and change it
-        const subtitle = document.querySelector("#evidenceStep p");
-        if (subtitle) subtitle.textContent = "Search for courses and add your grades. We will analyse your progress based on this.";
-
-        // Hide rules
-        const rules = document.querySelector("#evidenceStep .evidence-rules");
-        if (rules) rules.classList.add("hidden");
+        $("analyseTranscript")?.classList.add("hidden");
+        $("analyseEmptyBtn")?.classList.add("hidden");
+        $("analyseManualBtn")?.classList.remove("hidden");
 
         renderManualCourseList();
-    } else {
-        $("uploadCard")?.classList.remove("hidden");
+    } else if (mode === 'empty') {
+        $("uploadCard")?.classList.add("hidden");
+        $("manualEntryToggle")?.classList.add("hidden");
+        $("startEmptyToggle")?.classList.add("hidden");
         $("manualEntryArea")?.classList.add("hidden");
 
-        const title = document.querySelector("#evidenceStep h2");
-        if (title) title.textContent = "Upload your transcript";
+        $("analyseButton")?.classList.add("hidden");
+        $("analyseManualBtn")?.classList.add("hidden");
+        $("analyseEmptyBtn")?.classList.remove("hidden");
+    } else {
+        $("uploadCard")?.classList.remove("hidden");
+        $("manualEntryToggle")?.classList.remove("hidden");
+        $("startEmptyToggle")?.classList.remove("hidden");
+        $("manualEntryArea")?.classList.add("hidden");
 
-        const subtitle = document.querySelector("#evidenceStep p");
-        if (subtitle) subtitle.textContent = "We'll read your courses, marks, and grades. Using your program, we'll show you what it all means for finishing your degree.";
+        $("analyseButton")?.classList.remove("hidden");
+        $("analyseManualBtn")?.classList.add("hidden");
+        $("analyseEmptyBtn")?.classList.add("hidden");
+    }
+}
 
-        const rules = document.querySelector("#evidenceStep .evidence-rules");
-        if (rules) rules.classList.remove("hidden");
+async function analyseEmpty() {
+    $("analyseEmptyBtn").disabled = true;
+    $("analysisError").classList.add("hidden");
+    $("analysisProgress").classList.remove("hidden");
+    $("analysisProgressText").textContent = "Preparing empty scenario...";
+
+    const payload = {
+        route: { faculty: state.faculty, context: state.context, programme: state.programme, pathway: state.pathway },
+        evidence: { type: "manual", overrides: [] }
+    };
+    try {
+        const res = await fetch("/api/v1/engine/analyse", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+        });
+        if (!res.ok) throw new Error(await res.text());
+        state.report = await res.json();
+        renderReport();
+        setStep("report");
+    } catch (err) {
+        $("analysisError").textContent = err.message || "Failed to prepare scenario.";
+        $("analysisError").classList.remove("hidden");
+    } finally {
+        $("analyseEmptyBtn").disabled = false;
+        $("analysisProgress").classList.add("hidden");
     }
 }
 
