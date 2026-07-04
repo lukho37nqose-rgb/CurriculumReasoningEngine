@@ -3,10 +3,10 @@
 The parser extracts facts only. Programme rules, credits and course status are
 interpreted later against the selected handbook catalogue.
 """
+
 import re
 from typing import Optional
 from .models import StudentRecord, CourseResult
-
 
 _NAME_RE = re.compile(r"^Name:\s+(.+)", re.IGNORECASE)
 _ID_RE = re.compile(r"^Campus\s+ID:\s+([A-Z0-9]+)", re.IGNORECASE)
@@ -23,7 +23,9 @@ _COURSE_RE = re.compile(
 )
 
 # Status-only rows such as AB, DPR, INC, DE, PA, UP or SP.
-_STATUS_TOKEN = r"A/SF|UF\s+SM|DPR|INC|EXA|GIP|ATT|LOA|OSS|AB|DE|OS|PA|UP|SP|SF|FS|UF|F|P"
+_STATUS_TOKEN = (
+    r"A/SF|UF\s+SM|DPR|INC|EXA|GIP|ATT|LOA|OSS|AB|DE|OS|PA|UP|SP|SF|FS|UF|F|P"
+)
 _COURSE_STATUS_RE = re.compile(
     rf"^([A-Z]{{2,4}})\s+(\d{{4}}[A-Z]{{1,2}})\s+(.+?)\s+"
     rf"(\d{{2}})\s+(\d{{1,2}})\s+({_STATUS_TOKEN})\s*$",
@@ -35,9 +37,30 @@ _COURSE_NO_RESULT_RE = re.compile(
 )
 
 _VALID_GRADES = {
-    "1", "2+", "2-", "3", "F", "P", "PA", "UP", "SP", "FS", "SF",
-    "A/SF", "AB", "DPR", "INC", "DE", "OS", "ATT", "GIP", "LOA",
-    "EXA", "UF", "UF SM", "OSS",
+    "1",
+    "2+",
+    "2-",
+    "3",
+    "F",
+    "P",
+    "PA",
+    "UP",
+    "SP",
+    "FS",
+    "SF",
+    "A/SF",
+    "AB",
+    "DPR",
+    "INC",
+    "DE",
+    "OS",
+    "ATT",
+    "GIP",
+    "LOA",
+    "EXA",
+    "UF",
+    "UF SM",
+    "OSS",
 }
 
 
@@ -89,7 +112,9 @@ def parse_transcript_text(text: str) -> StudentRecord:
         if match:
             major_name = re.sub(
                 r"\s+(Major|Specialisation|Specialization|Stream|Programme)\s*$",
-                "", match.group(1).strip(), flags=re.IGNORECASE,
+                "",
+                match.group(1).strip(),
+                flags=re.IGNORECASE,
             )
             if major_name and major_name not in declared_majors:
                 declared_majors.append(major_name)
@@ -100,43 +125,49 @@ def parse_transcript_text(text: str) -> StudentRecord:
             dept, number, course_name, level, credits, mark, grade = match.groups()
             mark_value = int(mark)
             if 0 <= mark_value <= 100:
-                results.append(CourseResult(
-                    code=f"{dept.upper()}{number.upper()}",
-                    name=course_name.strip(),
-                    nqf_level=int(level),
-                    nqf_credits=int(credits),
-                    mark=mark_value,
-                    grade=_parse_grade(grade),
-                    academic_year=current_academic_year,
-                ))
+                results.append(
+                    CourseResult(
+                        code=f"{dept.upper()}{number.upper()}",
+                        name=course_name.strip(),
+                        nqf_level=int(level),
+                        nqf_credits=int(credits),
+                        mark=mark_value,
+                        grade=_parse_grade(grade),
+                        academic_year=current_academic_year,
+                    )
+                )
                 continue
 
         match = _COURSE_STATUS_RE.match(line)
         if match:
             dept, number, course_name, level, credits, grade = match.groups()
-            results.append(CourseResult(
-                code=f"{dept.upper()}{number.upper()}",
-                name=course_name.strip(),
-                nqf_level=int(level),
-                nqf_credits=int(credits),
-                mark=None,
-                grade=_parse_grade(grade),
-                academic_year=current_academic_year,
-            ))
+            results.append(
+                CourseResult(
+                    code=f"{dept.upper()}{number.upper()}",
+                    name=course_name.strip(),
+                    nqf_level=int(level),
+                    nqf_credits=int(credits),
+                    mark=None,
+                    grade=_parse_grade(grade),
+                    academic_year=current_academic_year,
+                )
+            )
             continue
 
         match = _COURSE_NO_RESULT_RE.match(line)
         if match:
             dept, number, course_name = match.groups()
-            results.append(CourseResult(
-                code=f"{dept.upper()}{number.upper()}",
-                name=course_name.strip(),
-                nqf_level=0,
-                nqf_credits=0,
-                mark=None,
-                grade=None,
-                academic_year=current_academic_year,
-            ))
+            results.append(
+                CourseResult(
+                    code=f"{dept.upper()}{number.upper()}",
+                    name=course_name.strip(),
+                    nqf_level=0,
+                    nqf_credits=0,
+                    mark=None,
+                    grade=None,
+                    academic_year=current_academic_year,
+                )
+            )
 
     return StudentRecord(
         student_id=student_id,
@@ -153,6 +184,8 @@ def parse_transcript_pdf(pdf_path_or_file) -> StudentRecord:
     except ImportError as exc:
         raise ImportError("pypdf is required: pip install pypdf") from exc
 
-    reader = PdfReader(pdf_path_or_file if hasattr(pdf_path_or_file, "read") else str(pdf_path_or_file))
+    reader = PdfReader(
+        pdf_path_or_file if hasattr(pdf_path_or_file, "read") else str(pdf_path_or_file)
+    )
     full_text = "\n".join((page.extract_text() or "") for page in reader.pages)
     return parse_transcript_text(full_text)

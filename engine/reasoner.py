@@ -3,11 +3,24 @@ Reasoning Engine — defines Goals and reasons about how to achieve them.
 Supports backward chaining, gap analysis, pathway optimization,
 and honours readiness assessment.
 """
+
 from dataclasses import dataclass, field
 from typing import List, Dict, Set, Tuple, Optional, Any
-from .models import StudentRecord, Catalogue, CourseFact, MajorDefinition, ProgrammeRules
+from .models import (
+    StudentRecord,
+    Catalogue,
+    CourseFact,
+    MajorDefinition,
+    ProgrammeRules,
+)
 from .knowledge_graph import KnowledgeGraph
-from .utils import _course_weight, _is_senior, _is_humanities, _normalise_major_keys, _infer_programme_key
+from .utils import (
+    _course_weight,
+    _is_senior,
+    _is_humanities,
+    _normalise_major_keys,
+    _infer_programme_key,
+)
 
 
 @dataclass
@@ -39,7 +52,9 @@ class GoalReport:
 
 
 class Goal:
-    def __init__(self, student: StudentRecord, catalogue: Catalogue, graph: KnowledgeGraph):
+    def __init__(
+        self, student: StudentRecord, catalogue: Catalogue, graph: KnowledgeGraph
+    ):
         self.student = student
         self.catalogue = catalogue
         self.graph = graph
@@ -60,7 +75,9 @@ class GraduateGoal(Goal):
         from .rule_engine import compute_report
 
         report = compute_report(self.student, self.catalogue)
-        programme_key = (self.student.programme_key or _infer_programme_key(self.student.programme))
+        programme_key = self.student.programme_key or _infer_programme_key(
+            self.student.programme
+        )
         prog = self.catalogue.programmes.get(programme_key)
 
         reqs = [
@@ -72,14 +89,16 @@ class GraduateGoal(Goal):
                 required=req.required,
                 detail=(
                     f"{req.detail} Status: {req.status}."
-                    if req.status != "verified" else req.detail
+                    if req.status != "verified"
+                    else req.detail
                 ),
             )
             for req in report.requirements
         ]
 
         incomplete = [
-            req.label for req in report.requirements
+            req.label
+            for req in report.requirements
             if req.blocking and not req.complete
         ]
         if incomplete:
@@ -118,7 +137,9 @@ class GraduateGoal(Goal):
             },
         )
 
-    def _compute_graduation_path(self, major_goals: List[GoalReport], prog: ProgrammeRules) -> List[PathwayStep]:
+    def _compute_graduation_path(
+        self, major_goals: List[GoalReport], prog: ProgrammeRules
+    ) -> List[PathwayStep]:
         """Recommend only courses whose recorded prerequisites are met."""
         from .rule_engine import _prereqs_met
 
@@ -147,8 +168,11 @@ class GraduateGoal(Goal):
         remaining = sorted(
             outstanding_courses,
             key=lambda code: (
-                self.catalogue.courses[code].nqf_level
-                if code in self.catalogue.courses else 99,
+                (
+                    self.catalogue.courses[code].nqf_level
+                    if code in self.catalogue.courses
+                    else 99
+                ),
                 code,
             ),
         )
@@ -167,43 +191,60 @@ class GraduateGoal(Goal):
                         break
 
             if not semester_courses:
-                steps.append(PathwayStep(
-                    semester=f"Semester {semester_num}",
-                    courses=[],
-                    reason=(
-                        "No remaining course can be safely recommended from the "
-                        "recorded prerequisites. Catalogue data or prerequisites "
-                        "require manual review."
-                    ),
-                ))
+                steps.append(
+                    PathwayStep(
+                        semester=f"Semester {semester_num}",
+                        courses=[],
+                        reason=(
+                            "No remaining course can be safely recommended from the "
+                            "recorded prerequisites. Catalogue data or prerequisites "
+                            "require manual review."
+                        ),
+                    )
+                )
                 break
 
             for code in semester_courses:
                 remaining.remove(code)
                 current_passed.add(code)
 
-            steps.append(PathwayStep(
-                semester=f"Semester {semester_num}",
-                courses=semester_courses,
-                reason=(
-                    "Recorded prerequisites are met for these outstanding "
-                    "programme or major requirements."
-                ),
-            ))
+            steps.append(
+                PathwayStep(
+                    semester=f"Semester {semester_num}",
+                    courses=semester_courses,
+                    reason=(
+                        "Recorded prerequisites are met for these outstanding "
+                        "programme or major requirements."
+                    ),
+                )
+            )
             semester_num += 1
 
         return steps
 
 
 class CompleteMajorGoal(Goal):
-    def __init__(self, student: StudentRecord, catalogue: Catalogue, graph: KnowledgeGraph, major_key: str):
+    def __init__(
+        self,
+        student: StudentRecord,
+        catalogue: Catalogue,
+        graph: KnowledgeGraph,
+        major_key: str,
+    ):
         super().__init__(student, catalogue, graph)
         self.major_key = major_key
 
     def evaluate(self) -> GoalReport:
         major_def = self.catalogue.majors.get(self.major_key)
         if not major_def:
-            return GoalReport(f"major_{self.major_key}", f"Complete {self.major_key}", False, [], f"Major '{self.major_key}' not found in catalogue", [])
+            return GoalReport(
+                f"major_{self.major_key}",
+                f"Complete {self.major_key}",
+                False,
+                [],
+                f"Major '{self.major_key}' not found in catalogue",
+                [],
+            )
 
         if not major_def.required_courses and not major_def.choice_groups:
             return GoalReport(
@@ -223,14 +264,16 @@ class CompleteMajorGoal(Goal):
         # Compulsory courses
         for code in major_def.required_courses:
             is_done = code in passed
-            reqs.append(GoalRequirement(
-                id=f"compulsory_{code}",
-                label=f"Pass {code}",
-                complete=is_done,
-                current=1 if is_done else 0,
-                required=1,
-                detail=f"Compulsory course {code}"
-            ))
+            reqs.append(
+                GoalRequirement(
+                    id=f"compulsory_{code}",
+                    label=f"Pass {code}",
+                    complete=is_done,
+                    current=1 if is_done else 0,
+                    required=1,
+                    detail=f"Compulsory course {code}",
+                )
+            )
             if not is_done:
                 gaps.append(f"Pass {code}.")
 
@@ -239,27 +282,41 @@ class CompleteMajorGoal(Goal):
             satisfied = [c for c in group.courses if c in passed]
             needed = group.required
             is_done = len(satisfied) >= needed
-            reqs.append(GoalRequirement(
-                id=f"choice_{group.label}",
-                label=group.label,
-                complete=is_done,
-                current=len(satisfied),
-                required=needed,
-                detail=f"Choose {needed} from {group.courses}"
-            ))
+            reqs.append(
+                GoalRequirement(
+                    id=f"choice_{group.label}",
+                    label=group.label,
+                    complete=is_done,
+                    current=len(satisfied),
+                    required=needed,
+                    detail=f"Choose {needed} from {group.courses}",
+                )
+            )
             if not is_done:
                 gaps.append(f"Need {needed - len(satisfied)} more from {group.label}.")
 
         complete = all(r.complete for r in reqs)
-        gap_desc = " ".join(gaps) if gaps else f"All requirements for {major_def.name} major met!"
+        gap_desc = (
+            " ".join(gaps)
+            if gaps
+            else f"All requirements for {major_def.name} major met!"
+        )
 
-        return GoalReport(f"major_{self.major_key}", major_def.name, complete, reqs, gap_desc)
+        return GoalReport(
+            f"major_{self.major_key}", major_def.name, complete, reqs, gap_desc
+        )
 
 
 class HonoursReadinessGoal(Goal):
     """Provide an indicative average without claiming verified admission readiness."""
 
-    def __init__(self, student: StudentRecord, catalogue: Catalogue, graph: KnowledgeGraph, major_key: str):
+    def __init__(
+        self,
+        student: StudentRecord,
+        catalogue: Catalogue,
+        graph: KnowledgeGraph,
+        major_key: str,
+    ):
         super().__init__(student, catalogue, graph)
         self.major_key = major_key
 
@@ -287,8 +344,7 @@ class HonoursReadinessGoal(Goal):
         }
         assessed_codes = set(required_senior)
         assessed_codes.update(
-            code for code in option_senior
-            if self.student.result_for(code) is not None
+            code for code in option_senior if self.student.result_for(code) is not None
         )
 
         marks = []
@@ -355,4 +411,3 @@ class HonoursReadinessGoal(Goal):
                 "courses_assessed": len(marks),
             },
         )
-

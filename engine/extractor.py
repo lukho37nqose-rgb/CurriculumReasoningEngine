@@ -6,6 +6,7 @@ and formats them into the JSON structure required by CurriculumAdvisor.
 Usage:
   python engine/extractor.py <path_to_handbook.pdf> <output_directory>
 """
+
 import re
 import json
 import sys
@@ -19,7 +20,13 @@ except ImportError:
     sys.exit(1)
 
 # --- Constants ---
-_HEADER_PHRASES = ("BACHELOR OF", "COMMERCE", "BUSINESS SCIENCE", "AUGMENTED", "EXTENDED")
+_HEADER_PHRASES = (
+    "BACHELOR OF",
+    "COMMERCE",
+    "BUSINESS SCIENCE",
+    "AUGMENTED",
+    "EXTENDED",
+)
 
 # --- Regex Patterns ---
 
@@ -31,25 +38,26 @@ _CODE_PAT = r"[A-Z]{2,4}\d{4}[A-Z]?(?:/[A-Z])*"
 #   "ACC1015F/S  BUSINESS  ACUMEN FOR ACCOUNTANTS"
 #   "ECO4013S  INTERNATIONAL  FINANCE"
 # Allows multiple spaces between code and name (PDF artifact)
-_COURSE_HEADER_RE = re.compile(
-    rf"^({_CODE_PAT})\s{{2,}}(.+)$"
-)
+_COURSE_HEADER_RE = re.compile(rf"^({_CODE_PAT})\s{{2,}}(.+)$")
 
 # Matches course line in tabular format (curriculum table pages):
 #   "ACC1106F Financial Accounting ..............................18 5"
 #   "DOC1103F/S Harnessing Personal Capital for Growth ..........2 5"
-_TABLE_ROW_RE = re.compile(
-    rf"^({_CODE_PAT})\s+(.+?)\s*\.{{2,}}\s*(\d+)\s+(\d+)\s*$"
-)
+_TABLE_ROW_RE = re.compile(rf"^({_CODE_PAT})\s+(.+?)\s*\.{{2,}}\s*(\d+)\s+(\d+)\s*$")
 
 # Matches NQF credits and level: e.g., "18 NQF credits at NQF level 6"
 _NQF_RE = re.compile(r"(\d+)\s+NQF\s+credits\s+at\s+NQF\s+level\s+(\d+)", re.IGNORECASE)
 
 # Matches prerequisites: e.g., "Course entry requirements: INF1002F/S or equivalent"
-_PREREQ_RE = re.compile(r"Course\s+entry\s+requirements:\s*(.+?)(?:\n|Co-requisites|Objective|Course outline|DP requirements|$)", re.IGNORECASE)
+_PREREQ_RE = re.compile(
+    r"Course\s+entry\s+requirements:\s*(.+?)(?:\n|Co-requisites|Objective|Course outline|DP requirements|$)",
+    re.IGNORECASE,
+)
 
 # Matches offered semester: e.g., "First semester" or "Second semester"
-_OFFERED_RE = re.compile(r"(first|second|both|either|full year)\s+semester", re.IGNORECASE)
+_OFFERED_RE = re.compile(
+    r"(first|second|both|either|full year)\s+semester", re.IGNORECASE
+)
 
 # For extracting individual course codes from free text (prereqs, major lists, etc.)
 _CODE_EXTRACT_RE = re.compile(rf"\b({_CODE_PAT})\b")
@@ -77,7 +85,7 @@ def extract_prerequisites(prereq_text: str) -> List[str]:
             match = re.match(r"([A-Z]{2,4}\d{4})", code)
             if match:
                 base = match.group(1)
-                suffixes = re.findall(r"[A-Z]", code[len(base):])
+                suffixes = re.findall(r"[A-Z]", code[len(base) :])
                 for s in suffixes:
                     expanded.append(base + s)
         else:
@@ -91,7 +99,7 @@ def expand_slash_code(code: str) -> List[str]:
         match = re.match(r"([A-Z]{2,4}\d{4})", code)
         if match:
             base = match.group(1)
-            suffixes = re.findall(r"[A-Z]", code[len(base):])
+            suffixes = re.findall(r"[A-Z]", code[len(base) :])
             return [base + s for s in suffixes]
     return [code]
 
@@ -120,7 +128,7 @@ def reconstruct_specialisation_name(lines: List[str], index: int) -> str:
     prev_line = lines[index - 1].strip()
     if re.match(r"^(Bachelor of|BCom|BBusSc)", prev_line, re.IGNORECASE):
         return prev_line
-        
+
     start_idx = index - 1
     # Scan forward from index-4 to index-1 to find the earliest start of the header
     for k in range(max(0, index - 4), index):
@@ -128,30 +136,34 @@ def reconstruct_specialisation_name(lines: List[str], index: int) -> str:
         # Skip page headers
         if k == 0 and is_page_header(line_clean):
             continue
-        if re.match(r"^(Bachelor|BCom|BBusSc|Ba|chelor|achelor|Augmented|Extended|Specialisation|Programme)", line_clean, re.IGNORECASE):
+        if re.match(
+            r"^(Bachelor|BCom|BBusSc|Ba|chelor|achelor|Augmented|Extended|Specialisation|Programme)",
+            line_clean,
+            re.IGNORECASE,
+        ):
             start_idx = k
             break
-    
+
     header_parts = []
     for k in range(start_idx, index):
         line_clean = lines[k].strip()
         if k == 0 and is_page_header(line_clean):
             continue
         header_parts.append(line_clean)
-        
+
     full_name = " ".join(header_parts)
-    
+
     # Clean up common PDF artifacts
     full_name = re.sub(r"\s+", " ", full_name)
     full_name = re.sub(r"\bBa\s+chelor\b", "Bachelor", full_name, flags=re.IGNORECASE)
     full_name = re.sub(r"\bB\s+achelor\b", "Bachelor", full_name, flags=re.IGNORECASE)
-    
+
     # Handle cases where Ba or B was on a line that we missed or was cut off
     if full_name.lower().startswith("achelor"):
         full_name = "B" + full_name
     elif full_name.lower().startswith("chelor"):
         full_name = "Ba" + full_name
-    
+
     return full_name.strip()
 
 
@@ -165,7 +177,6 @@ def infer_semester(code: str) -> List[str]:
         return ["Semester 2"]
     else:
         return ["Semester 1", "Semester 2"]
-
 
 
 def _is_undergrad_section(pdf_name_lower: str, page_num: int) -> bool:
@@ -184,8 +195,12 @@ def _is_undergrad_section(pdf_name_lower: str, page_num: int) -> bool:
 
 
 def _process_tabular_row(
-    line: str, current_dept: str, current_major_key: Optional[str],
-    courses: List[Dict[str, Any]], seen_codes: set, majors: Dict[str, Any]
+    line: str,
+    current_dept: str,
+    current_major_key: Optional[str],
+    courses: List[Dict[str, Any]],
+    seen_codes: set,
+    majors: Dict[str, Any],
 ) -> bool:
     """Parse tabular course row (curriculum tables)."""
     tm = _TABLE_ROW_RE.match(line)
@@ -201,16 +216,18 @@ def _process_tabular_row(
     for code in expanded_codes:
         if code not in seen_codes:
             seen_codes.add(code)
-            courses.append({
-                "code": code,
-                "name": name.title(),
-                "credits": credits,
-                "nqf_level": nqf_level,
-                "prerequisites": [],
-                "offered": infer_semester(code),
-                "department": current_dept,
-                "description": f"Course outline for {code}."
-            })
+            courses.append(
+                {
+                    "code": code,
+                    "name": name.title(),
+                    "credits": credits,
+                    "nqf_level": nqf_level,
+                    "prerequisites": [],
+                    "offered": infer_semester(code),
+                    "department": current_dept,
+                    "description": f"Course outline for {code}.",
+                }
+            )
 
         if current_major_key and current_major_key in majors:
             if code not in majors[current_major_key]["required_courses"]:
@@ -219,8 +236,12 @@ def _process_tabular_row(
 
 
 def _process_prose_header(
-    line: str, i: int, lines: List[str], current_dept: str,
-    courses: List[Dict[str, Any]], seen_codes: set
+    line: str,
+    i: int,
+    lines: List[str],
+    current_dept: str,
+    courses: List[Dict[str, Any]],
+    seen_codes: set,
 ) -> Tuple[bool, bool]:
     """
     Parse prose course header (description pages).
@@ -244,7 +265,7 @@ def _process_prose_header(
     prereqs = []
 
     # Scan next 15 lines for details
-    lookahead = " ".join(lines[i+1:i+16])
+    lookahead = " ".join(lines[i + 1 : i + 16])
 
     nqf_match = _NQF_RE.search(lookahead)
     if nqf_match:
@@ -287,35 +308,43 @@ def _process_prose_header(
                     break
         else:
             seen_codes.add(code)
-            courses.append({
-                "code": code,
-                "name": name.strip().title(),
-                "credits": nqf_credits,
-                "nqf_level": nqf_level,
-                "prerequisites": prereqs,
-                "prerequisites_verified": prerequisites_verified,
-                "offered": offered,
-                "department": current_dept,
-                "description": f"Course outline for {code}."
-            })
+            courses.append(
+                {
+                    "code": code,
+                    "name": name.strip().title(),
+                    "credits": nqf_credits,
+                    "nqf_level": nqf_level,
+                    "prerequisites": prereqs,
+                    "prerequisites_verified": prerequisites_verified,
+                    "offered": offered,
+                    "department": current_dept,
+                    "description": f"Course outline for {code}.",
+                }
+            )
     return True, True
 
 
 def _process_humanities_major(
-    line: str, i: int, lines: List[str], current_dept: str,
-    pdf_path_str: str, majors: Dict[str, Any]
+    line: str,
+    i: int,
+    lines: List[str],
+    current_dept: str,
+    pdf_path_str: str,
+    majors: Dict[str, Any],
 ) -> None:
     """Check for Humanities Major Requirements and extract them."""
     if "Requirements for a major in" not in line:
         return
 
-    major_name_match = re.search(r"Requirements for a major in\s+(.+)", line, re.IGNORECASE)
+    major_name_match = re.search(
+        r"Requirements for a major in\s+(.+)", line, re.IGNORECASE
+    )
     if major_name_match:
         major_name = major_name_match.group(1).strip().title()
         major_key = major_name.lower().replace(" ", "_").replace("&", "and")
 
         # Collect next 20 lines to find course codes
-        major_lookahead = " ".join(lines[i+1:i+21])
+        major_lookahead = " ".join(lines[i + 1 : i + 21])
         major_courses = _CODE_EXTRACT_RE.findall(major_lookahead.upper())
 
         expanded_major_courses = []
@@ -329,13 +358,18 @@ def _process_humanities_major(
                 "category": "bcom" if "commerce" in pdf_path_str.lower() else "bsc",
                 "humanities_major": True,
                 "required_courses": sorted(list(set(expanded_major_courses))),
-                "choice_groups": []
+                "choice_groups": [],
             }
 
 
 def _process_specialisation(
-    line: str, i: int, lines: List[str], current_dept: str,
-    is_undergrad_section: bool, pdf_path_str: str, majors: Dict[str, Any]
+    line: str,
+    i: int,
+    lines: List[str],
+    current_dept: str,
+    is_undergrad_section: bool,
+    pdf_path_str: str,
+    majors: Dict[str, Any],
 ) -> Optional[str]:
     """
     Check for Specialisation Requirements and extract them.
@@ -351,7 +385,10 @@ def _process_specialisation(
         return None
 
     prog_code = prog_match.group(1)
-    if not (prog_code.startswith(("CB", "EB", "LB", "LP", "MB", "MU", "MZ")) or re.match(r"^[A-Z]{3}\d{2}$", prog_code)):
+    if not (
+        prog_code.startswith(("CB", "EB", "LB", "LP", "MB", "MU", "MZ"))
+        or re.match(r"^[A-Z]{3}\d{2}$", prog_code)
+    ):
         return None
 
     # Strip all bracketed text from the line to see if there's a name on the same line
@@ -361,7 +398,15 @@ def _process_specialisation(
     else:
         major_name = reconstruct_specialisation_name(lines, i).title()
 
-    major_key = major_name.lower().replace(" ", "_").replace("&", "and").replace(":", "").replace(",", "").replace("(", "").replace(")", "")
+    major_key = (
+        major_name.lower()
+        .replace(" ", "_")
+        .replace("&", "and")
+        .replace(":", "")
+        .replace(",", "")
+        .replace("(", "")
+        .replace(")", "")
+    )
     major_key = re.sub(r"_+", "_", major_key)
 
     # Determine category
@@ -383,7 +428,7 @@ def _process_specialisation(
         "category": category,
         "humanities_major": False,
         "required_courses": [],
-        "choice_groups": []
+        "choice_groups": [],
     }
     return major_key
 
@@ -392,51 +437,67 @@ def parse_handbook(pdf_path: Path) -> Tuple[List[Dict[str, Any]], Dict[str, Any]
     """Parse the PDF and extract courses and major requirements."""
     print(f"Reading {pdf_path.name}...")
     reader = PdfReader(str(pdf_path))
-    
+
     courses: List[Dict[str, Any]] = []
     seen_codes: set = set()  # Deduplicate across table + prose
     majors: Dict[str, Any] = {}
-    
+
     current_dept = "Unknown"
     current_major_key = None
-    
+
     print("Parsing pages...")
     for page_num, page in enumerate(reader.pages, start=1):
         text = page.extract_text() or ""
         lines = text.splitlines()
-        
+
         # Determine if we are in the undergraduate curriculum section based on page number
         pdf_name_lower = pdf_path.name.lower()
         is_undergrad_section = _is_undergrad_section(pdf_name_lower, page_num)
-            
+
         if not is_undergrad_section:
             current_major_key = None
-            
+
         # Try to track department from page headers
         if lines and len(lines[0].strip()) < 50:
             header = lines[0].strip()
-            if header.isupper() and not any(x in header for x in ["RULES", "CURRICULA", "HANDBOOK"]):
+            if header.isupper() and not any(
+                x in header for x in ["RULES", "CURRICULA", "HANDBOOK"]
+            ):
                 current_dept = header.title()
 
         for i, line in enumerate(lines):
             line = line.strip()
-            
+
             # 1a. Check for Tabular Course Row (curriculum tables)
-            if _process_tabular_row(line, current_dept, current_major_key, courses, seen_codes, majors):
+            if _process_tabular_row(
+                line, current_dept, current_major_key, courses, seen_codes, majors
+            ):
                 continue
 
             # 1b. Check for Prose Course Header (description pages)
-            handled, clear_major_key = _process_prose_header(line, i, lines, current_dept, courses, seen_codes)
+            handled, clear_major_key = _process_prose_header(
+                line, i, lines, current_dept, courses, seen_codes
+            )
             if clear_major_key:
                 current_major_key = None
             if handled:
                 continue
-                
+
             # 2a. Check for Humanities Major Requirements
-            _process_humanities_major(line, i, lines, current_dept, str(pdf_path), majors)
+            _process_humanities_major(
+                line, i, lines, current_dept, str(pdf_path), majors
+            )
 
             # 2b. Check for Specialisation Requirements (Commerce, EBE, Law, Science, Health)
-            new_major_key = _process_specialisation(line, i, lines, current_dept, is_undergrad_section, str(pdf_path), majors)
+            new_major_key = _process_specialisation(
+                line,
+                i,
+                lines,
+                current_dept,
+                is_undergrad_section,
+                str(pdf_path),
+                majors,
+            )
             if new_major_key:
                 current_major_key = new_major_key
 
@@ -446,20 +507,22 @@ def parse_handbook(pdf_path: Path) -> Tuple[List[Dict[str, Any]], Dict[str, Any]
 
 def main():
     if len(sys.argv) < 3:
-        print("Usage: python engine/extractor.py <path_to_handbook.pdf> <output_directory>")
+        print(
+            "Usage: python engine/extractor.py <path_to_handbook.pdf> <output_directory>"
+        )
         sys.exit(1)
-        
+
     pdf_path = Path(sys.argv[1])
     output_dir = Path(sys.argv[2])
-    
+
     if not pdf_path.exists():
         print(f"Error: File not found: {pdf_path}")
         sys.exit(1)
-        
+
     output_dir.mkdir(parents=True, exist_ok=True)
-    
+
     courses, majors = parse_handbook(pdf_path)
-    
+
     # --- Merge Logic for Courses ---
     courses_file = output_dir / "courses.json"
     final_courses = []
@@ -476,13 +539,18 @@ def main():
             if code in existing_map:
                 existing = existing_map[code]
                 # Preserve existing fields if parsed fields are empty/default
-                if not parsed_course.get("prerequisites") and existing.get("prerequisites"):
+                if not parsed_course.get("prerequisites") and existing.get(
+                    "prerequisites"
+                ):
                     parsed_course["prerequisites"] = existing["prerequisites"]
                 if not parsed_course.get("offered") and existing.get("offered"):
                     parsed_course["offered"] = existing["offered"]
                 if not parsed_course.get("description") and existing.get("description"):
                     parsed_course["description"] = existing["description"]
-                if parsed_course.get("credits", 18) == 18 and existing.get("credits", 18) != 18:
+                if (
+                    parsed_course.get("credits", 18) == 18
+                    and existing.get("credits", 18) != 18
+                ):
                     parsed_course["credits"] = existing["credits"]
                 # Keep other existing fields that might not be in parsed_course
                 for k, v in existing.items():
@@ -503,8 +571,10 @@ def main():
 
     with open(courses_file, "w", encoding="utf-8") as f:
         json.dump(final_courses, f, indent=2, ensure_ascii=False)
-    print(f"Saved {len(final_courses)} courses to {courses_file} (merged with existing)")
-    
+    print(
+        f"Saved {len(final_courses)} courses to {courses_file} (merged with existing)"
+    )
+
     # Determine faculty-specific programme rules
     pdf_name_lower = pdf_path.name.lower()
     if "commerce" in pdf_name_lower:
@@ -519,12 +589,19 @@ def main():
             "minimum_majors": 1,
             "minimum_humanities_semester_courses": 0,
             "minimum_humanities_majors": 0,
-            "required_courses": []
+            "required_courses": [],
         }
     elif "ebe" in pdf_name_lower:
         prog_rules = {
             "name": "EBE Undergraduate Programme",
-            "qualification_codes": ["EB001", "EB002", "EB009", "EB015", "EB017", "EB022"],
+            "qualification_codes": [
+                "EB001",
+                "EB002",
+                "EB009",
+                "EB015",
+                "EB017",
+                "EB022",
+            ],
             "minimum_duration_years": 4,
             "minimum_nqf_credits": 576,
             "minimum_nqf_level_7_credits": 120,
@@ -533,7 +610,7 @@ def main():
             "minimum_majors": 1,
             "minimum_humanities_semester_courses": 0,
             "minimum_humanities_majors": 0,
-            "required_courses": []
+            "required_courses": [],
         }
     elif "law" in pdf_name_lower:
         prog_rules = {
@@ -547,7 +624,7 @@ def main():
             "minimum_majors": 1,
             "minimum_humanities_semester_courses": 0,
             "minimum_humanities_majors": 0,
-            "required_courses": []
+            "required_courses": [],
         }
     elif "sci" in pdf_name_lower:
         prog_rules = {
@@ -561,7 +638,7 @@ def main():
             "minimum_majors": 2,
             "minimum_humanities_semester_courses": 0,
             "minimum_humanities_majors": 0,
-            "required_courses": []
+            "required_courses": [],
         }
     elif "fhs" in pdf_name_lower:
         prog_rules = {
@@ -575,7 +652,7 @@ def main():
             "minimum_majors": 1,
             "minimum_humanities_semester_courses": 0,
             "minimum_humanities_majors": 0,
-            "required_courses": []
+            "required_courses": [],
         }
     else:
         # Default to Humanities
@@ -590,7 +667,7 @@ def main():
             "minimum_majors": 2,
             "minimum_humanities_semester_courses": 12,
             "minimum_humanities_majors": 1,
-            "required_courses": []
+            "required_courses": [],
         }
 
     # --- Merge Logic for Majors ---
@@ -611,10 +688,12 @@ def main():
                 if old_m.get("choice_groups") and not new_m.get("choice_groups"):
                     majors[key] = old_m
                 # Also preserve manual tweaks to required_courses
-                elif set(old_m.get("required_courses", [])) != set(new_m.get("required_courses", [])):
+                elif set(old_m.get("required_courses", [])) != set(
+                    new_m.get("required_courses", [])
+                ):
                     # We will trust the new parsed version if it successfully extracted choice_groups, else trust old.
                     if not new_m.get("choice_groups"):
-                         majors[key] = old_m
+                        majors[key] = old_m
 
         # Add any old majors that we didn't see in the new PDF
         for key, old_m in existing_majors.items():
@@ -627,10 +706,8 @@ def main():
     else:
         reqs_data = {
             "source": f"UCT Handbook Extracted from {pdf_path.name}",
-            "programmes": {
-                "regular_programme": prog_rules
-            },
-            "majors": majors
+            "programmes": {"regular_programme": prog_rules},
+            "majors": majors,
         }
 
     with open(reqs_file, "w", encoding="utf-8") as f:

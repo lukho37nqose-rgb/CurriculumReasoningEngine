@@ -23,6 +23,7 @@ const state = {
   reportTab: "overview",
   currentStep: "route",
   serviceReady: false,
+  manualCourses: [],
 };
 
 const $ = id => document.getElementById(id);
@@ -342,6 +343,7 @@ function resetRouteState() {
 }
 
 async function openFaculty(key, { historyMode = "push" } = {}) {
+  state.startInManualMode = false;
   const meta = state.bootstrap?.faculties?.find(item => item.key === key);
   if (!meta) return;
   state.faculty = key;
@@ -910,12 +912,46 @@ function resetAnalysis() {
 }
 
 function bindEvents() {
+  $("manualCourseSearch")?.addEventListener("input", handleManualSearch);
+
+  $("manualAddBtn")?.addEventListener("click", () => {
+    const searchInput = $("manualCourseSearch");
+    if (!searchInput) return;
+    const query = searchInput.value.trim().toUpperCase();
+    if (!query) return;
+
+    // In a real scenario, this should pick from dropdown.
+    // For manual entry (or test), we add raw if not found, or matched if found.
+    const allCourses = state.catalogue?.courses || [];
+    const match = allCourses.find(c => c.code.toUpperCase() === query);
+
+    if (match) {
+        state.manualCourses.push({ code: match.code, name: match.name, mark: 50 });
+    } else {
+        state.manualCourses.push({ code: query, name: "Unknown Course", mark: 50 });
+    }
+
+    searchInput.value = "";
+    $("manualCourseDropdown")?.classList.add("hidden");
+    renderManualCourseList();
+  });
+
+  $("analyseManualBtn")?.addEventListener("click", analyseManual);
+  document.addEventListener("click", (e) => { if (!e.target.closest("#manualEntryArea")) $("manualCourseDropdown")?.classList.add("hidden"); });
+
   $("homeButton").addEventListener("click", goHome);
   $("backToFaculties").addEventListener("click", goHome);
   $("programmeSelect").addEventListener("change", onProgrammeChange);
   $("pathwaySelect").addEventListener("change", onPathwayChange);
   $("routeContinue").addEventListener("click", continueFromRoute);
-  $("intentContinue").addEventListener("click", () => { if (validateIntent()) setStep("evidence"); });
+  $("intentContinue").addEventListener("click", () => {
+    if (validateIntent()) {
+      setStep("evidence");
+      if (state.startInManualMode) {
+        toggleManualEntry(true);
+      }
+    }
+  });
   document.querySelectorAll("[data-back-step]").forEach(button => button.addEventListener("click", () => setStep(button.dataset.backStep)));
   $("uploadCard").addEventListener("click", () => $("transcriptFile").click());
   $("transcriptFile").addEventListener("change", event => chooseFile(event.target.files[0]));
@@ -931,7 +967,20 @@ function bindEvents() {
   $("copySummaryButton").addEventListener("click", copySummary);
   $("printButton").addEventListener("click", () => window.print());
   $("routeSummaryButton").addEventListener("click", showRouteDialog);
-  for (const id of ["methodButton", "exploreButton", "buildManuallyButton"]) { const el = $(id); if (el) el.addEventListener("click", () => $("methodDialog").showModal()); }
+
+    for (const id of ["methodButton", "exploreButton"]) { const el = $(id); if (el) el.addEventListener("click", () => $("methodDialog").showModal()); }
+    const buildManualBtn = $("buildManuallyButton");
+    if (buildManualBtn) {
+        buildManualBtn.addEventListener("click", () => {
+            if ($("landingView").classList.contains("hidden")) {
+                toggleManualEntry(true);
+            } else {
+                $("facultySection").scrollIntoView({ behavior: "smooth" });
+                state.startInManualMode = true; // flag to open manual mode after faculty selection
+            }
+        });
+    }
+
   $("statusButton").addEventListener("click", () => checkReadiness({ openDialog: true }));
   window.addEventListener("popstate", () => {
     if (location.pathname.startsWith("/faculty/")) {
@@ -946,3 +995,165 @@ function bindEvents() {
 
 bindEvents();
 boot();
+
+
+
+function toggleManualEntry(show) {
+    if (show) {
+        $("uploadCard")?.classList.add("hidden");
+        $("manualEntryArea")?.classList.remove("hidden");
+
+        // Find the title and change it
+        const title = document.querySelector("#evidenceStep h2");
+        if (title) title.textContent = "Build your profile manually";
+
+        // Find the subtitle and change it
+        const subtitle = document.querySelector("#evidenceStep p");
+        if (subtitle) subtitle.textContent = "Search for courses and add your grades. We will analyse your progress based on this.";
+
+        // Hide rules
+        const rules = document.querySelector("#evidenceStep .evidence-rules");
+        if (rules) rules.classList.add("hidden");
+
+        renderManualCourseList();
+    } else {
+        $("uploadCard")?.classList.remove("hidden");
+        $("manualEntryArea")?.classList.add("hidden");
+
+        const title = document.querySelector("#evidenceStep h2");
+        if (title) title.textContent = "Upload your transcript";
+
+        const subtitle = document.querySelector("#evidenceStep p");
+        if (subtitle) subtitle.textContent = "We'll read your courses, marks, and grades. Using your program, we'll show you what it all means for finishing your degree.";
+
+        const rules = document.querySelector("#evidenceStep .evidence-rules");
+        if (rules) rules.classList.remove("hidden");
+    }
+}
+
+function renderManualCourseList() {
+    const list = $("manualCourseList");
+    if (!list) return;
+    if (state.manualCourses.length === 0) {
+        list.innerHTML = '<div class="empty">No courses added yet. Search above to begin.</div>';
+        $("analyseManualBtn").disabled = true;
+        return;
+    }
+
+    $("analyseManualBtn").disabled = false;
+    list.innerHTML = state.manualCourses.map((c, i) => `
+        <div class="manual-course-item">
+            <div class="course-info">${esc(c.code)}</div>
+            <div class="course-grade">
+                <input type="number" min="0" max="100" value="${c.mark}" data-index="${i}" class="manual-mark-input" placeholder="Mark">
+                <button type="button" class="remove-btn" data-index="${i}">×</button>
+            </div>
+        </div>
+    `).join('');
+
+    document.querySelectorAll(".manual-mark-input").forEach(input => {
+        input.addEventListener("change", (e) => {
+            const idx = parseInt(e.target.dataset.index, 10);
+            let val = parseInt(e.target.value, 10);
+            if (isNaN(val)) val = 0;
+            if (val < 0) val = 0;
+            if (val > 100) val = 100;
+            state.manualCourses[idx].mark = val;
+            e.target.value = val;
+        });
+    });
+
+    document.querySelectorAll(".remove-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            const idx = parseInt(e.target.dataset.index, 10);
+            state.manualCourses.splice(idx, 1);
+            renderManualCourseList();
+        });
+    });
+}
+
+function handleManualSearch() {
+    const searchInput = $("manualCourseSearch");
+    const dropdown = $("manualCourseDropdown");
+    if (!searchInput || !dropdown) return;
+
+    const query = searchInput.value.trim().toLowerCase();
+    if (query.length < 2) {
+        dropdown.classList.add("hidden");
+        return;
+    }
+
+    const allCourses = state.catalogue?.courses || [];
+    const matches = allCourses.filter(c =>
+        c.code.toLowerCase().includes(query) ||
+        c.name.toLowerCase().includes(query)
+    ).slice(0, 10);
+
+    if (matches.length === 0) {
+        dropdown.innerHTML = '<div class="dropdown-item" style="color: var(--muted);">No matches found</div>';
+        dropdown.classList.remove("hidden");
+        return;
+    }
+
+    dropdown.innerHTML = matches.map(c => `
+        <div class="dropdown-item" data-code="${esc(c.code)}">
+            <strong>${esc(c.code)}</strong> - ${esc(c.name)}
+        </div>
+    `).join('');
+
+    dropdown.querySelectorAll('.dropdown-item[data-code]').forEach(item => {
+        item.addEventListener('click', (e) => {
+            const code = e.currentTarget.dataset.code;
+            if (!state.manualCourses.find(mc => mc.code === code)) {
+                state.manualCourses.push({ code: code, mark: 50 }); // default passing mark
+                renderManualCourseList();
+            }
+            searchInput.value = '';
+            dropdown.classList.add('hidden');
+        });
+    });
+    dropdown.classList.remove("hidden");
+}
+
+async function analyseManual() {
+    if (state.manualCourses.length === 0 || !state.programme) return;
+
+    const payload = {
+        faculty: state.faculty,
+        programme_key: state.programme.key,
+        pathway_key: selectedPathway()?.key || "",
+        results: state.manualCourses.map(c => ({
+            code: c.code,
+            mark: c.mark,
+            nqf_level: 5, // placeholder, will be inferred by backend if possible, or required 0-10
+            nqf_credits: 18 // placeholder
+        }))
+    };
+    const years = $("yearsRegistered").value;
+    if (years) payload.years_registered = parseInt(years, 10);
+
+    $("manualAnalysisError")?.classList.add("hidden");
+    $("manualProcessing")?.classList.remove("hidden");
+    $("analyseManualBtn").disabled = true;
+
+    try {
+        state.report = await api("/api/v1/analyse/json", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+        state.reportTab = "overview";
+        renderReport();
+        $("setupPanel").classList.add("hidden");
+        $("reportPanel").classList.remove("hidden");
+        setStep("account");
+        announce("Your academic account is ready.");
+    } catch (error) {
+        $("manualAnalysisError").textContent = error.message;
+        $("manualAnalysisError").classList.remove("hidden");
+        announce("The manual entry could not be analysed.");
+    } finally {
+        $("manualProcessing")?.classList.add("hidden");
+        $("analyseManualBtn").disabled = false;
+    }
+}

@@ -2,14 +2,22 @@
 Utility functions for course weight, level, department, and major key normalisation.
 Shared between rule_engine.py and reasoner.py to avoid circular imports.
 """
+
 import re
 from typing import List, Optional
 from .models import Catalogue, StudentRecord
 
 _SUFFIX_WEIGHTS = {
-    "F": 1.0, "S": 1.0, "FS": 1.0, "SF": 1.0,
-    "H": 1.0, "W": 2.0,
-    "P": 1.0, "U": 1.0, "L": 1.0, "Z": 1.0,
+    "F": 1.0,
+    "S": 1.0,
+    "FS": 1.0,
+    "SF": 1.0,
+    "H": 1.0,
+    "W": 2.0,
+    "P": 1.0,
+    "U": 1.0,
+    "L": 1.0,
+    "Z": 1.0,
 }
 
 _MAJOR_NAME_TO_KEY = {
@@ -68,21 +76,32 @@ def _normalise_major_keys(declared: List[str], catalogue: Catalogue) -> List[str
     for name in declared:
         name_clean = name.lower().strip()
         # Remove common suffixes like "specialisation", "specialization", "major", "stream", "programme"
-        name_clean = re.sub(r"\s+(specialisation|specialization|major|stream|programme)\b", "", name_clean)
-        
+        name_clean = re.sub(
+            r"\s+(specialisation|specialization|major|stream|programme)\b",
+            "",
+            name_clean,
+        )
+
         # Tier 1: Static mapping lookup
         key = _MAJOR_NAME_TO_KEY.get(name_clean)
         if key is not None:
             keys.append(key)
             continue
-            
+
         # Tier 2: Direct key lookup
-        direct_key = name_clean.replace(" ", "_").replace("&", "and").replace(":", "").replace(",", "").replace("(", "").replace(")", "")
+        direct_key = (
+            name_clean.replace(" ", "_")
+            .replace("&", "and")
+            .replace(":", "")
+            .replace(",", "")
+            .replace("(", "")
+            .replace(")", "")
+        )
         direct_key = re.sub(r"_+", "_", direct_key)
         if direct_key in catalogue.majors:
             keys.append(direct_key)
             continue
-            
+
         # Tier 3: Code-based lookup (e.g. if the declared name is a qualification code)
         found_code = False
         for m_key, m_def in catalogue.majors.items():
@@ -93,7 +112,7 @@ def _normalise_major_keys(declared: List[str], catalogue: Catalogue) -> List[str
                     break
         if found_code:
             continue
-            
+
         # Tier 4: Exact match against the catalogue display name.
         for m_key, m_def in catalogue.majors.items():
             m_name_clean = re.sub(
@@ -115,11 +134,29 @@ def _normalise_major_keys(declared: List[str], catalogue: Catalogue) -> List[str
         best_key = None
         best_score = 0.0
         # Clean up special characters to ensure words are split correctly
-        name_clean_spaced = name_clean.replace("(", " ").replace(")", " ").replace(":", " ").replace("-", " ").replace(",", " ").replace("&", " and ")
+        name_clean_spaced = (
+            name_clean.replace("(", " ")
+            .replace(")", " ")
+            .replace(":", " ")
+            .replace("-", " ")
+            .replace(",", " ")
+            .replace("&", " and ")
+        )
         name_words = set(name_clean_spaced.split())
         for m_key, m_def in catalogue.majors.items():
-            m_name_clean = re.sub(r"\s+(specialisation|specialization|major|stream|programme)\b", "", m_def.name.lower())
-            m_name_spaced = m_name_clean.replace("(", " ").replace(")", " ").replace(":", " ").replace("-", " ").replace(",", " ").replace("&", " and ")
+            m_name_clean = re.sub(
+                r"\s+(specialisation|specialization|major|stream|programme)\b",
+                "",
+                m_def.name.lower(),
+            )
+            m_name_spaced = (
+                m_name_clean.replace("(", " ")
+                .replace(")", " ")
+                .replace(":", " ")
+                .replace("-", " ")
+                .replace(",", " ")
+                .replace("&", " and ")
+            )
             m_words = set(m_name_spaced.split())
             intersection = name_words.intersection(m_words)
             if intersection:
@@ -128,13 +165,13 @@ def _normalise_major_keys(declared: List[str], catalogue: Catalogue) -> List[str
                 if score > best_score:
                     best_score = score
                     best_key = m_key
-                    
+
         if best_score >= 0.8:
             keys.append(best_key)
         else:
             # Fallback: skip (will generate a warning in the report)
             pass
-            
+
     return keys
 
 
@@ -149,10 +186,24 @@ def _infer_programme_key(programme_name: str) -> str:
         key = commerce_code.group(1).lower()
         prefix = re.match(r"(c[bu])(\d{2,3})([a-z]{3}\d{2})", key, re.I)
         if prefix and len(prefix.group(2)) == 2:
-            key = prefix.group(1).lower() + "0" + prefix.group(2) + prefix.group(3).lower()
+            key = (
+                prefix.group(1).lower()
+                + "0"
+                + prefix.group(2)
+                + prefix.group(3).lower()
+            )
         return key
-    if ("bachelor of science" in name or re.search(r"\bbsc\b", name)) and "engineering" not in name and "bsc(eng)" not in name and "bsc (eng)" not in name:
-        return "bsc_science_edp" if ("extended" in name or "sb016" in name) else "bsc_science"
+    if (
+        ("bachelor of science" in name or re.search(r"\bbsc\b", name))
+        and "engineering" not in name
+        and "bsc(eng)" not in name
+        and "bsc (eng)" not in name
+    ):
+        return (
+            "bsc_science_edp"
+            if ("extended" in name or "sb016" in name)
+            else "bsc_science"
+        )
     if "bachelor of laws" in name or re.search(r"\bllb\b", name):
         if "five" in name or "5-year" in name or "lb003" in name:
             return "llb_five_year_continuing"
@@ -173,7 +224,11 @@ def _infer_programme_key(programme_name: str) -> str:
     if "music" in name or "bmus" in name:
         return "diploma_music_performance" if "diploma" in name else "bmus"
     if "theatre" in name or "performance" in name:
-        return "diploma_theatre_performance" if "diploma" in name else "ba_theatre_performance"
+        return (
+            "diploma_theatre_performance"
+            if "diploma" in name
+            else "ba_theatre_performance"
+        )
     if "bachelor of social science" in name or "bsocsc" in name:
         return "bsocsc_extended" if extended else "bsocsc_regular"
     if "bachelor of arts" in name or re.search(r"\bba\b", name):

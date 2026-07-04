@@ -1,9 +1,17 @@
 import unittest
 from unittest.mock import patch, MagicMock
 
-from engine.models import StudentRecord, CourseResult, Catalogue, CourseFact, MajorDefinition, ProgrammeRules
+from engine.models import (
+    StudentRecord,
+    CourseResult,
+    Catalogue,
+    CourseFact,
+    MajorDefinition,
+    ProgrammeRules,
+)
 from engine.knowledge_graph import KnowledgeGraph
 from engine.simulator import SimulationEngine
+
 
 class TestSimulationEngine(unittest.TestCase):
     def setUp(self):
@@ -18,28 +26,79 @@ class TestSimulationEngine(unittest.TestCase):
         )
         self.catalogue = Catalogue(
             courses={
-                "CSC1015F": CourseFact("CSC1015F", "Computer Science 1015", 18, 5, [], ["Semester 1"], "Computer Science", ""),
-                "CSC1016S": CourseFact("CSC1016S", "Computer Science 1016", 18, 5, ["CSC1015F"], ["Semester 2"], "Computer Science", ""),
-                "CSC2001F": CourseFact("CSC2001F", "Computer Science 2001", 24, 6, ["CSC1015F", "CSC1016S"], ["Semester 1"], "Computer Science", ""),
-                "MAM1000W": CourseFact(code="MAM1000W", name="Math 1", nqf_credits=36, nqf_level=5, prerequisites=[], offered=["Full Year"], department="Math")
+                "CSC1015F": CourseFact(
+                    "CSC1015F",
+                    "Computer Science 1015",
+                    18,
+                    5,
+                    [],
+                    ["Semester 1"],
+                    "Computer Science",
+                    "",
+                ),
+                "CSC1016S": CourseFact(
+                    "CSC1016S",
+                    "Computer Science 1016",
+                    18,
+                    5,
+                    ["CSC1015F"],
+                    ["Semester 2"],
+                    "Computer Science",
+                    "",
+                ),
+                "CSC2001F": CourseFact(
+                    "CSC2001F",
+                    "Computer Science 2001",
+                    24,
+                    6,
+                    ["CSC1015F", "CSC1016S"],
+                    ["Semester 1"],
+                    "Computer Science",
+                    "",
+                ),
+                "MAM1000W": CourseFact(
+                    code="MAM1000W",
+                    name="Math 1",
+                    nqf_credits=36,
+                    nqf_level=5,
+                    prerequisites=[],
+                    offered=["Full Year"],
+                    department="Math",
+                ),
             },
             majors={
-                "computer_science": MajorDefinition(key="computer_science", name="Computer Science", qualification="BSc", required_courses=["CSC1015F"]),
-                "mathematics": MajorDefinition(key="mathematics", name="Mathematics", qualification="BSc", required_courses=["MAM1000W"])
+                "computer_science": MajorDefinition(
+                    key="computer_science",
+                    name="Computer Science",
+                    qualification="BSc",
+                    required_courses=["CSC1015F"],
+                ),
+                "mathematics": MajorDefinition(
+                    key="mathematics",
+                    name="Mathematics",
+                    qualification="BSc",
+                    required_courses=["MAM1000W"],
+                ),
             },
             programmes={
                 "bsc": ProgrammeRules(
-                    key="bsc", name="BSc", total_nqf_credits=360, level_7_nqf_credits=120,
-                    semester_course_equivalents=20, senior_course_equivalents=10, humanities_course_equivalents=0,
-                    required_majors=2, required_humanities_majors=0
+                    key="bsc",
+                    name="BSc",
+                    total_nqf_credits=360,
+                    level_7_nqf_credits=120,
+                    semester_course_equivalents=20,
+                    senior_course_equivalents=10,
+                    humanities_course_equivalents=0,
+                    required_majors=2,
+                    required_humanities_majors=0,
                 )
             },
-            forbidden_combinations=[]
+            forbidden_combinations=[],
         )
         self.graph = KnowledgeGraph(self.catalogue)
         self.engine = SimulationEngine(self.student, self.catalogue, self.graph)
 
-    @patch('engine.simulator.compute_report')
+    @patch("engine.simulator.compute_report")
     def test_simulate_fail_course_existing(self, mock_compute_report):
         mock_compute_report.return_value = "MockReport"
 
@@ -56,7 +115,7 @@ class TestSimulationEngine(unittest.TestCase):
         self.assertIn("CSC2001F", blocked)
         self.assertEqual(report, "MockReport")
 
-    @patch('engine.simulator.compute_report')
+    @patch("engine.simulator.compute_report")
     def test_simulate_fail_course_new(self, mock_compute_report):
         mock_compute_report.return_value = "MockReport"
 
@@ -75,7 +134,7 @@ class TestSimulationEngine(unittest.TestCase):
         self.assertEqual(blocked, ["CSC2001F"])
         self.assertEqual(report, "MockReport")
 
-    @patch('engine.simulator.compute_report')
+    @patch("engine.simulator.compute_report")
     def test_simulate_fail_course_new_not_in_catalogue(self, mock_compute_report):
         mock_compute_report.return_value = "MockReport"
 
@@ -93,7 +152,7 @@ class TestSimulationEngine(unittest.TestCase):
 
         self.assertEqual(blocked, [])
 
-    @patch('engine.simulator.compute_report')
+    @patch("engine.simulator.compute_report")
     def test_simulate_pass_course_existing(self, mock_compute_report):
         mock_compute_report.return_value = "MockReport"
 
@@ -107,7 +166,7 @@ class TestSimulationEngine(unittest.TestCase):
         self.assertEqual(sim_student.results[0].grade, "1")
         self.assertEqual(report, "MockReport")
 
-    @patch('engine.simulator.compute_report')
+    @patch("engine.simulator.compute_report")
     def test_simulate_pass_course_new(self, mock_compute_report):
         mock_compute_report.return_value = "MockReport"
 
@@ -123,7 +182,7 @@ class TestSimulationEngine(unittest.TestCase):
         self.assertEqual(new_course.grade, "2+")
         self.assertEqual(report, "MockReport")
 
-    @patch('engine.simulator.compute_report')
+    @patch("engine.simulator.compute_report")
     def test_simulate_future_semester(self, mock_compute_report):
         mock_compute_report.return_value = "MockReport"
 
@@ -146,7 +205,7 @@ class TestSimulationEngine(unittest.TestCase):
         self.assertEqual(c3.mark, 55)
         self.assertEqual(c3.grade, "3")
 
-    @patch('engine.simulator.compute_report')
+    @patch("engine.simulator.compute_report")
     def test_simulate_switch_majors_single(self, mock_compute_report):
         mock_compute_report.return_value = "MockReport"
         self.student.declared_majors = ["Computer Science"]
@@ -160,7 +219,7 @@ class TestSimulationEngine(unittest.TestCase):
         self.assertEqual(sim_student.declared_majors, ["Mathematics"])
         self.assertEqual(report, "MockReport")
 
-    @patch('engine.simulator.compute_report')
+    @patch("engine.simulator.compute_report")
     def test_simulate_switch_majors_multiple(self, mock_compute_report):
         mock_compute_report.return_value = "MockReport"
         self.student.declared_majors = ["Computer Science"]
@@ -171,10 +230,12 @@ class TestSimulationEngine(unittest.TestCase):
 
         args, _ = mock_compute_report.call_args
         sim_student = args[0]
-        self.assertEqual(sim_student.declared_majors, ["Computer Science", "Mathematics"])
+        self.assertEqual(
+            sim_student.declared_majors, ["Computer Science", "Mathematics"]
+        )
         self.assertEqual(report, "MockReport")
 
-    @patch('engine.simulator.compute_report')
+    @patch("engine.simulator.compute_report")
     def test_simulate_switch_majors_empty(self, mock_compute_report):
         mock_compute_report.return_value = "MockReport"
         self.student.declared_majors = ["Computer Science"]
@@ -188,8 +249,7 @@ class TestSimulationEngine(unittest.TestCase):
         self.assertEqual(sim_student.declared_majors, [])
         self.assertEqual(report, "MockReport")
 
-
-    @patch('engine.simulator.compute_report')
+    @patch("engine.simulator.compute_report")
     def test_simulate_switch_majors(self, mock_compute_report):
         mock_compute_report.return_value = "MockReport"
 
@@ -198,8 +258,11 @@ class TestSimulationEngine(unittest.TestCase):
         args, _ = mock_compute_report.call_args
         sim_student = args[0]
 
-        self.assertEqual(sim_student.declared_majors, ["Computer Science", "Mathematics"])
+        self.assertEqual(
+            sim_student.declared_majors, ["Computer Science", "Mathematics"]
+        )
         self.assertEqual(report, "MockReport")
+
 
 if __name__ == "__main__":
     unittest.main()

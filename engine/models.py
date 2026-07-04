@@ -4,12 +4,24 @@ The catalogue stores handbook facts and provenance. It never stores a
 student-specific conclusion such as "may graduate"; those views are computed
 by the rule engine from a selected programme scope.
 """
+
 from dataclasses import dataclass, field
 from typing import Optional, Any
 
-
 _PASS_GRADES = {"1", "2+", "2-", "3", "P", "PA", "UP", "SP"}
-_FAIL_GRADES = {"F", "FS", "SF", "A/SF", "AB", "DPR", "INC", "EXA", "UF", "UF SM", "OSS"}
+_FAIL_GRADES = {
+    "F",
+    "FS",
+    "SF",
+    "A/SF",
+    "AB",
+    "DPR",
+    "INC",
+    "EXA",
+    "UF",
+    "UF SM",
+    "OSS",
+}
 _PENDING_GRADES = {"DE", "ATT", "GIP", "LOA", "OS", ""}
 
 
@@ -20,6 +32,7 @@ def _normalise_grade(value: Optional[str]) -> str:
 @dataclass
 class CourseResult:
     """A single course attempt appearing on a transcript."""
+
     code: str
     name: str
     nqf_level: int
@@ -45,6 +58,7 @@ class CourseResult:
 @dataclass
 class StudentRecord:
     """Raw facts extracted from a transcript plus explicit routing context."""
+
     student_id: str
     name: str
     programme: str

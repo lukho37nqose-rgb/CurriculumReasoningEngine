@@ -16,7 +16,9 @@ from pathlib import Path
 from typing import Any
 
 MANIFEST_SCHEMA_VERSION = 1
-DEFAULT_EXCLUDED_PARTS = frozenset({".git", "__pycache__", ".pytest_cache", ".ruff_cache"})
+DEFAULT_EXCLUDED_PARTS = frozenset(
+    {".git", "__pycache__", ".pytest_cache", ".ruff_cache"}
+)
 
 
 class ManifestError(ValueError):
@@ -39,7 +41,12 @@ class VerificationResult:
 
     @property
     def ok(self) -> bool:
-        return not self.missing and not self.changed and not self.unexpected and self.content_hash_matches
+        return (
+            not self.missing
+            and not self.changed
+            and not self.unexpected
+            and self.content_hash_matches
+        )
 
 
 @dataclass(frozen=True)
@@ -76,7 +83,9 @@ def iter_files(
     root = root.resolve()
     if not root.exists() or not root.is_dir():
         raise ManifestError(f"Catalogue root is not a directory: {root}")
-    files = [path for path in root.rglob("*") if _should_include(path, root, excluded_parts)]
+    files = [
+        path for path in root.rglob("*") if _should_include(path, root, excluded_parts)
+    ]
     yield from sorted(files, key=lambda item: _normalise_relative_path(item, root))
 
 
@@ -89,7 +98,9 @@ def sha256_file(path: Path, *, chunk_size: int = 1024 * 1024) -> str:
 
 
 def _content_hash(records: list[dict[str, Any]]) -> str:
-    canonical = json.dumps(records, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
+    canonical = json.dumps(
+        records, ensure_ascii=False, separators=(",", ":"), sort_keys=True
+    )
     return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
 
@@ -245,12 +256,15 @@ def verify_manifest(root: str | Path, manifest: dict[str, Any]) -> VerificationR
             or expected[path]["sha256"] != current[path]["sha256"]
         )
     )
-    expected_records_in_current_order = [current[path] for path in sorted(expected_paths & current_paths)]
+    expected_records_in_current_order = [
+        current[path] for path in sorted(expected_paths & current_paths)
+    ]
     content_hash_matches = (
         not missing
         and not changed
         and len(expected_records_in_current_order) == len(expected)
-        and _content_hash(expected_records_in_current_order) == manifest["content_sha256"]
+        and _content_hash(expected_records_in_current_order)
+        == manifest["content_sha256"]
     )
     return VerificationResult(
         missing=missing,

@@ -2,7 +2,10 @@ from __future__ import annotations
 
 import pytest
 
-from catalogue_governance.operational import OperationalDataError, validate_offerings_payload
+from catalogue_governance.operational import (
+    OperationalDataError,
+    validate_offerings_payload,
+)
 
 
 def _payload() -> dict:

@@ -6,6 +6,7 @@ next to make progress toward graduation and major completion.
 Uses backward chaining: start from graduation goal, work backwards
 to find what's needed now.
 """
+
 from dataclasses import dataclass
 from .models import StudentRecord, Catalogue
 from .rule_engine import _prereqs_met
@@ -20,8 +21,8 @@ class CourseRecommendation:
     department: str
     offered: list[str]
     credits: int
-    reason: str          # Why this course is recommended
-    priority: int        # 1=critical (required for major), 2=important, 3=optional
+    reason: str  # Why this course is recommended
+    priority: int  # 1=critical (required for major), 2=important, 3=optional
     status: str = "provisional"
     limitations: tuple[str, ...] = (
         "Recorded prerequisites and semester offering only.",
@@ -46,7 +47,9 @@ def plan_next_semester(
     """
     passed = student.passed_codes()
     major_keys = _normalise_major_keys(student.declared_majors, catalogue)
-    programme = catalogue.programmes.get((student.programme_key or _infer_programme_key(student.programme)))
+    programme = catalogue.programmes.get(
+        (student.programme_key or _infer_programme_key(student.programme))
+    )
     selected_major_codes: set[str] = set()
     for key in major_keys:
         major = catalogue.majors.get(key)
@@ -79,20 +82,24 @@ def plan_next_semester(
             return
         # Filter by semester offering
         if semester != "Any" and not any(
-            semester.lower() in o.lower() or "full year" in o.lower() or "year" in o.lower()
+            semester.lower() in o.lower()
+            or "full year" in o.lower()
+            or "year" in o.lower()
             for o in course.offered
         ):
             return
         seen_codes.add(code)
-        recommendations.append(CourseRecommendation(
-            code=code,
-            name=course.name,
-            department=course.department,
-            offered=course.offered,
-            credits=course.nqf_credits,
-            reason=reason,
-            priority=priority,
-        ))
+        recommendations.append(
+            CourseRecommendation(
+                code=code,
+                name=course.name,
+                department=course.department,
+                offered=course.offered,
+                credits=course.nqf_credits,
+                reason=reason,
+                priority=priority,
+            )
+        )
 
     # --- Priority 1: Compulsory programme courses ---
     if programme:

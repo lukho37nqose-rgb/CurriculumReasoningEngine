@@ -9,11 +9,12 @@ from engine.recognition import provisional_open_credit_allocations
 from engine.rule_engine import compute_report
 from engine.scope import build_programme_scope
 
-
 client = TestClient(app)
 
 
-def _pass(scoped, code: str, mark: int = 65, academic_year: int | None = None) -> CourseResult:
+def _pass(
+    scoped, code: str, mark: int = 65, academic_year: int | None = None
+) -> CourseResult:
     fact = scoped.courses[code]
     return CourseResult(
         code=code,
@@ -26,7 +27,13 @@ def _pass(scoped, code: str, mark: int = 65, academic_year: int | None = None) -
     )
 
 
-def _unknown(code: str, credits: int, level: int, mark: int = 65, academic_year: int | None = None) -> CourseResult:
+def _unknown(
+    code: str,
+    credits: int,
+    level: int,
+    mark: int = 65,
+    academic_year: int | None = None,
+) -> CourseResult:
     return CourseResult(
         code=code,
         name="Transcript-only approved elective",
@@ -39,7 +46,9 @@ def _unknown(code: str, credits: int, level: int, mark: int = 65, academic_year:
 
 
 def _rule(programme, rule_id: str):
-    return next(rule for rule in programme.curriculum_rules if rule.get("id") == rule_id)
+    return next(
+        rule for rule in programme.curriculum_rules if rule.get("id") == rule_id
+    )
 
 
 def test_ebe_inventory_and_version():
@@ -56,7 +65,9 @@ def test_every_ebe_programme_and_pathway_scope_builds_without_missing_course_ref
     for key, programme in catalogue.programmes.items():
         pathways = list(programme.pathways) or [""]
         for pathway_key in pathways:
-            scoped, scope = build_programme_scope("uct_ebe", catalogue, key, pathway_key)
+            scoped, scope = build_programme_scope(
+                "uct_ebe", catalogue, key, pathway_key
+            )
             combinations += 1
             assert scoped.programme_key == key
             assert scoped.pathway_key == pathway_key
@@ -82,7 +93,9 @@ def test_current_and_legacy_engineering_cohorts_are_not_merged():
     assert current.programmes["civil_engineering_4"].total_nqf_credits == 560
     assert any(
         rule.get("id") == "legacy_credits" and rule.get("required") == 576
-        for rule in legacy.programmes["civil_engineering_4"].pathways["legacy_576"].curriculum_rules
+        for rule in legacy.programmes["civil_engineering_4"]
+        .pathways["legacy_576"]
+        .curriculum_rules
     )
 
 
@@ -134,7 +147,9 @@ def test_transcript_only_free_elective_is_counted_provisionally_not_silently_ver
     assert credit_requirement.status == "unverified"
     assert "ECO1010F" in credit_requirement.detail
     assert report.graduation_status == "not_eligible"
-    assert any("provisionally includes" in warning.lower() for warning in report.warnings)
+    assert any(
+        "provisionally includes" in warning.lower() for warning in report.warnings
+    )
 
 
 def test_unknown_course_is_not_counted_without_a_published_open_or_approved_pool():
@@ -151,7 +166,9 @@ def test_unknown_course_is_not_counted_without_a_published_open_or_approved_pool
     )
     report = compute_report(student, scoped)
     assert report.credits_completed == 0
-    assert any("not counted automatically" in warning.lower() for warning in report.warnings)
+    assert any(
+        "not counted automatically" in warning.lower() for warning in report.warnings
+    )
 
 
 def test_ece_complementary_pool_does_not_consume_an_approved_csc_final_elective():
@@ -175,7 +192,9 @@ def test_ece_complementary_pool_does_not_consume_an_approved_csc_final_elective(
         programme_key="electrical_computer_engineering_4",
         pathway_key="current_560",
     )
-    allocations = {a.rule_id: a for a in provisional_open_credit_allocations(student, scoped)}
+    allocations = {
+        a.rule_id: a for a in provisional_open_credit_allocations(student, scoped)
+    }
     assert [r.code for r in allocations["complementary"].results] == ["ECO1010F"]
     assert [r.code for r in allocations["final_total"].results] == ["CSC3007S"]
 
@@ -238,7 +257,9 @@ def test_published_credit_conflicts_block_definitive_positive_outcomes():
 
 def test_restricted_transfer_routes_are_visible_but_not_self_certifying():
     catalogue = load_catalogue("uct_ebe")
-    restricted = [p for p in catalogue.programmes.values() if p.availability == "restricted"]
+    restricted = [
+        p for p in catalogue.programmes.values() if p.availability == "restricted"
+    ]
     assert len(restricted) == 5
     for programme in restricted:
         assert not programme.scope_verified
@@ -252,4 +273,11 @@ def test_ebe_faculty_endpoint_exposes_routes_and_pathways():
     assert len(body["programmes"]) == 28
     civil = next(p for p in body["programmes"] if p["key"] == "civil_engineering_4")
     assert {path["key"] for path in civil["pathways"]} == {"current_560", "legacy_576"}
-    assert next(p for p in body["programmes"] if p["key"] == "geomatics_geoinformatics_egs_4")["availability"] == "continuing_only"
+    assert (
+        next(
+            p
+            for p in body["programmes"]
+            if p["key"] == "geomatics_geoinformatics_egs_4"
+        )["availability"]
+        == "continuing_only"
+    )

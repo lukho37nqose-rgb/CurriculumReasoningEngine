@@ -5,6 +5,7 @@ which of those passes may be recognised toward the selected qualification.
 Keeping that distinction in one module prevents credit totals, readmission
 counts, and explanations from drifting apart.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -46,7 +47,9 @@ def _walk_rules(rules: Iterable[dict[str, Any]]) -> Iterable[dict[str, Any]]:
         yield rule
         children = rule.get("children", [])
         if isinstance(children, list):
-            yield from _walk_rules(child for child in children if isinstance(child, dict))
+            yield from _walk_rules(
+                child for child in children if isinstance(child, dict)
+            )
 
 
 def approved_credit_pool_rules(catalogue: Catalogue) -> list[dict[str, Any]]:
@@ -55,10 +58,16 @@ def approved_credit_pool_rules(catalogue: Catalogue) -> list[dict[str, Any]]:
     if programme is None:
         return []
     rules = list(_walk_rules(programme.curriculum_rules))
-    pathway = programme.pathways.get(catalogue.pathway_key) if catalogue.pathway_key else None
+    pathway = (
+        programme.pathways.get(catalogue.pathway_key) if catalogue.pathway_key else None
+    )
     if pathway is not None:
         rules.extend(_walk_rules(pathway.curriculum_rules))
-    return [rule for rule in rules if str(rule.get("type", "")).strip().lower() == "approved_credit_pool"]
+    return [
+        rule
+        for rule in rules
+        if str(rule.get("type", "")).strip().lower() == "approved_credit_pool"
+    ]
 
 
 def _result_matches_filters(result: CourseResult, filters: dict[str, Any]) -> bool:
@@ -68,11 +77,17 @@ def _result_matches_filters(result: CourseResult, filters: dict[str, Any]) -> bo
     year_levels = {int(value) for value in filters.get("year_levels", [])}
     if year_levels and _course_year_level(result.code) not in year_levels:
         return False
-    prefixes = tuple(str(value).strip().upper() for value in filters.get("prefixes", []) if str(value).strip())
+    prefixes = tuple(
+        str(value).strip().upper()
+        for value in filters.get("prefixes", [])
+        if str(value).strip()
+    )
     if prefixes and not result.code.startswith(prefixes):
         return False
     excluded_prefixes = tuple(
-        str(value).strip().upper() for value in filters.get("exclude_prefixes", []) if str(value).strip()
+        str(value).strip().upper()
+        for value in filters.get("exclude_prefixes", [])
+        if str(value).strip()
     )
     if excluded_prefixes and result.code.startswith(excluded_prefixes):
         return False
@@ -105,7 +120,8 @@ def provisional_open_credit_allocations(
     recognised, _ = recognised_credited_pairs(student, catalogue)
     recognised_by_code = {result.code: fact for result, fact in recognised}
     transcript_only_results = [
-        result for result in student.credited_results()
+        result
+        for result in student.credited_results()
         if result.code not in catalogue.courses and result.nqf_credits > 0
     ]
     allocated_codes: set[str] = set()
@@ -118,16 +134,24 @@ def provisional_open_credit_allocations(
         required = int(rule.get("required", 0))
         maximum = int(rule.get("maximum", 0))
         target = required if required > 0 else maximum
-        explicit = {str(code).strip().upper() for code in rule.get("course_codes", []) if str(code).strip()}
+        explicit = {
+            str(code).strip().upper()
+            for code in rule.get("course_codes", [])
+            if str(code).strip()
+        }
         transcript_explicit = {
             str(code).strip().upper()
             for code in rule.get("transcript_course_codes", [])
             if str(code).strip()
         }
-        if not transcript_explicit and not bool(rule.get("allow_unlisted_transcript_courses", False)):
+        if not transcript_explicit and not bool(
+            rule.get("allow_unlisted_transcript_courses", False)
+        ):
             transcript_explicit = set(explicit)
         excluded = {
-            str(code).strip().upper() for code in rule.get("exclude_course_codes", []) if str(code).strip()
+            str(code).strip().upper()
+            for code in rule.get("exclude_course_codes", [])
+            if str(code).strip()
         }
         filters = rule.get("transcript_filters", {})
         if not isinstance(filters, dict):
@@ -177,16 +201,18 @@ def provisional_open_credit_allocations(
                 "The transcript records these credits, but the static catalogue cannot verify faculty approval.",
             )
         )
-        allocations.append(ProvisionalCreditAllocation(
-            rule_id=rule_id,
-            label=label,
-            results=tuple(selected),
-            recognised_codes=tuple(known_codes),
-            recognised_credits=known_credits,
-            provisional_credits=provisional_credits,
-            required_credits=target,
-            note=note,
-        ))
+        allocations.append(
+            ProvisionalCreditAllocation(
+                rule_id=rule_id,
+                label=label,
+                results=tuple(selected),
+                recognised_codes=tuple(known_codes),
+                recognised_credits=known_credits,
+                provisional_credits=provisional_credits,
+                required_credits=target,
+                note=note,
+            )
+        )
 
     return allocations
 
@@ -196,7 +222,11 @@ def provisional_open_credit_results(
     catalogue: Catalogue,
 ) -> list[CourseResult]:
     """Flatten provisionally allocated transcript-only elective results."""
-    return [result for allocation in provisional_open_credit_allocations(student, catalogue) for result in allocation.results]
+    return [
+        result
+        for allocation in provisional_open_credit_allocations(student, catalogue)
+        for result in allocation.results
+    ]
 
 
 def _course_year_level(code: str) -> int:
@@ -239,11 +269,13 @@ def recognised_credited_pairs(
             limit = music_limits.get(year_level)
             if limit is not None:
                 if music_counts[year_level] >= limit:
-                    exclusions.append(RecognitionExclusion(
-                        result.code,
-                        f"Humanities rule FB5.5 recognises no more than {limit} "
-                        f"South African College of Music course codes at {year_level}000 level.",
-                    ))
+                    exclusions.append(
+                        RecognitionExclusion(
+                            result.code,
+                            f"Humanities rule FB5.5 recognises no more than {limit} "
+                            f"South African College of Music course codes at {year_level}000 level.",
+                        )
+                    )
                     continue
                 music_counts[year_level] += 1
 

@@ -13,7 +13,15 @@ from typing import Any
 ALLOWED_TERMS = {"first_semester", "second_semester", "full_year", "summer", "winter"}
 ALLOWED_STATUSES = {"scheduled", "provisional", "cancelled", "not_offered", "unknown"}
 ALLOWED_VERIFICATION = {"verified", "provisional", "unverified", "conflict"}
-ALLOWED_DAYS = {"monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"}
+ALLOWED_DAYS = {
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+    "sunday",
+}
 
 
 class OperationalDataError(ValueError):
@@ -48,10 +56,14 @@ def validate_offerings_payload(payload: dict[str, Any]) -> list[str]:
         raise OperationalDataError("schema_version must be 1")
     academic_year = payload.get("academic_year")
     if not isinstance(academic_year, int) or not 2000 <= academic_year <= 2200:
-        raise OperationalDataError("academic_year must be an integer between 2000 and 2200")
+        raise OperationalDataError(
+            "academic_year must be an integer between 2000 and 2200"
+        )
     term = payload.get("term")
     if term not in ALLOWED_TERMS:
-        raise OperationalDataError(f"term must be one of: {', '.join(sorted(ALLOWED_TERMS))}")
+        raise OperationalDataError(
+            f"term must be one of: {', '.join(sorted(ALLOWED_TERMS))}"
+        )
     _require_string(payload, "source", "payload")
     verification = payload.get("verification_status")
     if verification not in ALLOWED_VERIFICATION:
@@ -64,7 +76,9 @@ def validate_offerings_payload(payload: dict[str, Any]) -> list[str]:
 
     identities: set[tuple[str, str, str]] = set()
     warnings: list[str] = []
-    slots_by_offering: dict[tuple[str, str, str], list[tuple[str, time, time, str]]] = defaultdict(list)
+    slots_by_offering: dict[tuple[str, str, str], list[tuple[str, time, time, str]]] = (
+        defaultdict(list)
+    )
 
     for index, offering in enumerate(offerings):
         context = f"offerings[{index}]"
@@ -104,8 +118,14 @@ def validate_offerings_payload(payload: dict[str, Any]) -> list[str]:
                 raise OperationalDataError(
                     f"{meeting_context}.day must be one of: {', '.join(sorted(ALLOWED_DAYS))}"
                 )
-            start = _parse_clock(_require_string(meeting, "start", meeting_context), f"{meeting_context}.start")
-            end = _parse_clock(_require_string(meeting, "end", meeting_context), f"{meeting_context}.end")
+            start = _parse_clock(
+                _require_string(meeting, "start", meeting_context),
+                f"{meeting_context}.start",
+            )
+            end = _parse_clock(
+                _require_string(meeting, "end", meeting_context),
+                f"{meeting_context}.end",
+            )
             if end <= start:
                 raise OperationalDataError(f"{meeting_context}.end must be after start")
             meeting_type = _require_string(meeting, "type", meeting_context)
