@@ -3,7 +3,7 @@
 Architecture:
 1. The student selects a faculty on the landing page.
 2. The faculty destination loads only that faculty's programmes.
-3. The student selects a programme before uploading a transcript.
+3. The student selects a programme before building academic evidence.
 4. Every analysis endpoint builds a programme-scoped catalogue and reasons
    only from that route's prescribed curriculum, pathways, major rules, and
    explicitly represented elective pools.

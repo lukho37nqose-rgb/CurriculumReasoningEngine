@@ -65,7 +65,7 @@
         <aside class="hero-argument" aria-label="What CurriculumAdvisor answers">
           <p class="argument-label">Three questions answered</p>
           <ol id="decisionLensList" class="decision-lenses">
-            <li><span>01</span><div><strong>Where am I now?</strong><p>Your progress, credits earned, what's required, and where you actually stand.</p></div></li>
+            <li><span>01</span><div><strong>Let's build what we know together</strong><p>Your progress, credits earned, what's required, and where you actually stand.</p></div></li>
             <li><span>02</span><div><strong>What's holding me back?</strong><p>Missing requirements, failed courses, prerequisites, and things we're not sure about.</p></div></li>
             <li><span>03</span><div><strong>What can I do next?</strong><p>Your available options in your program without guessing about future registration.</p></div></li>
           </ol>
@@ -170,37 +170,43 @@
             <div id="intentNotice" class="message neutral"></div>
             <div class="step-actions">
               <button class="secondary-action button" data-back-step="route" type="button">Back</button>
-              <button class="primary-action button" id="intentContinue" type="button">Next: Upload transcript</button>
+              <button class="primary-action button" id="intentContinue" type="button">Next: Build your profile</button>
             </div>
           </section>
 
           <section class="setup-step hidden" id="evidenceStep">
-            <div class="evidence-grid">
-              <div>
-                <p class="kicker dark">Your academic record</p>
-                <h2>Upload your transcript</h2>
-                <p>We'll read your courses, marks, and grades. Using your program, we'll show you what it all means for finishing your degree.</p>
-                <ul class="evidence-rules">
-                  <li>PDF format, up to 20 MB</li>
-                  <li>Must be the official downloadable transcript from UCT</li>
-                  <li>Photos or scans might not work if the text isn't clear</li>
-                  <li>We'll clearly show what's missing vs. what you failed</li>
-                </ul>
-              </div>
-              <div class="upload-card" id="uploadCard">
+            <div style="margin-bottom: 24px;">
+              <p class="kicker dark">Let's build what we know together</p>
+              <h2>Build your academic profile</h2>
+              <p>Upload your transcript, enter courses manually, or start from scratch to explore options. Using your program, we'll show you what it all means for finishing your degree.</p>
+            </div>
+            <div class="evidence-grid" style="grid-template-columns: repeat(3, 1fr); gap: 16px;">
+              <div class="upload-card" id="uploadCard" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; cursor: pointer;">
                 <input id="transcriptFile" type="file" accept="application/pdf,.pdf">
                 <div class="upload-mark" aria-hidden="true">↑</div>
-                <strong>Drop your transcript here</strong>
-                <p>or click to choose a file</p>
-                <span id="selectedFile">No file selected</span>
+                <strong>Upload transcript</strong>
+                <p>PDF format, up to 20 MB</p>
+                <span id="selectedFile" style="margin-top: 8px;">No file selected</span>
+              </div>
+
+              <div class="upload-card" id="manualEntryToggle" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; cursor: pointer;">
+                <div class="upload-mark" aria-hidden="true">+</div>
+                <strong>Add courses manually</strong>
+                <p>Search and add your grades</p>
+              </div>
+
+              <div class="upload-card" id="startEmptyToggle" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; cursor: pointer;">
+                <div class="upload-mark" aria-hidden="true">→</div>
+                <strong>Start empty</strong>
+                <p>Explore your options</p>
               </div>
             </div>
             <div id="analysisError" class="message error hidden" role="alert"></div>
 
-        <div id="manualEntryArea" class="hidden" style="margin-top: 24px;">
-          <div class="upload-box" style="text-align: left; padding: 24px;">
-            <h3>Build your profile manually</h3>
-            <p>Search for courses and add your grades. We will analyse your progress based on this.</p>
+        <div id="manualEntryArea" class="hidden" style="margin-top: 24px; border: 1px solid var(--line); border-radius: 12px; padding: 20px;">
+          <div style="text-align: left;">
+            <h3 style="margin-top: 0;">Enter courses manually</h3>
+            <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Search for courses and add your grades. We will analyse your progress based on this.</p>
 
             <div class="field top-gap">
                 <label for="manualCourseSearch">Search for a course</label>
@@ -232,6 +238,7 @@
             <div class="step-actions">
               <button class="secondary-action button" data-back-step="intent" type="button">Back</button>
               <button class="primary-action button" id="analyseButton" type="button" disabled>Build my report</button>
+              <button class="primary-action button hidden" id="analyseEmptyBtn" type="button">Explore options</button>
             </div>
           </section>
         </section>
