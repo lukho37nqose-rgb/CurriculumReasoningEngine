@@ -29,7 +29,9 @@ def governance_status(project_root: Path) -> dict[str, Any]:
     verification = verify_manifest(data_root, manifest)
     source_verification_path = releases_root / "source_archive_verification.json"
     source_verification = (
-        _read_json(source_verification_path) if source_verification_path.exists() else None
+        _read_json(source_verification_path)
+        if source_verification_path.exists()
+        else None
     )
     return {
         "integrity": "verified" if verification.ok else "attention_required",

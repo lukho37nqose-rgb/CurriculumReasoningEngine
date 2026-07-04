@@ -44,13 +44,18 @@ def _snapshot(args: argparse.Namespace) -> int:
 def _verify(args: argparse.Namespace) -> int:
     manifest = load_manifest(args.manifest)
     result = verify_manifest(args.data_root, manifest)
-    print(json.dumps({
-        "ok": result.ok,
-        "content_hash_matches": result.content_hash_matches,
-        "missing": list(result.missing),
-        "changed": list(result.changed),
-        "unexpected": list(result.unexpected),
-    }, indent=2))
+    print(
+        json.dumps(
+            {
+                "ok": result.ok,
+                "content_hash_matches": result.content_hash_matches,
+                "missing": list(result.missing),
+                "changed": list(result.changed),
+                "unexpected": list(result.unexpected),
+            },
+            indent=2,
+        )
+    )
     return 0 if result.ok else 2
 
 
@@ -58,13 +63,18 @@ def _diff(args: argparse.Namespace) -> int:
     old = load_manifest(args.old_manifest)
     new = load_manifest(args.new_manifest)
     result = compare_manifests(old, new)
-    print(json.dumps({
-        "has_changes": result.has_changes,
-        "added": list(result.added),
-        "removed": list(result.removed),
-        "changed": list(result.changed),
-        "unchanged_count": result.unchanged_count,
-    }, indent=2))
+    print(
+        json.dumps(
+            {
+                "has_changes": result.has_changes,
+                "added": list(result.added),
+                "removed": list(result.removed),
+                "changed": list(result.changed),
+                "unchanged_count": result.unchanged_count,
+            },
+            indent=2,
+        )
+    )
     return 0
 
 
@@ -81,17 +91,25 @@ def build_parser() -> argparse.ArgumentParser:
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    snapshot = subparsers.add_parser("snapshot", help="Record checksums for the existing data directory")
+    snapshot = subparsers.add_parser(
+        "snapshot", help="Record checksums for the existing data directory"
+    )
     snapshot.add_argument("--data-root", default="data")
     snapshot.add_argument("--output", required=True)
     snapshot.add_argument("--release-id", required=True)
     snapshot.add_argument("--academic-year", required=True, type=int)
     snapshot.add_argument("--created-by", required=True)
     snapshot.add_argument("--source-status", default="existing_verified_state")
-    snapshot.add_argument("--force", action="store_true", help="Explicitly replace the destination manifest")
+    snapshot.add_argument(
+        "--force",
+        action="store_true",
+        help="Explicitly replace the destination manifest",
+    )
     snapshot.set_defaults(func=_snapshot)
 
-    verify = subparsers.add_parser("verify", help="Verify current data against a recorded manifest")
+    verify = subparsers.add_parser(
+        "verify", help="Verify current data against a recorded manifest"
+    )
     verify.add_argument("--data-root", default="data")
     verify.add_argument("--manifest", required=True)
     verify.set_defaults(func=_verify)

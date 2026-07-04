@@ -8,6 +8,7 @@ Architecture:
    only from that route's prescribed curriculum, pathways, major rules, and
    explicitly represented elective pools.
 """
+
 from __future__ import annotations
 
 import dataclasses
@@ -53,7 +54,9 @@ app = FastAPI(
 app.add_middleware(GZipMiddleware, minimum_size=1000)
 
 allowed_origins_env = os.environ.get("ALLOWED_ORIGINS", "")
-allowed_origins = [origin.strip() for origin in allowed_origins_env.split(",") if origin.strip()]
+allowed_origins = [
+    origin.strip() for origin in allowed_origins_env.split(",") if origin.strip()
+]
 if allowed_origins:
     app.add_middleware(
         CORSMiddleware,
@@ -186,14 +189,21 @@ def _scope_or_422(
     if faculty_key not in FACULTY_META:
         raise HTTPException(status_code=422, detail="Unknown faculty selection.")
     if not FACULTY_META[faculty_key].get("available", False):
-        raise HTTPException(status_code=422, detail=f"{FACULTY_META[faculty_key]['name']} is not enabled yet.")
+        raise HTTPException(
+            status_code=422,
+            detail=f"{FACULTY_META[faculty_key]['name']} is not enabled yet.",
+        )
     # Validate the faculty before reporting a missing programme so malformed
     # faculty keys cannot hide behind a secondary validation error.
     _full_catalogue_or_422(faculty_key)
     if not programme_key:
-        raise HTTPException(status_code=422, detail="A programme selection is required.")
+        raise HTTPException(
+            status_code=422, detail="A programme selection is required."
+        )
     try:
-        return get_programme_catalogue_and_graph(faculty_key, programme_key, pathway_key)
+        return get_programme_catalogue_and_graph(
+            faculty_key, programme_key, pathway_key
+        )
     except (ValueError, OSError) as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
 
@@ -229,7 +239,11 @@ def _student_from_dict(body: dict) -> StudentRecord:
                 nqf_credits=nqf_credits,
                 mark=mark,
                 grade=raw.get("grade"),
-                academic_year=(int(raw["academic_year"]) if raw.get("academic_year") not in (None, "") else None),
+                academic_year=(
+                    int(raw["academic_year"])
+                    if raw.get("academic_year") not in (None, "")
+                    else None
+                ),
             )
         )
 
@@ -246,7 +260,11 @@ def _student_from_dict(body: dict) -> StudentRecord:
         faculty_key=str(body.get("faculty_key", "")).strip(),
         programme_key=str(body.get("programme_key", "")).strip(),
         pathway_key=str(body.get("pathway_key", "")).strip(),
-        years_registered=(int(body["years_registered"]) if body.get("years_registered") not in (None, "") else None),
+        years_registered=(
+            int(body["years_registered"])
+            if body.get("years_registered") not in (None, "")
+            else None
+        ),
     )
 
 
@@ -272,7 +290,11 @@ def _bind_student_to_scope(
     catalogue: Catalogue,
 ) -> StudentRecord:
     """Attach the user's explicit route selections and reject clear mismatches."""
-    inferred_faculty = _infer_faculty_key(student.programme) if student.programme else "unknown_faculty"
+    inferred_faculty = (
+        _infer_faculty_key(student.programme)
+        if student.programme
+        else "unknown_faculty"
+    )
     if inferred_faculty != "unknown_faculty" and inferred_faculty != faculty_key:
         raise HTTPException(
             status_code=422,
@@ -282,7 +304,12 @@ def _bind_student_to_scope(
             ),
         )
 
-    inferred_programme = _infer_programme_key(student.programme) if student.programme else "unknown_programme"
+    inferred_programme = (
+        _infer_programme_key(student.programme)
+        if student.programme
+        else "unknown_programme"
+    )
+
     # A standard transcript label often states only BA or BSocSc and omits the
     # regular/extended route. Reject a different degree family, but let the
     # student explicitly choose the route when the transcript is silent.
@@ -296,11 +323,25 @@ def _bind_student_to_scope(
         if key.startswith("bsc_science"):
             return "BSc Science"
         return key
+
     programme_label = student.programme.lower()
     transcript_explicitly_extended = "extended" in programme_label
     law_route_explicit = faculty_key == "uct_law" and any(
         token in programme_label
-        for token in ("two-year", "2-year", "three-year", "3-year", "four-year", "4-year", "five-year", "5-year", "combined", "graduate stream", "lb002", "lb003")
+        for token in (
+            "two-year",
+            "2-year",
+            "three-year",
+            "3-year",
+            "four-year",
+            "4-year",
+            "five-year",
+            "5-year",
+            "combined",
+            "graduate stream",
+            "lb002",
+            "lb003",
+        )
     )
     route_conflict = (
         inferred_programme != "unknown_programme"
@@ -333,10 +374,14 @@ def _context_from_body(
     student: StudentRecord,
 ) -> tuple[StudentRecord, Catalogue, KnowledgeGraph, ProgrammeScope]:
     faculty_key = str(body.get("faculty") or student.faculty_key or "").strip()
-    programme_key = str(body.get("programme_key") or student.programme_key or "").strip()
+    programme_key = str(
+        body.get("programme_key") or student.programme_key or ""
+    ).strip()
     pathway_key = str(body.get("pathway_key") or student.pathway_key or "").strip()
     catalogue, graph, scope = _scope_or_422(faculty_key, programme_key, pathway_key)
-    student = _bind_student_to_scope(student, faculty_key, programme_key, pathway_key, catalogue)
+    student = _bind_student_to_scope(
+        student, faculty_key, programme_key, pathway_key, catalogue
+    )
     return student, catalogue, graph, scope
 
 
@@ -350,66 +395,84 @@ def _faculty_context(faculty_key: str) -> dict[str, Any]:
         return {"key": faculty_key, **meta, "programmes": [], "status": "coming_soon"}
     catalogue = _full_catalogue_or_422(faculty_key)
     programmes = []
-    for key, programme in sorted(catalogue.programmes.items(), key=lambda item: item[1].name):
-        preview_pathway = programme.default_pathway_key or (next(iter(programme.pathways), ""))
+    for key, programme in sorted(
+        catalogue.programmes.items(), key=lambda item: item[1].name
+    ):
+        preview_pathway = programme.default_pathway_key or (
+            next(iter(programme.pathways), "")
+        )
         scoped, _, scope = _scope_or_422(faculty_key, key, preview_pathway)
-        programmes.append({
-            "key": key, "name": programme.name,
-            "qualification_codes": programme.qualification_codes,
-            "route_type": programme.route_type,
-            "programme_type": programme.programme_type,
-            "degree_category": programme.degree_category,
-            "availability": programme.availability,
-            "availability_note": programme.availability_note,
-            "minimum_duration_years": programme.minimum_duration_years,
-            "maximum_registration_years": programme.maximum_registration_years,
-            "minimum_nqf_credits": programme.total_nqf_credits,
-            "minimum_nqf_level_7_credits": programme.level_7_nqf_credits,
-            "level_credit_requirements": programme.level_credit_requirements,
-            "minimum_semester_courses": programme.semester_course_equivalents,
-            "minimum_senior_courses": programme.senior_course_equivalents,
-            "minimum_humanities_courses": programme.humanities_course_equivalents,
-            "required_majors": programme.required_majors,
-            "required_humanities_majors": programme.required_humanities_majors,
-            "major_count": len(scoped.majors), "course_count": len(scoped.courses),
-            "elective_count": len(scope.elective_course_codes),
-            "scope_status": scope.status, "scope_warnings": list(scope.warnings),
-            "source": programme.source,
-            "pathway_required": programme.pathway_required,
-            "default_pathway_key": programme.default_pathway_key,
-            "pathways": [
-                {
-                    "key": pathway.key,
-                    "name": pathway.name,
-                    "verification_status": pathway.verification_status,
-                    "availability": pathway.availability,
-                    "availability_note": pathway.availability_note,
-                    "source": pathway.source,
-                }
-                for pathway in sorted(programme.pathways.values(), key=lambda item: item.name)
-            ],
-            "admission_notes": programme.admission_notes,
-            "progression_notes": programme.progression_notes,
-            "award_notes": programme.award_notes,
-            "majors": [
-                {
-                    "key": major.key, "name": major.name,
-                    "category": major.qualification,
-                    "faculty_owned": major.faculty_owned,
-                    "handbook_code": major.handbook_code,
-                    "verification_status": major.verification_status,
-                    "required_co_majors": major.required_co_majors,
-                    "admission_limited": major.admission_limited,
-                    "admission_note": major.admission_note,
-                    "source": major.source,
-                }
-                for major in sorted(scoped.majors.values(), key=lambda major: major.name)
-            ],
-        })
+        programmes.append(
+            {
+                "key": key,
+                "name": programme.name,
+                "qualification_codes": programme.qualification_codes,
+                "route_type": programme.route_type,
+                "programme_type": programme.programme_type,
+                "degree_category": programme.degree_category,
+                "availability": programme.availability,
+                "availability_note": programme.availability_note,
+                "minimum_duration_years": programme.minimum_duration_years,
+                "maximum_registration_years": programme.maximum_registration_years,
+                "minimum_nqf_credits": programme.total_nqf_credits,
+                "minimum_nqf_level_7_credits": programme.level_7_nqf_credits,
+                "level_credit_requirements": programme.level_credit_requirements,
+                "minimum_semester_courses": programme.semester_course_equivalents,
+                "minimum_senior_courses": programme.senior_course_equivalents,
+                "minimum_humanities_courses": programme.humanities_course_equivalents,
+                "required_majors": programme.required_majors,
+                "required_humanities_majors": programme.required_humanities_majors,
+                "major_count": len(scoped.majors),
+                "course_count": len(scoped.courses),
+                "elective_count": len(scope.elective_course_codes),
+                "scope_status": scope.status,
+                "scope_warnings": list(scope.warnings),
+                "source": programme.source,
+                "pathway_required": programme.pathway_required,
+                "default_pathway_key": programme.default_pathway_key,
+                "pathways": [
+                    {
+                        "key": pathway.key,
+                        "name": pathway.name,
+                        "verification_status": pathway.verification_status,
+                        "availability": pathway.availability,
+                        "availability_note": pathway.availability_note,
+                        "source": pathway.source,
+                    }
+                    for pathway in sorted(
+                        programme.pathways.values(), key=lambda item: item.name
+                    )
+                ],
+                "admission_notes": programme.admission_notes,
+                "progression_notes": programme.progression_notes,
+                "award_notes": programme.award_notes,
+                "majors": [
+                    {
+                        "key": major.key,
+                        "name": major.name,
+                        "category": major.qualification,
+                        "faculty_owned": major.faculty_owned,
+                        "handbook_code": major.handbook_code,
+                        "verification_status": major.verification_status,
+                        "required_co_majors": major.required_co_majors,
+                        "admission_limited": major.admission_limited,
+                        "admission_note": major.admission_note,
+                        "source": major.source,
+                    }
+                    for major in sorted(
+                        scoped.majors.values(), key=lambda major: major.name
+                    )
+                ],
+            }
+        )
     context = {
-        "key": faculty_key, **meta, "status": "available",
-        "programmes": programmes, "catalogue_version": catalogue.catalogue_version,
-        "source": catalogue.source, "catalogue_issues": len(catalogue.data_issues),
+        "key": faculty_key,
+        **meta,
+        "status": "available",
+        "programmes": programmes,
+        "catalogue_version": catalogue.catalogue_version,
+        "source": catalogue.source,
+        "catalogue_issues": len(catalogue.data_issues),
     }
     _faculty_contexts[faculty_key] = context
     return context
@@ -435,7 +498,9 @@ def admin_workspace():
     admin_file = _STATIC / "admin.html"
     if admin_file.exists():
         return FileResponse(str(admin_file), media_type="text/html")
-    return JSONResponse({"error": "Administration workspace not found."}, status_code=404)
+    return JSONResponse(
+        {"error": "Administration workspace not found."}, status_code=404
+    )
 
 
 @app.get("/api/v1/faculties")
@@ -489,10 +554,7 @@ def readiness():
 @app.get("/api/v1/bootstrap")
 def product_bootstrap():
     """One request for the product shell, faculty cards and trust boundaries."""
-    faculty_cards = [
-        {"key": key, **meta}
-        for key, meta in FACULTY_META.items()
-    ]
+    faculty_cards = [{"key": key, **meta} for key, meta in FACULTY_META.items()]
     return bootstrap_payload(faculty_cards)
 
 
@@ -519,7 +581,9 @@ def admin_recent_quick_edits(x_admin_token: str | None = Header(default=None)):
 
 
 @app.post("/api/v1/admin/quick-edit")
-async def admin_quick_edit(body: dict, x_admin_token: str | None = Header(default=None)):
+async def admin_quick_edit(
+    body: dict, x_admin_token: str | None = Header(default=None)
+):
     """Apply a low-risk metadata overlay and append an immutable audit event."""
     try:
         verify_admin_write_gate(x_admin_token)
@@ -565,7 +629,8 @@ def programme_view(faculty_key: str, programme_key: str, pathway_key: str = ""):
         "major_count": len(catalogue.majors),
         "course_count": len(catalogue.courses),
         "verified_major_count": sum(
-            1 for major in catalogue.majors.values()
+            1
+            for major in catalogue.majors.values()
             if major.verification_status == "verified"
         ),
     }
@@ -583,13 +648,22 @@ async def analyse_pdf(
 ):
     if not file.filename or not file.filename.lower().endswith(".pdf"):
         raise HTTPException(status_code=400, detail="Only PDF files are accepted.")
-    if file.content_type not in {None, "", "application/pdf", "application/octet-stream"}:
+    if file.content_type not in {
+        None,
+        "",
+        "application/pdf",
+        "application/octet-stream",
+    }:
         raise HTTPException(status_code=400, detail="Only PDF files are accepted.")
     content = await file.read()
     if len(content) > 20 * 1024 * 1024:
-        raise HTTPException(status_code=413, detail="Transcript PDF exceeds the 20 MB upload limit.")
+        raise HTTPException(
+            status_code=413, detail="Transcript PDF exceeds the 20 MB upload limit."
+        )
     if not content or b"%PDF-" not in content[:1024]:
-        raise HTTPException(status_code=400, detail="The uploaded file is not a valid PDF.")
+        raise HTTPException(
+            status_code=400, detail="The uploaded file is not a valid PDF."
+        )
     try:
         student = parse_transcript_pdf(io.BytesIO(content))
     except Exception as exc:
@@ -601,7 +675,10 @@ async def analyse_pdf(
             ),
         ) from exc
     if not student.results and not student.student_id:
-        raise HTTPException(status_code=422, detail="The PDF did not contain recognisable UCT transcript data.")
+        raise HTTPException(
+            status_code=422,
+            detail="The PDF did not contain recognisable UCT transcript data.",
+        )
 
     catalogue, _, _ = _scope_or_422(faculty, programme, pathway)
     student = _bind_student_to_scope(student, faculty, programme, pathway, catalogue)
@@ -610,7 +687,9 @@ async def analyse_pdf(
         student.declared_majors = selected_majors
     if years_registered is not None:
         if not 1 <= years_registered <= 20:
-            raise HTTPException(status_code=422, detail="years_registered must be between 1 and 20.")
+            raise HTTPException(
+                status_code=422, detail="years_registered must be between 1 and 20."
+            )
         student.years_registered = years_registered
     return JSONResponse(_to_dict(compute_report(student, catalogue)))
 
@@ -623,7 +702,10 @@ async def analyse_text(body: dict):
         raise HTTPException(status_code=400, detail="No transcript text provided.")
     student = parse_transcript_text(text)
     if not student.results and not student.student_id:
-        raise HTTPException(status_code=422, detail="The text did not contain recognisable UCT transcript data.")
+        raise HTTPException(
+            status_code=422,
+            detail="The text did not contain recognisable UCT transcript data.",
+        )
     student, catalogue, _, _ = _context_from_body(body, student)
     return JSONResponse(_to_dict(compute_report(student, catalogue)))
 
@@ -634,7 +716,9 @@ async def analyse_json(body: dict):
     try:
         student = _student_from_dict(body)
     except (KeyError, TypeError, ValueError) as exc:
-        raise HTTPException(status_code=422, detail=f"Invalid student record: {exc}") from exc
+        raise HTTPException(
+            status_code=422, detail=f"Invalid student record: {exc}"
+        ) from exc
     student, catalogue, _, _ = _context_from_body(body, student)
     return JSONResponse(_to_dict(compute_report(student, catalogue)))
 
@@ -648,10 +732,14 @@ async def simulate_fail(body: dict):
         if not course_code:
             raise ValueError("course_code is required.")
     except (KeyError, TypeError, ValueError) as exc:
-        raise HTTPException(status_code=422, detail=f"Invalid student record: {exc}") from exc
+        raise HTTPException(
+            status_code=422, detail=f"Invalid student record: {exc}"
+        ) from exc
     student, catalogue, graph, _ = _context_from_body(body, student)
     try:
-        report, blocked = SimulationEngine(student, catalogue, graph).simulate_fail_course(course_code)
+        report, blocked = SimulationEngine(
+            student, catalogue, graph
+        ).simulate_fail_course(course_code)
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
     return JSONResponse({"report": _to_dict(report), "blocked_courses": blocked})
@@ -669,10 +757,14 @@ async def simulate_pass(body: dict):
         if not 0 <= mark <= 100:
             raise ValueError("mark must be between 0 and 100.")
     except (KeyError, TypeError, ValueError) as exc:
-        raise HTTPException(status_code=422, detail=f"Invalid student record: {exc}") from exc
+        raise HTTPException(
+            status_code=422, detail=f"Invalid student record: {exc}"
+        ) from exc
     student, catalogue, graph, _ = _context_from_body(body, student)
     try:
-        report = SimulationEngine(student, catalogue, graph).simulate_pass_course(course_code, mark)
+        report = SimulationEngine(student, catalogue, graph).simulate_pass_course(
+            course_code, mark
+        )
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
     return JSONResponse(_to_dict(report))
@@ -688,9 +780,17 @@ async def simulate_switch(body: dict):
             raise ValueError("new_majors must be a list.")
         new_majors = [str(major).strip() for major in new_majors if str(major).strip()]
     except (KeyError, TypeError, ValueError) as exc:
-        raise HTTPException(status_code=422, detail=f"Invalid student record: {exc}") from exc
+        raise HTTPException(
+            status_code=422, detail=f"Invalid student record: {exc}"
+        ) from exc
     student, catalogue, graph, _ = _context_from_body(body, student)
-    return JSONResponse(_to_dict(SimulationEngine(student, catalogue, graph).simulate_switch_majors(new_majors)))
+    return JSONResponse(
+        _to_dict(
+            SimulationEngine(student, catalogue, graph).simulate_switch_majors(
+                new_majors
+            )
+        )
+    )
 
 
 @app.post("/api/v1/simulate/semester")
@@ -704,13 +804,19 @@ async def simulate_semester(body: dict):
                 raise ValueError("Each simulated course must be [course_code, mark].")
             code, mark = str(item[0]).strip().upper(), int(item[1])
             if not code or not 0 <= mark <= 100:
-                raise ValueError("Simulated course codes are required and marks must be 0-100.")
+                raise ValueError(
+                    "Simulated course codes are required and marks must be 0-100."
+                )
             courses_to_take.append((code, mark))
     except (KeyError, TypeError, ValueError) as exc:
-        raise HTTPException(status_code=422, detail=f"Invalid student record: {exc}") from exc
+        raise HTTPException(
+            status_code=422, detail=f"Invalid student record: {exc}"
+        ) from exc
     student, catalogue, graph, _ = _context_from_body(body, student)
     try:
-        report = SimulationEngine(student, catalogue, graph).simulate_future_semester(courses_to_take)
+        report = SimulationEngine(student, catalogue, graph).simulate_future_semester(
+            courses_to_take
+        )
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
     return JSONResponse(_to_dict(report))
@@ -722,7 +828,9 @@ async def evaluate_goals(body: dict):
     try:
         student = _student_from_dict(body.get("student", {}))
     except (KeyError, TypeError, ValueError) as exc:
-        raise HTTPException(status_code=422, detail=f"Invalid student record: {exc}") from exc
+        raise HTTPException(
+            status_code=422, detail=f"Invalid student record: {exc}"
+        ) from exc
     student, catalogue, graph, _ = _context_from_body(body, student)
     grad_report = GraduateGoal(student, catalogue, graph).evaluate()
     honours_reports = []
@@ -730,7 +838,9 @@ async def evaluate_goals(body: dict):
         normalised = _normalise_major_keys([major], catalogue)
         if normalised:
             honours_reports.append(
-                HonoursReadinessGoal(student, catalogue, graph, normalised[0]).evaluate()
+                HonoursReadinessGoal(
+                    student, catalogue, graph, normalised[0]
+                ).evaluate()
             )
     return JSONResponse(
         {
@@ -742,21 +852,27 @@ async def evaluate_goals(body: dict):
 
 @app.get("/api/v1/dependencies")
 @app.get("/dependencies")
-def get_dependencies(start: str, end: str, faculty_key: str, programme_key: str, pathway_key: str = ""):
+def get_dependencies(
+    start: str, end: str, faculty_key: str, programme_key: str, pathway_key: str = ""
+):
     _, graph, _ = _scope_or_422(faculty_key, programme_key, pathway_key)
     return {"path": graph.get_dependency_path(start.upper(), end.upper())}
 
 
 @app.get("/api/v1/dependencies/unlocked")
 @app.get("/dependencies/unlocked")
-def get_unlocked(course_code: str, faculty_key: str, programme_key: str, pathway_key: str = ""):
+def get_unlocked(
+    course_code: str, faculty_key: str, programme_key: str, pathway_key: str = ""
+):
     _, graph, _ = _scope_or_422(faculty_key, programme_key, pathway_key)
     return {"unlocked": sorted(graph.get_all_unlocked_courses(course_code.upper()))}
 
 
 @app.get("/api/v1/dependencies/blocked")
 @app.get("/dependencies/blocked")
-def get_blocked(course_code: str, faculty_key: str, programme_key: str, pathway_key: str = ""):
+def get_blocked(
+    course_code: str, faculty_key: str, programme_key: str, pathway_key: str = ""
+):
     _, graph, _ = _scope_or_422(faculty_key, programme_key, pathway_key)
     return {"blocked": sorted(graph.get_blocked_courses({course_code.upper()}))}
 

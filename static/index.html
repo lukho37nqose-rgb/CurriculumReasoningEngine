@@ -196,6 +196,35 @@
               </div>
             </div>
             <div id="analysisError" class="message error hidden" role="alert"></div>
+
+        <div id="manualEntryArea" class="hidden" style="margin-top: 24px;">
+          <div class="upload-box" style="text-align: left; padding: 24px;">
+            <h3>Build your profile manually</h3>
+            <p>Search for courses and add your grades. We will analyse your progress based on this.</p>
+
+            <div class="field top-gap">
+                <label for="manualCourseSearch">Search for a course</label>
+                <div style="display: flex; gap: 8px;">
+                    <input class="input" id="manualCourseSearch" placeholder="Enter course code or name" autocomplete="off" style="flex: 1;">
+                    <button class="secondary-btn" type="button" id="manualAddBtn">Add</button>
+                </div>
+                <div id="manualCourseDropdown" class="dropdown-list hidden"></div>
+            </div>
+
+            <div class="top-gap">
+                <label>Your courses</label>
+                <div id="manualCourseList" class="manual-course-list">
+                    <div class="empty">No courses added yet. Search above to begin.</div>
+                </div>
+            </div>
+          </div>
+          <button class="primary-btn top-gap full-width" id="analyseManualBtn" type="button" disabled>Analyse manual entry</button>
+
+          <div class="notice info privacy-note top-gap"><span aria-hidden="true">ⓘ</span><span><strong>Manual entry</strong><br>These grades are processed in memory for this request and are not retained.</span></div>
+          <div id="manualAnalysisError" class="error-box hidden" role="alert" aria-live="assertive"></div>
+          <div id="manualProcessing" class="processing hidden" role="status" aria-live="polite"><span class="spinner" aria-hidden="true"></span><span>Analysing manual entry against the selected faculty rules…</span></div>
+        </div>
+
             <div id="analysisProgress" class="analysis-progress hidden" role="status">
               <span class="spinner large" aria-hidden="true"></span>
               <div><strong>Building your report</strong><p id="analysisProgressText">Reading your transcript and checking your program rules…</p></div>

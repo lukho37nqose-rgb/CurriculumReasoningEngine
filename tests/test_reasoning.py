@@ -55,8 +55,12 @@ class ReasoningTraceTests(unittest.TestCase):
         self.assertEqual(conclusion.missing, 342)
         self.assertEqual(conclusion.status, "provisional")
         self.assertEqual(conclusion.confidence, 0.95)
-        self.assertEqual(conclusion.applied_rules, ["REGULAR_PROGRAMME_TOTAL_NQF_CREDITS"])
-        self.assertEqual(conclusion.assumptions, ["Programme rules inferred from programme title."])
+        self.assertEqual(
+            conclusion.applied_rules, ["REGULAR_PROGRAMME_TOTAL_NQF_CREDITS"]
+        )
+        self.assertEqual(
+            conclusion.assumptions, ["Programme rules inferred from programme title."]
+        )
         self.assertEqual(conclusion.depends_on, ["credit_awarded:PHI1024F"])
         self.assertIn("342 more needed", conclusion.explanation)
         self.assertTrue(any(e.source_id == "PHI1024F" for e in conclusion.evidence))
@@ -73,7 +77,9 @@ class ReasoningTraceTests(unittest.TestCase):
         requirement = graph.conclusions["REGULAR_PROGRAMME_TOTAL_NQF_CREDITS"]
 
         self.assertEqual(requirement.layer, "requirement")
-        self.assertEqual(requirement.fact_key, "requirement:REGULAR_PROGRAMME_TOTAL_NQF_CREDITS")
+        self.assertEqual(
+            requirement.fact_key, "requirement:REGULAR_PROGRAMME_TOTAL_NQF_CREDITS"
+        )
         self.assertEqual(requirement.depends_on, ["credit_awarded:PHI1024F"])
         self.assertEqual(len(graph.by_layer("academic_fact")), 4)
         self.assertEqual(graph.by_layer("requirement"), [requirement])
@@ -82,7 +88,9 @@ class ReasoningTraceTests(unittest.TestCase):
         graph = build_credit_reasoning_graph(self._student())
 
         self.assertTrue(graph.conclusions["course_pass:PHI1024F"].result)
-        self.assertEqual(graph.conclusions["course_pass:PHI1024F"].layer, "academic_fact")
+        self.assertEqual(
+            graph.conclusions["course_pass:PHI1024F"].layer, "academic_fact"
+        )
         self.assertEqual(
             graph.conclusions["course_pass:PHI1024F"].fact_key,
             "course_completion:PHI1024F",
@@ -133,7 +141,9 @@ class ReasoningTraceTests(unittest.TestCase):
         )
         self.assertIn("Manual verification required", conflict.explanation)
         self.assertTrue(any(e.source_type == "transcript" for e in conflict.evidence))
-        self.assertTrue(any(e.source_type == "imported_planner" for e in conflict.evidence))
+        self.assertTrue(
+            any(e.source_type == "imported_planner" for e in conflict.evidence)
+        )
         self.assertEqual(
             conflict.depends_on,
             [
@@ -169,7 +179,9 @@ class ReasoningTraceTests(unittest.TestCase):
 
         graph = build_major_completion_graph(student, major)
         required_done = graph.conclusions["major_required_course:test_major:PHI1024F"]
-        required_missing = graph.conclusions["major_required_course:test_major:PHI2043F"]
+        required_missing = graph.conclusions[
+            "major_required_course:test_major:PHI2043F"
+        ]
         choice_group = graph.conclusions["major_choice_group:test_major:0"]
         major_complete = graph.conclusions["major_complete:test_major"]
 
@@ -200,9 +212,14 @@ class ReasoningTraceTests(unittest.TestCase):
         self.assertEqual(credits_req.current, 15)
         self.assertEqual(credits_req.status, "unverified")
         self.assertEqual(credits_req.confidence, 0.5)
-        self.assertEqual(credits_req.applied_rules, ["BSOCSC_REGULAR_TOTAL_NQF_CREDITS"])
+        self.assertEqual(
+            credits_req.applied_rules, ["BSOCSC_REGULAR_TOTAL_NQF_CREDITS"]
+        )
         self.assertEqual(credits_req.depends_on, ["credit_awarded:PHI1024F"])
-        self.assertEqual(credits_req.assumptions, ["The selected programme scope contains unresolved catalogue references."])
+        self.assertEqual(
+            credits_req.assumptions,
+            ["The selected programme scope contains unresolved catalogue references."],
+        )
         self.assertIn("requirement incomplete", credits_req.explanation)
         self.assertTrue(any(e.source_type == "catalogue" for e in credits_req.evidence))
         self.assertTrue(any(e.source_id == "PHI1024F" for e in credits_req.evidence))

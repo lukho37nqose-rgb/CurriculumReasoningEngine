@@ -66,7 +66,9 @@ def test_quick_edit_is_disabled_by_default(isolated_admin_audit):
     assert not isolated_admin_audit.exists()
 
 
-def test_quick_edit_applies_runtime_overlay_and_preserves_catalogue_json(monkeypatch, isolated_admin_audit):
+def test_quick_edit_applies_runtime_overlay_and_preserves_catalogue_json(
+    monkeypatch, isolated_admin_audit
+):
     monkeypatch.setenv("ADMIN_WRITES_ENABLED", "1")
     monkeypatch.setenv("ADMIN_WRITE_TOKEN", "test-token")
     data_file = Path("data/uct_humanities/courses.json")
@@ -84,14 +86,20 @@ def test_quick_edit_applies_runtime_overlay_and_preserves_catalogue_json(monkeyp
     assert body["publication_effect"] == "runtime_overlay_only"
     assert _sha256(data_file) == before_hash
 
-    events = [json.loads(line) for line in isolated_admin_audit.read_text(encoding="utf-8").splitlines()]
+    events = [
+        json.loads(line)
+        for line in isolated_admin_audit.read_text(encoding="utf-8").splitlines()
+    ]
     assert len(events) == 1
     assert events[0]["course_code"] == "PHI1024F"
     assert events[0]["old_value"] != events[0]["new_value"]
     assert len(events[0]["event_hash"]) == 64
 
     catalogue = app_module.get_catalogue("uct_humanities")
-    assert catalogue.courses["PHI1024F"].name == "Introduction to Philosophy (Governance Test)"
+    assert (
+        catalogue.courses["PHI1024F"].name
+        == "Introduction to Philosophy (Governance Test)"
+    )
 
     audit_response = client.get(
         "/api/v1/admin/quick-edits",
@@ -101,7 +109,9 @@ def test_quick_edit_applies_runtime_overlay_and_preserves_catalogue_json(monkeyp
     assert audit_response.json()["edits"][0]["change_id"] == body["change_id"]
 
 
-def test_quick_edit_rejects_fields_that_affect_reasoning(monkeypatch, isolated_admin_audit):
+def test_quick_edit_rejects_fields_that_affect_reasoning(
+    monkeypatch, isolated_admin_audit
+):
     monkeypatch.setenv("ADMIN_WRITES_ENABLED", "1")
     monkeypatch.setenv("ADMIN_WRITE_TOKEN", "test-token")
 

@@ -3,6 +3,7 @@ Knowledge Graph — represents courses and their relationships explicitly.
 Supports dependency traversal, finding prerequisites, corequisites,
 and what courses are unlocked or blocked by passing/failing a course.
 """
+
 from typing import Set, List, Dict, Tuple, Optional
 import re
 from .models import Catalogue, CourseFact
@@ -32,7 +33,8 @@ class KnowledgeGraph:
                 match = re.fullmatch(r"([A-Z]{2,4}\d{4})", prereq)
                 variants = (
                     sorted(c for c in self.courses if c.startswith(match.group(1)))
-                    if match else []
+                    if match
+                    else []
                 )
                 for variant in variants:
                     self.prereq_of[variant].add(code)
@@ -45,7 +47,9 @@ class KnowledgeGraph:
         """Return the direct prerequisites of a course."""
         return self.depends_on.get(course_code, set())
 
-    def get_all_prerequisites(self, course_code: str, visited: Optional[Set[str]] = None) -> Set[str]:
+    def get_all_prerequisites(
+        self, course_code: str, visited: Optional[Set[str]] = None
+    ) -> Set[str]:
         """Return all direct and indirect prerequisites of a course (transitive closure)."""
         if visited is None:
             visited = set()
@@ -61,7 +65,9 @@ class KnowledgeGraph:
         """Return courses that directly require this course."""
         return self.prereq_of.get(course_code, set())
 
-    def get_all_unlocked_courses(self, course_code: str, visited: Optional[Set[str]] = None) -> Set[str]:
+    def get_all_unlocked_courses(
+        self, course_code: str, visited: Optional[Set[str]] = None
+    ) -> Set[str]:
         """Return all courses that directly or indirectly require this course (transitive closure)."""
         if visited is None:
             visited = set()
@@ -77,14 +83,14 @@ class KnowledgeGraph:
         """Find a path of prerequisites from start_code to end_code using BFS."""
         if start_code == end_code:
             return [start_code]
-        
+
         queue: List[List[str]] = [[start_code]]
         visited = {start_code}
-        
+
         while queue:
             path = queue.pop(0)
             node = path[-1]
-            
+
             for neighbor in self.prereq_of.get(node, set()):
                 if neighbor == end_code:
                     return path + [neighbor]

@@ -10,7 +10,6 @@ from engine.models import CourseResult, StudentRecord
 from engine.rule_engine import compute_report
 from engine.scope import build_programme_scope
 
-
 client = TestClient(app)
 
 
@@ -50,7 +49,9 @@ def test_complete_humanities_route_inventory_is_present():
 )
 def test_pathway_required_routes_reject_an_unscoped_analysis(programme_key):
     catalogue = load_catalogue("uct_humanities")
-    with pytest.raises(ValueError, match="requires a pathway|requires a pathway or stream"):
+    with pytest.raises(
+        ValueError, match="requires a pathway|requires a pathway or stream"
+    ):
         build_programme_scope("uct_humanities", catalogue, programme_key)
 
 
@@ -73,9 +74,7 @@ def test_every_programme_and_pathway_builds_a_nonempty_consistent_scope():
 
 def test_higher_certificate_acet_can_reach_verified_eligibility():
     full = load_catalogue("uct_humanities")
-    scoped, _ = build_programme_scope(
-        "uct_humanities", full, "higher_certificate_acet"
-    )
+    scoped, _ = build_programme_scope("uct_humanities", full, "higher_certificate_acet")
     codes = ["EDN1031FS", "EDN1030FS", "EDN1032FS"]
     student = StudentRecord(
         "HC001",
@@ -95,9 +94,7 @@ def test_higher_certificate_acet_can_reach_verified_eligibility():
 
 def test_higher_certificate_acet_missing_final_module_is_not_eligible():
     full = load_catalogue("uct_humanities")
-    scoped, _ = build_programme_scope(
-        "uct_humanities", full, "higher_certificate_acet"
-    )
+    scoped, _ = build_programme_scope("uct_humanities", full, "higher_certificate_acet")
     student = StudentRecord(
         "HC002",
         "Certificate Student",
@@ -113,7 +110,9 @@ def test_higher_certificate_acet_missing_final_module_is_not_eligible():
     )
     report = compute_report(student, scoped)
     assert report.graduation_status == "not_eligible"
-    core = next(req for req in report.requirements if req.id == "curriculum:hc_acet_core")
+    core = next(
+        req for req in report.requirements if req.id == "curriculum:hc_acet_core"
+    )
     assert not core.complete
 
 
@@ -173,9 +172,7 @@ def test_music_streams_remain_explicitly_unverified_instead_of_false_positive():
 
 def test_structured_programmes_do_not_use_general_degree_distinction_formula():
     full = load_catalogue("uct_humanities")
-    scoped, _ = build_programme_scope(
-        "uct_humanities", full, "higher_certificate_acet"
-    )
+    scoped, _ = build_programme_scope("uct_humanities", full, "higher_certificate_acet")
     student = StudentRecord(
         "HC003",
         "Certificate Student",
@@ -199,9 +196,16 @@ def test_structured_programmes_do_not_use_general_degree_distinction_formula():
 def test_route_availability_is_not_hidden():
     catalogue = load_catalogue("uct_humanities")
     assert catalogue.programmes["advanced_diploma_opera"].availability == "not_offered"
-    assert catalogue.programmes["advanced_diploma_theatre"].availability == "not_offered"
-    assert catalogue.programmes["ba_fine_art_extended"].availability == "continuing_only"
-    assert catalogue.programmes["bachelor_music_extended"].availability == "continuing_only"
+    assert (
+        catalogue.programmes["advanced_diploma_theatre"].availability == "not_offered"
+    )
+    assert (
+        catalogue.programmes["ba_fine_art_extended"].availability == "continuing_only"
+    )
+    assert (
+        catalogue.programmes["bachelor_music_extended"].availability
+        == "continuing_only"
+    )
 
 
 def test_non_tdp_elective_count_excludes_tdp_courses():
@@ -269,7 +273,7 @@ def test_frontend_contains_pathway_routing_and_scoped_analysis_parameters():
     assert 'id="majorOneField"' in html
     assert 'params.set("pathway", pathway.key)' in javascript
     assert 'params.set("pathway_key", pathway.key)' in javascript
-    assert 'api(`/api/v1/analyse?${params}`' in javascript
+    assert "api(`/api/v1/analyse?${params}`" in javascript
 
 
 def test_theatre_first_year_studiowork_progression_mark_is_machine_checked():
@@ -279,12 +283,16 @@ def test_theatre_first_year_studiowork_progression_mark_is_machine_checked():
     )
     programme = scoped.programmes["diploma_theatre_performance"]
     mark_rule = next(
-        rule for rule in programme.curriculum_rules
+        rule
+        for rule in programme.curriculum_rules
         if rule["id"] == "dtp_studiowork_mark"
     )
 
     below = StudentRecord(
-        "TDP002", "Theatre Student", "Diploma in Theatre and Performance", [],
+        "TDP002",
+        "Theatre Student",
+        "Diploma in Theatre and Performance",
+        [],
         [_passed_from_scope(scoped, "TDP1046W", 55)],
         faculty_key="uct_humanities",
         programme_key="diploma_theatre_performance",
@@ -293,7 +301,10 @@ def test_theatre_first_year_studiowork_progression_mark_is_machine_checked():
     assert not CurriculumEvaluator(below, scoped).evaluate(mark_rule).complete
 
     threshold = StudentRecord(
-        "TDP003", "Theatre Student", "Diploma in Theatre and Performance", [],
+        "TDP003",
+        "Theatre Student",
+        "Diploma in Theatre and Performance",
+        [],
         [_passed_from_scope(scoped, "TDP1046W", 60)],
         faculty_key="uct_humanities",
         programme_key="diploma_theatre_performance",

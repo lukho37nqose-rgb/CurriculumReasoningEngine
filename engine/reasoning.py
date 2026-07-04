@@ -4,6 +4,7 @@ First-class reasoning primitives for academic conclusions.
 This layer keeps facts, rules, and explanations together so the engine can
 show why it reached a conclusion instead of only returning a boolean result.
 """
+
 from dataclasses import dataclass, field
 from typing import Any, Optional
 
@@ -14,6 +15,7 @@ from .recognition import recognised_credited_pairs
 @dataclass
 class Evidence:
     """A fact used to support a conclusion."""
+
     source_type: str
     source_id: str
     claim: str
@@ -23,6 +25,7 @@ class Evidence:
 @dataclass
 class AcademicRule:
     """A regulation or policy rule that can be evaluated against a metric."""
+
     id: str
     label: str
     metric: str
@@ -34,6 +37,7 @@ class AcademicRule:
 @dataclass
 class MetricResult:
     """A computed academic metric plus the evidence used to compute it."""
+
     id: str
     label: str
     value: float
@@ -44,6 +48,7 @@ class MetricResult:
 @dataclass
 class ReasonedConclusion:
     """The result of applying one or more rules to facts and metrics."""
+
     id: str
     fact_key: str
     layer: str
@@ -63,6 +68,7 @@ class ReasonedConclusion:
 
 class ReasoningGraph:
     """A directed graph of conclusions and the conclusions they depend on."""
+
     def __init__(self) -> None:
         self.conclusions: dict[str, ReasonedConclusion] = {}
 
@@ -70,7 +76,9 @@ class ReasoningGraph:
         self.conclusions[conclusion.id] = conclusion
         return conclusion
 
-    def add_many(self, conclusions: list[ReasonedConclusion]) -> list[ReasonedConclusion]:
+    def add_many(
+        self, conclusions: list[ReasonedConclusion]
+    ) -> list[ReasonedConclusion]:
         for conclusion in conclusions:
             self.add(conclusion)
         return conclusions
@@ -83,7 +91,8 @@ class ReasoningGraph:
 
     def by_layer(self, layer: str) -> list[ReasonedConclusion]:
         return [
-            conclusion for conclusion in self.conclusions.values()
+            conclusion
+            for conclusion in self.conclusions.values()
             if conclusion.layer == layer
         ]
 
@@ -130,7 +139,9 @@ def course_pass_conclusion(result: CourseResult) -> ReasonedConclusion:
     elif failed:
         status = "verified"
         confidence = 1.0
-        explanation = f"Transcript records a fail result for {result.code} ({recorded})."
+        explanation = (
+            f"Transcript records a fail result for {result.code} ({recorded})."
+        )
     else:
         status = "unverified"
         confidence = 0.0
@@ -220,12 +231,14 @@ def imported_course_completion_conclusion(
         result=completed,
         current=1.0 if completed else 0.0,
         required=1.0,
-        evidence=[Evidence(
-            source_type=source_type,
-            source_id=source_id,
-            claim=f"{source_type} says {course_code} is {state}",
-            confidence=confidence,
-        )],
+        evidence=[
+            Evidence(
+                source_type=source_type,
+                source_id=source_id,
+                claim=f"{source_type} says {course_code} is {state}",
+                confidence=confidence,
+            )
+        ],
         applied_rules=["IMPORTED_COURSE_COMPLETION"],
         explanation=f"{source_type} reports {course_code} as {state}.",
         status="verified" if confidence >= 1.0 else "provisional",
@@ -253,24 +266,26 @@ def detect_conflicts(conclusions: list[ReasonedConclusion]) -> list[ReasonedConc
         for conclusion in fact_conclusions:
             evidence.extend(conclusion.evidence)
 
-        conflicts.append(ReasonedConclusion(
-            id=f"conflict:{fact_key}",
-            fact_key=fact_key,
-            layer="academic_fact",
-            claim=f"Conflicting evidence for {fact_key}",
-            result=False,
-            current=0.0,
-            required=1.0,
-            evidence=evidence,
-            applied_rules=["CONFLICTING_EVIDENCE_REQUIRES_MANUAL_VERIFICATION"],
-            explanation=(
-                f"Manual verification required: {len(positive)} source(s) support "
-                f"{fact_key} as true and {len(negative)} source(s) support it as false."
-            ),
-            status="conflict",
-            confidence=0.0,
-            depends_on=[c.id for c in fact_conclusions],
-        ))
+        conflicts.append(
+            ReasonedConclusion(
+                id=f"conflict:{fact_key}",
+                fact_key=fact_key,
+                layer="academic_fact",
+                claim=f"Conflicting evidence for {fact_key}",
+                result=False,
+                current=0.0,
+                required=1.0,
+                evidence=evidence,
+                applied_rules=["CONFLICTING_EVIDENCE_REQUIRES_MANUAL_VERIFICATION"],
+                explanation=(
+                    f"Manual verification required: {len(positive)} source(s) support "
+                    f"{fact_key} as true and {len(negative)} source(s) support it as false."
+                ),
+                status="conflict",
+                confidence=0.0,
+                depends_on=[c.id for c in fact_conclusions],
+            )
+        )
 
     return conflicts
 
@@ -279,7 +294,8 @@ def passed_nqf_credits(student: StudentRecord) -> MetricResult:
     """Calculate passed NQF credits and preserve course-level evidence."""
     graph = build_credit_reasoning_graph(student)
     supporting = [
-        conclusion for conclusion in graph.conclusions.values()
+        conclusion
+        for conclusion in graph.conclusions.values()
         if conclusion.id.startswith("credit_awarded:") and conclusion.result
     ]
     evidence: list[Evidence] = []
@@ -331,7 +347,9 @@ def evaluate_threshold_rule(
     assumptions = assumptions or []
     complete = metric.value >= rule.required_value
     missing = max(rule.required_value - metric.value, 0.0)
-    source_name = rule.source.get("programme_name", rule.source.get("programme_key", "programme rules"))
+    source_name = rule.source.get(
+        "programme_name", rule.source.get("programme_key", "programme rules")
+    )
     dependencies = metric.supporting_conclusions
 
     if complete:
@@ -404,7 +422,8 @@ def build_total_nqf_credits_graph(
     """
     graph = build_credit_reasoning_graph(student)
     supporting = [
-        conclusion for conclusion in graph.conclusions.values()
+        conclusion
+        for conclusion in graph.conclusions.values()
         if conclusion.id.startswith("credit_awarded:") and conclusion.result
     ]
     evidence: list[Evidence] = []
@@ -417,9 +436,7 @@ def build_total_nqf_credits_graph(
         recognised_codes = {result.code for result, _ in recognised} | provisional_codes
         facts_by_code = {result.code: fact for result, fact in recognised}
     else:
-        recognised_codes = {
-            conclusion.id.split(":", 1)[1] for conclusion in supporting
-        }
+        recognised_codes = {conclusion.id.split(":", 1)[1] for conclusion in supporting}
         facts_by_code = {}
 
     used_supporting = []
@@ -433,20 +450,26 @@ def build_total_nqf_credits_graph(
         used_supporting.append(conclusion)
         evidence.extend(conclusion.evidence)
         if fact is not None:
-            evidence.append(Evidence(
-                source_type="catalogue", source_id=code,
-                claim=f"{code} carries {fact.nqf_credits} NQF credits at level {fact.nqf_level}.",
-                confidence=1.0 if fact.verification_status == "verified" else 0.6,
-            ))
+            evidence.append(
+                Evidence(
+                    source_type="catalogue",
+                    source_id=code,
+                    claim=f"{code} carries {fact.nqf_credits} NQF credits at level {fact.nqf_level}.",
+                    confidence=1.0 if fact.verification_status == "verified" else 0.6,
+                )
+            )
         elif code in provisional_codes:
-            evidence.append(Evidence(
-                source_type="transcript", source_id=code,
-                claim=(
-                    f"{code} contributes {awarded:g} transcript credits provisionally under an "
-                    "approved/open elective pool; faculty approval is not verified."
-                ),
-                confidence=0.35,
-            ))
+            evidence.append(
+                Evidence(
+                    source_type="transcript",
+                    source_id=code,
+                    claim=(
+                        f"{code} contributes {awarded:g} transcript credits provisionally under an "
+                        "approved/open elective pool; faculty approval is not verified."
+                    ),
+                    confidence=0.35,
+                )
+            )
 
     metric = MetricResult(
         id="passed_nqf_credits",
@@ -468,13 +491,17 @@ def major_required_course_conclusion(
     """Evaluate one required course inside a major."""
     passed = bool(course_pass and course_pass.result)
     dependencies = [course_pass] if course_pass else []
-    evidence = course_pass.evidence if course_pass else [
-        Evidence(
-            source_type="catalogue",
-            source_id=major.key,
-            claim=f"{course_code} is required for the {major.name} major",
-        )
-    ]
+    evidence = (
+        course_pass.evidence
+        if course_pass
+        else [
+            Evidence(
+                source_type="catalogue",
+                source_id=major.key,
+                claim=f"{course_code} is required for the {major.name} major",
+            )
+        ]
+    )
     explanation = (
         f"{course_code} satisfies a compulsory requirement for {major.name}."
         if passed
@@ -507,11 +534,13 @@ def major_choice_group_conclusion(
     """Evaluate one choose-N group inside a major."""
     group = major.choice_groups[group_index]
     passed_options = [
-        course_code for course_code in group.courses
+        course_code
+        for course_code in group.courses
         if course_passes.get(course_code) and course_passes[course_code].result
     ]
     dependencies = [
-        course_passes[course_code] for course_code in group.courses
+        course_passes[course_code]
+        for course_code in group.courses
         if course_code in course_passes
     ]
     definition_valid = group.required > 0 and group.required <= len(group.courses)
@@ -521,11 +550,13 @@ def major_choice_group_conclusion(
     for dependency in dependencies:
         evidence.extend(dependency.evidence)
     if not evidence:
-        evidence.append(Evidence(
-            source_type="catalogue",
-            source_id=major.key,
-            claim=f"{label} requires {group.required} from {group.courses}",
-        ))
+        evidence.append(
+            Evidence(
+                source_type="catalogue",
+                source_id=major.key,
+                claim=f"{label} requires {group.required} from {group.courses}",
+            )
+        )
 
     return ReasonedConclusion(
         id=f"major_choice_group:{major.key}:{group_index}",
@@ -566,7 +597,8 @@ def major_completion_conclusion(
         for conclusion in requirement_conclusions
     )
     missing = sum(
-        1 for conclusion in requirement_conclusions
+        1
+        for conclusion in requirement_conclusions
         if not conclusion.result or conclusion.status != "verified"
     )
     evidence = []
@@ -594,11 +626,13 @@ def major_completion_conclusion(
         ),
         missing=float(missing),
         status=(
-            "unverified" if not has_requirements
+            "unverified"
+            if not has_requirements
             else _combine_status(requirement_conclusions)
         ),
         confidence=(
-            0.0 if not has_requirements
+            0.0
+            if not has_requirements
             else _combine_confidence(requirement_conclusions)
         ),
         depends_on=[conclusion.id for conclusion in requirement_conclusions],

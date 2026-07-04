@@ -1,7 +1,13 @@
 from fastapi.testclient import TestClient
 
 from app import app, get_catalogue
-from engine.models import Catalogue, CourseFact, MajorDefinition, ProgrammeRules, StudentRecord
+from engine.models import (
+    Catalogue,
+    CourseFact,
+    MajorDefinition,
+    ProgrammeRules,
+    StudentRecord,
+)
 from engine.rule_engine import _compute_eligible_courses, compute_report
 from engine.scope import build_programme_scope
 
@@ -10,14 +16,33 @@ client = TestClient(app)
 
 def _catalogue_for_scope() -> Catalogue:
     courses = {
-        "AAA1001F": CourseFact("AAA1001F", "Major A Intro", 18, 5, [], ["Semester 1"], "A"),
-        "AAA2001S": CourseFact("AAA2001S", "Major A Senior", 18, 6, ["AAA1001F"], ["Semester 2"], "A"),
-        "BBB1001F": CourseFact("BBB1001F", "Other Major Intro", 18, 5, [], ["Semester 1"], "B"),
-        "ELE1001S": CourseFact("ELE1001S", "Approved Elective", 18, 5, [], ["Semester 2"], "Electives", verification_status="verified"),
-        "OUT1001F": CourseFact("OUT1001F", "Outside Programme", 18, 5, [], ["Semester 1"], "Outside"),
+        "AAA1001F": CourseFact(
+            "AAA1001F", "Major A Intro", 18, 5, [], ["Semester 1"], "A"
+        ),
+        "AAA2001S": CourseFact(
+            "AAA2001S", "Major A Senior", 18, 6, ["AAA1001F"], ["Semester 2"], "A"
+        ),
+        "BBB1001F": CourseFact(
+            "BBB1001F", "Other Major Intro", 18, 5, [], ["Semester 1"], "B"
+        ),
+        "ELE1001S": CourseFact(
+            "ELE1001S",
+            "Approved Elective",
+            18,
+            5,
+            [],
+            ["Semester 2"],
+            "Electives",
+            verification_status="verified",
+        ),
+        "OUT1001F": CourseFact(
+            "OUT1001F", "Outside Programme", 18, 5, [], ["Semester 1"], "Outside"
+        ),
     }
     majors = {
-        "major_a": MajorDefinition("major_a", "Major A", "TEST", ["AAA1001F", "AAA2001S"]),
+        "major_a": MajorDefinition(
+            "major_a", "Major A", "TEST", ["AAA1001F", "AAA2001S"]
+        ),
         "major_b": MajorDefinition("major_b", "Major B", "TEST", ["BBB1001F"]),
     }
     programmes = {
@@ -44,7 +69,12 @@ def test_landing_returns_all_faculty_destinations():
     assert response.status_code == 200
     faculties = response.json()
     assert {faculty["key"] for faculty in faculties} == {
-        "uct_commerce", "uct_ebe", "uct_health", "uct_humanities", "uct_law", "uct_science"
+        "uct_commerce",
+        "uct_ebe",
+        "uct_health",
+        "uct_humanities",
+        "uct_law",
+        "uct_science",
     }
     assert all("programmes" in faculty for faculty in faculties)
 
@@ -89,7 +119,9 @@ def test_unknown_programme_is_rejected_within_selected_faculty():
 
 
 def test_programme_scope_excludes_other_majors_and_outside_courses():
-    scoped, scope = build_programme_scope("test_faculty", _catalogue_for_scope(), "degree_a")
+    scoped, scope = build_programme_scope(
+        "test_faculty", _catalogue_for_scope(), "degree_a"
+    )
     assert scope.status == "verified"
     assert set(scoped.majors) == {"major_a"}
     assert set(scoped.courses) == {"AAA1001F", "AAA2001S", "ELE1001S"}
@@ -98,10 +130,17 @@ def test_programme_scope_excludes_other_majors_and_outside_courses():
 
 
 def test_recommendations_use_declared_major_and_explicit_electives_only():
-    scoped, _ = build_programme_scope("test_faculty", _catalogue_for_scope(), "degree_a")
+    scoped, _ = build_programme_scope(
+        "test_faculty", _catalogue_for_scope(), "degree_a"
+    )
     student = StudentRecord(
-        "T2", "Student", "Degree A", ["Major A"], [],
-        faculty_key="test_faculty", programme_key="degree_a",
+        "T2",
+        "Student",
+        "Degree A",
+        ["Major A"],
+        [],
+        faculty_key="test_faculty",
+        programme_key="degree_a",
     )
     eligible = _compute_eligible_courses(student, scoped)
     assert {course.code for course in eligible} == {"AAA1001F", "ELE1001S"}
@@ -110,10 +149,17 @@ def test_recommendations_use_declared_major_and_explicit_electives_only():
 
 
 def test_verified_scope_metadata_is_carried_into_report():
-    scoped, _ = build_programme_scope("test_faculty", _catalogue_for_scope(), "degree_a")
+    scoped, _ = build_programme_scope(
+        "test_faculty", _catalogue_for_scope(), "degree_a"
+    )
     student = StudentRecord(
-        "T3", "Student", "Degree A", ["Major A"], [],
-        faculty_key="test_faculty", programme_key="degree_a",
+        "T3",
+        "Student",
+        "Degree A",
+        ["Major A"],
+        [],
+        faculty_key="test_faculty",
+        programme_key="degree_a",
     )
     report = compute_report(student, scoped)
     assert report.faculty_key == "test_faculty"
@@ -128,5 +174,7 @@ def test_2026_humanities_catalogue_has_verified_programme_scope():
     assert scope.status == "verified"
     assert len(scoped.courses) < len(full.courses)
     assert scoped.elective_course_codes
-    assert {"ba_regular", "bsocsc_regular", "ba_extended", "bsocsc_extended"} <= set(full.programmes)
+    assert {"ba_regular", "bsocsc_regular", "ba_extended", "bsocsc_extended"} <= set(
+        full.programmes
+    )
     assert len(full.programmes) == 24

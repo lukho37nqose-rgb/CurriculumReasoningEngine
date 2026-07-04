@@ -16,7 +16,9 @@ from catalogue_governance.integrity import (
 def _make_data(root: Path) -> Path:
     data = root / "data"
     (data / "uct_humanities").mkdir(parents=True)
-    (data / "uct_humanities" / "courses.json").write_text('{"A": 1}\n', encoding="utf-8")
+    (data / "uct_humanities" / "courses.json").write_text(
+        '{"A": 1}\n', encoding="utf-8"
+    )
     (data / "uct_humanities" / "degree_requirements.json").write_text(
         '{"B": 2}\n', encoding="utf-8"
     )
@@ -49,7 +51,9 @@ def test_verify_detects_changed_missing_and_unexpected(tmp_path: Path) -> None:
         academic_year=2026,
         created_by="tester",
     )
-    (data / "uct_humanities" / "courses.json").write_text('{"A": 99}\n', encoding="utf-8")
+    (data / "uct_humanities" / "courses.json").write_text(
+        '{"A": 99}\n', encoding="utf-8"
+    )
     (data / "uct_humanities" / "degree_requirements.json").unlink()
     (data / "uct_humanities" / "new_file.json").write_text("{}\n", encoding="utf-8")
 
@@ -83,7 +87,9 @@ def test_manifest_diff_is_explicit(tmp_path: Path) -> None:
         academic_year=2026,
         created_by="tester",
     )
-    (data / "uct_humanities" / "courses.json").write_text('{"A": 3}\n', encoding="utf-8")
+    (data / "uct_humanities" / "courses.json").write_text(
+        '{"A": 3}\n', encoding="utf-8"
+    )
     (data / "uct_humanities" / "added.json").write_text("{}\n", encoding="utf-8")
     new = build_manifest(
         data,
@@ -100,7 +106,9 @@ def test_manifest_diff_is_explicit(tmp_path: Path) -> None:
     assert diff.unchanged_count == 1
 
 
-def test_verify_rejects_unexpected_file_even_when_baseline_files_match(tmp_path: Path) -> None:
+def test_verify_rejects_unexpected_file_even_when_baseline_files_match(
+    tmp_path: Path,
+) -> None:
     data = _make_data(tmp_path)
     manifest = build_manifest(
         data,

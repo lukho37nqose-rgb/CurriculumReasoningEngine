@@ -22,7 +22,6 @@ from engine.rule_engine import (
 )
 from engine.simulator import SimulationEngine
 
-
 client = TestClient(app)
 
 
@@ -46,12 +45,16 @@ def _programme(**overrides):
 def _catalogue(courses=None, majors=None, programmes=None):
     if courses is None:
         courses = {
-            "AAA1001F": CourseFact("AAA1001F", "Course", 18, 5, [], ["Semester 1"], "Test")
+            "AAA1001F": CourseFact(
+                "AAA1001F", "Course", 18, 5, [], ["Semester 1"], "Test"
+            )
         }
     return Catalogue(
         courses=courses,
         majors=majors or {},
-        programmes=programmes if programmes is not None else {"bsocsc_regular": _programme()},
+        programmes=(
+            programmes if programmes is not None else {"bsocsc_regular": _programme()}
+        ),
         forbidden_combinations=[],
     )
 
@@ -59,15 +62,21 @@ def _catalogue(courses=None, majors=None, programmes=None):
 def test_catalogue_loader_prefers_explicit_nqf_level(tmp_path):
     courses_path = tmp_path / "courses.json"
     requirements_path = tmp_path / "degree_requirements.json"
-    courses_path.write_text(json.dumps([{
-        "code": "CML4504S",
-        "name": "Trademarks",
-        "credits": 18,
-        "nqf_level": 8,
-        "prerequisites": [],
-        "offered": ["Semester 2"],
-        "department": "Commercial Law",
-    }]))
+    courses_path.write_text(
+        json.dumps(
+            [
+                {
+                    "code": "CML4504S",
+                    "name": "Trademarks",
+                    "credits": 18,
+                    "nqf_level": 8,
+                    "prerequisites": [],
+                    "offered": ["Semester 2"],
+                    "department": "Commercial Law",
+                }
+            ]
+        )
+    )
     requirements_path.write_text(json.dumps({"programmes": {}, "majors": {}}))
 
     catalogue = load_catalogue(
@@ -149,8 +158,12 @@ def test_unsuffixed_handbook_prerequisite_matches_transcript_variant():
 
 def test_unrelated_postgraduate_course_is_not_suggested_as_elective():
     courses = {
-        "AAA1001F": CourseFact("AAA1001F", "Undergrad", 18, 5, [], ["Semester 1"], "Dept"),
-        "AAA5001F": CourseFact("AAA5001F", "Postgrad", 24, 9, [], ["Semester 1"], "Dept"),
+        "AAA1001F": CourseFact(
+            "AAA1001F", "Undergrad", 18, 5, [], ["Semester 1"], "Dept"
+        ),
+        "AAA5001F": CourseFact(
+            "AAA5001F", "Postgrad", 24, 9, [], ["Semester 1"], "Dept"
+        ),
     }
     student = StudentRecord("T4", "Student", "Test", [], [])
 
@@ -175,7 +188,9 @@ def test_unknown_programme_cannot_produce_positive_graduation_result():
 
     assert report.graduation_eligible is False
     assert report.graduation_status == "not_eligible"
-    programme_check = next(r for r in report.requirements if r.id == "qualification_match")
+    programme_check = next(
+        r for r in report.requirements if r.id == "qualification_match"
+    )
     assert programme_check.complete is False
     assert programme_check.status == "unverified"
 
@@ -197,9 +212,13 @@ def test_generic_programme_never_becomes_definitively_eligible():
 
 
 def test_simulation_rejects_unknown_course():
-    catalogue = _catalogue(courses={
-        "AAA1001F": CourseFact("AAA1001F", "Course", 18, 5, [], ["Semester 1"], "Dept")
-    })
+    catalogue = _catalogue(
+        courses={
+            "AAA1001F": CourseFact(
+                "AAA1001F", "Course", 18, 5, [], ["Semester 1"], "Dept"
+            )
+        }
+    )
     student = StudentRecord("T7", "Student", "Test", [], [])
     engine = SimulationEngine(student, catalogue, KnowledgeGraph(catalogue))
 
@@ -248,13 +267,15 @@ def test_api_rejects_out_of_range_mark():
             "name": "Student",
             "programme": "Bachelor of Social Science",
             "declared_majors": [],
-            "results": [{
-                "code": "AAA1001F",
-                "name": "Course",
-                "nqf_level": 5,
-                "nqf_credits": 18,
-                "mark": 101,
-            }],
+            "results": [
+                {
+                    "code": "AAA1001F",
+                    "name": "Course",
+                    "nqf_level": 5,
+                    "nqf_credits": 18,
+                    "mark": 101,
+                }
+            ],
         },
     )
 
@@ -264,9 +285,15 @@ def test_api_rejects_out_of_range_mark():
 
 def test_knowledge_graph_links_suffixless_prerequisite_variants():
     courses = {
-        "ECO1010F": CourseFact("ECO1010F", "Econ 1", 18, 5, [], ["Semester 1"], "Economics"),
-        "ECO1010S": CourseFact("ECO1010S", "Econ 1", 18, 5, [], ["Semester 2"], "Economics"),
-        "ECO2008S": CourseFact("ECO2008S", "Econ 2", 24, 6, ["ECO1010"], ["Semester 2"], "Economics"),
+        "ECO1010F": CourseFact(
+            "ECO1010F", "Econ 1", 18, 5, [], ["Semester 1"], "Economics"
+        ),
+        "ECO1010S": CourseFact(
+            "ECO1010S", "Econ 1", 18, 5, [], ["Semester 2"], "Economics"
+        ),
+        "ECO2008S": CourseFact(
+            "ECO2008S", "Econ 2", 24, 6, ["ECO1010"], ["Semester 2"], "Economics"
+        ),
     }
     graph = KnowledgeGraph(_catalogue(courses=courses))
 

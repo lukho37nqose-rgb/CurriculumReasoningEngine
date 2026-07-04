@@ -17,18 +17,29 @@ def scoped(programme="bsc_science", pathway="current_2023_plus"):
 
 def result(catalogue, code, mark=65, year=2026):
     fact = catalogue.courses[code]
-    return CourseResult(code, fact.name, fact.nqf_level, fact.nqf_credits, mark, "P", year)
+    return CourseResult(
+        code, fact.name, fact.nqf_level, fact.nqf_credits, mark, "P", year
+    )
 
 
 def chemistry_record(mark=65, years=3):
     catalogue, _ = scoped()
     required = [
-        "CEM1000W", "MAM1031F", "MAM1032S", "PHY1031F", "PHY1032S",
-        "CEM2005W", "CEM3005W",
+        "CEM1000W",
+        "MAM1031F",
+        "MAM1032S",
+        "PHY1031F",
+        "PHY1032S",
+        "CEM2005W",
+        "CEM3005W",
     ]
     selected = list(required)
     credits = sum(catalogue.courses[c].nqf_credits for c in selected)
-    level7 = sum(catalogue.courses[c].nqf_credits for c in selected if catalogue.courses[c].nqf_level == 7)
+    level7 = sum(
+        catalogue.courses[c].nqf_credits
+        for c in selected
+        if catalogue.courses[c].nqf_level == 7
+    )
     for code, fact in sorted(catalogue.courses.items()):
         if code in selected or not fact.general_elective or not fact.credit_bearing:
             continue
@@ -38,11 +49,20 @@ def chemistry_record(mark=65, years=3):
             level7 += fact.nqf_credits
         if credits >= 360 and level7 >= 120:
             break
-    rows = [result(catalogue, code, mark, 2024 + min(index // 8, 2)) for index, code in enumerate(selected)]
+    rows = [
+        result(catalogue, code, mark, 2024 + min(index // 8, 2))
+        for index, code in enumerate(selected)
+    ]
     student = StudentRecord(
-        "SCI001", "Science Student", "Bachelor of Science", ["Chemistry"], rows,
-        faculty_key="uct_science", programme_key="bsc_science",
-        pathway_key="current_2023_plus", years_registered=years,
+        "SCI001",
+        "Science Student",
+        "Bachelor of Science",
+        ["Chemistry"],
+        rows,
+        faculty_key="uct_science",
+        programme_key="bsc_science",
+        pathway_key="current_2023_plus",
+        years_registered=years,
     )
     return catalogue, student
 
@@ -59,7 +79,9 @@ def test_all_science_cohort_scopes_are_verified():
     catalogue = load_catalogue("uct_science")
     for programme in catalogue.programmes:
         for pathway in catalogue.programmes[programme].pathways:
-            scoped_catalogue, scope = build_programme_scope("uct_science", catalogue, programme, pathway)
+            scoped_catalogue, scope = build_programme_scope(
+                "uct_science", catalogue, programme, pathway
+            )
             assert scope.status == "verified"
             assert len(scoped_catalogue.majors) == 22
             assert not scope.warnings
@@ -71,7 +93,10 @@ def test_science_is_enabled_on_faculty_endpoint():
     payload = response.json()
     assert payload["status"] == "available"
     assert len(payload["programmes"]) == 2
-    assert {p["key"] for p in payload["programmes"]} == {"bsc_science", "bsc_science_edp"}
+    assert {p["key"] for p in payload["programmes"]} == {
+        "bsc_science",
+        "bsc_science_edp",
+    }
 
 
 def test_complete_verified_chemistry_record_can_be_eligible():
@@ -87,12 +112,22 @@ def test_complete_verified_chemistry_record_can_be_eligible():
 def test_computer_engineering_requires_computer_science_co_major():
     catalogue, _ = scoped()
     student = StudentRecord(
-        "SCI002", "Student", "Bachelor of Science", ["Computer Engineering"], [],
-        faculty_key="uct_science", programme_key="bsc_science",
-        pathway_key="current_2023_plus", years_registered=1,
+        "SCI002",
+        "Student",
+        "Bachelor of Science",
+        ["Computer Engineering"],
+        [],
+        faculty_key="uct_science",
+        programme_key="bsc_science",
+        pathway_key="current_2023_plus",
+        years_registered=1,
     )
     report = compute_report(student, catalogue)
-    row = next(r for r in report.requirements if r.id == "major_co_requirement:computer_engineering")
+    row = next(
+        r
+        for r in report.requirements
+        if r.id == "major_co_requirement:computer_engineering"
+    )
     assert not row.complete
     assert "computer_science" in row.detail
 
@@ -100,10 +135,15 @@ def test_computer_engineering_requires_computer_science_co_major():
 def test_statistics_major_combinations_are_forbidden():
     catalogue, _ = scoped()
     student = StudentRecord(
-        "SCI003", "Student", "Bachelor of Science",
-        ["Applied Statistics", "Mathematical Statistics"], [],
-        faculty_key="uct_science", programme_key="bsc_science",
-        pathway_key="current_2023_plus", years_registered=1,
+        "SCI003",
+        "Student",
+        "Bachelor of Science",
+        ["Applied Statistics", "Mathematical Statistics"],
+        [],
+        faculty_key="uct_science",
+        programme_key="bsc_science",
+        pathway_key="current_2023_plus",
+        years_registered=1,
     )
     report = compute_report(student, catalogue)
     row = next(r for r in report.requirements if r.id == "major_combination")
@@ -116,9 +156,15 @@ def test_limited_major_completion_still_requires_admission_verification():
     codes = sorted({code for rule in major.curriculum_rules for code in _codes(rule)})
     rows = [result(catalogue, code) for code in codes if code in catalogue.courses]
     student = StudentRecord(
-        "SCI004", "Student", "Bachelor of Science", ["Biochemistry"], rows,
-        faculty_key="uct_science", programme_key="bsc_science",
-        pathway_key="current_2023_plus", years_registered=3,
+        "SCI004",
+        "Student",
+        "Bachelor of Science",
+        ["Biochemistry"],
+        rows,
+        faculty_key="uct_science",
+        programme_key="bsc_science",
+        pathway_key="current_2023_plus",
+        years_registered=3,
     )
     report = compute_report(student, catalogue)
     assert report.majors[0].status == "unverified"
@@ -127,11 +173,21 @@ def test_limited_major_completion_still_requires_admission_verification():
 
 def test_current_regular_first_year_progression_uses_science_credits():
     catalogue, _ = scoped()
-    rows = [result(catalogue, "BIO1000F"), result(catalogue, "AGE1002S"), result(catalogue, "GEO1009F")]
+    rows = [
+        result(catalogue, "BIO1000F"),
+        result(catalogue, "AGE1002S"),
+        result(catalogue, "GEO1009F"),
+    ]
     student = StudentRecord(
-        "SCI005", "Student", "Bachelor of Science", ["Biology"], rows,
-        faculty_key="uct_science", programme_key="bsc_science",
-        pathway_key="current_2023_plus", years_registered=1,
+        "SCI005",
+        "Student",
+        "Bachelor of Science",
+        ["Biology"],
+        rows,
+        faculty_key="uct_science",
+        programme_key="bsc_science",
+        pathway_key="current_2023_plus",
+        years_registered=1,
     )
     risk = compute_report(student, catalogue).exclusion_risk
     assert risk.at_risk
@@ -140,7 +196,9 @@ def test_current_regular_first_year_progression_uses_science_credits():
 
 def test_non_science_transcript_only_elective_is_provisional():
     catalogue, student = chemistry_record()
-    student.results.append(CourseResult("POL1004F", "Introduction to Politics", 5, 18, 70, "P", 2024))
+    student.results.append(
+        CourseResult("POL1004F", "Introduction to Politics", 5, 18, 70, "P", 2024)
+    )
     report = compute_report(student, catalogue)
     assert report.credits_completed >= 378
     assert report.graduation_status == "requires_verification"
@@ -153,7 +211,9 @@ def test_science_distinction_excludes_supplementary_passes():
         if row.code == "CEM3005W":
             row.grade = "SP"
     distinction = compute_report(student, catalogue).distinction
-    chemistry = next(subject for subject in distinction.subjects if subject.major == "Chemistry")
+    chemistry = next(
+        subject for subject in distinction.subjects if subject.major == "Chemistry"
+    )
     assert not chemistry.eligible
     assert "supplementary" in chemistry.reason.lower()
 

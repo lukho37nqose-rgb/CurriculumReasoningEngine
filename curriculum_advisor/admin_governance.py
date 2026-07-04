@@ -55,7 +55,11 @@ ROLE_MATRIX: tuple[dict[str, Any], ...] = (
         "role": "faculty_data_steward",
         "label": "Faculty data steward",
         "scope": "Assigned faculty metadata and source references",
-        "tier_1_quick_edit": ["course_name", "course_description", "source_page_or_section"],
+        "tier_1_quick_edit": [
+            "course_name",
+            "course_description",
+            "source_page_or_section",
+        ],
         "tier_2_review": False,
         "tier_3_release_approval": False,
         "publication": False,
@@ -64,7 +68,11 @@ ROLE_MATRIX: tuple[dict[str, Any], ...] = (
         "role": "department_curriculum_editor",
         "label": "Department curriculum editor",
         "scope": "Assigned department metadata and draft structured proposals",
-        "tier_1_quick_edit": ["course_name", "course_description", "source_page_or_section"],
+        "tier_1_quick_edit": [
+            "course_name",
+            "course_description",
+            "source_page_or_section",
+        ],
         "tier_2_review": False,
         "tier_3_release_approval": False,
         "publication": False,
@@ -82,7 +90,11 @@ ROLE_MATRIX: tuple[dict[str, Any], ...] = (
         "role": "governance_admin",
         "label": "Governance admin",
         "scope": "Cross-faculty governance queue, audits and validation",
-        "tier_1_quick_edit": ["course_name", "course_description", "source_page_or_section"],
+        "tier_1_quick_edit": [
+            "course_name",
+            "course_description",
+            "source_page_or_section",
+        ],
         "tier_2_review": True,
         "tier_3_release_approval": False,
         "publication": False,
@@ -175,8 +187,7 @@ def permission_matrix_payload() -> dict[str, Any]:
         "publication_enabled": False,
         "quick_edit": {
             "allowed_fields": [
-                {"field": key, **value}
-                for key, value in QUICK_EDIT_FIELDS.items()
+                {"field": key, **value} for key, value in QUICK_EDIT_FIELDS.items()
             ],
             "blocked_tier_1_fields": list(BLOCKED_TIER_1_FIELDS),
             "audit_store": "governance/admin/quick_edits.jsonl",
@@ -217,7 +228,9 @@ def _quick_edit_path(project_root: Path) -> Path:
 
 
 def _canonical_hash(payload: dict[str, Any]) -> str:
-    encoded = json.dumps(payload, ensure_ascii=True, separators=(",", ":"), sort_keys=True)
+    encoded = json.dumps(
+        payload, ensure_ascii=True, separators=(",", ":"), sort_keys=True
+    )
     return hashlib.sha256(encoded.encode("utf-8")).hexdigest()
 
 
@@ -256,7 +269,9 @@ def _validate_quick_edit_payload(
 
     field = str(payload.get("field", "")).strip()
     if field not in QUICK_EDIT_FIELDS:
-        raise AdminGovernanceError(f"{field or 'field'} is not allowed for Tier 1 quick edits.")
+        raise AdminGovernanceError(
+            f"{field or 'field'} is not allowed for Tier 1 quick edits."
+        )
     if field not in role["tier_1_quick_edit"]:
         raise AdminGovernanceError(
             f"{role['label']} may not edit {QUICK_EDIT_FIELDS[field]['label'].lower()}.",
@@ -269,14 +284,19 @@ def _validate_quick_edit_payload(
 
     course_code = str(payload.get("course_code", "")).strip().upper()
     if course_code not in catalogue.courses:
-        raise AdminGovernanceError(f"Course {course_code or '(blank)'} is not in {faculty_key}.", status_code=404)
+        raise AdminGovernanceError(
+            f"Course {course_code or '(blank)'} is not in {faculty_key}.",
+            status_code=404,
+        )
 
     new_value = str(payload.get("new_value", "")).strip()
     if not new_value:
         raise AdminGovernanceError("new_value is required.")
     max_length = int(QUICK_EDIT_FIELDS[field]["max_length"])
     if len(new_value) > max_length:
-        raise AdminGovernanceError(f"new_value must be {max_length} characters or fewer.")
+        raise AdminGovernanceError(
+            f"new_value must be {max_length} characters or fewer."
+        )
 
     reason = str(payload.get("reason", "")).strip()
     if len(reason) < 8:
@@ -303,7 +323,9 @@ def create_quick_edit_event(
     catalogue: Catalogue,
     payload: dict[str, Any],
 ) -> dict[str, Any]:
-    actor, course_code, field, old_value, new_value = _validate_quick_edit_payload(catalogue, payload)
+    actor, course_code, field, old_value, new_value = _validate_quick_edit_payload(
+        catalogue, payload
+    )
     event = {
         "schema_version": 1,
         "status": "applied",
@@ -350,7 +372,9 @@ def iter_quick_edit_events(project_root: Path) -> Any:
                 yield event
 
 
-def recent_quick_edit_events(project_root: Path, limit: int = 25) -> list[dict[str, Any]]:
+def recent_quick_edit_events(
+    project_root: Path, limit: int = 25
+) -> list[dict[str, Any]]:
     rows: deque[dict[str, Any]] = deque(maxlen=max(1, min(limit, 100)))
     for event in iter_quick_edit_events(project_root) or ():
         rows.append(event)
@@ -368,6 +392,10 @@ def apply_quick_edit_overlays(catalogue: Catalogue, project_root: Path) -> int:
         field = str(event.get("field", "")).strip()
         if course_code not in catalogue.courses or field not in QUICK_EDIT_FIELDS:
             continue
-        _set_course_value(catalogue.courses[course_code], field, str(event.get("new_value", "")).strip())
+        _set_course_value(
+            catalogue.courses[course_code],
+            field,
+            str(event.get("new_value", "")).strip(),
+        )
         applied += 1
     return applied
