@@ -900,6 +900,67 @@ function goHome() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
+
+function normalizeCourseCode(value) {
+  return (value || "")
+    .toString()
+    .trim()
+    .toUpperCase()
+    .replace(/[\s-]+/g, "");
+}
+
+function normalizeSearchText(value) {
+  return (value || "")
+    .toString()
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ");
+}
+
+function scoreCourseMatch(course, rawQuery) {
+  const code = course?.code || "";
+  const name = course?.name || "";
+
+  const codeNorm = normalizeCourseCode(code);
+  const nameNorm = normalizeSearchText(name);
+
+  const queryCode = normalizeCourseCode(rawQuery);
+  const queryText = normalizeSearchText(rawQuery);
+
+  if (!queryCode && !queryText) return -1;
+
+  // Exact code first
+  if (queryCode && codeNorm === queryCode) return 100;
+
+  // Exact name second
+  if (queryText && nameNorm === queryText) return 90;
+
+  // Prefix matches
+  if (queryCode && codeNorm.startsWith(queryCode)) return 80;
+  if (queryText && nameNorm.startsWith(queryText)) return 70;
+
+  // Contains matches
+  if (queryCode && codeNorm.includes(queryCode)) return 60;
+  if (queryText && nameNorm.includes(queryText)) return 50;
+
+  return -1;
+}
+
+function findBestCourseMatch(courses, rawQuery) {
+  if (!Array.isArray(courses) || !courses.length) return null;
+  let best = null;
+  let bestScore = -1;
+
+  for (const course of courses) {
+    const score = scoreCourseMatch(course, rawQuery);
+    if (score > bestScore) {
+      best = course;
+      bestScore = score;
+    }
+  }
+  return bestScore >= 0 ? best : null;
+}
+
 function resetAnalysis() {
   state.report = null;
   state.selectedFile = null;
@@ -917,18 +978,31 @@ function bindEvents() {
   $("manualAddBtn")?.addEventListener("click", () => {
     const searchInput = $("manualCourseSearch");
     if (!searchInput) return;
-    const query = searchInput.value.trim().toUpperCase();
-    if (!query) return;
 
-    // In a real scenario, this should pick from dropdown.
-    // For manual entry (or test), we add raw if not found, or matched if found.
+    const rawQuery = searchInput.value.trim();
+    if (!rawQuery) return;
+
     const allCourses = state.catalogue?.courses || [];
-    const match = allCourses.find(c => c.code.toUpperCase() === query);
+    const match = findBestCourseMatch(allCourses, rawQuery);
 
     if (match) {
-        state.manualCourses.push({ code: match.code, name: match.name, mark: 50 });
+      const exists = state.manualCourses.some(
+        c => normalizeCourseCode(c.code) === normalizeCourseCode(match.code)
+      );
+      if (!exists) {
+        state.manualCourses.push({
+          code: match.code,
+          name: match.name,
+          mark: 50
+        });
+      }
     } else {
-        state.manualCourses.push({ code: query, name: "Unknown Course", mark: 50 });
+      // Keep fallback for unknowns entered by user
+      state.manualCourses.push({
+        code: normalizeCourseCode(rawQuery) || rawQuery.toUpperCase(),
+        name: "Unknown Course",
+        mark: 50
+      });
     }
 
     searchInput.value = "";
@@ -1118,47 +1192,58 @@ function renderManualCourseList() {
     });
 }
 
-function handleManualSearch() {
-    const searchInput = $("manualCourseSearch");
-    const dropdown = $("manualCourseDropdown");
-    if (!searchInput || !dropdown) return;
+function handleManualSearch(event) {
+  const query = event?.target?.value || "";
+  const dropdown = $("manualCourseDropdown");
+  if (!dropdown) return;
 
-    const query = searchInput.value.trim().toLowerCase();
-    if (query.length < 2) {
-        dropdown.classList.add("hidden");
-        return;
-    }
+  const courses = state.catalogue?.courses || [];
+  const queryCode = normalizeCourseCode(query);
+  const queryText = normalizeSearchText(query);
 
-    const allCourses = state.catalogue?.courses || [];
-    const matches = allCourses.filter(c =>
-        c.code.toLowerCase().includes(query) ||
-        c.name.toLowerCase().includes(query)
-    ).slice(0, 10);
+  if (!queryCode && !queryText) {
+    dropdown.classList.add("hidden");
+    dropdown.innerHTML = "";
+    return;
+  }
 
-    if (matches.length === 0) {
-        dropdown.innerHTML = '<div class="dropdown-item" style="color: var(--muted);">No matches found</div>';
-        dropdown.classList.remove("hidden");
-        return;
-    }
+  const ranked = courses
+    .map(course => ({ course, score: scoreCourseMatch(course, query) }))
+    .filter(item => item.score >= 0)
+    .sort((a, b) => b.score - a.score || (a.course.code || "").localeCompare(b.course.code || ""));
 
-    dropdown.innerHTML = matches.map(c => `
-        <div class="dropdown-item" data-code="${esc(c.code)}">
-            <strong>${esc(c.code)}</strong> - ${esc(c.name)}
-        </div>
-    `).join('');
+  const top = ranked.slice(0, 20);
 
-    dropdown.querySelectorAll('.dropdown-item[data-code]').forEach(item => {
-        item.addEventListener('click', (e) => {
-            const code = e.currentTarget.dataset.code;
-            if (!state.manualCourses.find(mc => mc.code === code)) {
-                state.manualCourses.push({ code: code, mark: 50 }); // default passing mark
-                renderManualCourseList();
-            }
-            searchInput.value = '';
-            dropdown.classList.add('hidden');
-        });
-    });
+  if (!top.length) {
+    dropdown.innerHTML = `<div class="dropdown-item muted">No matching course found</div>`;
     dropdown.classList.remove("hidden");
+    return;
+  }
+
+  dropdown.innerHTML = top
+    .map(({ course }) => `
+      <button type="button" class="dropdown-item" data-code="${esc(course.code)}">
+        <strong>${esc(course.code)}</strong> — ${esc(course.name)}
+      </button>
+    `)
+    .join("");
+
+  dropdown.querySelectorAll(".dropdown-item[data-code]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const code = btn.getAttribute("data-code");
+      const picked = courses.find(c => c.code === code);
+      if (!picked) return;
+      if (!state.manualCourses.find(mc => mc.code === picked.code)) {
+        state.manualCourses.push({ code: picked.code, name: picked.name, mark: 50 });
+        renderManualCourseList();
+      }
+      const input = $("manualCourseSearch");
+      if (input) input.value = "";
+      dropdown.classList.add("hidden");
+    });
+  });
+
+  dropdown.classList.remove("hidden");
 }
 
 async function analyseManual() {
