@@ -1,6 +1,186 @@
 {
   "catalogue_version": "2026.1-science",
   "source": "2026 Faculty of Science Handbook",
+  "award_rules": [
+    {
+      "id": "science_fb8_2_direct_qualification_distinction",
+      "name": "Science FB8.2 direct qualification distinction path",
+      "type": "qualification_distinction",
+      "applies_to": "science_degree_direct_fb8_2",
+      "verification_status": "unverified",
+      "curriculum_rules": [
+        {
+          "id": "science_fb8_2_direct_total_first_class_credits",
+          "label": "At least 264 first-class academic credits",
+          "type": "passed_mark_credits",
+          "minimum_credits": 264,
+          "minimum_mark": 75,
+          "first_attempt_only": true,
+          "exclude_grade_tokens": [
+            "SP"
+          ],
+          "source": {
+            "document": "2026 Faculty of Science Handbook",
+            "page": 13,
+            "section": "Rules for the BSc degree",
+            "rule": "FB8.2 direct qualification-distinction path"
+          }
+        },
+        {
+          "id": "science_fb8_2_direct_senior_first_class_credits",
+          "label": "At least 192 senior first-class academic credits",
+          "type": "passed_mark_credits",
+          "minimum_credits": 192,
+          "minimum_mark": 75,
+          "first_attempt_only": true,
+          "exclude_grade_tokens": [
+            "SP"
+          ],
+          "filters": {
+            "senior": true
+          },
+          "source": {
+            "document": "2026 Faculty of Science Handbook",
+            "page": 13,
+            "section": "Rules for the BSc degree",
+            "rule": "FB8.2 direct qualification-distinction path"
+          }
+        },
+        {
+          "id": "science_fb8_2_direct_major_distinction_dependency",
+          "label": "At least one verified Science major distinction",
+          "type": "award_dependency",
+          "award_scope": "subject_distinction",
+          "minimum_count": 1,
+          "required_outcome": "eligible",
+          "minimum_verification_status": "verified",
+          "source": {
+            "document": "2026 Faculty of Science Handbook",
+            "page": 13,
+            "section": "Rules for the BSc degree",
+            "rule": "FB8.2 direct qualification-distinction path"
+          }
+        }
+      ],
+      "source": {
+        "document": "2026 Faculty of Science Handbook",
+        "page": 13,
+        "section": "Rules for the BSc degree",
+        "rule": "FB8.2 direct qualification-distinction path"
+      }
+    },
+    {
+      "id": "science_fb8_2_alternative_18_24_36_qualification_distinction",
+      "name": "Science FB8.2 alternative 18/24/36 grouped-average path",
+      "type": "qualification_distinction",
+      "applies_to": "science_degree_alternative_fb8_2",
+      "verification_status": "unverified",
+      "complete_within_years": "programme_minimum_duration",
+      "curriculum_rules": [
+        {
+          "id": "science_fb8_2_alternative_18_credit_group_average",
+          "label": "Best six 18-credit first-attempt results average at least 75%",
+          "type": "best_n_average",
+          "required": 6,
+          "minimum_average": 75,
+          "weighting": {
+            "basis": "equal"
+          },
+          "filters": {
+            "credit_values": [
+              18
+            ]
+          },
+          "first_attempt_only": true,
+          "exclude_grade_tokens": [
+            "SP"
+          ],
+          "source": {
+            "document": "2026 Faculty of Science Handbook",
+            "page": 13,
+            "section": "Rules for the BSc degree",
+            "rule": "FB8.2 alternative 18/24/36 grouped-average path",
+            "verification_status_note": "Compatibility-derived from legacy implementation pending exact governed prose."
+          }
+        },
+        {
+          "id": "science_fb8_2_alternative_24_credit_group_average",
+          "label": "Best six 24-credit first-attempt results average at least 75%",
+          "type": "best_n_average",
+          "required": 6,
+          "minimum_average": 75,
+          "weighting": {
+            "basis": "equal"
+          },
+          "filters": {
+            "credit_values": [
+              24
+            ]
+          },
+          "first_attempt_only": true,
+          "exclude_grade_tokens": [
+            "SP"
+          ],
+          "source": {
+            "document": "2026 Faculty of Science Handbook",
+            "page": 13,
+            "section": "Rules for the BSc degree",
+            "rule": "FB8.2 alternative 18/24/36 grouped-average path",
+            "verification_status_note": "Compatibility-derived from legacy implementation pending exact governed prose."
+          }
+        },
+        {
+          "id": "science_fb8_2_alternative_36_credit_group_average",
+          "label": "Best four 36-credit first-attempt results average at least 75%",
+          "type": "best_n_average",
+          "required": 4,
+          "minimum_average": 75,
+          "weighting": {
+            "basis": "equal"
+          },
+          "filters": {
+            "credit_values": [
+              36
+            ]
+          },
+          "first_attempt_only": true,
+          "exclude_grade_tokens": [
+            "SP"
+          ],
+          "source": {
+            "document": "2026 Faculty of Science Handbook",
+            "page": 13,
+            "section": "Rules for the BSc degree",
+            "rule": "FB8.2 alternative 18/24/36 grouped-average path",
+            "verification_status_note": "Compatibility-derived from legacy implementation pending exact governed prose."
+          }
+        },
+        {
+          "id": "science_fb8_2_alternative_major_distinction_dependency",
+          "label": "At least one verified Science major distinction",
+          "type": "award_dependency",
+          "award_scope": "subject_distinction",
+          "minimum_count": 1,
+          "required_outcome": "eligible",
+          "minimum_verification_status": "verified",
+          "source": {
+            "document": "2026 Faculty of Science Handbook",
+            "page": 13,
+            "section": "Rules for the BSc degree",
+            "rule": "FB8.2 alternative 18/24/36 grouped-average path",
+            "verification_status_note": "Compatibility-derived from legacy implementation pending exact governed prose."
+          }
+        }
+      ],
+      "source": {
+        "document": "2026 Faculty of Science Handbook",
+        "page": 13,
+        "section": "Rules for the BSc degree",
+        "rule": "FB8.2 alternative 18/24/36 grouped-average path",
+        "verification_status_note": "Compatibility-derived from legacy implementation pending exact governed prose."
+      }
+    }
+  ],
   "programmes": {
     "bsc_science": {
       "name": "Bachelor of Science — regular programme",

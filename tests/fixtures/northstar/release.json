@@ -1,0 +1,14 @@
+{
+  "institution_id":"northstar",
+  "institution_display_name":"Northstar University (synthetic integration institution)",
+  "release_id":"northstar-fixture-2027",
+  "academic_year":2027,
+  "unit_id":"systems",
+  "unit_name":"School of Systems",
+  "programme_id":"systems_inquiry",
+  "route_label":"Systems / Inquiry diploma",
+  "pass_mark":60,
+  "cycle_years":{"Cycle-A":2027,"Cycle-B":2028},
+  "load_equivalents":{"FOUND-X7":1.75,"CORE-Q2":0.25,"PATH-Z9":0.5,"ALT-V8":2.0,"CAP-R4":1.0,"LAB-T6":0.75},
+  "source":"Synthetic executable onboarding contract; verified entries validate fixture fidelity only"
+}

@@ -1,0 +1,25 @@
+{
+  "institution_name": "Northstar University",
+  "records_name": "Northstar Student Records",
+  "workspace_label": "Student workspace",
+  "release_label": "Reference edition 1",
+  "achievement_label": "Northstar achievement points (0 to 20)",
+  "student_label": "Demonstration student",
+  "institution_short_name": "Northstar",
+  "requirement_titles": {
+    "NS-V1-FAILED-ATTEMPTS": "Academic progress check",
+    "NS-V1-FOUNDATION": "Foundation progression requirement"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "curriculum": "My Curriculum",
+    "evidence": "Academic Evidence",
+    "sources": "Sources",
+    "help": "Help / Limits"
+  },
+  "curriculum_groups": [
+    {"title": "Foundation requirements", "identities": ["curriculum:foundation", "curriculum:core"]},
+    {"title": "Studio options and preparation routes", "identities": ["curriculum:studio", "curriculum:studio_credit", "curriculum:route_choices"]},
+    {"title": "Synthesis requirement", "identities": ["curriculum:capstone"]}
+  ]
+}

@@ -9,13 +9,33 @@ rule language without turning discretionary institutional decisions into facts.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-import re
-from typing import Any, Iterable
+from collections.abc import Iterable
+from dataclasses import dataclass, field, replace
+from typing import Any
 
-from .models import Catalogue, CourseFact, CourseResult, StudentRecord
-from .recognition import recognised_credited_pairs, provisional_open_credit_allocations
-from .utils import _course_weight
+from curriculum_reasoning_engine.institutions import (
+    AcademicCreditFramework,
+    CourseCodeScheme,
+    CourseLoadFramework,
+    GradingScheme,
+    UCTCourseCodeScheme,
+    UCTCourseLoadFramework,
+)
+
+from .completion import CourseCompletionRecognitionInput, CourseCompletionResolver
+from .models import (
+    AcademicRecordCoverageEvidence,
+    Catalogue,
+    CourseFact,
+    CourseResult,
+    RequirementRecognitionCoverage,
+    RequirementRecognitionEvidence,
+    StudentRecord,
+)
+from .recognition import provisional_open_credit_allocations, recognised_credited_pairs
+
+_LEGACY_UCT_CODE_SCHEME = UCTCourseCodeScheme()
+_LEGACY_UCT_LOAD_FRAMEWORK = UCTCourseLoadFramework()
 
 
 @dataclass
@@ -32,6 +52,27 @@ class RuleEvaluation:
     used_course_codes: list[str] = field(default_factory=list)
     assumptions: list[str] = field(default_factory=list)
     source: dict[str, Any] = field(default_factory=dict)
+    outcome_override: str | None = None
+    assessment_complete_override: bool | None = None
+    recognition_witness: str | None = None
+
+    @property
+    def assessment_complete(self) -> bool:
+        if self.assessment_complete_override is not None:
+            return self.assessment_complete_override
+        return self.status in {"verified", "discretionary"}
+
+    @property
+    def outcome(self) -> str:
+        if self.outcome_override is not None:
+            return self.outcome_override
+        if self.status == "conflict":
+            return "conflict"
+        if self.status == "unsupported":
+            return "unsupported"
+        if self.complete:
+            return "satisfied"
+        return "not_satisfied" if self.assessment_complete else "unresolved"
 
 
 def _normalise_codes(values: Iterable[Any]) -> list[str]:
@@ -74,11 +115,17 @@ def collect_curriculum_course_codes(
 
 
 def _year_level(code: str) -> int:
-    match = re.match(r"^[A-Z]+([1-9])", code)
-    return int(match.group(1)) if match else 0
+    """Compatibility shim for legacy callers; UCT owns year-level inference."""
+    return _LEGACY_UCT_CODE_SCHEME.infer_year_level(code)
 
 
-def _fact_matches_filters(code: str, fact: CourseFact, filters: dict[str, Any]) -> bool:
+def _fact_matches_filters(
+    code: str,
+    fact: CourseFact,
+    filters: dict[str, Any],
+    credit_framework: AcademicCreditFramework | None = None,
+    course_code_scheme: CourseCodeScheme | None = None,
+) -> bool:
     explicit = set(_normalise_codes(filters.get("course_codes", [])))
     if explicit and code not in explicit:
         return False
@@ -97,12 +144,32 @@ def _fact_matches_filters(code: str, fact: CourseFact, filters: dict[str, Any]) 
     ):
         return False
     levels = {int(value) for value in filters.get("nqf_levels", [])}
-    if levels and fact.nqf_level not in levels:
+    academic_level = (
+        credit_framework.academic_level(fact)
+        if credit_framework is not None
+        else fact.nqf_level
+    )
+    if levels and academic_level not in levels:
+        return False
+    credit_values = {
+        int(value) for value in filters.get("credit_values", []) if str(value).strip()
+    }
+    credit_value = (
+        credit_framework.credit_value(fact)
+        if credit_framework is not None
+        else fact.nqf_credits
+    )
+    if credit_values and credit_value not in credit_values:
         return False
     years = {int(value) for value in filters.get("year_levels", [])}
-    if years and _year_level(code) not in years:
+    code_scheme = course_code_scheme or _LEGACY_UCT_CODE_SCHEME
+    if years and code_scheme.infer_year_level(code) not in years:
         return False
-    if filters.get("senior") is True and fact.nqf_level < 6:
+    if filters.get("senior") is True and not (
+        credit_framework.is_senior_level(fact)
+        if credit_framework is not None
+        else fact.nqf_level >= 6
+    ):
         return False
     if filters.get("humanities") is True and not fact.counts_as_humanities:
         return False
@@ -132,13 +199,63 @@ def _combine_status(statuses: list[str], fallback: str = "verified") -> str:
     return max(statuses, key=lambda value: order.get(value, 3))
 
 
+def _weighting_basis(rule: dict[str, Any]) -> str:
+    weighting = rule.get("weighting", {})
+    if not isinstance(weighting, dict):
+        return "credit_value"
+    basis = str(weighting.get("basis", "credit_value")).strip().lower()
+    return basis or "credit_value"
+
+
+def _normalise_status_token(value: Any) -> str:
+    return " ".join(str(value or "").strip().upper().split())
+
+
+def _status_treatment(rule: dict[str, Any]) -> dict[str, str]:
+    raw = rule.get("status_treatment", {})
+    if not isinstance(raw, dict):
+        return {}
+    allowed = {"zero", "exclude", "requires_verification"}
+    return {
+        _normalise_status_token(token): action
+        for token, action_raw in raw.items()
+        if (action := str(action_raw).strip().lower()) in allowed
+        and _normalise_status_token(token)
+    }
+
+
 class CurriculumEvaluator:
-    def __init__(self, student: StudentRecord, catalogue: Catalogue):
+    def __init__(
+        self,
+        student: StudentRecord,
+        catalogue: Catalogue,
+        grading_scheme: GradingScheme | None = None,
+        credit_framework: AcademicCreditFramework | None = None,
+        course_code_scheme: CourseCodeScheme | None = None,
+        course_load_framework: CourseLoadFramework | None = None,
+        completion_recognition: CourseCompletionRecognitionInput | None = None,
+        academic_record_coverage_evidence: list[AcademicRecordCoverageEvidence] | None = None,
+        requirement_recognition_evidence: list[RequirementRecognitionEvidence] | None = None,
+        requirement_recognition_coverage: list[RequirementRecognitionCoverage] | None = None,
+        institution_id: str = "",
+    ):
         self.student = student
         self.catalogue = catalogue
-        pairs, _ = recognised_credited_pairs(student, catalogue)
+        self.grading_scheme = grading_scheme
+        self.credit_framework = credit_framework
+        self.course_code_scheme = course_code_scheme
+        self.course_load_framework = course_load_framework
+        self.academic_record_coverage_evidence = academic_record_coverage_evidence
+        self.requirement_recognition_evidence = requirement_recognition_evidence or []
+        self.requirement_recognition_coverage = requirement_recognition_coverage or []
+        self.institution_id = institution_id or getattr(grading_scheme, "institution_id", "")
+        self.completion = CourseCompletionResolver(student, catalogue, grading_scheme, completion_recognition)
+        pairs, _ = recognised_credited_pairs(
+            student, catalogue, grading_scheme, course_code_scheme
+        )
         self.pairs = pairs
         self.fact_by_code = {fact.code: fact for _, fact in pairs}
+
         self.result_by_code: dict[str, CourseResult] = {}
         for result, _ in pairs:
             self.result_by_code[result.code] = result
@@ -149,11 +266,11 @@ class CurriculumEvaluator:
         # to the recognised credit maps.
         self.passed.update(
             result.code
-            for result in student.credited_results()
+            for result in student.credited_results(grading_scheme)
             if result.code in catalogue.courses
         )
         self.open_credit_allocations = provisional_open_credit_allocations(
-            student, catalogue
+            student, catalogue, grading_scheme, credit_framework
         )
         self.open_allocation_by_id = {
             allocation.rule_id: allocation
@@ -168,21 +285,131 @@ class CurriculumEvaluator:
             result.code: result for result in self.provisional_results
         }
         self.provisional_codes = set(self.provisional_result_by_code)
-        self.credits = sum(fact.nqf_credits for _, fact in pairs) + sum(
-            result.nqf_credits for result in self.provisional_results
+        self.credits = sum(self.credit_value(fact) for _, fact in pairs) + sum(
+            self.credit_value(result) for result in self.provisional_results
         )
         self.credits_by_level: dict[int, int] = {}
         for _, fact in pairs:
-            self.credits_by_level[fact.nqf_level] = (
-                self.credits_by_level.get(fact.nqf_level, 0) + fact.nqf_credits
+            level = self.academic_level(fact)
+            self.credits_by_level[level] = (
+                self.credits_by_level.get(level, 0) + self.credit_value(fact)
             )
         for result in self.provisional_results:
-            self.credits_by_level[result.nqf_level] = (
-                self.credits_by_level.get(result.nqf_level, 0) + result.nqf_credits
+            level = self.academic_level(result)
+            self.credits_by_level[level] = (
+                self.credits_by_level.get(level, 0) + self.credit_value(result)
             )
 
+    def _coverage_complete_for(self, codes: Iterable[str]) -> bool:
+        if self.academic_record_coverage_evidence is None:
+            return True
+        wanted = {str(code).strip().upper() for code in codes if str(code).strip()}
+        covered = {
+            str(code).strip().upper()
+            for evidence in self.academic_record_coverage_evidence
+            if str(evidence.coverage_state).strip().lower() == "complete"
+            for code in evidence.course_codes
+        }
+        return wanted <= covered
+
+    def credit_value(self, item: CourseFact | CourseResult) -> int:
+        return (
+            self.credit_framework.credit_value(item)
+            if self.credit_framework is not None
+            else item.nqf_credits
+        )
+
+    def academic_level(self, item: CourseFact | CourseResult) -> int:
+        return (
+            self.credit_framework.academic_level(item)
+            if self.credit_framework is not None
+            else item.nqf_level
+        )
+
+    def department_for(self, code: str, fact: CourseFact | None = None) -> str:
+        if fact is not None and fact.department.strip():
+            return fact.department.strip()
+        code_scheme = self.course_code_scheme or _LEGACY_UCT_CODE_SCHEME
+        return code_scheme.infer_department(code)
+
+    def load_equivalent(self, item: CourseFact | CourseResult | str) -> float:
+        load_framework = self.course_load_framework or _LEGACY_UCT_LOAD_FRAMEWORK
+        return load_framework.load_equivalent(item)
+
+    def average_weight(self, item: CourseFact | CourseResult, basis: str) -> float:
+        if basis == "equal":
+            return 1.0
+        if basis == "course_load_equivalent":
+            return self.load_equivalent(item)
+        if basis == "credit_value":
+            return max(1, float(self.credit_value(item)))
+        raise ValueError(f"Unsupported average weighting basis {basis!r}.")
+
     def evaluate_many(self, rules: Iterable[dict[str, Any]]) -> list[RuleEvaluation]:
-        return [self.evaluate(rule) for rule in rules if isinstance(rule, dict)]
+        return [self._apply_requirement_recognition(rule, self.evaluate(rule)) for rule in rules if isinstance(rule, dict)]
+
+    def _apply_requirement_recognition(
+        self, rule: dict[str, Any], evaluation: RuleEvaluation
+    ) -> RuleEvaluation:
+        if not bool(rule.get("recognition_allowed", False)):
+            return evaluation
+        requirement_id = evaluation.id
+        matches = [
+            evidence
+            for evidence in self.requirement_recognition_evidence
+            if evidence.target_requirement_id == requirement_id
+            and evidence.student_id == self.student.student_id
+            and evidence.programme_key == (self.catalogue.programme_key or self.student.programme_key)
+            and evidence.institution_id == self.institution_id
+            and evidence.release_id == self.catalogue.recognition_release_id
+            and (not evidence.pathway_key or evidence.pathway_key == self.catalogue.pathway_key)
+        ]
+        if len(matches) > 1 and len({evidence.recognition_id for evidence in matches}) != 1:
+            return replace(
+                evaluation,
+                outcome_override="conflict",
+                assessment_complete_override=False,
+                status="conflict",
+                detail=f"Conflicting requirement-recognition decisions target {requirement_id}.",
+            )
+        if matches:
+            evidence = matches[0]
+            return replace(
+                evaluation,
+                complete=True,
+                current=max(1.0, evaluation.current),
+                status=_combine_status([evaluation.status, evidence.verification_status]),
+                outcome_override="satisfied",
+                assessment_complete_override=True,
+                recognition_witness=evidence.recognition_id,
+                detail=(
+                    f"Requirement {requirement_id} satisfied by institutional recognition "
+                    f"decision {evidence.recognition_id}."
+                ),
+            )
+        if evaluation.outcome == "satisfied":
+            return evaluation
+        covered = any(
+            requirement_id in coverage.requirement_ids
+            and coverage.student_id == self.student.student_id
+            and coverage.programme_key == (self.catalogue.programme_key or self.student.programme_key)
+            and coverage.institution_id == self.institution_id
+            and coverage.release_id == self.catalogue.recognition_release_id
+            and coverage.coverage_state == "complete"
+            for coverage in self.requirement_recognition_coverage
+        )
+        if not covered:
+            return replace(
+                evaluation,
+                outcome_override="unresolved",
+                assessment_complete_override=False,
+                status=_combine_status([evaluation.status, "unverified"]),
+                detail=(
+                    f"{evaluation.detail} Requirement-recognition decision coverage "
+                    f"for {requirement_id} is incomplete."
+                ),
+            )
+        return evaluation
 
     def evaluate(self, rule: dict[str, Any]) -> RuleEvaluation:
         rule_type = str(rule.get("type", "course")).strip().lower()
@@ -221,6 +448,8 @@ class CurriculumEvaluator:
             required = float(rule.get("required", 0))
             current = float(self.credits)
             evaluation_status = "unverified" if self.provisional_codes else status
+            if self.academic_record_coverage_evidence is not None and not self._coverage_complete_for(self.catalogue.courses):
+                evaluation_status = _combine_status([evaluation_status, "unverified"])
             assumptions = []
             detail = f"{int(current)} of {int(required)} recognised or provisionally allocated NQF credits completed."
             if self.provisional_codes:
@@ -249,17 +478,45 @@ class CurriculumEvaluator:
                 used_course_codes=sorted(self.passed | self.provisional_codes),
                 assumptions=assumptions,
                 source=source,
+                outcome_override=("unresolved" if current < required and evaluation_status == status else None),
+                assessment_complete_override=(False if current < required and evaluation_status == status else None),
             )
 
         if rule_type == "level_credits":
             level = int(rule.get("nqf_level", 0))
             required = float(rule.get("required", 0))
-            current = float(self.credits_by_level.get(level, 0))
+            current = float(
+                sum(
+                    self.credit_value(fact)
+                    for _, fact in self.pairs
+                    if (
+                        self.credit_framework.is_level(fact, level)
+                        if self.credit_framework is not None
+                        else fact.nqf_level == level
+                    )
+                )
+                + sum(
+                    self.credit_value(result)
+                    for result in self.provisional_results
+                    if (
+                        self.credit_framework.is_level(result, level)
+                        if self.credit_framework is not None
+                        else result.nqf_level == level
+                    )
+                )
+            )
             used = sorted(
                 code
                 for code, fact in self.fact_by_code.items()
-                if fact.nqf_level == level
+                if (
+                    self.credit_framework.is_level(fact, level)
+                    if self.credit_framework is not None
+                    else fact.nqf_level == level
+                )
             )
+            evaluation_status = status
+            if self.academic_record_coverage_evidence is not None and not self._coverage_complete_for(self.catalogue.courses):
+                evaluation_status = _combine_status([evaluation_status, "unverified"])
             return RuleEvaluation(
                 rule_id,
                 label,
@@ -267,11 +524,13 @@ class CurriculumEvaluator:
                 current,
                 required,
                 f"{int(current)} of {int(required)} credits at NQF level {level} completed.",
-                status,
-                1.0 if status == "verified" else 0.7,
+                evaluation_status,
+                1.0 if evaluation_status == "verified" else 0.7,
                 blocking,
                 used_course_codes=used,
                 source=source,
+                outcome_override=("unresolved" if current < required and evaluation_status == status else None),
+                assessment_complete_override=(False if current < required and evaluation_status == status else None),
             )
 
         if rule_type == "minimum_mark":
@@ -337,6 +596,8 @@ class CurriculumEvaluator:
                 rule.get("required", 1 if rule_type == "course" else len(children))
             )
             complete_children = [child for child in children if child.complete]
+            unknown_children = [child for child in children if not child.complete and not child.assessment_complete]
+            definite_children = [child for child in children if not child.complete and child.assessment_complete]
             used = sorted(
                 {
                     code
@@ -344,9 +605,19 @@ class CurriculumEvaluator:
                     for code in child.used_course_codes
                 }
             )
-            child_status = _combine_status(
-                [child.status for child in complete_children], status
-            )
+            if len(complete_children) >= required:
+                child_status = _combine_status([child.status for child in children if child.complete], status)
+                if unknown_children:
+                    child_status = _combine_status([child_status, "unverified"])
+            elif len(complete_children) + len(unknown_children) < required:
+                child_status = _combine_status([child.status for child in definite_children], status)
+            else:
+                child_status = _combine_status([status, "unverified"])
+            bound_outcome = None
+            bound_complete = None
+            if len(complete_children) + len(unknown_children) < required:
+                bound_outcome = "not_satisfied"
+                bound_complete = not unknown_children
             return RuleEvaluation(
                 rule_id,
                 label,
@@ -359,6 +630,8 @@ class CurriculumEvaluator:
                 blocking,
                 used,
                 source=source,
+                outcome_override=bound_outcome,
+                assessment_complete_override=bound_complete,
             )
 
         if rule_type in {"course", "choose_n", "all_courses"}:
@@ -369,23 +642,53 @@ class CurriculumEvaluator:
                 required = len(codes)
             else:
                 required = int(rule.get("required", 1))
-            completed = [code for code in codes if code in self.passed]
-            missing = [code for code in codes if code not in self.passed]
+            assessments = {
+                code: self.completion.resolve(code, self.academic_record_coverage_evidence)
+                for code in codes
+            }
+            completed = [code for code in codes if assessments[code].outcome == "satisfied"]
+            missing = [code for code in codes if code not in completed]
+            witnesses = sorted(completed, key=lambda c: {"verified": 0, "provisional": 1}.get(assessments[c].status, 2))[:required]
+            if len(completed) >= required:
+                status = _combine_status([status, *(assessments[c].status for c in witnesses)])
+            elif any(a.outcome == "conflict" for a in assessments.values()):
+                status = "conflict"
+            elif len(completed) + sum(a.outcome in {"unresolved", "unsupported"} for a in assessments.values()) < required:
+                status = _combine_status([status, *(a.status for a in assessments.values() if a.outcome == "not_satisfied")])
+            else:
+                status = _combine_status([status, "unverified"])
             if rule_type == "course" and required == 1:
                 detail = (
-                    f"Completed via {completed[0]}."
+                    assessments[witnesses[0]].detail
                     if completed
                     else "Complete one of: " + ", ".join(codes) + "."
                 )
             else:
                 detail = (
-                    f"{len(completed)} of {required} required course choices completed."
+                    f"{len(completed)} of {required} required courses completed."
+                    if rule_type == "all_courses"
+                    else f"You need {required} course(s) from this represented group. CRE can confirm {len(completed)}. Represented options: {', '.join(codes)}."
                 )
                 if len(completed) < required and missing:
                     detail += (
-                        " Remaining options include: "
+                        (" Courses still represented as required include: " if rule_type == "all_courses" else " Remaining options include: ")
                         + ", ".join(missing[:12])
                         + ("…" if len(missing) > 12 else "")
+                    )
+                recognition_details = [
+                    assessments[code].detail for code in witnesses
+                    if assessments[code].witness_source == "recognition"
+                ]
+                if recognition_details:
+                    detail += " " + " ".join(recognition_details)
+                if witnesses:
+                    detail += " Confirmed completion: " + ", ".join(witnesses) + "."
+                if rule_type == "all_courses" and len(codes) == 1:
+                    detail = f"{codes[0]} is represented as required. " + assessments[codes[0]].detail
+                elif len(completed) < required:
+                    detail += " " + " ".join(
+                        assessment.detail for assessment in assessments.values()
+                        if assessment.outcome in {"unresolved", "conflict"}
                     )
             return RuleEvaluation(
                 rule_id,
@@ -399,6 +702,18 @@ class CurriculumEvaluator:
                 blocking,
                 completed,
                 source=source,
+                outcome_override=(
+                    "not_satisfied"
+                    if status != "conflict"
+                    and len(completed) + sum(a.outcome in {"unresolved", "unsupported"} for a in assessments.values()) < required
+                    else None
+                ),
+                assessment_complete_override=(
+                    False
+                    if len(completed) + sum(a.outcome in {"unresolved", "unsupported"} for a in assessments.values()) < required
+                    and any(a.outcome in {"unresolved", "unsupported"} for a in assessments.values())
+                    else None
+                ),
             )
 
         if rule_type == "approved_credit_pool":
@@ -479,11 +794,11 @@ class CurriculumEvaluator:
                 code
                 for code, fact in self.fact_by_code.items()
                 if (not explicit or code in explicit)
-                and _fact_matches_filters(code, fact, filters)
+                and _fact_matches_filters(
+                    code, fact, filters, self.credit_framework, self.course_code_scheme
+                )
             )
-            current = float(
-                sum(self.fact_by_code[code].nqf_credits for code in matched)
-            )
+            current = float(sum(self.credit_value(self.fact_by_code[code]) for code in matched))
             detail = f"{int(current)} of {int(required)} credits completed in this approved course pool."
             if explicit and current < required:
                 remaining = sorted(explicit - set(matched))
@@ -493,6 +808,11 @@ class CurriculumEvaluator:
                         + ", ".join(remaining[:12])
                         + ("…" if len(remaining) > 12 else "")
                     )
+            evaluation_status = status
+            if (self.academic_record_coverage_evidence is not None and not self._coverage_complete_for(
+                explicit or self.catalogue.courses
+            )) and current < required:
+                evaluation_status = _combine_status([evaluation_status, "unverified"])
             return RuleEvaluation(
                 rule_id,
                 label,
@@ -500,11 +820,13 @@ class CurriculumEvaluator:
                 current,
                 required,
                 detail,
-                status,
-                1.0 if status == "verified" else 0.7,
+                evaluation_status,
+                1.0 if evaluation_status == "verified" else 0.7,
                 blocking,
                 matched,
                 source=source,
+                outcome_override=("unresolved" if current < required and evaluation_status == status else None),
+                assessment_complete_override=(False if current < required and evaluation_status == status else None),
             )
 
         if rule_type == "maximum_credit_pool":
@@ -519,11 +841,16 @@ class CurriculumEvaluator:
                 code
                 for code, fact in self.fact_by_code.items()
                 if (not explicit or code in explicit)
-                and _fact_matches_filters(code, fact, filters)
+                and _fact_matches_filters(
+                    code, fact, filters, self.credit_framework, self.course_code_scheme
+                )
             )
-            current = float(
-                sum(self.fact_by_code[code].nqf_credits for code in matched)
-            )
+            current = float(sum(self.credit_value(self.fact_by_code[code]) for code in matched))
+            evaluation_status = status
+            if (self.academic_record_coverage_evidence is not None and not self._coverage_complete_for(
+                explicit or self.catalogue.courses
+            )) and current <= maximum:
+                evaluation_status = _combine_status([evaluation_status, "unverified"])
             return RuleEvaluation(
                 rule_id,
                 label,
@@ -531,11 +858,13 @@ class CurriculumEvaluator:
                 current,
                 maximum,
                 f"{int(current)} credits completed in this pool; no more than {int(maximum)} are permitted.",
-                status,
-                1.0 if status == "verified" else 0.7,
+                evaluation_status,
+                1.0 if evaluation_status == "verified" else 0.7,
                 blocking,
                 matched,
                 source=source,
+                outcome_override=("unresolved" if current <= maximum and evaluation_status == status else None),
+                assessment_complete_override=(False if current <= maximum and evaluation_status == status else None),
             )
 
         if rule_type == "same_department_credit_pool":
@@ -555,18 +884,21 @@ class CurriculumEvaluator:
             grouped_credits: dict[str, int] = {}
             for code, fact in self.fact_by_code.items():
                 if (explicit and code not in explicit) or not _fact_matches_filters(
-                    code, fact, filters
+                    code, fact, filters, self.credit_framework, self.course_code_scheme
                 ):
                     continue
-                group = fact.department.strip() or re.match(r"^[A-Z]+", code).group(0)
+                group = self.department_for(code, fact)
                 grouped.setdefault(group, []).append(code)
                 grouped_credits[group] = (
-                    grouped_credits.get(group, 0) + fact.nqf_credits
+                    grouped_credits.get(group, 0) + self.credit_value(fact)
                 )
             provisional_groups: set[str] = set()
             if bool(rule.get("allow_unlisted_transcript_courses", False)):
-                for result in self.student.credited_results():
-                    if result.code in self.catalogue.courses or result.nqf_credits <= 0:
+                for result in self.student.credited_results(self.grading_scheme):
+                    if (
+                        result.code in self.catalogue.courses
+                        or self.credit_value(result) <= 0
+                    ):
                         continue
                     pseudo = CourseFact(
                         code=result.code,
@@ -575,24 +907,20 @@ class CurriculumEvaluator:
                         nqf_level=result.nqf_level,
                         prerequisites=[],
                         offered=[],
-                        department=(
-                            re.match(r"^[A-Z]+", result.code).group(0)
-                            if re.match(r"^[A-Z]+", result.code)
-                            else ""
-                        ),
+                        department=self.department_for(result.code),
                     )
                     if not _fact_matches_filters(
-                        result.code, pseudo, transcript_filters
+                        result.code,
+                        pseudo,
+                        transcript_filters,
+                        self.credit_framework,
+                        self.course_code_scheme,
                     ):
                         continue
-                    group = (
-                        re.match(r"^[A-Z]+", result.code).group(0)
-                        if re.match(r"^[A-Z]+", result.code)
-                        else ""
-                    )
+                    group = self.department_for(result.code, pseudo)
                     grouped.setdefault(group, []).append(result.code)
                     grouped_credits[group] = (
-                        grouped_credits.get(group, 0) + result.nqf_credits
+                        grouped_credits.get(group, 0) + self.credit_value(result)
                     )
                     provisional_groups.add(group)
             best_group = max(grouped_credits, key=grouped_credits.get, default="")
@@ -637,7 +965,7 @@ class CurriculumEvaluator:
             explicit = set(_normalise_codes(rule.get("course_codes", [])))
             failures: list[str] = []
             for result in self.student.results:
-                if not result.is_failed():
+                if not result.is_failed(self.grading_scheme):
                     continue
                 fact = self.catalogue.courses.get(result.code)
                 if explicit and result.code not in explicit:
@@ -645,7 +973,9 @@ class CurriculumEvaluator:
                 if (
                     fact is not None
                     and filters
-                    and not _fact_matches_filters(result.code, fact, filters)
+                    and not _fact_matches_filters(
+                        result.code, fact, filters, self.credit_framework, self.course_code_scheme
+                    )
                 ):
                     continue
                 failures.append(result.code)
@@ -695,7 +1025,7 @@ class CurriculumEvaluator:
             for code, result in self.result_by_code.items():
                 fact = self.fact_by_code[code]
                 if (explicit and code not in explicit) or not _fact_matches_filters(
-                    code, fact, filters
+                    code, fact, filters, self.credit_framework, self.course_code_scheme
                 ):
                     continue
                 if result.mark is None:
@@ -703,7 +1033,9 @@ class CurriculumEvaluator:
                 elif result.mark >= threshold:
                     unit = float(rule.get("equivalent_credit_unit", 0) or 0)
                     equivalents += (
-                        (fact.nqf_credits / unit) if unit else _course_weight(code)
+                        (self.credit_value(fact) / unit)
+                        if unit
+                        else self.load_equivalent(result)
                     )
                     used.append(code)
             eval_status = (
@@ -729,6 +1061,91 @@ class CurriculumEvaluator:
                 source=source,
             )
 
+        if rule_type == "passed_mark_credits":
+            filters = (
+                rule.get("filters", {})
+                if isinstance(rule.get("filters", {}), dict)
+                else {}
+            )
+            explicit = set(_normalise_codes(rule.get("course_codes", [])))
+            threshold = float(rule.get("minimum_mark", 75))
+            required = float(rule.get("minimum_credits", rule.get("required", 0)))
+            first_attempt_only = bool(rule.get("first_attempt_only", False))
+            excluded_grade_tokens = {
+                str(value).strip().upper()
+                for value in rule.get("exclude_grade_tokens", [])
+                if str(value).strip()
+            }
+            credits = 0.0
+            used: list[str] = []
+            unknown: list[str] = []
+            excluded: list[str] = []
+            for code, result in self.result_by_code.items():
+                fact = self.fact_by_code[code]
+                if (explicit and code not in explicit) or not _fact_matches_filters(
+                    code, fact, filters, self.credit_framework, self.course_code_scheme
+                ):
+                    continue
+                attempts = [
+                    attempt
+                    for attempt in self.student.results
+                    if attempt.code == code and not attempt.is_pending(self.grading_scheme)
+                ]
+                grade = " ".join(str(result.grade or "").strip().upper().split())
+                if (
+                    first_attempt_only
+                    and len(attempts) != 1
+                    or grade in excluded_grade_tokens
+                ):
+                    excluded.append(code)
+                    continue
+                if result.mark is None:
+                    unknown.append(code)
+                elif result.mark >= threshold:
+                    credits += float(self.credit_value(fact))
+                    used.append(code)
+            eval_status = (
+                status if not unknown else _combine_status([status, "unverified"])
+            )
+            assumptions: list[str] = []
+            if unknown:
+                assumptions.append(
+                    "Numeric marks are missing for: " + ", ".join(sorted(unknown))
+                )
+            if excluded:
+                assumptions.append(
+                    "Rule-configured attempt/status exclusions removed: "
+                    + ", ".join(sorted(excluded))
+                    + "."
+                )
+            detail = (
+                f"{credits:g} of {required:g} academic credits have marks of at least "
+                f"{threshold:g}%."
+            )
+            if excluded:
+                detail += (
+                    " Excluded by configured attempt/status treatment: "
+                    + ", ".join(sorted(excluded))
+                    + "."
+                )
+            evaluation_status = status
+            if self.academic_record_coverage_evidence is not None and not self._coverage_complete_for(self.catalogue.courses):
+                evaluation_status = _combine_status([evaluation_status, "unverified"])
+            return RuleEvaluation(
+                rule_id,
+                label,
+                credits >= required,
+                credits,
+                required,
+                detail,
+                eval_status,
+                1.0 if eval_status == "verified" else 0.0,
+                blocking,
+                sorted(used),
+                assumptions=assumptions,
+                source=source,
+            )
+
         if rule_type == "first_class_group":
             codes = _normalise_codes(rule.get("course_codes", []))
             required = int(rule.get("required", len(codes) or 1))
@@ -746,7 +1163,7 @@ class CurriculumEvaluator:
                 attempts = [
                     r
                     for r in self.student.results
-                    if r.code == code and not r.is_pending()
+                    if r.code == code and not r.is_pending(self.grading_scheme)
                 ]
                 grade = " ".join(str(result.grade or "").strip().upper().split())
                 if len(attempts) != 1 or grade == "SP":
@@ -757,7 +1174,8 @@ class CurriculumEvaluator:
                     continue
                 candidates.append((code, result, fact))
             candidates.sort(
-                key=lambda row: (row[1].mark or -1, row[2].nqf_credits), reverse=True
+                key=lambda row: (row[1].mark or -1, self.credit_value(row[2])),
+                reverse=True,
             )
             selected = candidates[:required]
             marks = [float(row[1].mark) for row in selected if row[1].mark is not None]
@@ -766,7 +1184,7 @@ class CurriculumEvaluator:
             )
             average_used = False
             if not complete and allow_average and len(selected) >= required:
-                credits = {row[2].nqf_credits for row in selected}
+                credits = {self.credit_value(row[2]) for row in selected}
                 if len(credits) == 1:
                     credit = next(iter(credits))
                     averaging_allowed = (required == 2 and credit in {24, 36}) or (
@@ -830,18 +1248,56 @@ class CurriculumEvaluator:
             )
             minimum_mark = float(rule.get("minimum_mark", 0))
             minimum_mark_count = int(rule.get("minimum_mark_count", 0))
-            candidates: list[tuple[str, float, int]] = []
+            basis = _weighting_basis(rule)
+            filters = (
+                rule.get("filters", {})
+                if isinstance(rule.get("filters", {}), dict)
+                else {}
+            )
+            first_attempt_only = bool(rule.get("first_attempt_only", False))
+            excluded_grade_tokens = {
+                " ".join(str(value).strip().upper().split())
+                for value in rule.get("exclude_grade_tokens", [])
+                if str(value).strip()
+            }
+            candidates: list[tuple[str, float, float]] = []
             missing_marks: list[str] = []
-            for code in codes:
+            excluded: list[str] = []
+            candidate_codes = codes or sorted(self.result_by_code)
+            for code in candidate_codes:
                 result = self.result_by_code.get(code)
                 fact = self.fact_by_code.get(code)
                 if result is None or fact is None:
                     continue
+                if not _fact_matches_filters(
+                    code,
+                    fact,
+                    filters,
+                    self.credit_framework,
+                    self.course_code_scheme,
+                ):
+                    continue
+                attempts = [
+                    attempt
+                    for attempt in self.student.results
+                    if attempt.code == code
+                    and not attempt.is_pending(self.grading_scheme)
+                ]
+                grade = " ".join(str(result.grade or "").strip().upper().split())
+                if (
+                    first_attempt_only
+                    and len(attempts) != 1
+                    or grade in excluded_grade_tokens
+                ):
+                    excluded.append(code)
+                    continue
                 if result.mark is None:
                     missing_marks.append(code)
                     continue
-                candidates.append((code, float(result.mark), max(1, fact.nqf_credits)))
-            selected: list[tuple[str, float, int]] = []
+                candidates.append(
+                    (code, float(result.mark), self.average_weight(fact, basis))
+                )
+            selected: list[tuple[str, float, float]] = []
             for code in mandatory:
                 match = next((row for row in candidates if row[0] == code), None)
                 if match is not None:
@@ -878,6 +1334,12 @@ class CurriculumEvaluator:
                 assumptions.append(
                     "Numeric marks are missing for: " + ", ".join(sorted(missing_marks))
                 )
+            if excluded:
+                assumptions.append(
+                    "Rule-configured attempt/status exclusions removed: "
+                    + ", ".join(sorted(excluded))
+                    + "."
+                )
             detail = f"Best {len(selected)} of {required} eligible results average {average:.2f}%; at least {threshold:g}% is required."
             if mandatory and not mandatory_met:
                 detail += (
@@ -887,6 +1349,12 @@ class CurriculumEvaluator:
                 )
             if minimum_mark_count:
                 detail += f" {mark_count} of {minimum_mark_count} required results meet {minimum_mark:g}%."
+            if excluded:
+                detail += (
+                    " Excluded by configured attempt/status treatment: "
+                    + ", ".join(sorted(excluded))
+                    + "."
+                )
             return RuleEvaluation(
                 rule_id,
                 label,
@@ -919,34 +1387,59 @@ class CurriculumEvaluator:
                 int(level): float(weight) for level, weight in level_weights_raw.items()
             }
             include_failed_as_zero = bool(rule.get("include_failed_as_zero", True))
+            basis = _weighting_basis(rule)
+            status_treatment = _status_treatment(rule)
             first_by_code: dict[str, CourseResult] = {}
             for result in self.student.results:
-                if result.is_pending() or result.code in first_by_code:
+                normalised_grade = _normalise_status_token(result.grade)
+                if (
+                    result.is_pending(self.grading_scheme)
+                    and normalised_grade not in status_treatment
+                    or result.code in first_by_code
+                ):
                     continue
                 fact = self.catalogue.courses.get(result.code)
                 if fact is None:
                     continue
                 if explicit and result.code not in explicit:
                     continue
-                if filters and not _fact_matches_filters(result.code, fact, filters):
+                if filters and not _fact_matches_filters(
+                    result.code,
+                    fact,
+                    filters,
+                    self.credit_framework,
+                    self.course_code_scheme,
+                ):
                     continue
                 first_by_code[result.code] = result
             weighted_total = 0.0
             denominator = 0.0
             used: list[str] = []
             unknown: list[str] = []
+            excluded: list[str] = []
+            requires_verification: list[str] = []
+            treated_as_zero: list[str] = []
             for code, result in first_by_code.items():
                 fact = self.catalogue.courses[code]
-                multiplier = level_weights.get(fact.nqf_level, 1.0)
-                weight = max(1, fact.nqf_credits) * multiplier
-                normalised_grade = " ".join(
-                    str(result.grade or "").strip().upper().split()
-                )
-                if normalised_grade in {"AB", "DPR", "INC", "EXA"}:
+                multiplier = level_weights.get(self.academic_level(fact), 1.0)
+                weight = self.average_weight(fact, basis) * multiplier
+                normalised_grade = _normalise_status_token(result.grade)
+                treatment = status_treatment.get(normalised_grade)
+                if treatment == "exclude":
+                    excluded.append(code)
+                    continue
+                if treatment == "requires_verification":
+                    requires_verification.append(code)
+                    continue
+                if treatment == "zero":
                     mark = 0.0
+                    treated_as_zero.append(code)
                 elif result.mark is not None:
                     mark = float(result.mark)
-                elif result.is_failed() and include_failed_as_zero:
+                elif (
+                    result.is_failed(self.grading_scheme)
+                    and include_failed_as_zero
+                ):
                     mark = 0.0
                 else:
                     unknown.append(code)
@@ -978,13 +1471,53 @@ class CurriculumEvaluator:
                     "First-attempt numeric marks are missing for: "
                     + ", ".join(sorted(unknown))
                 )
+            if requires_verification:
+                eval_status = _combine_status([eval_status, "unverified"])
+                assumptions.append(
+                    "Configured first-attempt status treatment requires verification for: "
+                    + ", ".join(sorted(requires_verification))
+                )
+            if treated_as_zero:
+                assumptions.append(
+                    "Configured first-attempt status treatment counted as zero: "
+                    + ", ".join(sorted(treated_as_zero))
+                    + "."
+                )
+            if excluded:
+                assumptions.append(
+                    "Configured first-attempt status treatment excluded: "
+                    + ", ".join(sorted(excluded))
+                    + "."
+                )
+            detail = (
+                f"First-attempt programme average is {average:.2f}%; "
+                f"at least {threshold:g}% is required."
+            )
+            if treated_as_zero:
+                detail += (
+                    " Configured status treatment counted "
+                    + ", ".join(sorted(treated_as_zero))
+                    + " as zero."
+                )
+            if excluded:
+                detail += (
+                    " Configured status treatment excluded "
+                    + ", ".join(sorted(excluded))
+                    + "."
+                )
+            if requires_verification:
+                detail += (
+                    " Configured status treatment requires verification for "
+                    + ", ".join(sorted(requires_verification))
+                    + "."
+                )
             return RuleEvaluation(
                 rule_id,
                 label,
                 average >= threshold,
                 average,
                 threshold,
-                f"First-attempt programme average is {average:.2f}%; at least {threshold:g}% is required.",
+                detail,
                 eval_status,
                 1.0 if eval_status == "verified" else 0.0,
                 blocking,
@@ -1001,14 +1534,20 @@ class CurriculumEvaluator:
             )
             explicit = set(_normalise_codes(rule.get("course_codes", [])))
             threshold = float(rule.get("minimum_average", rule.get("required", 0)))
+            basis = _weighting_basis(rule)
             matched_codes = sorted(
                 code
                 for code, fact in self.fact_by_code.items()
                 if (not explicit or code in explicit)
-                and _fact_matches_filters(code, fact, filters)
+                and _fact_matches_filters(
+                    code, fact, filters, self.credit_framework, self.course_code_scheme
+                )
             )
             marked = [
-                (self.result_by_code[code], max(1, self.fact_by_code[code].nqf_credits))
+                (
+                    self.result_by_code[code],
+                    self.average_weight(self.fact_by_code[code], basis),
+                )
                 for code in matched_codes
                 if self.result_by_code[code].mark is not None
             ]
@@ -1025,7 +1564,7 @@ class CurriculumEvaluator:
                     if result.mark is None:
                         missing_marks.append(result.code)
                     else:
-                        marked.append((result, max(1, result.nqf_credits)))
+                        marked.append((result, self.average_weight(result, basis)))
             if not marked:
                 note = "No numeric marks are available for the courses in this average."
                 return RuleEvaluation(
@@ -1095,7 +1634,9 @@ class CurriculumEvaluator:
                 if (
                     code in excluded
                     or (explicit and code not in explicit)
-                    or not _fact_matches_filters(code, fact, filters)
+                    or not _fact_matches_filters(
+                        code, fact, filters, self.credit_framework, self.course_code_scheme
+                    )
                 ):
                     continue
                 if result.mark is None:
@@ -1135,7 +1676,9 @@ class CurriculumEvaluator:
             matched = sorted(
                 code
                 for code, fact in self.fact_by_code.items()
-                if _fact_matches_filters(code, fact, filters)
+                if _fact_matches_filters(
+                    code, fact, filters, self.credit_framework, self.course_code_scheme
+                )
             )
             return RuleEvaluation(
                 rule_id,
@@ -1161,10 +1704,12 @@ class CurriculumEvaluator:
                 complete = all(child.complete for child in children)
                 current = sum(1 for child in children if child.complete)
                 required = len(children)
+                unresolved = any(not child.complete and not child.assessment_complete for child in children)
             else:
                 complete = any(child.complete for child in children)
                 current = 1 if complete else 0
                 required = 1
+                unresolved = all(not child.complete and not child.assessment_complete for child in children)
             used = sorted(
                 {
                     code
@@ -1174,6 +1719,20 @@ class CurriculumEvaluator:
                 }
             )
             statuses = [child.status for child in children if child.complete] + [status]
+            if unresolved and not complete:
+                statuses.extend(child.status for child in children if not child.complete)
+                statuses.append("unverified")
+            bound_outcome = None
+            bound_complete = None
+            if rule_type == "all_of" and any(not child.complete and child.assessment_complete for child in children):
+                bound_outcome = "not_satisfied"
+                bound_complete = not unresolved
+            elif rule_type == "any_of" and complete and unresolved:
+                bound_outcome = "satisfied"
+                bound_complete = False
+            elif rule_type == "any_of" and complete and any(not child.complete and not child.assessment_complete for child in children):
+                bound_outcome = "satisfied"
+                bound_complete = False
             detail = f"{current} of {required} component requirements completed."
             if not complete:
                 incomplete = [child.label for child in children if not child.complete]
@@ -1195,6 +1754,8 @@ class CurriculumEvaluator:
                 blocking,
                 used,
                 source=source,
+                outcome_override=bound_outcome,
+                assessment_complete_override=bound_complete,
             )
 
         note = f"Unsupported curriculum rule type {rule_type!r}; manual verification is required."

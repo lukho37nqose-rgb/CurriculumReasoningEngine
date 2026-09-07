@@ -406,13 +406,48 @@ def award_rules(min_years: int) -> list[dict[str, Any]]:
     ]
 
 
-def progression(max_years: int, failed_threshold: int = 4) -> list[dict[str, Any]]:
-    return [
-        {
-            "type": "failed_course_equivalents",
+def _law_policy_id_suffix(programme_key: str) -> str:
+    return programme_key.strip().upper().replace("_", "-")
+
+
+def law_failed_load_progression_policy(
+    programme_key: str, failed_threshold: int, source_reference: str
+) -> dict[str, Any]:
+    return {
+        "type": "progression_policy",
+        "label": "Annual failed-course-equivalent readmission indicator",
+        "policy_id": (
+            "UCT-LAW-2026-ANNUAL-FAILED-LOAD-"
+            f"{_law_policy_id_suffix(programme_key)}"
+        ),
+        "verification_status": "unverified",
+        "source_reference": source_reference,
+        "condition": {
+            "type": "failed_metric",
             "label": "Annual failed-course-equivalent threshold",
+            "metric_basis": "course_load_equivalent",
+            "identity": "distinct_course",
+            "temporal_scope": "latest_academic_year",
             "threshold": failed_threshold,
         },
+        "consequence": {
+            "type": "advisory_risk",
+            "label": "Annual failed-course-equivalent readmission risk indicator",
+        },
+    }
+
+
+def law_source_reference(page: int) -> str:
+    return f"{SOURCE}, page {page}, Admission and Curriculum Rules"
+
+
+def progression(
+    programme_key: str, max_years: int, failed_threshold: int = 4, source_page: int = 0
+) -> list[dict[str, Any]]:
+    return [
+        law_failed_load_progression_policy(
+            programme_key, failed_threshold, law_source_reference(source_page)
+        ),
         {
             "type": "maximum_years",
             "label": "Prescribed time plus one year",
@@ -422,6 +457,7 @@ def progression(max_years: int, failed_threshold: int = 4) -> list[dict[str, Any
 
 
 def programme(
+    programme_key: str,
     name: str,
     code: str,
     total: int,
@@ -463,7 +499,9 @@ def programme(
         "default_pathway_key": "",
         "availability": availability,
         "availability_note": availability_note,
-        "progression_rules": progression(max_years or years + 1, failed_threshold),
+        "progression_rules": progression(
+            programme_key, max_years or years + 1, failed_threshold, page
+        ),
         "award_rules": award_rules(years),
         "prerequisite_overrides": prereq_overrides or {},
         "co_requisite_overrides": coreq_overrides or {},
@@ -557,7 +595,7 @@ def main() -> None:
             note="Legacy five-year LLB course retained for continuing-student transcript recognition; replacement course applies if incomplete.",
         )
 
-    hum = json.loads(HUM_COURSES.read_text())
+    hum = json.loads(HUM_COURSES.read_text(encoding="utf-8"))
     hum_by_code = {row["code"]: row for row in hum}
     required_hum = {code for pair in LANGUAGE_PAIRS for code in pair} | {
         "ELL1013F",
@@ -691,6 +729,7 @@ def main() -> None:
 
     programmes = {
         "llb_three_year_graduate": programme(
+            "llb_three_year_graduate",
             "LLB - Three-year graduate stream",
             "LP001",
             504,
@@ -706,6 +745,7 @@ def main() -> None:
             ],
         ),
         "llb_two_year_combined": programme(
+            "llb_two_year_combined",
             "LLB - Two-year graduate stream after Law and Humanities/Commerce",
             "LP001",
             504,
@@ -722,6 +762,7 @@ def main() -> None:
             ],
         ),
         "llb_four_year_undergraduate": programme(
+            "llb_four_year_undergraduate",
             "LLB - Four-year undergraduate stream",
             "LB002",
             637,
@@ -739,6 +780,7 @@ def main() -> None:
             ],
         ),
         "llb_five_year_continuing": programme(
+            "llb_five_year_continuing",
             "LLB - Five-year undergraduate curriculum (continuing students)",
             "LB003",
             637,

@@ -625,7 +625,7 @@ async function analyse() {
     announce("Your academic account is ready.");
   } catch (error) {
     const retry = error.status === 429 && error.retryAfter ? ` Try again in ${error.retryAfter} seconds.` : "";
-    $("analysisError").textContent = `${error.message}${retry}`;
+    $("analysisError").textContent = `${error.message}${retry} CRE could not use this file. Choose a readable transcript PDF, or enter courses manually.`;
     $("analysisError").classList.remove("hidden");
     announce("The transcript could not be analysed.");
   } finally {
@@ -670,37 +670,59 @@ function reportTabs() {
   ];
 }
 
+function sourceLocator(locator) {
+  if (locator && typeof locator === "object") {
+    return Object.entries(locator).map(([key, value]) => `${key}: ${typeof value === "object" ? JSON.stringify(value) : value}`).join("; ");
+  }
+  return locator || "Location not recorded.";
+}
+
+function studentConclusionCard(item, presentation = {}) {
+  // Array.map supplies an index as its second argument, not presentation metadata.
+  return StudentLanguage.card(item, typeof presentation === "object" ? presentation : {});
+}
+
+function renderStudentReasoningView(report) {
+  const view = report.student_reasoning_view || {};
+  const conclusions = asArray(view.conclusions).filter(item => !item.legacy_compatibility);
+  const legacy = asArray(view.conclusions).filter(item => item.legacy_compatibility);
+  const sources = asArray(view.sources);
+  const receipt = view.evidence_receipt || {};
+  return `<section class="report-section student-reasoning-view">
+    <div class="report-section-heading"><div><h2>What CRE concluded</h2></div><p>These are represented conclusions based on the evidence supplied.</p></div>
+    <div class="notice-group-body">${conclusions.map(studentConclusionCard).join("") || '<div class="empty-report">No structured conclusion was produced.</div>'}</div>
+    ${legacy.length ? `<details><summary>Legacy compatibility summaries (not canonical assessments)</summary>${legacy.map(studentConclusionCard).join("")}</details>` : ""}
+    <div class="evidence-grid-report">
+      <article class="evidence-card"><span>What CRE received about you</span>${asArray(receipt.entries).map(entry => `<p>${esc(({academic_record: "Academic results", course_completion_recognition: "Course-completion recognition decisions", requirement_recognition: "Requirement recognition decisions"})[entry.category] || titleCase(entry.category))}: ${entry.supplied ? "Received by CRE" : "Not supplied to CRE"}. ${entry.coverage_scopes.length ? entry.coverage_scopes.map(scope => `${esc(({COVERAGE_COMPLETE_FOR_SCOPE: "Complete for this named scope", COVERAGE_PARTIAL: "Partial record for this scope", COVERAGE_UNKNOWN: "Completeness unknown for this scope"})[scope.coverage_state] || "Completeness not established")}: ${esc((scope.course_codes || scope.requirement_ids || []).join(", "))}`).join("; ") : "Record completeness is unknown"}</p>`).join("")}<p>Receipt does not establish use by a conclusion or complete coverage outside the named scope.</p></article>
+      <article class="evidence-card"><span>Sources represented</span><h3>${sources.length}</h3><p>Open the evidence section for represented source details.</p></article>
+    </div>
+  </section>`;
+}
+
 function requirementCard(requirement) {
-  const required = Number(requirement.required || 0);
-  const current = Number(requirement.current || 0);
-  const percent = required > 0 ? Math.max(0, Math.min(100, current / required * 100)) : (requirement.complete ? 100 : 0);
-  return `
-    <article class="requirement-card ${requirement.complete ? "complete" : ""}">
-      <div class="requirement-icon" aria-hidden="true">${requirement.complete ? "✓" : "!"}</div>
-      <div>
-        <h3>${esc(requirement.label)}</h3>
-        <p>${esc(requirement.detail || requirement.explanation || "No further explanation is represented.")}</p>
-        <div class="progress-track" aria-label="${esc(requirement.label)} progress"><i style="width:${percent}%"></i></div>
-      </div>
-      ${statusWidget(requirement.status || "unverified", requirementExplanation(requirement))}
-    </article>
-  `;
+  const projected = asArray(state.report?.student_reasoning_view?.conclusions).find(item => item.identity === requirement.id);
+  if (projected) return studentConclusionCard(projected);
+  return studentConclusionCard({title: requirement.label, outcome: "unresolved",
+    outcome_label: "Not enough information yet", source_missing: true,
+    explanation: "A structured conclusion is not available for this legacy requirement."});
 }
 
 function overviewSection() {
   const report = state.report;
   const requirements = blockingRequirements();
-  const completed = requirements.filter(row => row.complete).length;
+  const projected = asArray(report.student_reasoning_view?.conclusions);
+  const completed = requirements.filter(row => projected.some(item => item.identity === row.id && item.outcome === "satisfied")).length;
   const risk = report.exclusion_risk || {};
   const distinction = report.distinction || {};
   return `
+    ${renderStudentReasoningView(report)}
     <section class="report-section">
       <div class="report-section-heading"><div><h2>Academic position</h2></div><p>These figures are computed within ${esc(report.programme_name)}${report.pathway_name ? ` · ${esc(report.pathway_name)}` : ""} using the 2026 catalogue.</p></div>
       <div class="metric-grid">
         <article class="metric-card"><strong>${esc(report.credits_completed)}</strong><span>NQF credits counted</span></article>
         <article class="metric-card"><strong>${esc(report.level_7_credits)}</strong><span>NQF level 7 credits</span></article>
         <article class="metric-card"><strong>${esc(report.semester_course_equivalents)}</strong><span>semester-course equivalents</span></article>
-        <article class="metric-card"><strong>${completed}/${requirements.length}</strong><span>blocking requirements complete</span></article>
+        <article class="metric-card"><strong>${completed}/${requirements.length}</strong><span>requirements confirmed met</span></article>
       </div>
     </section>
     <section class="report-section">
@@ -711,7 +733,7 @@ function overviewSection() {
       </div>
     </section>
     <section class="report-section">
-      <div class="report-section-heading"><div><h2>Most important outstanding rules</h2></div><p>Open the Requirements tab for the full rule account.</p></div>
+      <div class="report-section-heading"><div><h2>Requirements to review</h2></div><p>An unresolved requirement is not a confirmed shortfall. Open Requirements for the full account.</p></div>
       <div class="requirement-list">${requirements.filter(row => !row.complete).slice(0, 5).map(requirementCard).join("") || '<div class="empty-report">No represented blocking requirement is incomplete.</div>'}</div>
     </section>
   `;
@@ -772,13 +794,15 @@ function evidenceSection() {
   const verifications = asArray(report.verification_messages);
   const recognitionWarnings = warnings.filter(isRecognitionNotice);
   const otherWarnings = warnings.filter(item => !isRecognitionNotice(item));
+  const sources = asArray(report.student_reasoning_view?.source_directory || report.student_reasoning_view?.sources);
+  const limitations = asArray(report.student_reasoning_view?.limitations);
   return `
     <section class="report-section">
       <div class="report-section-heading"><div><h2>Evidence and limits</h2></div><p>This is the audit surface: what was selected, what was computed, and what remains outside the model.</p></div>
       <div class="evidence-grid-report">
         <article class="evidence-card"><span>Scope</span><h3>${esc(report.programme_name)}</h3><p>${pathway ? esc(pathway.name) : "No additional pathway selected."} Scope status: ${esc(report.scope_status)}</p></article>
         <article class="evidence-card"><span>Curriculum source</span><h3>${esc(state.context?.catalogue_version || "2026 catalogue")}</h3><p>${esc(state.context?.source || programme.source?.document || "Official handbook")}</p></article>
-        <article class="evidence-card"><span>Computed conclusion</span><h3>${esc(titleCase(report.graduation_status))}</h3><p>${report.graduation_eligible ? "All represented blocking rules are complete and verified." : "Not all blocking requirements are currently satisfied."}</p></article>
+        <article class="evidence-card"><span>Institutional authority</span><h3>Explanation, not approval</h3><p>Academic completion, graduation eligibility and formal award are separate conclusions. See their individual assessments; CRE does not grant approval or confer a qualification.</p></article>
         <article class="evidence-card"><span>Operational boundary</span><h3>Timetable not connected</h3><p>Live offering, clash, venue, capacity and registration-window information must still be confirmed with the institution.</p></article>
       </div>
     </section>
@@ -790,6 +814,12 @@ function evidenceSection() {
         ${noticeGroup("Warnings and limits", otherWarnings)}
         ${!verifications.length && !warnings.length ? '<div class="empty-report">No additional warning was produced.</div>' : ""}
       </div>
+    </section>
+    <section class="report-section">
+      <div class="report-section-heading"><div><h2>Sources represented in this assessment</h2></div><p>Direct, inherited and package-level source relationships are shown separately where represented.</p></div>
+      <div class="notice-stack">${sources.map(source => `<div class="notice-row info"><strong>${esc(source.title)}</strong>${asArray(source.conclusion_links).map(link => `<p>${esc(link.title || "Represented requirement")} · ${esc(sourceLocator(link.locator))}</p>`).join("")}<small>${esc(source.status_language || "Source status is not fully confirmed.")}</small></div>`).join("") || '<div class="empty-report">Source detail is not currently represented.</div>'}</div>
+      <p class="report-boundary">For final confirmation, consult the institutional source or an authorised institutional advisor. Where no precise source location is represented, use an authorised institutional source or advisor rather than assuming a link.</p>
+      ${limitations.map(item => `<p class="report-boundary">${esc(item)}</p>`).join("")}
     </section>
   `;
 }
@@ -821,21 +851,20 @@ function renderReportSection() {
 
 function renderReport() {
   const report = state.report;
-  const percent = completionPercent();
-  const risk = report.exclusion_risk || {};
-  const blockersClass = risk.at_risk ? "alert" : blockingRequirements().some(row => !row.complete) ? "caution" : "good";
+  const conclusions = asArray(report.student_reasoning_view?.conclusions);
+  const counts = value => conclusions.filter(item => item.outcome === value).length;
   $("reportContent").innerHTML = `
     <section class="report-hero">
       <div>
-        ${statusWidget(report.graduation_status, reportStatusExplanation(report))}
+        <span>Represented academic position</span>
         <h1>${esc(report.student_name || "Academic account")}</h1>
         <p>${esc(report.programme_name)}${report.pathway_name ? ` · ${esc(report.pathway_name)}` : ""} · ${esc(titleCase(report.scope_status))} scope</p>
       </div>
-      <div class="report-score"><strong>${percent}%</strong><span>represented blockers complete</span></div>
+      <div class="report-score"><strong>${counts("satisfied")}</strong><span>conclusions shown as met</span></div>
     </section>
     <section class="decision-grid" aria-label="Decision summary">
-      <article class="decision-card good"><span>Where am I now?</span><h2>${esc(report.credits_completed)} credits counted</h2><p>${blockingRequirements().filter(row => row.complete).length} of ${blockingRequirements().length} requirements met</p></article>
-      <article class="decision-card ${blockersClass}"><span>What is blocking me?</span><h2>${risk.at_risk ? "Attention may be urgent" : "Outstanding academic conditions"}</h2><p>${esc(blockersSummary())}</p></article>
+      <article class="decision-card good"><span>What CRE can confirm</span><h2>${esc(report.credits_completed)} credits counted</h2><p>These figures describe supplied evidence, not necessarily the entire academic record.</p></article>
+      <article class="decision-card"><span>What CRE knows</span><h2>${counts("unresolved")} not yet determined</h2><p>${counts("not_satisfied")} definitively not met; ${counts("conflict")} with conflicting evidence. Read each conclusion below.</p></article>
       <article class="decision-card caution"><span>What can I do next?</span><h2>${asArray(report.eligible_courses).length} route-visible options</h2><p>${esc(nextSummary())}</p></article>
     </section>
     <nav class="report-tabs" aria-label="Academic account sections">
@@ -1081,8 +1110,11 @@ function bindEvents() {
   });
 }
 
-bindEvents();
-boot();
+// Other workspaces can reuse the canonical projection renderer without route UI initialization.
+if (!document.currentScript?.hasAttribute("data-projection-only")) {
+  bindEvents();
+  boot();
+}
 
 
 
@@ -1128,22 +1160,21 @@ async function analyseEmpty() {
     $("analysisProgress").classList.remove("hidden");
     $("analysisProgressText").textContent = "Preparing empty scenario...";
 
-    const payload = {
-        route: { faculty: state.faculty, context: state.context, programme: state.programme, pathway: state.pathway },
-        evidence: { type: "manual", overrides: [] }
-    };
+    const payload = {faculty: state.faculty, programme_key: state.programme.key,
+        pathway_key: selectedPathway()?.key || "", results: []};
     try {
-        const res = await fetch("/api/v1/engine/analyse", {
+        state.report = await api("/api/v1/analyse/json", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload),
         });
-        if (!res.ok) throw new Error(await res.text());
-        state.report = await res.json();
+        state.reportTab = "overview";
         renderReport();
-        setStep("report");
+        $("setupPanel").classList.add("hidden");
+        $("reportPanel").classList.remove("hidden");
+        setStep("account");
     } catch (err) {
-        $("analysisError").textContent = err.message || "Failed to prepare scenario.";
+        $("analysisError").textContent = "CRE could not prepare this empty record. Check your selected programme and try again.";
         $("analysisError").classList.remove("hidden");
     } finally {
         $("analyseEmptyBtn").disabled = false;

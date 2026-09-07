@@ -1,0 +1,167 @@
+[
+  {
+    "subject": "NS-001",
+    "purpose": "Ordinary progress",
+    "expected_boundary": "Ordinary completion with bounded evidence",
+    "expected_student_behavior": "Show confirmed foundation completion and remaining uncertainty.",
+    "intentionally_unexercised": [
+      "formal admission",
+      "course registration/co-requisites",
+      "qualification taxonomy"
+    ]
+  },
+  {
+    "subject": "NS-002",
+    "purpose": "Complete negative evidence",
+    "expected_boundary": "Absence becomes negative only with both complete coverage domains",
+    "expected_student_behavior": "Show Not met with named complete coverage scopes.",
+    "intentionally_unexercised": [
+      "formal admission",
+      "course registration/co-requisites",
+      "qualification taxonomy"
+    ]
+  },
+  {
+    "subject": "NS-003",
+    "purpose": "Partial academic record",
+    "expected_boundary": "Partial records remain unresolved",
+    "expected_student_behavior": "Show Not enough information yet, not a shortfall.",
+    "intentionally_unexercised": [
+      "formal admission",
+      "course registration/co-requisites",
+      "qualification taxonomy"
+    ]
+  },
+  {
+    "subject": "NS-004",
+    "purpose": "Exact-course recognition",
+    "expected_boundary": "Recognition creates no local attempt or credit",
+    "expected_student_behavior": "Show core completion and receipt of recognition separately from results.",
+    "intentionally_unexercised": [
+      "formal admission",
+      "course registration/co-requisites",
+      "qualification taxonomy"
+    ]
+  },
+  {
+    "subject": "NS-005",
+    "purpose": "Unknown recognition coverage",
+    "expected_boundary": "Result coverage alone cannot prove missing recognition",
+    "expected_student_behavior": "Show unresolved core completion despite result coverage.",
+    "intentionally_unexercised": [
+      "formal admission",
+      "course registration/co-requisites",
+      "qualification taxonomy"
+    ]
+  },
+  {
+    "subject": "NS-006",
+    "purpose": "Conflicting recognition",
+    "expected_boundary": "Conflict is not a failure or success",
+    "expected_student_behavior": "Show Conflicting evidence and an advisor review action.",
+    "intentionally_unexercised": [
+      "formal admission",
+      "course registration/co-requisites",
+      "qualification taxonomy"
+    ]
+  },
+  {
+    "subject": "NS-007",
+    "purpose": "Alternative completion witness",
+    "expected_boundary": "A sufficient alternative witness does not need unused alternatives",
+    "expected_student_behavior": "Show Met for sufficient alternatives without treating unused branches as failures.",
+    "intentionally_unexercised": [
+      "formal admission",
+      "course registration/co-requisites",
+      "qualification taxonomy"
+    ]
+  },
+  {
+    "subject": "NS-008",
+    "purpose": "Twenty-point achievement",
+    "expected_boundary": "Achievement 15 is compared on the institution's 0-20 scale, not percentage marks",
+    "expected_student_behavior": "Show entry conditions met using a twenty-point achievement witness.",
+    "intentionally_unexercised": [
+      "formal admission",
+      "course registration/co-requisites",
+      "qualification taxonomy"
+    ]
+  },
+  {
+    "subject": "NS-009",
+    "purpose": "External subject achievement",
+    "expected_boundary": "External subject evidence is not a university course result",
+    "expected_student_behavior": "Show entry conditions met and a distinct external-achievement receipt.",
+    "intentionally_unexercised": [
+      "formal admission",
+      "course registration/co-requisites",
+      "qualification taxonomy"
+    ]
+  },
+  {
+    "subject": "NS-010",
+    "purpose": "Exact prior qualification",
+    "expected_boundary": "Exact credential is not a taxonomy inference",
+    "expected_student_behavior": "Show entry conditions met and a distinct prior-qualification receipt.",
+    "intentionally_unexercised": [
+      "formal admission",
+      "course registration/co-requisites",
+      "qualification taxonomy"
+    ]
+  },
+  {
+    "subject": "NS-011",
+    "purpose": "Entry eligibility is not admission",
+    "expected_boundary": "Entry eligibility does not establish admission",
+    "expected_student_behavior": "Show entry eligibility with the explicit not-admission boundary.",
+    "intentionally_unexercised": [
+      "formal admission",
+      "course registration/co-requisites",
+      "qualification taxonomy"
+    ]
+  },
+  {
+    "subject": "NS-012",
+    "purpose": "Explicit registration history",
+    "expected_boundary": "History comes from registration episodes, not marks",
+    "expected_student_behavior": "Show two active cycles in the advisor history metric.",
+    "intentionally_unexercised": [
+      "formal admission",
+      "course registration/co-requisites",
+      "qualification taxonomy"
+    ]
+  },
+  {
+    "subject": "NS-013",
+    "purpose": "Academic completion without clearance",
+    "expected_boundary": "Academic completion does not establish graduation eligibility",
+    "expected_student_behavior": "Show academic completion Met and clearance-dependent eligibility unresolved.",
+    "intentionally_unexercised": [
+      "formal admission",
+      "course registration/co-requisites",
+      "qualification taxonomy"
+    ]
+  },
+  {
+    "subject": "NS-014",
+    "purpose": "Eligible but not awarded",
+    "expected_boundary": "Eligibility is not conferment",
+    "expected_student_behavior": "Show eligibility Met but no recorded formal award.",
+    "intentionally_unexercised": [
+      "formal admission",
+      "course registration/co-requisites",
+      "qualification taxonomy"
+    ]
+  },
+  {
+    "subject": "NS-015",
+    "purpose": "Explicit award and compound evidence",
+    "expected_boundary": "Only explicit conferment establishes the historical award fact",
+    "expected_student_behavior": "Show explicit recorded award, with source and unverified representation authority.",
+    "intentionally_unexercised": [
+      "formal admission",
+      "course registration/co-requisites",
+      "qualification taxonomy"
+    ]
+  }
+]

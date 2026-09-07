@@ -226,3 +226,19 @@ a{color:inherit}
 }
 
 .hidden { display: none !important; }
+
+/* Structured outcomes retain textual labels as well as distinct visual states. */
+.notice-row.satisfied { background:#edf7f0; color:#194d32; border-color:#31764c; }
+.notice-row.not_satisfied { background:#fff1ee; color:#792d20; border-color:#ae4836; }
+.notice-row.unresolved,.notice-row.unsupported { background:#f1f4f5; color:#344850; border-color:#71868f; }
+.notice-row.conflict { background:#fff3dc; color:#65460b; border-color:#a87719; }
+.notice-row .badge { white-space:normal; text-align:left; letter-spacing:0; }
+.notice-row.satisfied .badge { background:#d2eadb; color:#194d32; }
+.notice-row.not_satisfied .badge { background:#f8d8d0; color:#792d20; }
+.notice-row.unresolved .badge,.notice-row.unsupported .badge { background:#dee7eb; color:#344850; }
+.notice-row.conflict .badge { background:#f6dfa9; color:#65460b; }
+.notice-row { overflow-wrap:anywhere; }
+.notice-row details { margin-top:12px; }
+.notice-row summary { cursor:pointer; padding-block:6px; }
+.notice-row summary:focus-visible,.report-tab:focus-visible { outline:2px solid #235d77; outline-offset:3px; }
+.notice-group-body { display:grid; gap:12px; }

@@ -8,11 +8,20 @@ counts, and explanations from drifting apart.
 
 from __future__ import annotations
 
+from collections.abc import Iterable
 from dataclasses import dataclass
-from typing import Any, Iterable
-import re
+from typing import Any
+
+from curriculum_reasoning_engine.institutions import (
+    AcademicCreditFramework,
+    CourseCodeScheme,
+    GradingScheme,
+    UCTCourseCodeScheme,
+)
 
 from .models import Catalogue, CourseFact, CourseResult, StudentRecord
+
+_LEGACY_UCT_CODE_SCHEME = UCTCourseCodeScheme()
 
 
 @dataclass(frozen=True)
@@ -70,12 +79,23 @@ def approved_credit_pool_rules(catalogue: Catalogue) -> list[dict[str, Any]]:
     ]
 
 
-def _result_matches_filters(result: CourseResult, filters: dict[str, Any]) -> bool:
+def _result_matches_filters(
+    result: CourseResult,
+    filters: dict[str, Any],
+    credit_framework: AcademicCreditFramework | None = None,
+    course_code_scheme: CourseCodeScheme | None = None,
+) -> bool:
     levels = {int(value) for value in filters.get("nqf_levels", [])}
-    if levels and result.nqf_level not in levels:
+    academic_level = (
+        credit_framework.academic_level(result)
+        if credit_framework is not None
+        else result.nqf_level
+    )
+    if levels and academic_level not in levels:
         return False
     year_levels = {int(value) for value in filters.get("year_levels", [])}
-    if year_levels and _course_year_level(result.code) not in year_levels:
+    code_scheme = course_code_scheme or _LEGACY_UCT_CODE_SCHEME
+    if year_levels and code_scheme.infer_year_level(result.code) not in year_levels:
         return False
     prefixes = tuple(
         str(value).strip().upper()
@@ -92,10 +112,15 @@ def _result_matches_filters(result: CourseResult, filters: dict[str, Any]) -> bo
     if excluded_prefixes and result.code.startswith(excluded_prefixes):
         return False
     minimum_credits = int(filters.get("minimum_credits", 0) or 0)
-    if minimum_credits and result.nqf_credits < minimum_credits:
+    credit_value = (
+        credit_framework.credit_value(result)
+        if credit_framework is not None
+        else result.nqf_credits
+    )
+    if minimum_credits and credit_value < minimum_credits:
         return False
     maximum_credits = int(filters.get("maximum_credits", 0) or 0)
-    if maximum_credits and result.nqf_credits > maximum_credits:
+    if maximum_credits and credit_value > maximum_credits:
         return False
     return True
 
@@ -103,6 +128,9 @@ def _result_matches_filters(result: CourseResult, filters: dict[str, Any]) -> bo
 def provisional_open_credit_allocations(
     student: StudentRecord,
     catalogue: Catalogue,
+    grading_scheme: GradingScheme | None = None,
+    credit_framework: AcademicCreditFramework | None = None,
+    course_code_scheme: CourseCodeScheme | None = None,
 ) -> list[ProvisionalCreditAllocation]:
     """Allocate transcript-only passes to published approved/open credit pools.
 
@@ -117,12 +145,20 @@ def provisional_open_credit_allocations(
     if not rules:
         return []
 
-    recognised, _ = recognised_credited_pairs(student, catalogue)
+    recognised, _ = recognised_credited_pairs(
+        student, catalogue, grading_scheme, course_code_scheme
+    )
     recognised_by_code = {result.code: fact for result, fact in recognised}
     transcript_only_results = [
         result
-        for result in student.credited_results()
-        if result.code not in catalogue.courses and result.nqf_credits > 0
+        for result in student.credited_results(grading_scheme)
+        if result.code not in catalogue.courses
+        and (
+            credit_framework.credit_value(result)
+            if credit_framework is not None
+            else result.nqf_credits
+        )
+        > 0
     ]
     allocated_codes: set[str] = set()
     allocated_known_codes: set[str] = set()
@@ -166,18 +202,24 @@ def provisional_open_credit_allocations(
                     continue
                 if explicit and code not in explicit:
                     continue
-                result = student.passed_result_for(code)
+                result = student.passed_result_for(code, grading_scheme)
                 if result is None:
                     continue
                 # ``transcript_filters`` constrain unlisted/transcript-only
                 # options. Explicit handbook-listed courses are already
                 # members of the pool and must not be rejected merely
                 # because those provisional-option filters differ.
-                if not explicit and not _result_matches_filters(result, filters):
+                if not explicit and not _result_matches_filters(
+                    result, filters, credit_framework, course_code_scheme
+                ):
                     continue
                 known_codes.append(code)
                 allocated_known_codes.add(code)
-                known_credits += fact.nqf_credits
+                known_credits += (
+                    credit_framework.credit_value(fact)
+                    if credit_framework is not None
+                    else fact.nqf_credits
+                )
 
         selected: list[CourseResult] = []
         provisional_credits = 0
@@ -187,11 +229,17 @@ def provisional_open_credit_allocations(
                     continue
                 if transcript_explicit and result.code not in transcript_explicit:
                     continue
-                if not _result_matches_filters(result, filters):
+                if not _result_matches_filters(
+                    result, filters, credit_framework, course_code_scheme
+                ):
                     continue
                 selected.append(result)
                 allocated_codes.add(result.code)
-                provisional_credits += result.nqf_credits
+                provisional_credits += (
+                    credit_framework.credit_value(result)
+                    if credit_framework is not None
+                    else result.nqf_credits
+                )
                 if known_credits + provisional_credits >= target:
                     break
 
@@ -220,24 +268,30 @@ def provisional_open_credit_allocations(
 def provisional_open_credit_results(
     student: StudentRecord,
     catalogue: Catalogue,
+    grading_scheme: GradingScheme | None = None,
+    credit_framework: AcademicCreditFramework | None = None,
+    course_code_scheme: CourseCodeScheme | None = None,
 ) -> list[CourseResult]:
     """Flatten provisionally allocated transcript-only elective results."""
     return [
         result
-        for allocation in provisional_open_credit_allocations(student, catalogue)
+        for allocation in provisional_open_credit_allocations(
+            student, catalogue, grading_scheme, credit_framework, course_code_scheme
+        )
         for result in allocation.results
     ]
 
 
 def _course_year_level(code: str) -> int:
-    """Return the conventional 1000/2000/3000 level from a UCT code."""
-    match = re.match(r"^[A-Z]+([1-9])", code.strip().upper())
-    return int(match.group(1)) if match else 0
+    """Compatibility shim for legacy callers; UCT owns year-level inference."""
+    return _LEGACY_UCT_CODE_SCHEME.infer_year_level(code)
 
 
 def recognised_credited_pairs(
     student: StudentRecord,
     catalogue: Catalogue,
+    grading_scheme: GradingScheme | None = None,
+    course_code_scheme: CourseCodeScheme | None = None,
 ) -> tuple[list[tuple[CourseResult, CourseFact]], list[RecognitionExclusion]]:
     """Return one recognised passing attempt per code plus visible exclusions.
 
@@ -254,8 +308,9 @@ def recognised_credited_pairs(
     general_degree = programme is None or programme.programme_type == "general_degree"
     music_limits = {1: 4, 2: 4, 3: 2}
     music_counts = {1: 0, 2: 0, 3: 0}
+    code_scheme = course_code_scheme or _LEGACY_UCT_CODE_SCHEME
 
-    for result in student.credited_results():
+    for result in student.credited_results(grading_scheme):
         fact = catalogue.courses.get(result.code)
         if fact is None:
             continue
@@ -265,7 +320,7 @@ def recognised_credited_pairs(
             continue
 
         if general_degree and result.code.startswith("MUZ"):
-            year_level = _course_year_level(result.code)
+            year_level = code_scheme.infer_year_level(result.code)
             limit = music_limits.get(year_level)
             if limit is not None:
                 if music_counts[year_level] >= limit:

@@ -1,0 +1,56 @@
+[
+  {
+    "record_id": "RX-441",
+    "clause": "KAPPA",
+    "statement": "Complete FOUND-X7.",
+    "institution_id": "northstar",
+    "release_id": "northstar-v1",
+    "verification_status": "unverified",
+    "synthetic": true
+  },
+  {
+    "record_id": "RX-812",
+    "clause": "KAPPA",
+    "statement": "Complete both FOUND-X7 and CORE-Q2.",
+    "institution_id": "northstar",
+    "release_id": "northstar-v1",
+    "verification_status": "unverified",
+    "synthetic": true
+  },
+  {
+    "record_id": "RX-209",
+    "clause": "KAPPA",
+    "statement": "Complete at least one of PATH-Z9 and ALT-V8.",
+    "institution_id": "northstar",
+    "release_id": "northstar-v1",
+    "verification_status": "unverified",
+    "synthetic": true
+  },
+  {
+    "record_id": "RX-034",
+    "clause": "KAPPA",
+    "statement": "Earn at least 15 course-result credits from PATH-Z9 and ALT-V8.",
+    "institution_id": "northstar",
+    "release_id": "northstar-v1",
+    "verification_status": "unverified",
+    "synthetic": true
+  },
+  {
+    "record_id": "RX-651",
+    "clause": "KAPPA",
+    "statement": "Complete CAP-R4.",
+    "institution_id": "northstar",
+    "release_id": "northstar-v1",
+    "verification_status": "unverified",
+    "synthetic": true
+  },
+  {
+    "record_id": "RX-908",
+    "clause": "KAPPA",
+    "statement": "Complete at least two routes: both foundation courses; one studio alternative; or CAP-R4. Unused routes need not be complete.",
+    "institution_id": "northstar",
+    "release_id": "northstar-v1",
+    "verification_status": "unverified",
+    "synthetic": true
+  }
+]

@@ -78,9 +78,35 @@
           "maximum_failures": 1
         },
         {
-          "type": "pass_rate",
-          "label": "Pass at least 80% of annual registered credits",
-          "minimum": 0.8
+          "type": "progression_policy",
+          "label": "BAS annual pass-rate advisory policy",
+          "policy_id": "UCT-EBE-2026-BAS-ANNUAL-PASS-RATE",
+          "verification_status": "unverified",
+          "source_reference": "2026 EBE Undergraduate Handbook, page 22, Programmes of Study",
+          "condition": {
+            "type": "progression_ratio",
+            "label": "Pass at least 80% of annual registered credits",
+            "temporal_scope": "latest_academic_year",
+            "temporal_anchor": "recognised_or_provisional",
+            "numerator": {
+              "metric_basis": "credit_value",
+              "identity": "attempt",
+              "result_population": "passed",
+              "evidence_population": "recognised_or_provisional"
+            },
+            "denominator": {
+              "metric_basis": "credit_value",
+              "identity": "attempt",
+              "result_population": "attempted_non_pending",
+              "evidence_population": "recognised_or_provisional"
+            },
+            "comparison": "lt",
+            "threshold": 0.8
+          },
+          "consequence": {
+            "type": "advisory_risk",
+            "label": "BAS annual pass-rate advisory"
+          }
         },
         {
           "type": "maximum_years",

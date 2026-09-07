@@ -10,8 +10,9 @@ from __future__ import annotations
 
 import json
 import re
+from collections.abc import Iterable
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data" / "uct_commerce"
@@ -52,6 +53,13 @@ WORD_NUMBERS = {
     "six": 6,
     "seven": 7,
     "eight": 8,
+}
+
+COMMERCE_FIRST_ATTEMPT_STATUS_TREATMENT = {
+    "AB": "zero",
+    "DPR": "zero",
+    "INC": "zero",
+    "EXA": "zero",
 }
 
 SUBSTITUTIONS: dict[str, list[list[str]]] = {
@@ -206,6 +214,28 @@ def choose(
     }
     row.update(extra)
     return row
+
+
+def first_attempt_weighted_average_rule(
+    *,
+    rule_id: str,
+    label: str,
+    course_codes: Iterable[str],
+    minimum_average: int,
+    level_weights: dict[str, int],
+    include_failed_as_zero: bool = True,
+    status_treatment: dict[str, str] | None = None,
+) -> dict[str, Any]:
+    return {
+        "type": "first_attempt_weighted_average",
+        "id": rule_id,
+        "label": label,
+        "course_codes": list(course_codes),
+        "minimum_average": minimum_average,
+        "level_weights": dict(level_weights),
+        "include_failed_as_zero": include_failed_as_zero,
+        "status_treatment": dict(status_treatment or {}),
+    }
 
 
 def manual(
@@ -741,7 +771,6 @@ def parse_block(
             )
 
     # Simple OR-linked rows.
-    row_by_line = {row["line_index"]: row for row in rows}
     available = [row for row in rows if row["line_index"] not in consumed]
     i = 0
     while i < len(available):
@@ -1278,15 +1307,15 @@ def degree_award_rules(
 
     level_weights = {"5": 1, "6": 1, "7": 2, "8": 2}
     degree_rules: list[dict[str, Any]] = [
-        {
-            "type": "first_attempt_weighted_average",
-            "id": "commerce_degree_distinction",
-            "label": "First-attempt programme average",
-            "course_codes": all_codes,
-            "minimum_average": 80,
-            "level_weights": level_weights,
-            "include_failed_as_zero": True,
-        }
+        first_attempt_weighted_average_rule(
+            rule_id="commerce_degree_distinction",
+            label="First-attempt programme average",
+            course_codes=all_codes,
+            minimum_average=80,
+            level_weights=level_weights,
+            include_failed_as_zero=True,
+            status_treatment=COMMERCE_FIRST_ATTEMPT_STATUS_TREATMENT,
+        )
     ]
     award: dict[str, Any] = {
         "name": "Degree with distinction",

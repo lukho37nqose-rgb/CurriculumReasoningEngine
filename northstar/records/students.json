@@ -1,0 +1,566 @@
+[
+  {
+    "person": "NS-001",
+    "issuer": "northstar",
+    "edition": "northstar-v1",
+    "route": "systems_inquiry",
+    "domains": {
+      "academic": {
+        "modules": [
+          {
+            "module": "FOUND-X7",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-001-0"
+          },
+          {
+            "module": "CORE-Q2",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-001-1"
+          },
+          {
+            "module": "PATH-Z9",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-001-2"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "person": "NS-002",
+    "issuer": "northstar",
+    "edition": "northstar-v1",
+    "route": "systems_inquiry",
+    "domains": {
+      "academic": {
+        "modules": [
+          {
+            "module": "FOUND-X7",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-002-0"
+          }
+        ],
+        "snapshot": {
+          "modules": [
+            "FOUND-X7",
+            "CORE-Q2",
+            "PATH-Z9",
+            "ALT-V8",
+            "CAP-R4",
+            "LAB-T6"
+          ],
+          "completeness": "complete"
+        }
+      },
+      "recognition": {
+        "decisions": [],
+        "snapshot": {
+          "modules": [
+            "FOUND-X7",
+            "CORE-Q2",
+            "PATH-Z9",
+            "ALT-V8",
+            "CAP-R4",
+            "LAB-T6"
+          ],
+          "completeness": "complete"
+        }
+      }
+    }
+  },
+  {
+    "person": "NS-003",
+    "issuer": "northstar",
+    "edition": "northstar-v1",
+    "route": "systems_inquiry",
+    "domains": {
+      "academic": {
+        "modules": [
+          {
+            "module": "FOUND-X7",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-003-0"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "person": "NS-004",
+    "issuer": "northstar",
+    "edition": "northstar-v1",
+    "route": "systems_inquiry",
+    "domains": {
+      "academic": {
+        "modules": [
+          {
+            "module": "FOUND-X7",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-004-0"
+          }
+        ]
+      },
+      "recognition": {
+        "decisions": [
+          {
+            "reference": "REC-NS-004",
+            "learning": "EXT-77",
+            "local_module": "CORE-Q2",
+            "trust": "unverified"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "person": "NS-005",
+    "issuer": "northstar",
+    "edition": "northstar-v1",
+    "route": "systems_inquiry",
+    "domains": {
+      "academic": {
+        "modules": [
+          {
+            "module": "FOUND-X7",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-005-0"
+          }
+        ],
+        "snapshot": {
+          "modules": [
+            "FOUND-X7",
+            "CORE-Q2",
+            "PATH-Z9",
+            "ALT-V8",
+            "CAP-R4",
+            "LAB-T6"
+          ],
+          "completeness": "complete"
+        }
+      }
+    }
+  },
+  {
+    "person": "NS-006",
+    "issuer": "northstar",
+    "edition": "northstar-v1",
+    "route": "systems_inquiry",
+    "domains": {
+      "academic": {
+        "modules": [
+          {
+            "module": "FOUND-X7",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-006-0"
+          }
+        ]
+      },
+      "recognition": {
+        "decisions": [
+          {
+            "reference": "REC-NS-006",
+            "learning": "EXT-77",
+            "local_module": "CORE-Q2",
+            "trust": "conflict"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "person": "NS-007",
+    "issuer": "northstar",
+    "edition": "northstar-v1",
+    "route": "systems_inquiry",
+    "domains": {
+      "academic": {
+        "modules": [
+          {
+            "module": "FOUND-X7",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-007-0"
+          },
+          {
+            "module": "CORE-Q2",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-007-1"
+          },
+          {
+            "module": "PATH-Z9",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-007-2"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "person": "NS-008",
+    "issuer": "northstar",
+    "edition": "northstar-v1",
+    "route": "systems_inquiry",
+    "domains": {
+      "academic": {
+        "modules": [
+          {
+            "module": "FOUND-X7",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-008-0",
+            "achievement": 15
+          }
+        ]
+      }
+    }
+  },
+  {
+    "person": "NS-009",
+    "issuer": "northstar",
+    "edition": "northstar-v1",
+    "route": "systems_inquiry",
+    "domains": {
+      "academic": {
+        "modules": [
+          {
+            "module": "FOUND-X7",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-009-0"
+          }
+        ]
+      },
+      "external": {
+        "subjects": [
+          {
+            "reference": "EXT-NS-009",
+            "system": "ORION-CERT",
+            "subject": "OR-MATH",
+            "result": 8
+          }
+        ]
+      }
+    }
+  },
+  {
+    "person": "NS-010",
+    "issuer": "northstar",
+    "edition": "northstar-v1",
+    "route": "systems_inquiry",
+    "domains": {
+      "academic": {
+        "modules": [
+          {
+            "module": "FOUND-X7",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-010-0"
+          }
+        ]
+      },
+      "qualifications": {
+        "credentials": [
+          {
+            "reference": "QUAL-NS-010",
+            "system": "ORION-CERT",
+            "credential": "ORA-K7"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "person": "NS-011",
+    "issuer": "northstar",
+    "edition": "northstar-v1",
+    "route": "systems_inquiry",
+    "domains": {
+      "academic": {
+        "modules": [
+          {
+            "module": "FOUND-X7",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-011-0",
+            "achievement": 15
+          }
+        ]
+      }
+    }
+  },
+  {
+    "person": "NS-012",
+    "issuer": "northstar",
+    "edition": "northstar-v1",
+    "route": "systems_inquiry",
+    "domains": {
+      "academic": {
+        "modules": [
+          {
+            "module": "FOUND-X7",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-012-0"
+          }
+        ]
+      },
+      "registration": {
+        "episodes": [
+          {
+            "reference": "H-NS-012-P-Z",
+            "block": "P-Z",
+            "route": "systems_inquiry",
+            "state": "active"
+          },
+          {
+            "reference": "H-NS-012-P-B",
+            "block": "P-B",
+            "route": "systems_inquiry",
+            "state": "interrupted"
+          },
+          {
+            "reference": "H-NS-012-P-X",
+            "block": "P-X",
+            "route": "systems_inquiry",
+            "state": "active"
+          }
+        ],
+        "snapshot": {
+          "blocks": [
+            "P-Z",
+            "P-B",
+            "P-X"
+          ],
+          "completeness": "complete"
+        }
+      }
+    }
+  },
+  {
+    "person": "NS-013",
+    "issuer": "northstar",
+    "edition": "northstar-v1",
+    "route": "systems_inquiry",
+    "domains": {
+      "academic": {
+        "modules": [
+          {
+            "module": "FOUND-X7",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-013-0"
+          },
+          {
+            "module": "CORE-Q2",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-013-1"
+          },
+          {
+            "module": "PATH-Z9",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-013-2"
+          },
+          {
+            "module": "CAP-R4",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-013-4"
+          },
+          {
+            "module": "LAB-T6",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-013-5"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "person": "NS-014",
+    "issuer": "northstar",
+    "edition": "northstar-v1",
+    "route": "systems_inquiry",
+    "domains": {
+      "academic": {
+        "modules": [
+          {
+            "module": "FOUND-X7",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-014-0"
+          },
+          {
+            "module": "CORE-Q2",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-014-1"
+          },
+          {
+            "module": "PATH-Z9",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-014-2"
+          },
+          {
+            "module": "CAP-R4",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-014-4"
+          },
+          {
+            "module": "LAB-T6",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-014-5"
+          }
+        ]
+      },
+      "clearance": {
+        "decisions": [
+          {
+            "reference": "NS-014-NS-GATE-A",
+            "gate": "NS-GATE-A",
+            "decision": "satisfied"
+          },
+          {
+            "reference": "NS-014-NS-GATE-Z",
+            "gate": "NS-GATE-Z",
+            "decision": "satisfied"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "person": "NS-015",
+    "issuer": "northstar",
+    "edition": "northstar-v1",
+    "route": "systems_inquiry",
+    "domains": {
+      "academic": {
+        "modules": [
+          {
+            "module": "FOUND-X7",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-015-0",
+            "achievement": 15
+          },
+          {
+            "module": "PATH-Z9",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-015-2"
+          },
+          {
+            "module": "CAP-R4",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-015-4"
+          },
+          {
+            "module": "LAB-T6",
+            "score": 72,
+            "cycle_label": "Opening block",
+            "attempt": "NS-015-5"
+          }
+        ]
+      },
+      "recognition": {
+        "decisions": [
+          {
+            "reference": "REC-NS-015",
+            "learning": "EXT-77",
+            "local_module": "CORE-Q2",
+            "trust": "unverified"
+          }
+        ]
+      },
+      "external": {
+        "subjects": [
+          {
+            "reference": "EXT-NS-015",
+            "system": "ORION-CERT",
+            "subject": "OR-MATH",
+            "result": 8
+          }
+        ]
+      },
+      "qualifications": {
+        "credentials": [
+          {
+            "reference": "QUAL-NS-015",
+            "system": "ORION-CERT",
+            "credential": "ORA-K7"
+          }
+        ]
+      },
+      "registration": {
+        "episodes": [
+          {
+            "reference": "H-NS-015-P-Z",
+            "block": "P-Z",
+            "route": "systems_inquiry",
+            "state": "active"
+          },
+          {
+            "reference": "H-NS-015-P-B",
+            "block": "P-B",
+            "route": "systems_inquiry",
+            "state": "interrupted"
+          },
+          {
+            "reference": "H-NS-015-P-X",
+            "block": "P-X",
+            "route": "systems_inquiry",
+            "state": "active"
+          }
+        ],
+        "snapshot": {
+          "blocks": [
+            "P-Z",
+            "P-B",
+            "P-X"
+          ],
+          "completeness": "complete"
+        }
+      },
+      "clearance": {
+        "decisions": [
+          {
+            "reference": "NS-015-NS-GATE-A",
+            "gate": "NS-GATE-A",
+            "decision": "satisfied"
+          },
+          {
+            "reference": "NS-015-NS-GATE-Z",
+            "gate": "NS-GATE-Z",
+            "decision": "satisfied"
+          }
+        ]
+      },
+      "award": {
+        "conferments": [
+          {
+            "reference": "CONF-NS-015",
+            "qualification": "systems_inquiry",
+            "decision": "awarded"
+          }
+        ]
+      }
+    }
+  }
+]

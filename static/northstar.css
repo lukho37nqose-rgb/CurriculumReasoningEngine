@@ -1,0 +1,121 @@
+.northstar { background: #f5f7f7; color: #182d2b; margin: 0; }
+.ns-header { background: #123e38; color: white; padding: 20px 5%; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.ns-header strong { display: block; font-size: 22px; }
+.ns-header span { display: block; margin-top: 5px; }
+.ns-demo { color: #d9e5bf; font-size: 14px; }
+.northstar main { max-width: 1120px; margin: 30px auto; padding: 0 24px 60px; }
+.northstar main { max-width: 1440px; }
+.northstar #ns-workspace:not([hidden]) { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 34px; }
+.portal-sidebar { border-right: 1px solid #cfdbd5; padding-right: 22px; }
+#ns-nav { display: grid; gap: 6px; }
+.northstar #ns-nav button { text-align: left; background: transparent; color: #29493e; border-color: transparent; }
+.northstar #ns-nav button[aria-current="page"] { background: #e2eee6; border-left: 3px solid #27675a; font-weight: 700; }
+.portal-profile { margin-top: 48px; font-size: 14px; }
+.portal-profile button { width: 100%; }
+.portal-main { min-width: 0; }
+.portal-eyebrow { color: #496456; font-size: 12px; font-weight: 700; }
+.portal-heading { margin: 24px 0 18px; }
+.portal-heading h2 { margin: 0 0 8px; }
+.portal-heading p, .portal-caption { color: #52675c; line-height: 1.6; }
+.portal-counts { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 12px; border-block: 1px solid #cbd8d0; padding: 20px 0; }
+.portal-counts div { border-top: 3px solid #b2c0b7; padding-top: 12px; }
+.portal-counts dt { font-size: 13px; min-height: 36px; }
+.portal-counts dd { font-size: 30px; font-weight: 650; margin: 10px 0 0; }
+.portal-counts .count-satisfied { border-color: #428365; }
+.portal-counts .count-not_satisfied { border-color: #b35955; }
+.portal-counts .count-conflict { border-color: #b68128; }
+.portal-counts .count-unsupported { border-color: #7271a1; }
+.portal-dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.portal-alerts, .portal-actions { list-style: none; padding: 0; }
+.portal-alerts li, .portal-actions li { padding: 12px 0; border-bottom: 1px solid #d6dfd8; }
+.portal-alerts li.conflict { border-left: 3px solid #b68128; padding-left: 12px; }
+.portal-alerts li.not_satisfied { border-left: 3px solid #b35955; padding-left: 12px; }
+.portal-alerts li.unresolved { border-left: 3px solid #8e9c93; padding-left: 12px; }
+.portal-sequence { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 22px; border-block: 1px solid #d6dfd8; padding: 16px 0; }
+.portal-sequence h3 { font-size: 17px; line-height: 1.4; }
+.portal-sequence p { font-size: 14px; line-height: 1.6; }
+.state-text { font-weight: 700; }
+.state-text.satisfied { color: #24634a; }
+.state-text.not_satisfied { color: #914744; }
+.state-text.conflict { color: #855d15; }
+.portal-links { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
+.portal-group { border-top: 1px solid #d0dbd3; margin-top: 28px; padding-top: 4px; }
+.portal-evidence-list { display: grid; grid-template-columns: 1fr 1fr; column-gap: 32px; }
+.portal-evidence-list section { padding: 16px 0; border-bottom: 1px solid #d0dbd3; }
+.portal-evidence-list h3 { font-size: 17px; }
+.portal-service-notice { border-left: 3px solid #7f8791; background: #eef0f3; padding: 16px; margin: 20px 0; }
+.portal-session { margin: 20px 0; font-size: 13px; color: #516458; }
+.portal-source { padding: 20px 0; border-bottom: 1px solid #cbd6cd; }
+.portal-source h3 { font-size: 18px; }
+.portal-source details { padding: 9px 0; }
+.portal-help section { max-width: 720px; padding: 16px 0; border-bottom: 1px solid #d0dbd3; line-height: 1.65; }
+.portal-skip { position: absolute; top: -100px; left: 20px; background: white; padding: 12px; z-index: 10; }
+.portal-skip:focus { top: 8px; }
+.northstar :focus-visible { outline: 3px solid #936eb0; outline-offset: 3px; }
+.northstar #ns-content:focus { outline: none; }
+.northstar pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+.northstar .notice-row.policy_clear { border-left: 3px solid #408366; background: #eef6f0; }
+.northstar .notice-row.policy_triggered { border-left: 3px solid #b98125; background: #fbf2dd; }
+@media (max-width: 900px) {
+  .northstar #ns-workspace:not([hidden]) { grid-template-columns: minmax(0,1fr); gap: 12px; }
+  .portal-sidebar { border-right: 0; border-bottom: 1px solid #cfdbd5; padding: 0 0 16px; }
+  #ns-nav { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .portal-profile { margin-top: 16px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .portal-profile p { display: none; }
+  .portal-profile button { width: auto; margin-left: auto; }
+}
+@media (max-width: 600px) {
+  .portal-counts { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .portal-dashboard-grid, .portal-sequence, .portal-evidence-list { grid-template-columns: minmax(0,1fr); }
+  .portal-counts dt { min-height: auto; }
+  .portal-sequence section + section { border-top: 1px solid #d6dfd8; }
+  #ns-nav { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+.northstar h1 { font-size: 28px; line-height: 1.25; letter-spacing: 0; }
+.northstar h2 { font-size: 21px; letter-spacing: 0; }
+#ns-login { max-width: 520px; margin: 55px auto; }
+#ns-form { display: grid; gap: 12px; margin: 26px 0; }
+#ns-form input, #ns-form select { min-height: 44px; width: 100%; border: 1px solid #82928c; border-radius: 4px; padding: 10px; background: white; color: #182d2b; box-sizing: border-box; }
+.northstar button { min-height: 44px; padding: 10px 18px; border: 1px solid #27675a; background: #27675a; color: white; border-radius: 4px; cursor: pointer; white-space: normal; }
+.northstar button:disabled { opacity: .65; cursor: wait; }
+.ns-boundary { border-left: 3px solid #c28936; padding: 12px 16px; line-height: 1.55; background: #fff; }
+.ns-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.northstar [hidden] { display: none !important; }
+.northstar .report-section { margin: 24px 0; }
+.northstar .notice-row { padding: 16px; margin-bottom: 12px; }
+.northstar .notice-row, .northstar .evidence-card { border-radius: 6px; }
+.notice-row.awarded { background: #edf5ef; border-left: 3px solid #357148; }
+.notice-row.not_awarded { background: #f9eeee; border-left: 3px solid #9c4949; }
+.northstar p, .northstar small, .northstar summary, .northstar td, .northstar th { overflow-wrap: anywhere; }
+.ns-debug { margin-top: 26px; border-top: 1px solid #9ba9a4; padding: 20px 0; }
+.ns-debug summary { cursor: pointer; font-weight: 600; }
+.ns-debug table { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
+.ns-debug td, .ns-debug th { text-align: left; padding: 9px 5px; border-bottom: 1px solid #d7dfdb; vertical-align: top; }
+.ns-source { border-bottom: 1px solid #cbd7d1; padding: 14px 0; }
+#ns-message { color: #644719; }
+@media (max-width: 600px) {
+  .northstar main { padding: 0 16px 40px; }
+  #ns-login { margin: 25px auto; }
+  .northstar .evidence-grid-report { display: block; }
+  .northstar .report-section-heading { display: block; }
+  .northstar h1 { font-size: 24px; }
+}
+/* Meaning first; supporting explanations stay available through native disclosure. */
+.northstar .human-card { background: white; padding: 20px; margin: 12px 0; border-left-width: 4px; }
+.northstar .human-card > header { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 16px; justify-content: space-between; }
+.northstar .human-card .human-meaning { font-size: 16px; max-width: 70ch; }
+.northstar .human-card .human-boundary { font-size: 14px; color: #3d5551; }
+.northstar .human-card > small { display: block; margin: 8px 0; }
+.northstar .human-card > details { border-top: 1px solid #e2e8e6; padding: 10px 0 0; margin-top: 12px; }
+.northstar .human-card details p { max-width: 75ch; overflow-wrap: anywhere; }
+.northstar .human-card summary { font-size: 14px; }
+.northstar .portal-counts { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+.northstar .portal-evidence-list > section { padding: 16px 0; }
+.northstar .portal-evidence-list details { margin-top: 10px; }
+.northstar .portal-alerts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+@media (max-width: 600px) {
+  .northstar .human-card { padding: 16px; }
+  .northstar .human-card > header { display: grid; gap: 8px; }
+  .northstar .human-card .badge { justify-self: start; }
+  .northstar .portal-counts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

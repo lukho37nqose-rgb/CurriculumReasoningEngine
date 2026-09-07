@@ -3,10 +3,10 @@ from unittest.mock import patch
 
 from fastapi.testclient import TestClient
 
-from app import app
+import app as app_module
 from engine.models import CourseResult, StudentRecord
 
-client = TestClient(app)
+client = TestClient(app_module.app)
 
 
 def test_bootstrap_exposes_decision_model_and_lightweight_faculties():
@@ -75,7 +75,7 @@ def test_pdf_endpoint_returns_programme_scoped_report():
             )
         ],
     )
-    with patch("app.parse_transcript_pdf", return_value=parsed):
+    with patch.object(app_module.TRANSCRIPT_ADAPTER, "parse_pdf", return_value=parsed):
         response = client.post(
             "/api/v1/analyse",
             params={

@@ -18,6 +18,10 @@ class KnowledgeGraph:
         self.depends_on: Dict[str, Set[str]] = {code: set() for code in self.courses}
 
         for code, course in self.courses.items():
+            # Grouped canonical expressions remain authoritative in the
+            # prerequisite evaluator; flat graph edges cannot preserve OR.
+            if course.prerequisite_expression is not None:
+                continue
             for prereq in course.prerequisites:
                 prereq = prereq.upper()
                 if prereq in self.courses:
@@ -31,11 +35,7 @@ class KnowledgeGraph:
                 # exist so one failed variant is not treated as proof that every
                 # route is blocked.
                 match = re.fullmatch(r"([A-Z]{2,4}\d{4})", prereq)
-                variants = (
-                    sorted(c for c in self.courses if c.startswith(match.group(1)))
-                    if match
-                    else []
-                )
+                variants = sorted(c for c in self.courses if c.startswith(match.group(1))) if match else []
                 for variant in variants:
                     self.prereq_of[variant].add(code)
                 if len(variants) == 1:
@@ -47,9 +47,7 @@ class KnowledgeGraph:
         """Return the direct prerequisites of a course."""
         return self.depends_on.get(course_code, set())
 
-    def get_all_prerequisites(
-        self, course_code: str, visited: Optional[Set[str]] = None
-    ) -> Set[str]:
+    def get_all_prerequisites(self, course_code: str, visited: Optional[Set[str]] = None) -> Set[str]:
         """Return all direct and indirect prerequisites of a course (transitive closure)."""
         if visited is None:
             visited = set()
@@ -65,9 +63,7 @@ class KnowledgeGraph:
         """Return courses that directly require this course."""
         return self.prereq_of.get(course_code, set())
 
-    def get_all_unlocked_courses(
-        self, course_code: str, visited: Optional[Set[str]] = None
-    ) -> Set[str]:
+    def get_all_unlocked_courses(self, course_code: str, visited: Optional[Set[str]] = None) -> Set[str]:
         """Return all courses that directly or indirectly require this course (transitive closure)."""
         if visited is None:
             visited = set()

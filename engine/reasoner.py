@@ -5,21 +5,27 @@ and honours readiness assessment.
 """
 
 from dataclasses import dataclass, field
-from typing import List, Dict, Set, Tuple, Optional, Any
-from .models import (
-    StudentRecord,
-    Catalogue,
-    CourseFact,
-    MajorDefinition,
-    ProgrammeRules,
+from typing import Any
+
+from curriculum_reasoning_engine.institutions import (
+    AcademicCreditFramework,
+    CourseCodeScheme,
+    CourseLoadFramework,
+    GradingScheme,
 )
+
+from .completion import CourseCompletionRecognitionInput, CourseCompletionResolver
+from .curriculum import CurriculumEvaluator, _combine_status
 from .knowledge_graph import KnowledgeGraph
+from .models import (
+    Catalogue,
+    ProgrammeRules,
+    StudentRecord,
+)
+from .prerequisites import PrerequisiteEvaluator, ProjectedCourseCompletions
 from .utils import (
-    _course_weight,
-    _is_senior,
-    _is_humanities,
-    _normalise_major_keys,
     _infer_programme_key,
+    _normalise_major_keys,
 )
 
 
@@ -36,7 +42,7 @@ class GoalRequirement:
 @dataclass
 class PathwayStep:
     semester: str
-    courses: List[str]
+    courses: list[str]
     reason: str
 
 
@@ -45,19 +51,33 @@ class GoalReport:
     goal_id: str
     name: str
     complete: bool
-    requirements: List[GoalRequirement]
+    requirements: list[GoalRequirement]
     gap_description: str
-    recommended_path: List[PathwayStep] = field(default_factory=list)
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    recommended_path: list[PathwayStep] = field(default_factory=list)
+    metadata: dict[str, Any] = field(default_factory=dict)
 
 
 class Goal:
     def __init__(
-        self, student: StudentRecord, catalogue: Catalogue, graph: KnowledgeGraph
+        self,
+        student: StudentRecord,
+        catalogue: Catalogue,
+        graph: KnowledgeGraph,
+        grading_scheme: GradingScheme | None = None,
+        credit_framework: AcademicCreditFramework | None = None,
+        course_code_scheme: CourseCodeScheme | None = None,
+        course_load_framework: CourseLoadFramework | None = None,
+        completion_recognition: CourseCompletionRecognitionInput | None = None,
     ):
         self.student = student
         self.catalogue = catalogue
         self.graph = graph
+        self.grading_scheme = grading_scheme
+        self.credit_framework = credit_framework
+        self.course_code_scheme = course_code_scheme
+        self.course_load_framework = course_load_framework
+        self.completion_recognition = completion_recognition
+        self.completion = CourseCompletionResolver(student, catalogue, grading_scheme, completion_recognition)
 
     def evaluate(self) -> GoalReport:
         raise NotImplementedError
@@ -74,10 +94,16 @@ class GraduateGoal(Goal):
         """
         from .rule_engine import compute_report
 
-        report = compute_report(self.student, self.catalogue)
-        programme_key = self.student.programme_key or _infer_programme_key(
-            self.student.programme
+        report = compute_report(
+            self.student,
+            self.catalogue,
+            self.grading_scheme,
+            self.credit_framework,
+            self.course_code_scheme,
+            self.course_load_framework,
+            completion_recognition=self.completion_recognition,
         )
+        programme_key = self.student.programme_key or _infer_programme_key(self.student.programme)
         prog = self.catalogue.programmes.get(programme_key)
 
         reqs = [
@@ -87,20 +113,12 @@ class GraduateGoal(Goal):
                 complete=req.complete,
                 current=req.current,
                 required=req.required,
-                detail=(
-                    f"{req.detail} Status: {req.status}."
-                    if req.status != "verified"
-                    else req.detail
-                ),
+                detail=(f"{req.detail} Status: {req.status}." if req.status != "verified" else req.detail),
             )
             for req in report.requirements
         ]
 
-        incomplete = [
-            req.label
-            for req in report.requirements
-            if req.blocking and not req.complete
-        ]
+        incomplete = [req.label for req in report.requirements if req.blocking and not req.complete]
         if incomplete:
             gap_desc = "Outstanding: " + "; ".join(incomplete) + "."
         elif report.graduation_status == "requires_verification":
@@ -111,14 +129,18 @@ class GraduateGoal(Goal):
         else:
             gap_desc = "All verified graduation requirements are met."
 
-        path: List[PathwayStep] = []
+        path: list[PathwayStep] = []
         if prog and report.graduation_status != "eligible":
-            major_keys = _normalise_major_keys(
-                self.student.declared_majors, self.catalogue
-            )
+            major_keys = _normalise_major_keys(self.student.declared_majors, self.catalogue)
             major_goals = [
                 CompleteMajorGoal(
-                    self.student, self.catalogue, self.graph, key
+                    self.student,
+                    self.catalogue,
+                    self.graph,
+                    key,
+                    self.grading_scheme,
+                    self.credit_framework,
+                    completion_recognition=self.completion_recognition,
                 ).evaluate()
                 for key in major_keys
             ]
@@ -138,12 +160,10 @@ class GraduateGoal(Goal):
         )
 
     def _compute_graduation_path(
-        self, major_goals: List[GoalReport], prog: ProgrammeRules
-    ) -> List[PathwayStep]:
+        self, major_goals: list[GoalReport], prog: ProgrammeRules
+    ) -> list[PathwayStep]:
         """Recommend only courses whose recorded prerequisites are met."""
-        from .rule_engine import _prereqs_met
-
-        passed = self.student.passed_codes()
+        passed = self.completion.completed_codes()
         outstanding_courses = set()
 
         for code in prog.required_courses:
@@ -169,23 +189,35 @@ class GraduateGoal(Goal):
             outstanding_courses,
             key=lambda code: (
                 (
-                    self.catalogue.courses[code].nqf_level
+                    self.credit_framework.academic_level(self.catalogue.courses[code])
+                    if self.credit_framework is not None
+                    else self.catalogue.courses[code].nqf_level
                     if code in self.catalogue.courses
                     else 99
                 ),
                 code,
             ),
         )
-        current_passed = set(passed)
-        steps: List[PathwayStep] = []
+        projected: set[str] = set()
+        steps: list[PathwayStep] = []
         semester_num = 1
         max_per_semester = prog.max_courses_per_semester or 4
 
         while remaining and semester_num <= 8:
             semester_courses = []
+            prerequisite_evaluator = PrerequisiteEvaluator(
+                self.student,
+                self.catalogue,
+                self.grading_scheme,
+                self.credit_framework,
+                self.course_code_scheme,
+                self.course_load_framework,
+                projected_course_completions=ProjectedCourseCompletions(tuple(sorted(projected))),
+                completion_recognition=self.completion_recognition,
+            )
             for code in list(remaining):
                 course = self.catalogue.courses.get(code)
-                if course and _prereqs_met(course, current_passed):
+                if course and prerequisite_evaluator.evaluate_for_course(course).outcome == "satisfied":
                     semester_courses.append(code)
                     if len(semester_courses) >= max_per_semester:
                         break
@@ -206,7 +238,7 @@ class GraduateGoal(Goal):
 
             for code in semester_courses:
                 remaining.remove(code)
-                current_passed.add(code)
+                projected.add(code)
 
             steps.append(
                 PathwayStep(
@@ -230,8 +262,22 @@ class CompleteMajorGoal(Goal):
         catalogue: Catalogue,
         graph: KnowledgeGraph,
         major_key: str,
+        grading_scheme: GradingScheme | None = None,
+        credit_framework: AcademicCreditFramework | None = None,
+        course_code_scheme: CourseCodeScheme | None = None,
+        course_load_framework: CourseLoadFramework | None = None,
+        completion_recognition: CourseCompletionRecognitionInput | None = None,
     ):
-        super().__init__(student, catalogue, graph)
+        super().__init__(
+            student,
+            catalogue,
+            graph,
+            grading_scheme,
+            credit_framework,
+            course_code_scheme,
+            course_load_framework,
+            completion_recognition,
+        )
         self.major_key = major_key
 
     def evaluate(self) -> GoalReport:
@@ -257,13 +303,19 @@ class CompleteMajorGoal(Goal):
                 metadata={"status": "unverified"},
             )
 
-        passed = self.student.passed_codes()
         reqs = []
         gaps = []
+        evaluator = CurriculumEvaluator(
+            self.student, self.catalogue, self.grading_scheme, self.credit_framework,
+            self.course_code_scheme, self.course_load_framework, self.completion_recognition,
+        )
+        statuses = [major_def.verification_status]
 
         # Compulsory courses
         for code in major_def.required_courses:
-            is_done = code in passed
+            evaluated = evaluator.evaluate({"type": "course", "course_codes": [code]})
+            is_done = evaluated.complete
+            statuses.append(evaluated.status)
             reqs.append(
                 GoalRequirement(
                     id=f"compulsory_{code}",
@@ -271,7 +323,7 @@ class CompleteMajorGoal(Goal):
                     complete=is_done,
                     current=1 if is_done else 0,
                     required=1,
-                    detail=f"Compulsory course {code}",
+                    detail=f"Compulsory course {code}. {evaluated.detail} Status: {evaluated.status}.",
                 )
             )
             if not is_done:
@@ -279,7 +331,11 @@ class CompleteMajorGoal(Goal):
 
         # Choice groups
         for group in major_def.choice_groups:
-            satisfied = [c for c in group.courses if c in passed]
+            evaluated = evaluator.evaluate({
+                "type": "choose_n", "course_codes": group.courses, "required": group.required,
+            })
+            satisfied = evaluated.used_course_codes
+            statuses.append(evaluated.status)
             needed = group.required
             is_done = len(satisfied) >= needed
             reqs.append(
@@ -289,21 +345,18 @@ class CompleteMajorGoal(Goal):
                     complete=is_done,
                     current=len(satisfied),
                     required=needed,
-                    detail=f"Choose {needed} from {group.courses}",
+                    detail=f"{evaluated.detail} Status: {evaluated.status}.",
                 )
             )
             if not is_done:
                 gaps.append(f"Need {needed - len(satisfied)} more from {group.label}.")
 
         complete = all(r.complete for r in reqs)
-        gap_desc = (
-            " ".join(gaps)
-            if gaps
-            else f"All requirements for {major_def.name} major met!"
-        )
+        gap_desc = " ".join(gaps) if gaps else f"All requirements for {major_def.name} major met!"
 
         return GoalReport(
-            f"major_{self.major_key}", major_def.name, complete, reqs, gap_desc
+            f"major_{self.major_key}", major_def.name, complete, reqs, gap_desc,
+            metadata={"status": _combine_status(statuses)},
         )
 
 
@@ -316,8 +369,22 @@ class HonoursReadinessGoal(Goal):
         catalogue: Catalogue,
         graph: KnowledgeGraph,
         major_key: str,
+        grading_scheme: GradingScheme | None = None,
+        credit_framework: AcademicCreditFramework | None = None,
+        course_code_scheme: CourseCodeScheme | None = None,
+        course_load_framework: CourseLoadFramework | None = None,
+        completion_recognition: CourseCompletionRecognitionInput | None = None,
     ):
-        super().__init__(student, catalogue, graph)
+        super().__init__(
+            student,
+            catalogue,
+            graph,
+            grading_scheme,
+            credit_framework,
+            course_code_scheme,
+            course_load_framework,
+            completion_recognition,
+        )
         self.major_key = major_key
 
     def evaluate(self) -> GoalReport:
@@ -333,19 +400,22 @@ class HonoursReadinessGoal(Goal):
                 metadata={"status": "unverified"},
             )
 
-        required_senior = {
-            code for code in major_def.required_courses if _is_senior(code)
-        }
+        def is_senior_course(code: str) -> bool:
+            course = self.catalogue.courses.get(code)
+            if course is None:
+                return False
+            return (
+                self.credit_framework.is_senior_level(course)
+                if self.credit_framework is not None
+                else course.nqf_level >= 6
+            )
+
+        required_senior = {code for code in major_def.required_courses if is_senior_course(code)}
         option_senior = {
-            code
-            for group in major_def.choice_groups
-            for code in group.courses
-            if _is_senior(code)
+            code for group in major_def.choice_groups for code in group.courses if is_senior_course(code)
         }
         assessed_codes = set(required_senior)
-        assessed_codes.update(
-            code for code in option_senior if self.student.result_for(code) is not None
-        )
+        assessed_codes.update(code for code in option_senior if self.student.result_for(code) is not None)
 
         marks = []
         for code in sorted(assessed_codes):
@@ -356,12 +426,16 @@ class HonoursReadinessGoal(Goal):
         current_average = sum(marks) / len(marks) if marks else 0.0
         indicative_threshold = 70.0
         major_goal = CompleteMajorGoal(
-            self.student, self.catalogue, self.graph, self.major_key
+            self.student,
+            self.catalogue,
+            self.graph,
+            self.major_key,
+            self.grading_scheme,
+            self.credit_framework,
+            completion_recognition=self.completion_recognition,
         ).evaluate()
         indicative_threshold_met = (
-            bool(marks)
-            and current_average >= indicative_threshold
-            and major_goal.complete
+            bool(marks) and current_average >= indicative_threshold and major_goal.complete
         )
 
         requirements = [

@@ -11,8 +11,9 @@ from __future__ import annotations
 
 import json
 import re
+from collections.abc import Iterable
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data" / "uct_health"
@@ -190,6 +191,12 @@ def source(
     return {"document": PDF_NAME, "page": page, "section": section}
 
 
+def health_source_reference(
+    page: int, section: str = "Rules and curricula for undergraduate programmes"
+) -> str:
+    return f"{PDF_NAME}, page {page}, {section}"
+
+
 def course_rule(
     codes: str | Iterable[str], label: str, rule_id: str, **extra: Any
 ) -> dict[str, Any]:
@@ -224,6 +231,55 @@ def all_of(
     row = {"type": "all_of", "id": rule_id, "label": label, "children": children}
     row.update(extra)
     return row
+
+
+def nmfc_first_semester_progression_policy(source_reference: str) -> dict[str, Any]:
+    return {
+        "type": "progression_policy",
+        "label": "NMFC first-semester progression requirement",
+        "policy_id": "UCT-HEALTH-2026-NMFC-FIRST-SEMESTER-PROGRESSION",
+        "verification_status": "unverified",
+        "source_reference": source_reference,
+        "condition": {
+            "type": "required_course_pool_incomplete",
+            "label": "All first-semester courses must be passed before progression",
+            "id": "nmfc_first_semester_completion",
+            "course_codes": [
+                "AAE4003W",
+                "MDN4017W",
+                "PED4017W",
+                "OBS4006W",
+                "PRY4001W",
+            ],
+        },
+        "consequence": {
+            "type": "progression_ineligible",
+            "label": "NMFC first-semester progression requirement not met",
+        },
+    }
+
+
+def mbchb_fundamentals_progression_policy(
+    source_reference: str,
+) -> dict[str, Any]:
+    return {
+        "type": "progression_policy",
+        "label": "MBChB Fundamentals progression requirement",
+        "policy_id": "UCT-HEALTH-2026-MBCHB-FUNDAMENTALS-PROGRESSION",
+        "verification_status": "unverified",
+        "source_reference": source_reference,
+        "condition": {
+            "type": "course_requirement_incomplete",
+            "label": "Fundamentals course requirement incomplete",
+            "id": "mbchb_fundamentals_completion",
+            "course_codes": ["HSE1001F", "HSE1001S"],
+            "required": 1,
+        },
+        "consequence": {
+            "type": "progression_ineligible",
+            "label": "Fundamentals prerequisite for progression into the standard MBChB curriculum is not currently met",
+        },
+    }
 
 
 def any_of(
@@ -275,6 +331,132 @@ def weighted_average(
 
 def no_failures(label: str, rule_id: str) -> dict[str, Any]:
     return {"type": "no_failures", "id": rule_id, "label": label}
+
+
+def health_rehabilitation_awards() -> list[dict[str, Any]]:
+    return [
+        {
+            "name": "Degree with distinction",
+            "curriculum_rules": [
+                weighted_average("Cumulative programme GPA", "hrs_gpa", 75)
+            ],
+        }
+    ]
+
+
+def mbchb_pathway_awards(
+    mbchb_years: dict[int, list[str]], ssm: list[str]
+) -> dict[str, dict[str, Any]]:
+    return {
+        "gpa_2024_plus": {
+            "name": "First enrolled from 2024 — GPA award rules",
+            "curriculum_rules": [],
+            "progression_rules": [],
+            "verification_status": "verified",
+            "availability": "open",
+            "source": source(34, "FGU11 award rules"),
+            "award_rules": [
+                {
+                    "name": "Honours in Basic Sciences",
+                    "curriculum_rules": [
+                        weighted_average(
+                            "Years 1–3 cumulative GPA",
+                            "mb_basic_gpa",
+                            80,
+                            sum((mbchb_years[y] for y in (1, 2, 3)), []) + ssm,
+                        )
+                    ],
+                },
+                {
+                    "name": "Honours in Clinical Sciences",
+                    "curriculum_rules": [
+                        weighted_average(
+                            "Years 4–6 cumulative GPA",
+                            "mb_clinical_gpa",
+                            75,
+                            sum((mbchb_years[y] for y in (4, 5, 6)), []),
+                        )
+                    ],
+                },
+                {
+                    "name": "Degree with honours",
+                    "curriculum_rules": [
+                        weighted_average("Cumulative MBChB GPA", "mb_honours_gpa", 75)
+                    ],
+                },
+                {
+                    "name": "Degree with first-class honours",
+                    "curriculum_rules": [
+                        weighted_average("Cumulative MBChB GPA", "mb_first_gpa", 85)
+                    ],
+                },
+            ],
+        },
+        "legacy_pre_2024": {
+            "name": "First enrolled before 2024 — legacy points award rules",
+            "curriculum_rules": [],
+            "progression_rules": [],
+            "verification_status": "verified",
+            "availability": "continuing_only",
+            "availability_note": "Use only for students first registered before 2024.",
+            "source": source(34, "FGU11 legacy award rules"),
+            "award_rules": [
+                {
+                    "name": "Legacy MBChB award assessment",
+                    "curriculum_rules": [
+                        manual(
+                            "Legacy points-based award calculation",
+                            "mb_legacy_award",
+                            "The pre-2024 points system depends on the detailed historical award table and Faculty confirmation.",
+                            status="discretionary",
+                        )
+                    ],
+                }
+            ],
+        },
+    }
+
+
+def cosmetic_formulation_awards(
+    courses: dict[str, dict[str, Any]], cosmetic_codes: Iterable[str]
+) -> list[dict[str, Any]]:
+    return [
+        {
+            "name": "Diploma with distinction",
+            "curriculum_rules": [
+                weighted_average("Cumulative diploma GPA", "cosmetic_gpa", 75),
+                all_of(
+                    [
+                        {
+                            "type": "minimum_mark",
+                            "id": f"cosmetic_min_{code.lower()}",
+                            "label": f"{code} mark",
+                            "course_codes": [code],
+                            "minimum_mark": 60,
+                        }
+                        for code in cosmetic_codes
+                        if courses[code]["credits"] > 0
+                    ],
+                    "No credit-bearing course below 60%",
+                    "cosmetic_minimum",
+                ),
+                no_failures(
+                    "All courses passed at first attempt", "cosmetic_no_failures"
+                ),
+            ],
+        }
+    ]
+
+
+def bsc_medicine_awards() -> list[dict[str, Any]]:
+    return [
+        {
+            "name": "Degree with distinction",
+            "curriculum_rules": [
+                weighted_average("Cumulative BSc Medicine GPA", "bscmed_gpa", 75)
+            ],
+        }
+    ]
 
 
 def programme(
@@ -603,14 +785,7 @@ def main() -> None:
             "label": "No failed course during a repeat year",
         },
     ]
-    hrs_award = [
-        {
-            "name": "Degree with distinction",
-            "curriculum_rules": [
-                weighted_average("Cumulative programme GPA", "hrs_gpa", 75)
-            ],
-        }
-    ]
+    hrs_award = health_rehabilitation_awards()
 
     # Audiology / SLP
     comm_common = [
@@ -915,74 +1090,7 @@ def main() -> None:
             "maximum": 7,
         },
     ]
-    mbchb_pathways = {
-        "gpa_2024_plus": {
-            "name": "First enrolled from 2024 — GPA award rules",
-            "curriculum_rules": [],
-            "progression_rules": [],
-            "verification_status": "verified",
-            "availability": "open",
-            "source": source(34, "FGU11 award rules"),
-            "award_rules": [
-                {
-                    "name": "Honours in Basic Sciences",
-                    "curriculum_rules": [
-                        weighted_average(
-                            "Years 1–3 cumulative GPA",
-                            "mb_basic_gpa",
-                            80,
-                            sum((mbchb_years[y] for y in (1, 2, 3)), []) + ssm,
-                        )
-                    ],
-                },
-                {
-                    "name": "Honours in Clinical Sciences",
-                    "curriculum_rules": [
-                        weighted_average(
-                            "Years 4–6 cumulative GPA",
-                            "mb_clinical_gpa",
-                            75,
-                            sum((mbchb_years[y] for y in (4, 5, 6)), []),
-                        )
-                    ],
-                },
-                {
-                    "name": "Degree with honours",
-                    "curriculum_rules": [
-                        weighted_average("Cumulative MBChB GPA", "mb_honours_gpa", 75)
-                    ],
-                },
-                {
-                    "name": "Degree with first-class honours",
-                    "curriculum_rules": [
-                        weighted_average("Cumulative MBChB GPA", "mb_first_gpa", 85)
-                    ],
-                },
-            ],
-        },
-        "legacy_pre_2024": {
-            "name": "First enrolled before 2024 — legacy points award rules",
-            "curriculum_rules": [],
-            "progression_rules": [],
-            "verification_status": "verified",
-            "availability": "continuing_only",
-            "availability_note": "Use only for students first registered before 2024.",
-            "source": source(34, "FGU11 legacy award rules"),
-            "award_rules": [
-                {
-                    "name": "Legacy MBChB award assessment",
-                    "curriculum_rules": [
-                        manual(
-                            "Legacy points-based award calculation",
-                            "mb_legacy_award",
-                            "The pre-2024 points system depends on the detailed historical award table and Faculty confirmation.",
-                            status="discretionary",
-                        )
-                    ],
-                }
-            ],
-        },
-    }
+    mbchb_pathways = mbchb_pathway_awards(mbchb_years, ssm)
 
     # BSc Medicine credit-recognition route
     bscmed_recognised = [
@@ -1070,32 +1178,7 @@ def main() -> None:
         "MDN3009W",
         "MDN3010W",
     ]
-    cosmetic_award = [
-        {
-            "name": "Diploma with distinction",
-            "curriculum_rules": [
-                weighted_average("Cumulative diploma GPA", "cosmetic_gpa", 75),
-                all_of(
-                    [
-                        {
-                            "type": "minimum_mark",
-                            "id": f"cosmetic_min_{code.lower()}",
-                            "label": f"{code} mark",
-                            "course_codes": [code],
-                            "minimum_mark": 60,
-                        }
-                        for code in cosmetic_codes
-                        if courses[code]["credits"] > 0
-                    ],
-                    "No credit-bearing course below 60%",
-                    "cosmetic_minimum",
-                ),
-                no_failures(
-                    "All courses passed at first attempt", "cosmetic_no_failures"
-                ),
-            ],
-        }
-    ]
+    cosmetic_award = cosmetic_formulation_awards(courses, cosmetic_codes)
 
     # NMFC
     nmfc_codes = [
@@ -1447,11 +1530,7 @@ def main() -> None:
         )
     ] + mbchb_rules
     mb_fund_progress = [
-        {
-            "type": "failed_any",
-            "label": "Fundamentals course must be passed",
-            "course_codes": ["HSE1001F", "HSE1001S"],
-        }
+        mbchb_fundamentals_progression_policy(health_source_reference(62))
     ] + [
         dict(r, maximum=8) if r.get("type") == "maximum_years" else r
         for r in mbchb_progress
@@ -1495,14 +1574,7 @@ def main() -> None:
                 "maximum": 1,
             }
         ],
-        awards=[
-            {
-                "name": "Degree with distinction",
-                "curriculum_rules": [
-                    weighted_average("Cumulative BSc Medicine GPA", "bscmed_gpa", 75)
-                ],
-            }
-        ],
+        awards=bsc_medicine_awards(),
         page=55,
         route_type="credit_recognition",
         admission_notes=[
@@ -1557,17 +1629,7 @@ def main() -> None:
         required=[],
         rules=nmfc_rules,
         progression=[
-            {
-                "type": "failed_any",
-                "label": "All first-semester courses must be passed before progression",
-                "course_codes": [
-                    "AAE4003W",
-                    "MDN4017W",
-                    "PED4017W",
-                    "OBS4006W",
-                    "PRY4001W",
-                ],
-            },
+            nmfc_first_semester_progression_policy(health_source_reference(65)),
             {
                 "type": "repeat_failure",
                 "label": "No repeated course failure",

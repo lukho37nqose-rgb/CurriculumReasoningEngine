@@ -4,20 +4,37 @@ Allows students to ask "What if" questions and see the impact on their graduatio
 """
 
 import copy
-from typing import List, Dict, Set, Tuple, Optional, Any
-from .models import StudentRecord, CourseResult, Catalogue
+
+from curriculum_reasoning_engine.institutions import (
+    AcademicCreditFramework,
+    CourseCodeScheme,
+    CourseLoadFramework,
+    GradingScheme,
+)
+
 from .knowledge_graph import KnowledgeGraph
-from .rule_engine import compute_report, Report
-from .reasoner import GraduateGoal, HonoursReadinessGoal
+from .models import Catalogue, CourseResult, StudentRecord
+from .rule_engine import Report, compute_report
 
 
 class SimulationEngine:
     def __init__(
-        self, student: StudentRecord, catalogue: Catalogue, graph: KnowledgeGraph
+        self,
+        student: StudentRecord,
+        catalogue: Catalogue,
+        graph: KnowledgeGraph,
+        grading_scheme: GradingScheme | None = None,
+        credit_framework: AcademicCreditFramework | None = None,
+        course_code_scheme: CourseCodeScheme | None = None,
+        course_load_framework: CourseLoadFramework | None = None,
     ):
         self.student = student
         self.catalogue = catalogue
         self.graph = graph
+        self.grading_scheme = grading_scheme
+        self.credit_framework = credit_framework
+        self.course_code_scheme = course_code_scheme
+        self.course_load_framework = course_load_framework
 
     def _course_fact(self, course_code: str):
         course_code = course_code.strip().upper()
@@ -35,7 +52,7 @@ class SimulationEngine:
             raise ValueError("Simulated marks must be between 0 and 100.")
         return mark
 
-    def simulate_fail_course(self, course_code: str) -> Tuple[Report, List[str]]:
+    def simulate_fail_course(self, course_code: str) -> tuple[Report, list[str]]:
         """Simulate failing a course. Returns the new report and a list of blocked courses."""
         course_code = course_code.strip().upper()
         course_fact = self._course_fact(course_code)
@@ -64,7 +81,14 @@ class SimulationEngine:
             )
 
         # Compute new report
-        new_report = compute_report(sim_student, self.catalogue)
+        new_report = compute_report(
+            sim_student,
+            self.catalogue,
+            self.grading_scheme,
+            self.credit_framework,
+            self.course_code_scheme,
+            self.course_load_framework,
+        )
 
         # Find blocked courses
         blocked = self.graph.get_all_unlocked_courses(course_code)
@@ -104,16 +128,30 @@ class SimulationEngine:
                 )
             )
 
-        return compute_report(sim_student, self.catalogue)
+        return compute_report(
+            sim_student,
+            self.catalogue,
+            self.grading_scheme,
+            self.credit_framework,
+            self.course_code_scheme,
+            self.course_load_framework,
+        )
 
-    def simulate_switch_majors(self, new_majors: List[str]) -> Report:
+    def simulate_switch_majors(self, new_majors: list[str]) -> Report:
         """Simulate switching to a new set of majors."""
         sim_student = copy.deepcopy(self.student)
         sim_student.declared_majors = new_majors
-        return compute_report(sim_student, self.catalogue)
+        return compute_report(
+            sim_student,
+            self.catalogue,
+            self.grading_scheme,
+            self.credit_framework,
+            self.course_code_scheme,
+            self.course_load_framework,
+        )
 
     def simulate_future_semester(
-        self, courses_to_take: List[Tuple[str, int]]
+        self, courses_to_take: list[tuple[str, int]]
     ) -> Report:
         """Simulate taking a set of courses next semester with expected marks."""
         sim_student = copy.deepcopy(self.student)
@@ -145,4 +183,11 @@ class SimulationEngine:
                 )
             )
 
-        return compute_report(sim_student, self.catalogue)
+        return compute_report(
+            sim_student,
+            self.catalogue,
+            self.grading_scheme,
+            self.credit_framework,
+            self.course_code_scheme,
+            self.course_load_framework,
+        )

@@ -1,0 +1,97 @@
+{
+  "catalogue_version": "northstar-fixture-2027",
+  "source": "Synthetic Northstar onboarding fixture, not an institutional regulation",
+  "programmes": {
+    "systems_inquiry": {
+      "name": "Diploma in Systems Inquiry",
+      "programme_type": "structured",
+      "verification_status": "unverified",
+      "scope_verified": true,
+      "pathways": {
+        "advanced_inquiry": {"name": "Advanced Inquiry entry route"}
+      },
+      "pathway_entry_eligibility": {
+        "advanced_inquiry": {
+          "eligibility_spec_id": "NORTHSTAR-2027-ADVANCED-INQUIRY-ENTRY",
+          "programme_key": "systems_inquiry",
+          "pathway_key": "advanced_inquiry",
+          "verification_status": "unverified",
+          "source_reference": "Synthetic Northstar fixture / advanced inquiry academic entry policy, not an admission decision",
+          "condition": {
+            "type": "all_of",
+            "conditions": [
+              {"type": "one_of", "conditions": [
+                {"type": "qualification_held", "qualification_system_id": "ORION-CERT", "qualification_id": "ORA-K7"},
+                {"type": "course_completed", "course_code": "FOUND-X7"}
+              ]},
+              {"type": "external_subject_achievement", "qualification_system_id": "ORION-CERT", "subject_id": "OR-MATH", "comparator": "gte", "threshold": 7}
+            ]
+          }
+        }
+      },
+      "total_nqf_credits": 45,
+      "level_7_nqf_credits": 0,
+      "semester_course_equivalents": 0,
+      "senior_course_equivalents": 0,
+      "humanities_course_equivalents": 0,
+      "required_majors": 0,
+      "required_humanities_majors": 0,
+      "required_courses": ["FOUND-X7","CORE-Q2","CAP-R4","LAB-T6"],
+      "support_course_codes": ["PATH-Z9","ALT-V8"],
+      "curriculum_rules": [
+        {"id":"foundation","type":"course","label":"Foundation completion","course_codes":["FOUND-X7"]},
+        {"id":"core","type":"all_courses","label":"Foundation and core completion","course_codes":["FOUND-X7","CORE-Q2"]},
+        {"id":"studio","type":"course","label":"One studio requirement","required":1,"course_codes":["PATH-Z9","ALT-V8"]},
+        {"id":"studio_credit","type":"credit_pool","label":"Studio credit requirement","required":15,"course_codes":["PATH-Z9","ALT-V8"]},
+        {"id":"capstone","type":"course","label":"Capstone completion","course_codes":["CAP-R4"]}
+      ],
+      "qualification_completion": {
+        "completion_spec_id":"NORTHSTAR-2027-SYSTEMS-COMPLETION",
+        "required_requirement_ids":["foundation","core","studio","studio_credit","capstone"],
+        "source_reference":"Synthetic Northstar fixture / qualification completion contract",
+        "verification_status":"unverified"
+      },
+      "graduation_eligibility": {
+        "eligibility_spec_id":"NORTHSTAR-2027-GRADUATION-ELIGIBILITY",
+        "requires_academic_completion":true,
+        "required_clearance_ids":["NS-CLEARANCE-A","NS-CLEARANCE-Z"],
+        "source_reference":"Synthetic Northstar fixture / graduation eligibility contract",
+        "verification_status":"unverified"
+      },
+      "progression_rules": [
+        {
+          "type":"progression_policy","policy_id":"NORTHSTAR-2027-PASS-RATIO",
+          "verification_status":"unverified",
+          "source_reference":"Synthetic Northstar fixture / P1: annual pass ratio below 65% produces advisory risk",
+          "condition":{
+            "type":"progression_ratio","label":"Annual pass ratio advisory threshold",
+            "temporal_scope":"latest_academic_year","temporal_anchor":"recognised_or_provisional",
+            "numerator":{"metric_basis":"credit_value","identity":"attempt","result_population":"passed","evidence_population":"recognised_or_provisional"},
+            "denominator":{"metric_basis":"credit_value","identity":"attempt","result_population":"attempted_non_pending","evidence_population":"recognised_or_provisional"},
+            "comparison":"lt","threshold":0.65
+          },
+          "consequence":{"type":"advisory_risk","label":"Annual academic-risk advisory"}
+        },
+        {
+          "type":"progression_policy","policy_id":"NORTHSTAR-2027-FOUNDATION-COMPLETION",
+          "verification_status":"unverified",
+          "source_reference":"Synthetic Northstar fixture / P2: foundation and core completion required before progression",
+          "condition":{"type":"required_course_pool_incomplete","label":"Foundation requirements incomplete","course_codes":["FOUND-X7","CORE-Q2"]},
+          "consequence":{"type":"progression_ineligible","label":"Foundation progression prerequisite not met"}
+        }
+      ]
+    }
+  },
+  "majors": {},
+  "award_rules": [
+    {
+      "id":"NORTHSTAR-2027-ACHIEVEMENT","name":"Systems Inquiry Achievement",
+      "type":"qualification_distinction","applies_to":"structured","verification_status":"unverified",
+      "source":{"reference":"Synthetic Northstar fixture / A1: 82 credit-weighted average and 30 earned credits"},
+      "curriculum_rules":[
+        {"id":"award_average","type":"weighted_average","label":"Achievement average","course_codes":["FOUND-X7","CORE-Q2","PATH-Z9","ALT-V8","CAP-R4","LAB-T6"],"minimum_average":82,"weighting":{"basis":"credit_value"}},
+        {"id":"award_credits","type":"credits","label":"Minimum award credit evidence","required":30}
+      ]
+    }
+  ]
+}

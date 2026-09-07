@@ -1,6 +1,216 @@
 {
+  "institution_sources": [
+    {
+      "source_id": "uct:2026:document:humanities-undergraduate-handbook",
+      "institution_id": "uct",
+      "release_id": "2026",
+      "source_kind": "document",
+      "title": "2026 Humanities Undergraduate Handbook",
+      "source_status": "checksum_mismatch_unverified_source_archive"
+    }
+  ],
+  "requirement_source_relationships": [
+    {
+      "relationship_id": "uct:2026:bsocsc_ppe:ppe_year1:source",
+      "institution_id": "uct",
+      "release_id": "2026",
+      "requirement_id": "ppe_year1",
+      "programme_key": "bsocsc_ppe",
+      "source_id": "uct:2026:document:humanities-undergraduate-handbook",
+      "relationship_type": "DIRECT_RULE_SOURCE",
+      "locator": {
+        "page": 43,
+        "section": "First-year PPE curriculum"
+      },
+      "relationship_status": "unverified",
+      "rule_status": "verified"
+    },
+    {
+      "relationship_id": "uct:2026:bsocsc_ppe:ppe_year2_fixed:source",
+      "institution_id": "uct",
+      "release_id": "2026",
+      "requirement_id": "ppe_year2_fixed",
+      "programme_key": "bsocsc_ppe",
+      "source_id": "uct:2026:document:humanities-undergraduate-handbook",
+      "relationship_type": "DIRECT_RULE_SOURCE",
+      "locator": {
+        "page": 43,
+        "section": "Second-year compulsory courses"
+      },
+      "relationship_status": "unverified",
+      "rule_status": "verified"
+    },
+    {
+      "relationship_id": "uct:2026:bsocsc_ppe:ppe_year2_politics:source",
+      "institution_id": "uct",
+      "release_id": "2026",
+      "requirement_id": "ppe_year2_politics",
+      "programme_key": "bsocsc_ppe",
+      "source_id": "uct:2026:document:humanities-undergraduate-handbook",
+      "relationship_type": "DIRECT_RULE_SOURCE",
+      "locator": {
+        "page": 43,
+        "section": "One second-year Politics option"
+      },
+      "relationship_status": "unverified",
+      "rule_status": "verified"
+    },
+    {
+      "relationship_id": "uct:2026:bsocsc_ppe:ppe_year2_other:source",
+      "institution_id": "uct",
+      "release_id": "2026",
+      "requirement_id": "ppe_year2_other",
+      "programme_key": "bsocsc_ppe",
+      "source_id": "uct:2026:document:humanities-undergraduate-handbook",
+      "relationship_type": "DIRECT_RULE_SOURCE",
+      "locator": {
+        "page": 43,
+        "section": "One additional second-year option"
+      },
+      "relationship_status": "unverified",
+      "rule_status": "verified"
+    },
+    {
+      "relationship_id": "uct:2026:bsocsc_ppe:ppe_eco3025:source",
+      "institution_id": "uct",
+      "release_id": "2026",
+      "requirement_id": "ppe_eco3025",
+      "programme_key": "bsocsc_ppe",
+      "source_id": "uct:2026:document:humanities-undergraduate-handbook",
+      "relationship_type": "DIRECT_RULE_SOURCE",
+      "locator": {
+        "page": 44,
+        "section": "Compulsory third-year Economics course"
+      },
+      "relationship_status": "unverified",
+      "rule_status": "verified"
+    },
+    {
+      "relationship_id": "uct:2026:bsocsc_ppe:ppe_phi3:source",
+      "institution_id": "uct",
+      "release_id": "2026",
+      "requirement_id": "ppe_phi3",
+      "programme_key": "bsocsc_ppe",
+      "source_id": "uct:2026:document:humanities-undergraduate-handbook",
+      "relationship_type": "DIRECT_RULE_SOURCE",
+      "locator": {
+        "page": 44,
+        "section": "At least one third-year Philosophy option"
+      },
+      "relationship_status": "unverified",
+      "rule_status": "verified"
+    },
+    {
+      "relationship_id": "uct:2026:bsocsc_ppe:ppe_pol3:source",
+      "institution_id": "uct",
+      "release_id": "2026",
+      "requirement_id": "ppe_pol3",
+      "programme_key": "bsocsc_ppe",
+      "source_id": "uct:2026:document:humanities-undergraduate-handbook",
+      "relationship_type": "DIRECT_RULE_SOURCE",
+      "locator": {
+        "page": 44,
+        "section": "At least one third-year Politics option"
+      },
+      "relationship_status": "unverified",
+      "rule_status": "verified"
+    }
+  ],
   "source": "2026 Humanities Undergraduate Handbook; 2026 General Rules and Policies Handbook",
   "catalogue_version": "2026.2-humanities-complete",
+  "award_rules": [
+    {
+      "id": "humanities_fb1_1_standard_subject_distinction",
+      "name": "Humanities FB1.1 standard subject distinction",
+      "type": "subject_selected_set_distinction",
+      "applies_to": "standard_faculty_owned_major_without_award_rules",
+      "eligible_set": {
+        "basis": "major_senior_courses"
+      },
+      "selection_boundary": {
+        "basis": "course_load_equivalent",
+        "maximum": 4,
+        "authority": "Head of Department",
+        "status": "discretionary",
+        "message": "More than four senior semester-course equivalents are available, so the Head of Department must determine which courses are considered."
+      },
+      "required_load_equivalents": 4,
+      "advanced_level": 7,
+      "required_advanced_load_equivalents": 2,
+      "minimum_average": 75,
+      "advanced_minimum_average": 75,
+      "minimum_individual_mark": 70,
+      "first_attempt_only": true,
+      "weighting": {
+        "basis": "course_load_equivalent"
+      },
+      "verification_status": "verified",
+      "source": {
+        "document": "2026 Humanities Undergraduate Handbook",
+        "section": "FB1.1",
+        "rule": "Subject distinction for standard Humanities majors"
+      }
+    },
+    {
+      "id": "humanities_fb1_4_qualification_distinction",
+      "name": "Humanities FB1.4 qualification distinction",
+      "type": "qualification_distinction",
+      "applies_to": "general_humanities_degree",
+      "verification_status": "verified",
+      "curriculum_rules": [
+        {
+          "id": "humanities_fb1_4_total_first_class_sce",
+          "label": "At least 10 first-class semester-course equivalents",
+          "type": "passed_mark_equivalents",
+          "required": 10,
+          "minimum_mark": 75,
+          "filters": {
+            "counts_towards_course_equivalents": true
+          },
+          "source": {
+            "document": "2026 Humanities Undergraduate Handbook",
+            "section": "FB1.4",
+            "rule": "Total first-class semester-course equivalents"
+          }
+        },
+        {
+          "id": "humanities_fb1_4_senior_first_class_sce",
+          "label": "At least 8 senior first-class semester-course equivalents",
+          "type": "passed_mark_equivalents",
+          "required": 8,
+          "minimum_mark": 75,
+          "filters": {
+            "counts_towards_course_equivalents": true,
+            "senior": true
+          },
+          "source": {
+            "document": "2026 Humanities Undergraduate Handbook",
+            "section": "FB1.4",
+            "rule": "Senior first-class semester-course equivalents"
+          }
+        },
+        {
+          "id": "humanities_fb1_4_subject_distinction_dependency",
+          "label": "At least one verified subject distinction",
+          "type": "award_dependency",
+          "award_scope": "subject_distinction",
+          "minimum_count": 1,
+          "required_outcome": "eligible",
+          "minimum_verification_status": "verified",
+          "source": {
+            "document": "2026 Humanities Undergraduate Handbook",
+            "section": "FB1.4",
+            "rule": "Subject-distinction dependency"
+          }
+        }
+      ],
+      "source": {
+        "document": "2026 Humanities Undergraduate Handbook",
+        "section": "FB1.4",
+        "rule": "Qualification distinction"
+      }
+    }
+  ],
   "programmes": {
     "ba_regular": {
       "minimum_nqf_credits": 360,
@@ -9121,7 +9331,46 @@
         "rule": "FB3 and departmental major entry"
       },
       "verification_status": "verified",
-      "verification_notes": []
+      "verification_notes": [],
+      "award_rules": [
+        {
+          "id": "economics_fb1_2_subject_distinction",
+          "name": "Economics subject distinction",
+          "curriculum_rules": [
+            {
+              "type": "best_n_average",
+              "id": "economics_fb1_2_best3",
+              "label": "ECO3020F plus two other third-year Economics courses",
+              "course_codes": [
+                "ECO3009F",
+                "ECO3016F",
+                "ECO3020F",
+                "ECO3021S",
+                "ECO3022S",
+                "ECO3023S",
+                "ECO3024F",
+                "ECO3025S"
+              ],
+              "required": 3,
+              "mandatory_course_codes": [
+                "ECO3020F"
+              ],
+              "minimum_average": 80,
+              "minimum_mark_count": 2,
+              "minimum_mark": 75,
+              "weighting": {
+                "basis": "credit_value"
+              },
+              "source": {
+                "document": "2026 Humanities Undergraduate Handbook; governed Commerce Economics subject-distinction representation",
+                "page": 161,
+                "section": "Requirements for a major in Economics",
+                "rule": "FB1.2"
+              }
+            }
+          ]
+        }
+      ]
     },
     "literary_studies": {
       "name": "Literary Studies",
@@ -9306,6 +9555,103 @@
       "verification_status": "provisional",
       "verification_notes": [
         "This major contains conditional pathways, bundled alternatives, or departmental discretion that the current flat rule schema cannot represent without simplification."
+      ],
+      "award_rules": [
+        {
+          "id": "informatics_fb1_2_subject_distinction",
+          "name": "Informatics subject distinction",
+          "curriculum_rules": [
+            {
+              "type": "all_of",
+              "id": "informatics_fb1_2_components",
+              "label": "Informatics FB1.2 subject-distinction components",
+              "verification_status": "provisional",
+              "source": {
+                "document": "2026 Humanities Undergraduate Handbook; governed Commerce Information Systems subject-distinction representations",
+                "page": 235,
+                "section": "Requirements for a major in Informatics",
+                "rule": "FB1.2"
+              },
+              "children": [
+                {
+                  "type": "minimum_mark",
+                  "id": "informatics_fb1_2_inf2011s",
+                  "label": "INF2011S minimum mark",
+                  "course_codes": [
+                    "INF2011S"
+                  ],
+                  "minimum_mark": 70
+                },
+                {
+                  "type": "minimum_mark",
+                  "id": "informatics_fb1_2_inf3011f",
+                  "label": "INF3011F minimum mark",
+                  "course_codes": [
+                    "INF3011F"
+                  ],
+                  "minimum_mark": 70
+                },
+                {
+                  "type": "minimum_mark",
+                  "id": "informatics_fb1_2_inf3014f",
+                  "label": "INF3014F minimum mark",
+                  "course_codes": [
+                    "INF3014F"
+                  ],
+                  "minimum_mark": 70
+                },
+                {
+                  "type": "passed_mark_count",
+                  "id": "informatics_fb1_2_alternative_minimum",
+                  "label": "One Informatics alternative minimum mark",
+                  "course_codes": [
+                    "INF2010S",
+                    "INF3012S"
+                  ],
+                  "required": 1,
+                  "minimum_mark": 70
+                },
+                {
+                  "type": "best_n_average",
+                  "id": "informatics_fb1_2_overall_average",
+                  "label": "INF2011S, INF3011F, INF3014F plus one governed alternative average",
+                  "course_codes": [
+                    "INF2011S",
+                    "INF3011F",
+                    "INF3014F",
+                    "INF2010S",
+                    "INF3012S"
+                  ],
+                  "mandatory_course_codes": [
+                    "INF2011S",
+                    "INF3011F",
+                    "INF3014F"
+                  ],
+                  "required": 4,
+                  "minimum_average": 75,
+                  "minimum_mark_count": 4,
+                  "minimum_mark": 70,
+                  "weighting": {
+                    "basis": "equal"
+                  }
+                },
+                {
+                  "type": "weighted_average",
+                  "id": "informatics_fb1_2_level7_average",
+                  "label": "INF3011F and INF3014F average",
+                  "course_codes": [
+                    "INF3011F",
+                    "INF3014F"
+                  ],
+                  "minimum_average": 75,
+                  "weighting": {
+                    "basis": "equal"
+                  }
+                }
+              ]
+            }
+          ]
+        }
       ]
     },
     "xhosa_communication": {
@@ -9662,7 +10008,57 @@
         "rule": "FB3 and departmental major entry"
       },
       "verification_status": "verified",
-      "verification_notes": []
+      "verification_notes": [],
+      "award_rules": [
+        {
+          "id": "law_fb1_2_subject_distinction",
+          "name": "Law subject distinction",
+          "curriculum_rules": [
+            {
+              "type": "all_courses",
+              "id": "law_fb1_2_required_courses",
+              "label": "All six Law-major courses",
+              "course_codes": [
+                "PVL1003W",
+                "PVL1004F",
+                "PVL1008H",
+                "PBL2000W",
+                "PVL2002H",
+                "PVL2003H"
+              ],
+              "source": {
+                "document": "2026 Humanities Undergraduate Handbook",
+                "page": 294,
+                "section": "Requirements for a major in Law",
+                "rule": "FB1.2"
+              }
+            },
+            {
+              "type": "weighted_average",
+              "id": "law_fb1_2_credit_weighted_average",
+              "label": "Law-major credit-weighted average",
+              "course_codes": [
+                "PVL1003W",
+                "PVL1004F",
+                "PVL1008H",
+                "PBL2000W",
+                "PVL2002H",
+                "PVL2003H"
+              ],
+              "minimum_average": 75,
+              "weighting": {
+                "basis": "credit_value"
+              },
+              "source": {
+                "document": "2026 Humanities Undergraduate Handbook",
+                "page": 294,
+                "section": "Requirements for a major in Law",
+                "rule": "FB1.2"
+              }
+            }
+          ]
+        }
+      ]
     },
     "industrial_and_organisational_psychology": {
       "name": "Industrial And Organisational Psychology",
@@ -9688,6 +10084,47 @@
         "section": "Requirements for a major in Industrial And Organisational Psychology",
         "rule": "FB3 and departmental major entry"
       },
+      "award_rules": [
+        {
+          "name": "Industrial and Organisational Psychology subject distinction",
+          "curriculum_rules": [
+            {
+              "type": "passed_mark_count",
+              "id": "industrial_and_organisational_psychology_fb1_2_second_year",
+              "label": "Two second-year Industrial and Organisational Psychology first-class passes",
+              "course_codes": [
+                "BUS2024F",
+                "BUS2023S"
+              ],
+              "required": 2,
+              "minimum_mark": 75,
+              "source": {
+                "document": "2026 Humanities Undergraduate Handbook",
+                "page": 298,
+                "section": "Requirements for a major in Industrial And Organisational Psychology",
+                "rule": "FB1.2"
+              }
+            },
+            {
+              "type": "passed_mark_count",
+              "id": "industrial_and_organisational_psychology_fb1_2_third_year",
+              "label": "Two third-year Industrial and Organisational Psychology first-class passes",
+              "course_codes": [
+                "BUS3003F",
+                "BUS3004S"
+              ],
+              "required": 2,
+              "minimum_mark": 75,
+              "source": {
+                "document": "2026 Humanities Undergraduate Handbook",
+                "page": 298,
+                "section": "Requirements for a major in Industrial And Organisational Psychology",
+                "rule": "FB1.2"
+              }
+            }
+          ]
+        }
+      ],
       "verification_status": "verified",
       "verification_notes": []
     },
@@ -9900,7 +10337,81 @@
         "rule": "FB3 and departmental major entry"
       },
       "verification_status": "verified",
-      "verification_notes": []
+      "verification_notes": [],
+      "award_rules": [
+        {
+          "id": "psychology_fb1_2_subject_distinction",
+          "name": "Psychology subject distinction",
+          "curriculum_rules": [
+            {
+              "type": "minimum_mark",
+              "id": "psychology_fb1_2_psy2015f",
+              "label": "First-class pass in PSY2015F",
+              "course_codes": [
+                "PSY2015F"
+              ],
+              "minimum_mark": 75,
+              "source": {
+                "document": "2026 Humanities Undergraduate Handbook",
+                "page": 380,
+                "section": "Requirements for a major in Psychology",
+                "rule": "FB1.2"
+              }
+            },
+            {
+              "type": "passed_mark_count",
+              "id": "psychology_fb1_2_second_year_option",
+              "label": "One additional second-year Psychology first-class pass",
+              "course_codes": [
+                "PSY2013F",
+                "PSY2014S"
+              ],
+              "required": 1,
+              "minimum_mark": 75,
+              "source": {
+                "document": "2026 Humanities Undergraduate Handbook",
+                "page": 380,
+                "section": "Requirements for a major in Psychology",
+                "rule": "FB1.2"
+              }
+            },
+            {
+              "type": "minimum_mark",
+              "id": "psychology_fb1_2_psy3007s",
+              "label": "First-class pass in PSY3007S",
+              "course_codes": [
+                "PSY3007S"
+              ],
+              "minimum_mark": 75,
+              "source": {
+                "document": "2026 Humanities Undergraduate Handbook",
+                "page": 380,
+                "section": "Requirements for a major in Psychology",
+                "rule": "FB1.2"
+              }
+            },
+            {
+              "type": "passed_mark_count",
+              "id": "psychology_fb1_2_third_year_option",
+              "label": "One additional third-year Psychology first-class pass",
+              "course_codes": [
+                "PSY3005F",
+                "PSY3009F",
+                "PSY3010S",
+                "PSY3011S"
+              ],
+              "required": 1,
+              "minimum_mark": 75,
+              "source": {
+                "document": "2026 Humanities Undergraduate Handbook",
+                "page": 380,
+                "section": "Requirements for a major in Psychology",
+                "rule": "FB1.2"
+              }
+            }
+          ]
+        }
+      ]
     },
     "social_development": {
       "name": "Social Development",

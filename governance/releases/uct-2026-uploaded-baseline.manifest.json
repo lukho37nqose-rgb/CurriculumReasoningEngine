@@ -1,9 +1,9 @@
 {
   "academic_year": 2026,
   "catalogue_root_name": "data",
-  "content_sha256": "efb358b5dc9e0b1ae137db4a24a18a23ed180ab408f7ee953cebb7637c2497fe",
-  "created_at": "2026-07-01T12:05:23+00:00",
-  "created_by": "CurriculumAdvisor governance merge",
+  "content_sha256": "d8f6a1cbe7bf960c167bdf0a43d19dfd2fd0c288e13750eef46da79131cae94f",
+  "created_at": "2026-09-03T18:30:48+00:00",
+  "created_by": "Stage 8Z2 MBChB Fundamentals ProgressionPolicy migration",
   "file_count": 22,
   "files": [
     {
@@ -13,8 +13,8 @@
     },
     {
       "path": "uct_commerce/degree_requirements.json",
-      "sha256": "1d2780675b7d3720aad1edeee7d4bf91b85fcc38013a388ccb8d4243d81724b4",
-      "size": 1596983
+      "sha256": "925c980597317f31e2263cb17187f1192be5a9baa5561b4dce0efee4a3a56150",
+      "size": 1661319
     },
     {
       "path": "uct_commerce/source_extraction/course_fact_conflicts.json",
@@ -28,13 +28,13 @@
     },
     {
       "path": "uct_ebe/courses.json",
-      "sha256": "256387162be475bbfe9e31807fa0277a271530b24bd39aa26116d68527773872",
-      "size": 298813
+      "sha256": "31c8a6a35667dbf1b5a2c49d291ded550267fac9b75e67874d06b37cfdad6a22",
+      "size": 309002
     },
     {
       "path": "uct_ebe/degree_requirements.json",
-      "sha256": "a75c531f9ee8aae1fdb8f964a19d0808e9cd3d5b6c33fc8d2d93a017a63d99bb",
-      "size": 156830
+      "sha256": "776ebf70bc51dabcd2f5cbc5725d8a114629a836e89c1c71cb3803c73eade0ae",
+      "size": 163246
     },
     {
       "path": "uct_ebe/source_extraction/README.md",
@@ -58,8 +58,8 @@
     },
     {
       "path": "uct_health/degree_requirements.json",
-      "sha256": "47f131a43c393ca5644d5f9d923e8b60674fbb7b3504c0a0a78709d361a4d59c",
-      "size": 150758
+      "sha256": "e513476692684ad3f36fb4509e19eabaa5efa0a1288d6b32345720cf8e83b05c",
+      "size": 152154
     },
     {
       "path": "uct_health/source_extraction/course_descriptions.json",
@@ -78,8 +78,8 @@
     },
     {
       "path": "uct_humanities/degree_requirements.json",
-      "sha256": "36d3345715f99d5ca6d33ad76dbd98ae2db72e1e344c0ddb834abbb806563f70",
-      "size": 280063
+      "sha256": "7149069a3ad3d07fd8240459c0a46ed84e27808a3fadf6c35309ae89c23de116",
+      "size": 297873
     },
     {
       "path": "uct_humanities/music_pathways_2026.json",
@@ -98,8 +98,8 @@
     },
     {
       "path": "uct_law/degree_requirements.json",
-      "sha256": "161f6165c69f383731e3c9e2e0b1a6937564eaead30b0353ad644ac7b828c210",
-      "size": 179173
+      "sha256": "c7e97c3a37649fc3ebfdbde01f64470d4bb3ee6d1d5aea7eb74b2c3b6409e15f",
+      "size": 189402
     },
     {
       "path": "uct_science/courses.json",
@@ -108,8 +108,8 @@
     },
     {
       "path": "uct_science/degree_requirements.json",
-      "sha256": "17463a80877440323dc5b713108acb8dc179d7c9604d463a532b0a8754fa8ec1",
-      "size": 201620
+      "sha256": "8a06a5be0b80acfe0b38785949559920f4684f2a2d36c257111833e47fd56ee4",
+      "size": 208204
     },
     {
       "path": "uct_science/source_extraction/course_descriptions.json",
@@ -121,8 +121,8 @@
     "This manifest records existing files without changing them.",
     "A matching manifest does not itself establish institutional authority."
   ],
-  "release_id": "uct-2026-uploaded-baseline-cb0670cf",
+  "release_id": "uct-2026-uploaded-baseline",
   "schema_version": 1,
-  "source_status": "uploaded_source_checksum_mismatch_unverified",
+  "source_status": "checksum_mismatch_unverified_source_archive",
   "state": "baseline"
 }

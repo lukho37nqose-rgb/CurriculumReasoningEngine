@@ -313,11 +313,55 @@ def programme(
     }
 
 
+def ebe_source_reference(page: int) -> str:
+    return f"{SOURCE_DOCUMENT}, page {page}, Programmes of Study"
+
+
+def bas_annual_pass_rate_policy(source_reference: str) -> dict[str, Any]:
+    return {
+        "type": "progression_policy",
+        "label": "BAS annual pass-rate advisory policy",
+        "policy_id": "UCT-EBE-2026-BAS-ANNUAL-PASS-RATE",
+        "verification_status": "unverified",
+        "source_reference": source_reference,
+        "condition": {
+            "type": "progression_ratio",
+            "label": "Pass at least 80% of annual registered credits",
+            "temporal_scope": "latest_academic_year",
+            "temporal_anchor": "recognised_or_provisional",
+            "numerator": {
+                "metric_basis": "credit_value",
+                "identity": "attempt",
+                "result_population": "passed",
+                "evidence_population": "recognised_or_provisional",
+            },
+            "denominator": {
+                "metric_basis": "credit_value",
+                "identity": "attempt",
+                "result_population": "attempted_non_pending",
+                "evidence_population": "recognised_or_provisional",
+            },
+            "comparison": "lt",
+            "threshold": 0.8,
+        },
+        "consequence": {
+            "type": "advisory_risk",
+            "label": "BAS annual pass-rate advisory",
+        },
+    }
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
-    rows: dict[str, list[dict[str, Any]]] = json.loads(ROWS_PATH.read_text())
-    descriptions: list[dict[str, Any]] = json.loads(DESCRIPTIONS_PATH.read_text())
-    hum_courses: list[dict[str, Any]] = json.loads(HUM_COURSES_PATH.read_text())
+    rows: dict[str, list[dict[str, Any]]] = json.loads(
+        ROWS_PATH.read_text(encoding="utf-8")
+    )
+    descriptions: list[dict[str, Any]] = json.loads(
+        DESCRIPTIONS_PATH.read_text(encoding="utf-8")
+    )
+    hum_courses: list[dict[str, Any]] = json.loads(
+        HUM_COURSES_PATH.read_text(encoding="utf-8")
+    )
 
     facts: dict[str, dict[str, Any]] = {}
     for raw in descriptions:
@@ -626,11 +670,7 @@ def main() -> None:
                 "label": "No course failed more than once",
                 "maximum_failures": 1,
             },
-            {
-                "type": "pass_rate",
-                "label": "Pass at least 80% of annual registered credits",
-                "minimum": 0.8,
-            },
+            bas_annual_pass_rate_policy(ebe_source_reference(22)),
             {
                 "type": "maximum_years",
                 "label": "Complete within four years",
@@ -1425,10 +1465,12 @@ def main() -> None:
         raise SystemExit("Missing course facts: " + ", ".join(missing))
 
     (OUT / "courses.json").write_text(
-        json.dumps(course_rows, indent=2, ensure_ascii=False) + "\n"
+        json.dumps(course_rows, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
     )
     (OUT / "degree_requirements.json").write_text(
-        json.dumps(requirements, indent=2, ensure_ascii=False) + "\n"
+        json.dumps(requirements, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
     )
     print(
         f"Wrote {len(course_rows)} EBE course facts and {len(programmes)} programme routes to {OUT}"

@@ -1,0 +1,9 @@
+{
+  "clean":{"person":"S1","route":"Systems / Inquiry diploma","modules":[{"module":"FOUND-X7","score":72,"period":"Cycle-A"},{"module":"CORE-Q2","score":68,"period":"Cycle-A"},{"module":"PATH-Z9","score":74,"period":"Cycle-A"}]},
+  "partial":{"person":"S2","route":"Systems / Inquiry diploma","modules":[{"module":"FOUND-X7","score":72,"period":"Cycle-A"}]},
+  "negative":{"person":"S3","route":"Systems / Inquiry diploma","modules":[{"module":"FOUND-X7","score":72,"period":"Cycle-A"}],"complete_results":["FOUND-X7","CORE-Q2"],"complete_recognition":["FOUND-X7","CORE-Q2"]},
+  "recognition":{"person":"S4","route":"Systems / Inquiry diploma","modules":[{"module":"FOUND-X7","score":72,"period":"Cycle-A"},{"module":"PATH-Z9","score":74,"period":"Cycle-A"}],"recognitions":[{"decision":"D-77","target":"CORE-Q2","learning":"EXT-77","status":"verified","source":"Synthetic Northstar decision register / D-77","authority":"Systems registrar"}]},
+  "planning":{"person":"S5","route":"Systems / Inquiry diploma","modules":[{"module":"FOUND-X7","score":72,"period":"Cycle-A"},{"module":"CORE-Q2","score":68,"period":"Cycle-A"}]},
+  "grading":{"person":"S6","route":"Systems / Inquiry diploma","modules":[{"module":"FOUND-X7","score":58,"period":"Cycle-A"},{"module":"CORE-Q2","score":62,"period":"Cycle-A"}]},
+  "award":{"person":"S7","route":"Systems / Inquiry diploma","modules":[{"module":"FOUND-X7","score":90,"period":"Cycle-A"},{"module":"CORE-Q2","score":84,"period":"Cycle-A"},{"module":"PATH-Z9","score":86,"period":"Cycle-A"}]}
+}

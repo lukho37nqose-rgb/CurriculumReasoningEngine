@@ -1,24 +1,15 @@
-"""
-Utility functions for course weight, level, department, and major key normalisation.
-Shared between rule_engine.py and reasoner.py to avoid circular imports.
-"""
+"""Legacy utility functions and major key normalisation."""
 
 import re
-from typing import List, Optional
-from .models import Catalogue, StudentRecord
 
-_SUFFIX_WEIGHTS = {
-    "F": 1.0,
-    "S": 1.0,
-    "FS": 1.0,
-    "SF": 1.0,
-    "H": 1.0,
-    "W": 2.0,
-    "P": 1.0,
-    "U": 1.0,
-    "L": 1.0,
-    "Z": 1.0,
-}
+from curriculum_reasoning_engine.institutions import (
+    UCTCourseLoadFramework,
+    get_institution_release,
+)
+
+from .models import Catalogue
+
+_LEGACY_UCT_LOAD_FRAMEWORK = UCTCourseLoadFramework()
 
 _MAJOR_NAME_TO_KEY = {
     "history": "history",
@@ -48,12 +39,8 @@ _MAJOR_NAME_TO_KEY = {
 
 
 def _course_weight(code: str) -> float:
-    """Return semester-course equivalent weight from the code suffix."""
-    m = re.search(r"\d(\D+)$", code)
-    if m:
-        suffix = m.group(1).upper()
-        return _SUFFIX_WEIGHTS.get(suffix, 1.0)
-    return 1.0
+    """Legacy UCT course-load shim; new reasoning uses CourseLoadFramework."""
+    return _LEGACY_UCT_LOAD_FRAMEWORK.load_equivalent(code)
 
 
 def _is_senior(code: str) -> bool:
@@ -70,7 +57,7 @@ def _is_humanities(code: str, catalogue: Catalogue) -> bool:
     return bool(fact and fact.counts_as_humanities)
 
 
-def _normalise_major_keys(declared: List[str], catalogue: Catalogue) -> List[str]:
+def _normalise_major_keys(declared: list[str], catalogue: Catalogue) -> list[str]:
     """Convert declared major names to catalogue keys using a multi-tiered matching strategy."""
     keys = []
     for name in declared:
@@ -176,123 +163,10 @@ def _normalise_major_keys(declared: List[str], catalogue: Catalogue) -> List[str
 
 
 def _infer_programme_key(programme_name: str) -> str:
-    """Map common UCT transcript programme labels to catalogue routes."""
-    name = programme_name.lower().strip()
-    # Commerce transcripts commonly expose the official programme/plan code.
-    # Preserve that exact route rather than guessing from a broad BCom or
-    # BBusSci label.  Some printed material omits a leading zero in CB25 codes.
-    commerce_code = re.search(r"\b(c[bu]\d{2,3}[a-z]{3}\d{2})\b", name, re.I)
-    if commerce_code:
-        key = commerce_code.group(1).lower()
-        prefix = re.match(r"(c[bu])(\d{2,3})([a-z]{3}\d{2})", key, re.I)
-        if prefix and len(prefix.group(2)) == 2:
-            key = (
-                prefix.group(1).lower()
-                + "0"
-                + prefix.group(2)
-                + prefix.group(3).lower()
-            )
-        return key
-    if (
-        ("bachelor of science" in name or re.search(r"\bbsc\b", name))
-        and "engineering" not in name
-        and "bsc(eng)" not in name
-        and "bsc (eng)" not in name
-    ):
-        return (
-            "bsc_science_edp"
-            if ("extended" in name or "sb016" in name)
-            else "bsc_science"
-        )
-    if "bachelor of laws" in name or re.search(r"\bllb\b", name):
-        if "five" in name or "5-year" in name or "lb003" in name:
-            return "llb_five_year_continuing"
-        if "two-year" in name or "2-year" in name or "combined" in name:
-            return "llb_two_year_combined"
-        if "three-year" in name or "3-year" in name or "graduate" in name:
-            return "llb_three_year_graduate"
-        return "llb_four_year_undergraduate"
-    extended = "extended" in name
-    if "philosophy, politics and economics" in name or "ppe" in name:
-        return "bsocsc_ppe"
-    if "social work" in name or "bsw" in name:
-        return "bsw"
-    if "screen production" in name:
-        return "ba_screen_production"
-    if "fine art" in name:
-        return "ba_fine_art"
-    if "music" in name or "bmus" in name:
-        return "diploma_music_performance" if "diploma" in name else "bmus"
-    if "theatre" in name or "performance" in name:
-        return (
-            "diploma_theatre_performance"
-            if "diploma" in name
-            else "ba_theatre_performance"
-        )
-    if "bachelor of social science" in name or "bsocsc" in name:
-        return "bsocsc_extended" if extended else "bsocsc_regular"
-    if "bachelor of arts" in name or re.search(r"\bba\b", name):
-        return "ba_extended" if extended else "ba_regular"
-    if "extended" in name:
-        return "bsocsc_extended"
-    return "unknown_programme"
+    """Transitional shim for legacy imports; UCT policy lives on the release."""
+    return get_institution_release("uct", "2026").infer_programme(programme_name)
 
 
 def _infer_faculty_key(programme_name: str) -> str:
-    """Map the student's programme string to the correct faculty key."""
-    name = programme_name.lower()
-    if (
-        "commerce" in name
-        or "bcom" in name
-        or "business science" in name
-        or "actuarial science" in name
-    ):
-        return "uct_commerce"
-    elif (
-        "engineering" in name
-        or "bsc(eng)" in name
-        or "bsc (eng)" in name
-        or "architectural studies" in name
-        or "architecture" in name
-        or "geomatics" in name
-        or "construction studies" in name
-        or "property studies" in name
-        or "city and regional planning" in name
-    ):
-        return "uct_ebe"
-    elif (
-        "medicine" in name
-        or "surgery" in name
-        or "mbchb" in name
-        or "health science" in name
-        or "occupational therapy" in name
-        or "physiotherapy" in name
-        or "audiology" in name
-        or "speech-language pathology" in name
-    ):
-        return "uct_health"
-    elif (
-        "bachelor of laws" in name
-        or re.search(r"\bllb\b", name)
-        or "law faculty" in name
-    ):
-        return "uct_law"
-    elif (
-        "social science" in name
-        or "social work" in name
-        or "bachelor of arts" in name
-        or "bachelor of social" in name
-        or "music" in name
-        or "fine art" in name
-        or "theatre" in name
-        or "performance" in name
-        or "adult and community education" in name
-        or "foundation phase" in name
-        or "intermediate phase" in name
-    ):
-        return "uct_humanities"
-    elif "science" in name or "bsc" in name:
-        return "uct_science"
-    elif "law" in name or "llb" in name:
-        return "uct_law"
-    return "unknown_faculty"
+    """Transitional shim for legacy imports; UCT policy lives on the release."""
+    return get_institution_release("uct", "2026").infer_academic_unit(programme_name)

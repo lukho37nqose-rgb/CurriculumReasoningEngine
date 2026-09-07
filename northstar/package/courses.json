@@ -1,0 +1,158 @@
+[
+  {
+    "code": "FOUND-X7",
+    "name": "Ways of Inquiry",
+    "credits": 6,
+    "nqf_level": 1,
+    "department": "systems",
+    "offered": [
+      "P-Z",
+      "P-B"
+    ],
+    "prerequisites": [],
+    "verification_status": "unverified",
+    "source": {
+      "reference": "Northstar Academic Rules Registry (synthetic)"
+    }
+  },
+  {
+    "code": "CORE-Q2",
+    "name": "Systems Foundations",
+    "credits": 9,
+    "nqf_level": 1,
+    "department": "systems",
+    "offered": [
+      "P-Z",
+      "P-B"
+    ],
+    "prerequisites": [],
+    "verification_status": "unverified",
+    "source": {
+      "reference": "Northstar Academic Rules Registry (synthetic)"
+    }
+  },
+  {
+    "code": "PATH-Z9",
+    "name": "Systems Studio",
+    "credits": 15,
+    "nqf_level": 2,
+    "department": "systems",
+    "offered": [
+      "P-Z",
+      "P-B"
+    ],
+    "prerequisites": [],
+    "verification_status": "unverified",
+    "source": {
+      "reference": "Northstar Academic Rules Registry (synthetic)"
+    },
+    "prerequisite_expression": {
+      "type": "course_completed",
+      "course_code": "FOUND-X7",
+      "verification_status": "unverified",
+      "source_reference": "Northstar Academic Rules Registry (synthetic)"
+    }
+  },
+  {
+    "code": "ALT-V8",
+    "name": "Inquiry Studio",
+    "credits": 6,
+    "nqf_level": 2,
+    "department": "systems",
+    "offered": [
+      "P-Z",
+      "P-B"
+    ],
+    "prerequisites": [],
+    "verification_status": "unverified",
+    "source": {
+      "reference": "Northstar Academic Rules Registry (synthetic)"
+    },
+    "prerequisite_expression": {
+      "type": "all_of",
+      "conditions": [
+        {
+          "type": "course_completed",
+          "course_code": "FOUND-X7"
+        },
+        {
+          "type": "course_completed",
+          "course_code": "CORE-Q2"
+        }
+      ],
+      "verification_status": "unverified",
+      "source_reference": "Northstar Academic Rules Registry (synthetic)"
+    }
+  },
+  {
+    "code": "CAP-R4",
+    "name": "Synthesis",
+    "credits": 9,
+    "nqf_level": 3,
+    "department": "systems",
+    "offered": [
+      "P-Z",
+      "P-B"
+    ],
+    "prerequisites": [],
+    "verification_status": "unverified",
+    "source": {
+      "reference": "Northstar Academic Rules Registry (synthetic)"
+    },
+    "prerequisite_expression": {
+      "type": "one_of",
+      "conditions": [
+        {
+          "type": "course_completed",
+          "course_code": "PATH-Z9"
+        },
+        {
+          "type": "course_completed",
+          "course_code": "ALT-V8"
+        }
+      ],
+      "verification_status": "unverified",
+      "source_reference": "Northstar Academic Rules Registry (synthetic)"
+    }
+  },
+  {
+    "code": "LAB-T6",
+    "name": "Applied Inquiry",
+    "credits": 15,
+    "nqf_level": 3,
+    "department": "systems",
+    "offered": [
+      "P-Z",
+      "P-B"
+    ],
+    "prerequisites": [],
+    "verification_status": "unverified",
+    "source": {
+      "reference": "Northstar Academic Rules Registry (synthetic)"
+    },
+    "prerequisite_expression": {
+      "type": "all_of",
+      "conditions": [
+        {
+          "type": "one_of",
+          "conditions": [
+            {
+              "type": "course_completed",
+              "course_code": "PATH-Z9"
+            },
+            {
+              "type": "course_completed",
+              "course_code": "ALT-V8"
+            }
+          ]
+        },
+        {
+          "type": "course_completed",
+          "course_code": "CORE-Q2"
+        }
+      ],
+      "verification_status": "unverified",
+      "source_reference": "Northstar Academic Rules Registry (synthetic)"
+    }
+  }
+]

@@ -1316,7 +1316,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         }
@@ -2089,7 +2095,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         }
@@ -3109,7 +3121,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         },
@@ -4037,7 +4055,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         },
@@ -4900,7 +4924,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         }
@@ -5726,7 +5756,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         }
@@ -6607,7 +6643,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         },
@@ -7482,7 +7524,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         },
@@ -8332,7 +8380,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         },
@@ -9261,7 +9315,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         },
@@ -10142,7 +10202,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         },
@@ -10873,7 +10939,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         }
@@ -11626,7 +11698,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         }
@@ -12680,7 +12758,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         },
@@ -13432,7 +13516,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         },
@@ -14126,7 +14216,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         }
@@ -14962,7 +15058,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         }
@@ -15745,7 +15847,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         },
@@ -16506,7 +16614,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         },
@@ -17217,7 +17331,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         },
@@ -18039,7 +18159,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         },
@@ -18868,7 +18994,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         },
@@ -19559,7 +19691,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         }
@@ -20303,7 +20441,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         }
@@ -21256,7 +21400,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         },
@@ -22125,7 +22275,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         },
@@ -22919,7 +23075,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         }
@@ -23865,7 +24027,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         },
@@ -24687,7 +24855,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         },
@@ -25533,7 +25707,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         },
@@ -26314,7 +26494,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         },
@@ -27101,7 +27287,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             }
           ]
         },
@@ -27791,7 +27983,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -28504,7 +28702,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -29077,7 +29281,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -29645,7 +29855,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -30413,7 +30629,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -31122,7 +31344,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -32000,7 +32228,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -32653,7 +32887,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -33364,7 +33604,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -34416,7 +34662,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -35092,7 +35344,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -35978,7 +36236,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -36621,7 +36885,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -37285,7 +37555,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -37769,7 +38045,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -38249,7 +38531,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -38855,7 +39143,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -39526,7 +39820,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -40382,7 +40682,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -40948,7 +41254,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -41717,7 +42029,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -42394,7 +42712,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -43207,7 +43531,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -43911,7 +44241,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -44531,7 +44867,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -45218,7 +45560,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -45749,7 +46097,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -46298,7 +46652,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -46872,7 +47232,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -47588,7 +47954,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -48501,7 +48873,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -49107,7 +49485,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -49794,7 +50178,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -50451,7 +50841,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -51247,7 +51643,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",
@@ -51979,7 +52381,13 @@
                 "7": 2,
                 "8": 2
               },
-              "include_failed_as_zero": true
+              "include_failed_as_zero": true,
+              "status_treatment": {
+                "AB": "zero",
+                "DPR": "zero",
+                "INC": "zero",
+                "EXA": "zero"
+              }
             },
             {
               "type": "no_failures",

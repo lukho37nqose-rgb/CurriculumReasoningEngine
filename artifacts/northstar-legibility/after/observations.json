@@ -1,0 +1,202 @@
+[
+  {
+    "viewport": "desktop",
+    "subject": "NS-001",
+    "overflow": false,
+    "errors": [],
+    "qualification": "unresolved",
+    "graduation": "unresolved",
+    "award": "unresolved",
+    "entry": "unresolved"
+  },
+  {
+    "viewport": "desktop",
+    "subject": "NS-003",
+    "overflow": false,
+    "errors": [],
+    "qualification": "unresolved",
+    "graduation": "unresolved",
+    "award": "unresolved",
+    "entry": "unresolved"
+  },
+  {
+    "viewport": "desktop",
+    "subject": "NS-006",
+    "overflow": false,
+    "errors": [],
+    "qualification": "conflict",
+    "graduation": "conflict",
+    "award": "unresolved",
+    "entry": "unresolved"
+  },
+  {
+    "viewport": "desktop",
+    "subject": "NS-007",
+    "overflow": false,
+    "errors": [],
+    "qualification": "unresolved",
+    "graduation": "unresolved",
+    "award": "unresolved",
+    "entry": "unresolved"
+  },
+  {
+    "viewport": "desktop",
+    "subject": "NS-008",
+    "overflow": false,
+    "errors": [],
+    "qualification": "unresolved",
+    "graduation": "unresolved",
+    "award": "unresolved",
+    "entry": "satisfied"
+  },
+  {
+    "viewport": "desktop",
+    "subject": "NS-011",
+    "overflow": false,
+    "errors": [],
+    "qualification": "unresolved",
+    "graduation": "unresolved",
+    "award": "unresolved",
+    "entry": "satisfied"
+  },
+  {
+    "viewport": "desktop",
+    "subject": "NS-012",
+    "overflow": false,
+    "errors": [],
+    "qualification": "unresolved",
+    "graduation": "unresolved",
+    "award": "unresolved",
+    "entry": "unresolved"
+  },
+  {
+    "viewport": "desktop",
+    "subject": "NS-013",
+    "overflow": false,
+    "errors": [],
+    "qualification": "satisfied",
+    "graduation": "unresolved",
+    "award": "unresolved",
+    "entry": "unresolved"
+  },
+  {
+    "viewport": "desktop",
+    "subject": "NS-014",
+    "overflow": false,
+    "errors": [],
+    "qualification": "satisfied",
+    "graduation": "satisfied",
+    "award": "unresolved",
+    "entry": "unresolved"
+  },
+  {
+    "viewport": "desktop",
+    "subject": "NS-015",
+    "overflow": false,
+    "errors": [],
+    "qualification": "satisfied",
+    "graduation": "satisfied",
+    "award": "awarded",
+    "entry": "satisfied"
+  },
+  {
+    "viewport": "mobile",
+    "subject": "NS-001",
+    "overflow": false,
+    "errors": [],
+    "qualification": "unresolved",
+    "graduation": "unresolved",
+    "award": "unresolved",
+    "entry": "unresolved"
+  },
+  {
+    "viewport": "mobile",
+    "subject": "NS-003",
+    "overflow": false,
+    "errors": [],
+    "qualification": "unresolved",
+    "graduation": "unresolved",
+    "award": "unresolved",
+    "entry": "unresolved"
+  },
+  {
+    "viewport": "mobile",
+    "subject": "NS-006",
+    "overflow": false,
+    "errors": [],
+    "qualification": "conflict",
+    "graduation": "conflict",
+    "award": "unresolved",
+    "entry": "unresolved"
+  },
+  {
+    "viewport": "mobile",
+    "subject": "NS-007",
+    "overflow": false,
+    "errors": [],
+    "qualification": "unresolved",
+    "graduation": "unresolved",
+    "award": "unresolved",
+    "entry": "unresolved"
+  },
+  {
+    "viewport": "mobile",
+    "subject": "NS-008",
+    "overflow": false,
+    "errors": [],
+    "qualification": "unresolved",
+    "graduation": "unresolved",
+    "award": "unresolved",
+    "entry": "satisfied"
+  },
+  {
+    "viewport": "mobile",
+    "subject": "NS-011",
+    "overflow": false,
+    "errors": [],
+    "qualification": "unresolved",
+    "graduation": "unresolved",
+    "award": "unresolved",
+    "entry": "satisfied"
+  },
+  {
+    "viewport": "mobile",
+    "subject": "NS-012",
+    "overflow": false,
+    "errors": [],
+    "qualification": "unresolved",
+    "graduation": "unresolved",
+    "award": "unresolved",
+    "entry": "unresolved"
+  },
+  {
+    "viewport": "mobile",
+    "subject": "NS-013",
+    "overflow": false,
+    "errors": [],
+    "qualification": "satisfied",
+    "graduation": "unresolved",
+    "award": "unresolved",
+    "entry": "unresolved"
+  },
+  {
+    "viewport": "mobile",
+    "subject": "NS-014",
+    "overflow": false,
+    "errors": [],
+    "qualification": "satisfied",
+    "graduation": "satisfied",
+    "award": "unresolved",
+    "entry": "unresolved"
+  },
+  {
+    "viewport": "mobile",
+    "subject": "NS-015",
+    "overflow": false,
+    "errors": [],
+    "qualification": "satisfied",
+    "graduation": "satisfied",
+    "award": "awarded",
+    "entry": "satisfied"
+  }
+]

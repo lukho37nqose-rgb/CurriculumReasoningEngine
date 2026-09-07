@@ -4693,12 +4693,25 @@
       ],
       "progression_rules": [
         {
-          "type": "failed_any",
-          "label": "Fundamentals course must be passed",
-          "course_codes": [
-            "HSE1001F",
-            "HSE1001S"
-          ]
+          "type": "progression_policy",
+          "label": "MBChB Fundamentals progression requirement",
+          "policy_id": "UCT-HEALTH-2026-MBCHB-FUNDAMENTALS-PROGRESSION",
+          "verification_status": "unverified",
+          "source_reference": "2026 Faculty of Health Sciences Undergraduate Handbook, page 62, Rules and curricula for undergraduate programmes",
+          "condition": {
+            "type": "course_requirement_incomplete",
+            "label": "Fundamentals course requirement incomplete",
+            "id": "mbchb_fundamentals_completion",
+            "course_codes": [
+              "HSE1001F",
+              "HSE1001S"
+            ],
+            "required": 1
+          },
+          "consequence": {
+            "type": "progression_ineligible",
+            "label": "Fundamentals prerequisite for progression into the standard MBChB curriculum is not currently met"
+          }
         },
         {
           "type": "repeat_failure",
@@ -5289,15 +5302,27 @@
       "award_notes": [],
       "progression_rules": [
         {
-          "type": "failed_any",
-          "label": "All first-semester courses must be passed before progression",
-          "course_codes": [
-            "AAE4003W",
-            "MDN4017W",
-            "PED4017W",
-            "OBS4006W",
-            "PRY4001W"
-          ]
+          "type": "progression_policy",
+          "label": "NMFC first-semester progression requirement",
+          "policy_id": "UCT-HEALTH-2026-NMFC-FIRST-SEMESTER-PROGRESSION",
+          "verification_status": "unverified",
+          "source_reference": "2026 Faculty of Health Sciences Undergraduate Handbook, page 65, Rules and curricula for undergraduate programmes",
+          "condition": {
+            "type": "required_course_pool_incomplete",
+            "label": "All first-semester courses must be passed before progression",
+            "id": "nmfc_first_semester_completion",
+            "course_codes": [
+              "AAE4003W",
+              "MDN4017W",
+              "PED4017W",
+              "OBS4006W",
+              "PRY4001W"
+            ]
+          },
+          "consequence": {
+            "type": "progression_ineligible",
+            "label": "NMFC first-semester progression requirement not met"
+          }
         },
         {
           "type": "repeat_failure",

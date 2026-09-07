@@ -10,9 +10,10 @@ represented explicitly as manual/discretionary rules rather than inferred.
 from __future__ import annotations
 
 import json
-import re
 from pathlib import Path
 from typing import Any
+
+from humanities_provenance import build_provenance
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "uct_humanities"
@@ -1384,6 +1385,7 @@ if missing:
     )
 
 req["catalogue_version"] = "2026.2-humanities-complete"
+req.update(build_provenance(programmes))
 req["source"] = f"{HANDBOOK}; {GENERAL}"
 REQ_PATH.write_text(json.dumps(req, indent=2, ensure_ascii=False) + "\n")
 COURSE_PATH.write_text(json.dumps(courses, indent=2, ensure_ascii=False) + "\n")

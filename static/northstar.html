@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Northstar University | Student workspace</title><link rel="stylesheet" href="/static/app.css"><link rel="stylesheet" href="/static/northstar.css"></head>
+<body class="northstar">
+<a class="portal-skip" href="#ns-content">Skip to workspace</a>
+<header class="ns-header"><div><strong id="ns-brand">Northstar University</strong><span>Student workspace · Powered by Cacisa</span></div><span class="ns-demo">Synthetic university · Demonstration accounts</span></header>
+<main><section id="ns-login" aria-labelledby="login-title"><span class="portal-eyebrow">YOUR STUDENT WORKSPACE</span><h1 id="login-title">Northstar Demo Login</h1><p>Explore your represented curriculum, the evidence supplied and the rules behind each conclusion.</p>
+<form id="ns-form"><label for="ns-subject">Demonstration account</label><select id="ns-subject" required></select><label for="ns-code">Demo access code</label><input id="ns-code" type="password" value="northstar-demo" autocomplete="off" required><small>Shared demonstration code: northstar-demo. No real student data is used.</small><button type="submit">Log in and retrieve my record</button></form>
+<p class="ns-boundary">Login identifies a demo student. It does not establish admission, registration or an academic result.</p></section>
+<p id="ns-message" role="status" aria-live="polite"></p>
+<section id="ns-workspace" hidden><aside class="portal-sidebar"><p class="portal-eyebrow">STUDENT WORKSPACE</p><nav id="ns-nav" aria-label="Workspace views"></nav><div class="portal-profile"><strong id="ns-profile">Demonstration student</strong><p>Information retrieved for this session</p><button id="ns-switch" type="button">Switch demo student</button></div></aside>
+<div class="portal-main"><header class="ns-toolbar"><div><h1 id="ns-title">Dashboard</h1><p id="ns-programme"></p><small>This is the programme/workspace CRE is evaluating, not proof of admission or current registration.</small></div><button id="ns-refresh" type="button">Retrieve again</button></header>
+<details class="portal-session"><summary>Session context</summary><p id="ns-release"></p></details><aside id="ns-domain-warning" class="portal-service-notice" hidden></aside>
+<div id="ns-content" tabindex="-1"><div id="ns-results"></div><div id="ns-sources"></div></div>
+<details class="ns-debug"><summary>Demo advisor / technical inspector</summary><p>Internal demonstration only. This is not an advisor authorisation system.</p><div id="ns-debug"></div></details></div></section></main>
+<script src="/static/student-language.js"></script><script src="/static/app.js" data-projection-only></script><script src="/static/student-portal.js"></script><script src="/static/northstar.js"></script></body></html>

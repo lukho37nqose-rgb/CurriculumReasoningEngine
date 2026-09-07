@@ -1,0 +1,346 @@
+{
+  "catalogue_version": "northstar-v1",
+  "source": "Northstar Academic Rules Registry (synthetic)",
+  "programmes": {
+    "systems_inquiry": {
+      "name": "Diploma in Systems Inquiry",
+      "programme_type": "structured",
+      "verification_status": "unverified",
+      "scope_verified": true,
+      "total_nqf_credits": 45,
+      "minimum_duration_years": 0,
+      "level_7_nqf_credits": 0,
+      "semester_course_equivalents": 0,
+      "senior_course_equivalents": 0,
+      "humanities_course_equivalents": 0,
+      "required_majors": 0,
+      "required_humanities_majors": 0,
+      "required_courses": [
+        "FOUND-X7",
+        "CORE-Q2",
+        "CAP-R4",
+        "LAB-T6"
+      ],
+      "support_course_codes": [
+        "PATH-Z9",
+        "ALT-V8"
+      ],
+      "curriculum_rules": [
+        {
+          "id": "foundation",
+          "type": "course",
+          "label": "Foundation completion",
+          "course_codes": [
+            "FOUND-X7"
+          ],
+          "verification_status": "unverified"
+        },
+        {
+          "id": "core",
+          "type": "all_courses",
+          "label": "Foundation and core completion",
+          "course_codes": [
+            "FOUND-X7",
+            "CORE-Q2"
+          ],
+          "verification_status": "unverified"
+        },
+        {
+          "id": "studio",
+          "type": "course",
+          "label": "One studio requirement",
+          "course_codes": [
+            "PATH-Z9",
+            "ALT-V8"
+          ],
+          "required": 1,
+          "verification_status": "unverified"
+        },
+        {
+          "id": "studio_credit",
+          "type": "credit_pool",
+          "label": "Studio credit requirement",
+          "course_codes": [
+            "PATH-Z9",
+            "ALT-V8"
+          ],
+          "required": 15,
+          "verification_status": "unverified"
+        },
+        {
+          "id": "capstone",
+          "type": "course",
+          "label": "Capstone completion",
+          "course_codes": [
+            "CAP-R4"
+          ],
+          "verification_status": "unverified"
+        },
+        {
+          "id": "route_choices",
+          "type": "choose_n",
+          "label": "Two supported preparation routes",
+          "required": 2,
+          "children": [
+            {
+              "type": "all_courses",
+              "label": "Foundation route",
+              "course_codes": [
+                "FOUND-X7",
+                "CORE-Q2"
+              ]
+            },
+            {
+              "type": "course",
+              "label": "Studio route",
+              "required": 1,
+              "course_codes": [
+                "PATH-Z9",
+                "ALT-V8"
+              ]
+            },
+            {
+              "type": "course",
+              "label": "Synthesis route",
+              "course_codes": [
+                "CAP-R4"
+              ]
+            }
+          ],
+          "verification_status": "unverified"
+        }
+      ],
+      "programme_entry_eligibility": {
+        "eligibility_spec_id": "NS-V1-ENTRY",
+        "programme_key": "systems_inquiry",
+        "verification_status": "unverified",
+        "source_reference": "Northstar Academic Rules Registry (synthetic)",
+        "condition": {
+          "type": "one_of",
+          "conditions": [
+            {
+              "type": "course_achievement",
+              "course_code": "FOUND-X7",
+              "comparator": "gte",
+              "threshold": 12,
+              "attempt_selection": "any_qualifying_attempt"
+            },
+            {
+              "type": "external_subject_achievement",
+              "qualification_system_id": "ORION-CERT",
+              "subject_id": "OR-MATH",
+              "comparator": "gte",
+              "threshold": 7
+            },
+            {
+              "type": "qualification_held",
+              "qualification_system_id": "ORION-CERT",
+              "qualification_id": "ORA-K7"
+            }
+          ]
+        }
+      },
+      "qualification_completion": {
+        "completion_spec_id": "NS-V1-COMPLETION",
+        "required_requirement_ids": [
+          "foundation",
+          "core",
+          "studio",
+          "studio_credit",
+          "capstone",
+          "route_choices"
+        ],
+        "source_reference": "Northstar Academic Rules Registry (synthetic)",
+        "verification_status": "unverified"
+      },
+      "graduation_eligibility": {
+        "eligibility_spec_id": "NS-V1-GRADUATION",
+        "requires_academic_completion": true,
+        "required_clearance_ids": [
+          "NS-GATE-A",
+          "NS-GATE-Z"
+        ],
+        "source_reference": "Northstar Academic Rules Registry (synthetic)",
+        "verification_status": "unverified"
+      },
+      "progression_rules": [
+        {
+          "type": "progression_policy",
+          "policy_id": "NS-V1-FAILED-ATTEMPTS",
+          "verification_status": "unverified",
+          "source_reference": "Northstar Academic Rules Registry (synthetic)",
+          "condition": {
+            "type": "failed_metric",
+            "label": "Cumulative failed-attempt advisory",
+            "temporal_scope": "cumulative",
+            "metric_basis": "course_count",
+            "identity": "attempt",
+            "threshold": 2
+          },
+          "consequence": {
+            "type": "advisory_risk",
+            "label": "Cumulative failed-attempt advisory"
+          }
+        },
+        {
+          "type": "progression_policy",
+          "policy_id": "NS-V1-FOUNDATION",
+          "verification_status": "unverified",
+          "source_reference": "Northstar Academic Rules Registry (synthetic)",
+          "condition": {
+            "type": "required_course_pool_incomplete",
+            "label": "Foundation requirements incomplete",
+            "course_codes": [
+              "FOUND-X7",
+              "CORE-Q2"
+            ]
+          },
+          "consequence": {
+            "type": "progression_ineligible",
+            "label": "Foundation progression prerequisite not met"
+          }
+        }
+      ]
+    }
+  },
+  "majors": {},
+  "award_rules": [
+    {
+      "id": "NS-V1-DISTINCTION",
+      "name": "Systems Inquiry Achievement",
+      "type": "qualification_distinction",
+      "applies_to": "structured",
+      "verification_status": "unverified",
+      "source": {
+        "reference": "Northstar Academic Rules Registry (synthetic)"
+      },
+      "curriculum_rules": [
+        {
+          "id": "award_average",
+          "type": "weighted_average",
+          "label": "Achievement average",
+          "course_codes": [
+            "FOUND-X7",
+            "CORE-Q2",
+            "PATH-Z9",
+            "ALT-V8",
+            "CAP-R4",
+            "LAB-T6"
+          ],
+          "minimum_average": 82,
+          "weighting": {
+            "basis": "credit_value"
+          }
+        },
+        {
+          "id": "award_credits",
+          "type": "credits",
+          "label": "Award credits",
+          "required": 30
+        }
+      ]
+    }
+  ],
+  "institution_sources": [
+    {
+      "source_id": "NS-REGISTRY",
+      "institution_id": "northstar",
+      "release_id": "northstar-v1",
+      "source_kind": "rules_registry",
+      "title": "Northstar Academic Rules Registry (synthetic)",
+      "source_status": "unverified"
+    }
+  ],
+  "requirement_source_relationships": [
+    {
+      "relationship_id": "NS-LINK-foundation",
+      "institution_id": "northstar",
+      "release_id": "northstar-v1",
+      "programme_key": "systems_inquiry",
+      "requirement_id": "foundation",
+      "source_id": "NS-REGISTRY",
+      "relationship_type": "DIRECT_RULE_SOURCE",
+      "locator": {
+        "record_id": "RX-441",
+        "clause": "KAPPA"
+      },
+      "relationship_status": "unverified",
+      "rule_status": "unverified"
+    },
+    {
+      "relationship_id": "NS-LINK-core",
+      "institution_id": "northstar",
+      "release_id": "northstar-v1",
+      "programme_key": "systems_inquiry",
+      "requirement_id": "core",
+      "source_id": "NS-REGISTRY",
+      "relationship_type": "DIRECT_RULE_SOURCE",
+      "locator": {
+        "record_id": "RX-812",
+        "clause": "KAPPA"
+      },
+      "relationship_status": "unverified",
+      "rule_status": "unverified"
+    },
+    {
+      "relationship_id": "NS-LINK-studio",
+      "institution_id": "northstar",
+      "release_id": "northstar-v1",
+      "programme_key": "systems_inquiry",
+      "requirement_id": "studio",
+      "source_id": "NS-REGISTRY",
+      "relationship_type": "DIRECT_RULE_SOURCE",
+      "locator": {
+        "record_id": "RX-209",
+        "clause": "KAPPA"
+      },
+      "relationship_status": "unverified",
+      "rule_status": "unverified"
+    },
+    {
+      "relationship_id": "NS-LINK-studio_credit",
+      "institution_id": "northstar",
+      "release_id": "northstar-v1",
+      "programme_key": "systems_inquiry",
+      "requirement_id": "studio_credit",
+      "source_id": "NS-REGISTRY",
+      "relationship_type": "DIRECT_RULE_SOURCE",
+      "locator": {
+        "record_id": "RX-034",
+        "clause": "KAPPA"
+      },
+      "relationship_status": "unverified",
+      "rule_status": "unverified"
+    },
+    {
+      "relationship_id": "NS-LINK-capstone",
+      "institution_id": "northstar",
+      "release_id": "northstar-v1",
+      "programme_key": "systems_inquiry",
+      "requirement_id": "capstone",
+      "source_id": "NS-REGISTRY",
+      "relationship_type": "DIRECT_RULE_SOURCE",
+      "locator": {
+        "record_id": "RX-651",
+        "clause": "KAPPA"
+      },
+      "relationship_status": "unverified",
+      "rule_status": "unverified"
+    },
+    {
+      "relationship_id": "NS-LINK-route_choices",
+      "institution_id": "northstar",
+      "release_id": "northstar-v1",
+      "programme_key": "systems_inquiry",
+      "requirement_id": "route_choices",
+      "source_id": "NS-REGISTRY",
+      "relationship_type": "DIRECT_RULE_SOURCE",
+      "locator": {
+        "record_id": "RX-908",
+        "clause": "KAPPA"
+      },
+      "relationship_status": "unverified",
+      "rule_status": "unverified"
+    }
+  ]
+}

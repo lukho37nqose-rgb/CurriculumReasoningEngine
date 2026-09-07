@@ -8,10 +8,22 @@ to find what's needed now.
 """
 
 from dataclasses import dataclass
-from .models import StudentRecord, Catalogue
-from .rule_engine import _prereqs_met
-from .utils import _course_weight, _infer_programme_key, _normalise_major_keys
+
+from curriculum_reasoning_engine.institutions import (
+    AcademicCreditFramework,
+    CourseCodeScheme,
+    CourseLoadFramework,
+    GradingScheme,
+    UCTCourseLoadFramework,
+)
+
+from .completion import CourseCompletionRecognitionInput, CourseCompletionResolver
+from .models import AcademicRecordCoverageEvidence, Catalogue, StudentRecord
+from .prerequisites import PrerequisiteEvaluator, ProjectedCourseCompletions
 from .recognition import recognised_credited_pairs
+from .utils import _infer_programme_key, _normalise_major_keys
+
+_LEGACY_UCT_LOAD_FRAMEWORK = UCTCourseLoadFramework()
 
 
 @dataclass
@@ -35,6 +47,13 @@ def plan_next_semester(
     catalogue: Catalogue,
     semester: str = "Semester 1",  # "Semester 1", "Semester 2", or "Full Year"
     max_courses: int = 4,
+    grading_scheme: GradingScheme | None = None,
+    credit_framework: AcademicCreditFramework | None = None,
+    course_code_scheme: CourseCodeScheme | None = None,
+    course_load_framework: CourseLoadFramework | None = None,
+    academic_record_coverage_evidence: list[AcademicRecordCoverageEvidence] | None = None,
+    projected_course_completions: ProjectedCourseCompletions | None = None,
+    completion_recognition: CourseCompletionRecognitionInput | None = None,
 ) -> list[CourseRecommendation]:
     """
     Recommend courses for the next semester using backward chaining.
@@ -45,11 +64,22 @@ def plan_next_semester(
     3. Any senior course to meet senior-course requirement
     4. Any available course to meet total-course requirement
     """
-    passed = student.passed_codes()
-    major_keys = _normalise_major_keys(student.declared_majors, catalogue)
-    programme = catalogue.programmes.get(
-        (student.programme_key or _infer_programme_key(student.programme))
+    passed = CourseCompletionResolver(
+        student, catalogue, grading_scheme, completion_recognition
+    ).completed_codes()
+    prerequisite_evaluator = PrerequisiteEvaluator(
+        student,
+        catalogue,
+        grading_scheme,
+        credit_framework,
+        course_code_scheme,
+        course_load_framework,
+        academic_record_coverage_evidence,
+        projected_course_completions,
+        completion_recognition,
     )
+    major_keys = _normalise_major_keys(student.declared_majors, catalogue)
+    programme = catalogue.programmes.get(student.programme_key or _infer_programme_key(student.programme))
     selected_major_codes: set[str] = set()
     for key in major_keys:
         major = catalogue.majors.get(key)
@@ -74,17 +104,22 @@ def plan_next_semester(
             return
         if code not in route_codes:
             return
-        if course.nqf_credits <= 0 or course.nqf_level <= 0:
+        credit_value = (
+            credit_framework.credit_value(course) if credit_framework is not None else course.nqf_credits
+        )
+        academic_level = (
+            credit_framework.academic_level(course) if credit_framework is not None else course.nqf_level
+        )
+        if credit_value <= 0 or academic_level <= 0:
             return
         if not course.offering_verified:
             return
-        if not _prereqs_met(course, passed):
+        prerequisite = prerequisite_evaluator.evaluate_for_course(course)
+        if prerequisite.outcome != "satisfied":
             return
         # Filter by semester offering
         if semester != "Any" and not any(
-            semester.lower() in o.lower()
-            or "full year" in o.lower()
-            or "year" in o.lower()
+            semester.lower() in o.lower() or "full year" in o.lower() or "year" in o.lower()
             for o in course.offered
         ):
             return
@@ -95,9 +130,10 @@ def plan_next_semester(
                 name=course.name,
                 department=course.department,
                 offered=course.offered,
-                credits=course.nqf_credits,
+                credits=credit_value,
                 reason=reason,
                 priority=priority,
+                status=("unverified" if prerequisite.status == "unverified" else "provisional"),
             )
         )
 
@@ -127,19 +163,25 @@ def plan_next_semester(
                     add(code, f"{group.label} ({major_def.name} major)", 2)
 
     # --- Priority 3: Senior courses to meet senior-course requirement ---
-    recognised, _ = recognised_credited_pairs(student, catalogue)
+    recognised, _ = recognised_credited_pairs(student, catalogue, grading_scheme, course_code_scheme)
+    load_framework = course_load_framework or _LEGACY_UCT_LOAD_FRAMEWORK
     senior_passed = sum(
-        _course_weight(result.code)
+        load_framework.load_equivalent(result)
         for result, fact in recognised
-        if fact.nqf_level >= 6 and fact.counts_towards_course_equivalents
+        if (credit_framework.is_senior_level(fact) if credit_framework is not None else fact.nqf_level >= 6)
+        and fact.counts_towards_course_equivalents
     )
     senior_required = programme.senior_course_equivalents if programme else 0
     if senior_required and senior_passed < senior_required:
         for code, course in catalogue.courses.items():
             if (
                 code in route_codes
-                and course.nqf_level >= 6
-                and course.prerequisites
+                and (
+                    credit_framework.is_senior_level(course)
+                    if credit_framework is not None
+                    else course.nqf_level >= 6
+                )
+                and (course.prerequisites or course.prerequisite_expression)
                 and code not in passed
             ):
                 add(
@@ -161,6 +203,11 @@ def explain_requirement(
     requirement_id: str,
     student: StudentRecord,
     catalogue: Catalogue,
+    grading_scheme: GradingScheme | None = None,
+    credit_framework: AcademicCreditFramework | None = None,
+    course_code_scheme: CourseCodeScheme | None = None,
+    course_load_framework: CourseLoadFramework | None = None,
+    completion_recognition: CourseCompletionRecognitionInput | None = None,
 ) -> str:
     """
     Backward-chaining explanation: given a requirement that is NOT met,
@@ -168,10 +215,20 @@ def explain_requirement(
     """
     from .rule_engine import compute_report
 
-    passed = student.passed_codes()
+    passed = CourseCompletionResolver(
+        student, catalogue, grading_scheme, completion_recognition
+    ).completed_codes()
     major_keys = _normalise_major_keys(student.declared_majors, catalogue)
 
-    report = compute_report(student, catalogue)
+    report = compute_report(
+        student,
+        catalogue,
+        grading_scheme,
+        credit_framework,
+        course_code_scheme,
+        course_load_framework,
+        completion_recognition=completion_recognition,
+    )
     requirement = next((r for r in report.requirements if r.id == requirement_id), None)
 
     if requirement_id == "credits" and requirement:
@@ -201,9 +258,7 @@ def explain_requirement(
             for group in major_def.choice_groups:
                 satisfied = [c for c in group.courses if c in passed]
                 if len(satisfied) < group.required:
-                    outstanding.append(
-                        f"{group.required - len(satisfied)} from {group.label}"
-                    )
+                    outstanding.append(f"{group.required - len(satisfied)} from {group.label}")
             if outstanding:
                 lines.append(f"{major_def.name}: still need {', '.join(outstanding)}")
         return "\n".join(lines) if lines else "Both majors are complete."

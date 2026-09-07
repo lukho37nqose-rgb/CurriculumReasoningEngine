@@ -6,7 +6,13 @@ show why it reached a conclusion instead of only returning a boolean result.
 """
 
 from dataclasses import dataclass, field
-from typing import Any, Optional
+from typing import Any
+
+from curriculum_reasoning_engine.institutions import (
+    AcademicCreditFramework,
+    CourseCodeScheme,
+    GradingScheme,
+)
 
 from .models import Catalogue, CourseResult, MajorDefinition, StudentRecord
 from .recognition import recognised_credited_pairs
@@ -127,10 +133,12 @@ def _combine_status(
     return "verified"
 
 
-def course_pass_conclusion(result: CourseResult) -> ReasonedConclusion:
+def course_pass_conclusion(
+    result: CourseResult, grading_scheme: GradingScheme | None = None
+) -> ReasonedConclusion:
     """Represent a transcript result as a pass/fail academic conclusion."""
-    passed = result.is_passed()
-    failed = result.is_failed()
+    passed = result.is_passed(grading_scheme)
+    failed = result.is_failed(grading_scheme)
     recorded = result.mark if result.mark is not None else (result.grade or "no result")
     if passed:
         status = "verified"
@@ -163,7 +171,7 @@ def course_pass_conclusion(result: CourseResult) -> ReasonedConclusion:
         current=1.0 if passed else 0.0,
         required=1.0,
         evidence=[evidence],
-        applied_rules=["TRANSCRIPT_PASS_MARK_50"],
+        applied_rules=["INSTITUTIONAL_RESULT_CLASSIFICATION"],
         explanation=explanation,
         status=status,
         confidence=confidence,
@@ -173,9 +181,15 @@ def course_pass_conclusion(result: CourseResult) -> ReasonedConclusion:
 def credit_awarded_conclusion(
     result: CourseResult,
     course_pass: ReasonedConclusion,
+    credit_framework: AcademicCreditFramework | None = None,
 ) -> ReasonedConclusion:
     """Derive awarded credits from a verified course-pass conclusion."""
-    credits_awarded = result.nqf_credits if course_pass.result else 0
+    credit_value = (
+        credit_framework.credit_value(result)
+        if credit_framework is not None
+        else result.nqf_credits
+    )
+    credits_awarded = credit_value if course_pass.result else 0
     explanation = (
         f"{result.code} awards {credits_awarded:g} NQF credits "
         f"because the course pass conclusion is {course_pass.status}."
@@ -188,7 +202,7 @@ def credit_awarded_conclusion(
         claim=f"Credit awarded: {result.code}",
         result=course_pass.result,
         current=float(credits_awarded),
-        required=float(result.nqf_credits),
+        required=float(credit_value),
         evidence=course_pass.evidence,
         applied_rules=[*course_pass.applied_rules, "PASSED_COURSE_AWARDS_CREDITS"],
         explanation=explanation,
@@ -198,7 +212,11 @@ def credit_awarded_conclusion(
     )
 
 
-def build_credit_reasoning_graph(student: StudentRecord) -> ReasoningGraph:
+def build_credit_reasoning_graph(
+    student: StudentRecord,
+    grading_scheme: GradingScheme | None = None,
+    credit_framework: AcademicCreditFramework | None = None,
+) -> ReasoningGraph:
     """Build the pass -> credit-awarded portion of the reasoning graph."""
     graph = ReasoningGraph()
     # One academic fact per course code.  Prefer a passing attempt because a
@@ -206,11 +224,13 @@ def build_credit_reasoning_graph(student: StudentRecord) -> ReasoningGraph:
     # latest recorded attempt.
     ordered_codes = list(dict.fromkeys(result.code for result in student.results))
     for code in ordered_codes:
-        result = student.passed_result_for(code) or student.result_for(code)
+        result = student.passed_result_for(code, grading_scheme) or student.result_for(
+            code
+        )
         if result is None:
             continue
-        course_pass = graph.add(course_pass_conclusion(result))
-        graph.add(credit_awarded_conclusion(result, course_pass))
+        course_pass = graph.add(course_pass_conclusion(result, grading_scheme))
+        graph.add(credit_awarded_conclusion(result, course_pass, credit_framework))
     return graph
 
 
@@ -290,9 +310,13 @@ def detect_conflicts(conclusions: list[ReasonedConclusion]) -> list[ReasonedConc
     return conflicts
 
 
-def passed_nqf_credits(student: StudentRecord) -> MetricResult:
+def passed_nqf_credits(
+    student: StudentRecord,
+    grading_scheme: GradingScheme | None = None,
+    credit_framework: AcademicCreditFramework | None = None,
+) -> MetricResult:
     """Calculate passed NQF credits and preserve course-level evidence."""
-    graph = build_credit_reasoning_graph(student)
+    graph = build_credit_reasoning_graph(student, grading_scheme, credit_framework)
     supporting = [
         conclusion
         for conclusion in graph.conclusions.values()
@@ -398,9 +422,11 @@ def evaluate_total_nqf_credits(
     programme_key: str,
     programme_name: str,
     assumptions: list[str] | None = None,
+    grading_scheme: GradingScheme | None = None,
+    credit_framework: AcademicCreditFramework | None = None,
 ) -> ReasonedConclusion:
     """Evaluate the total-credit graduation requirement with a trace."""
-    metric = passed_nqf_credits(student)
+    metric = passed_nqf_credits(student, grading_scheme, credit_framework)
     rule = total_nqf_credits_rule(required_credits, programme_key, programme_name)
     return evaluate_threshold_rule(metric, rule, assumptions=assumptions)
 
@@ -413,6 +439,9 @@ def build_total_nqf_credits_graph(
     assumptions: list[str] | None = None,
     catalogue: Catalogue | None = None,
     provisional_results: list[CourseResult] | None = None,
+    grading_scheme: GradingScheme | None = None,
+    credit_framework: AcademicCreditFramework | None = None,
+    course_code_scheme: CourseCodeScheme | None = None,
 ) -> ReasoningGraph:
     """Build Layer 2 credit facts and the Layer 3 total-credit requirement.
 
@@ -420,7 +449,7 @@ def build_total_nqf_credits_graph(
     values are authoritative. Transcript-extracted values remain evidence of
     the attempt, but cannot alter the programme total.
     """
-    graph = build_credit_reasoning_graph(student)
+    graph = build_credit_reasoning_graph(student, grading_scheme, credit_framework)
     supporting = [
         conclusion
         for conclusion in graph.conclusions.values()
@@ -432,7 +461,9 @@ def build_total_nqf_credits_graph(
     provisional_results = provisional_results or []
     provisional_codes = {result.code for result in provisional_results}
     if catalogue is not None:
-        recognised, _ = recognised_credited_pairs(student, catalogue)
+        recognised, _ = recognised_credited_pairs(
+            student, catalogue, grading_scheme, course_code_scheme
+        )
         recognised_codes = {result.code for result, _ in recognised} | provisional_codes
         facts_by_code = {result.code: fact for result, fact in recognised}
     else:
@@ -445,7 +476,13 @@ def build_total_nqf_credits_graph(
         if code not in recognised_codes:
             continue
         fact = facts_by_code.get(code)
-        awarded = float(fact.nqf_credits) if fact is not None else conclusion.current
+        awarded = (
+            float(credit_framework.credit_value(fact))
+            if fact is not None and credit_framework is not None
+            else float(fact.nqf_credits)
+            if fact is not None
+            else conclusion.current
+        )
         total += awarded
         used_supporting.append(conclusion)
         evidence.extend(conclusion.evidence)
@@ -454,7 +491,10 @@ def build_total_nqf_credits_graph(
                 Evidence(
                     source_type="catalogue",
                     source_id=code,
-                    claim=f"{code} carries {fact.nqf_credits} NQF credits at level {fact.nqf_level}.",
+                    claim=(
+                        f"{code} carries {awarded:g} credits at level "
+                        f"{credit_framework.academic_level(fact) if credit_framework is not None else fact.nqf_level}."
+                    ),
                     confidence=1.0 if fact.verification_status == "verified" else 0.6,
                 )
             )
@@ -642,11 +682,15 @@ def major_completion_conclusion(
 def build_major_completion_graph(
     student: StudentRecord,
     major: MajorDefinition,
-    base_graph: Optional[ReasoningGraph] = None,
+    base_graph: ReasoningGraph | None = None,
+    grading_scheme: GradingScheme | None = None,
+    credit_framework: AcademicCreditFramework | None = None,
 ) -> ReasoningGraph:
     """Build Layer 2 facts and Layer 3 requirements for a major."""
     if base_graph is None:
-        graph = build_credit_reasoning_graph(student)
+        graph = build_credit_reasoning_graph(
+            student, grading_scheme, credit_framework
+        )
     else:
         # A shallow copy of the conclusions dict is sufficient and much faster than deepcopy.
         # ReasonedConclusion objects are treated as immutable, and ReasoningGraph only has

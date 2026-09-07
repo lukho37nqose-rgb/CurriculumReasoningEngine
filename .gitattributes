@@ -1,2 +1,7 @@
 * text=auto eol=lf
 *.png binary
+
+# Governed JSON is checked by byte-level integrity and builder-parity tests.
+data/**/*.json -text
+northstar/**/*.json -text
+northstar/cases.json -text

@@ -228,9 +228,23 @@
       "availability_note": "",
       "progression_rules": [
         {
-          "type": "failed_course_equivalents",
-          "label": "Annual failed-course-equivalent threshold",
-          "threshold": 4
+          "type": "progression_policy",
+          "label": "Annual failed-course-equivalent readmission indicator",
+          "policy_id": "UCT-LAW-2026-ANNUAL-FAILED-LOAD-LLB-THREE-YEAR-GRADUATE",
+          "verification_status": "unverified",
+          "source_reference": "2026 Faculty of Law Handbook, page 41, Admission and Curriculum Rules",
+          "condition": {
+            "type": "failed_metric",
+            "label": "Annual failed-course-equivalent threshold",
+            "metric_basis": "course_load_equivalent",
+            "identity": "distinct_course",
+            "temporal_scope": "latest_academic_year",
+            "threshold": 4
+          },
+          "consequence": {
+            "type": "advisory_risk",
+            "label": "Annual failed-course-equivalent readmission risk indicator"
+          }
         },
         {
           "type": "maximum_years",
@@ -1699,9 +1713,23 @@
       "availability_note": "",
       "progression_rules": [
         {
-          "type": "failed_course_equivalents",
-          "label": "Annual failed-course-equivalent threshold",
-          "threshold": 4
+          "type": "progression_policy",
+          "label": "Annual failed-course-equivalent readmission indicator",
+          "policy_id": "UCT-LAW-2026-ANNUAL-FAILED-LOAD-LLB-TWO-YEAR-COMBINED",
+          "verification_status": "unverified",
+          "source_reference": "2026 Faculty of Law Handbook, page 50, Admission and Curriculum Rules",
+          "condition": {
+            "type": "failed_metric",
+            "label": "Annual failed-course-equivalent threshold",
+            "metric_basis": "course_load_equivalent",
+            "identity": "distinct_course",
+            "temporal_scope": "latest_academic_year",
+            "threshold": 4
+          },
+          "consequence": {
+            "type": "advisory_risk",
+            "label": "Annual failed-course-equivalent readmission risk indicator"
+          }
         },
         {
           "type": "maximum_years",
@@ -4011,9 +4039,23 @@
       "availability_note": "",
       "progression_rules": [
         {
-          "type": "failed_course_equivalents",
-          "label": "Annual failed-course-equivalent threshold",
-          "threshold": 4
+          "type": "progression_policy",
+          "label": "Annual failed-course-equivalent readmission indicator",
+          "policy_id": "UCT-LAW-2026-ANNUAL-FAILED-LOAD-LLB-FOUR-YEAR-UNDERGRADUATE",
+          "verification_status": "unverified",
+          "source_reference": "2026 Faculty of Law Handbook, page 43, Admission and Curriculum Rules",
+          "condition": {
+            "type": "failed_metric",
+            "label": "Annual failed-course-equivalent threshold",
+            "metric_basis": "course_load_equivalent",
+            "identity": "distinct_course",
+            "temporal_scope": "latest_academic_year",
+            "threshold": 4
+          },
+          "consequence": {
+            "type": "advisory_risk",
+            "label": "Annual failed-course-equivalent readmission risk indicator"
+          }
         },
         {
           "type": "maximum_years",
@@ -6168,9 +6210,23 @@
       "availability_note": "For continuing students who first registered for LB003 in or before 2019; no new intake.",
       "progression_rules": [
         {
-          "type": "failed_course_equivalents",
-          "label": "Annual failed-course-equivalent threshold",
-          "threshold": 3
+          "type": "progression_policy",
+          "label": "Annual failed-course-equivalent readmission indicator",
+          "policy_id": "UCT-LAW-2026-ANNUAL-FAILED-LOAD-LLB-FIVE-YEAR-CONTINUING",
+          "verification_status": "unverified",
+          "source_reference": "2026 Faculty of Law Handbook, page 52, Admission and Curriculum Rules",
+          "condition": {
+            "type": "failed_metric",
+            "label": "Annual failed-course-equivalent threshold",
+            "metric_basis": "course_load_equivalent",
+            "identity": "distinct_course",
+            "temporal_scope": "latest_academic_year",
+            "threshold": 3
+          },
+          "consequence": {
+            "type": "advisory_risk",
+            "label": "Annual failed-course-equivalent readmission risk indicator"
+          }
         },
         {
           "type": "maximum_years",

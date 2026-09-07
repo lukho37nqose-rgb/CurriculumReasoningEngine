@@ -9,8 +9,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass, replace
 
-from .models import Catalogue, ProgrammeRules
 from .curriculum import collect_curriculum_course_codes
+from .models import Catalogue
 
 
 @dataclass(frozen=True)
@@ -67,14 +67,10 @@ def build_programme_scope(
     elif pathway_key:
         raise ValueError(f"{programme.name} does not define a pathway selection.")
     missing_major_keys: list[str] = []
-    explicit_major_mapping = (
-        bool(programme.major_keys) or programme.programme_type != "general_degree"
-    )
+    explicit_major_mapping = bool(programme.major_keys) or programme.programme_type != "general_degree"
     if explicit_major_mapping:
         major_keys = [key for key in programme.major_keys if key in catalogue.majors]
-        missing_major_keys = [
-            key for key in programme.major_keys if key not in catalogue.majors
-        ]
+        missing_major_keys = [key for key in programme.major_keys if key not in catalogue.majors]
         if missing_major_keys:
             warnings.append(
                 "Programme mapping references undefined majors: "
@@ -92,32 +88,22 @@ def build_programme_scope(
     else:
         major_keys = []
 
-    scoped_majors = {
-        key: catalogue.majors[key] for key in major_keys if key in catalogue.majors
-    }
+    scoped_majors = {key: catalogue.majors[key] for key in major_keys if key in catalogue.majors}
 
     required_course_codes: set[str] = set(programme.required_courses)
-    required_course_codes.update(
-        collect_curriculum_course_codes(programme.curriculum_rules, catalogue)
-    )
+    required_course_codes.update(collect_curriculum_course_codes(programme.curriculum_rules, catalogue))
     if selected_pathway:
         required_course_codes.update(selected_pathway.required_courses)
         required_course_codes.update(
-            collect_curriculum_course_codes(
-                selected_pathway.curriculum_rules, catalogue
-            )
+            collect_curriculum_course_codes(selected_pathway.curriculum_rules, catalogue)
         )
     for major in scoped_majors.values():
         required_course_codes.update(major.required_courses)
         for group in major.choice_groups:
             required_course_codes.update(group.courses)
-        required_course_codes.update(
-            collect_curriculum_course_codes(major.curriculum_rules, catalogue)
-        )
+        required_course_codes.update(collect_curriculum_course_codes(major.curriculum_rules, catalogue))
         for stage_rules in major.stage_rules.values():
-            required_course_codes.update(
-                collect_curriculum_course_codes(stage_rules, catalogue)
-            )
+            required_course_codes.update(collect_curriculum_course_codes(stage_rules, catalogue))
 
     explicit_electives = {
         code
@@ -135,11 +121,7 @@ def build_programme_scope(
             + ", ".join(sorted(non_elective_mappings))
             + "."
         )
-    missing_electives = [
-        code
-        for code in programme.elective_course_codes
-        if code not in catalogue.courses
-    ]
+    missing_electives = [code for code in programme.elective_course_codes if code not in catalogue.courses]
     if missing_electives:
         warnings.append(
             "Programme mapping references undefined elective courses: "
@@ -149,15 +131,12 @@ def build_programme_scope(
 
     if programme.elective_departments:
         allowed_departments = {
-            department.strip().lower()
-            for department in programme.elective_departments
-            if department.strip()
+            department.strip().lower() for department in programme.elective_departments if department.strip()
         }
         explicit_electives.update(
             code
             for code, course in catalogue.courses.items()
-            if course.department.strip().lower() in allowed_departments
-            and course.general_elective
+            if course.department.strip().lower() in allowed_departments and course.general_elective
         )
 
     if (
@@ -170,23 +149,15 @@ def build_programme_scope(
             "The engine will recommend major and compulsory courses only."
         )
 
-    support_course_codes = {
-        code for code in programme.support_course_codes if code in catalogue.courses
-    }
+    support_course_codes = {code for code in programme.support_course_codes if code in catalogue.courses}
     if selected_pathway:
         support_course_codes.update(
-            code
-            for code in selected_pathway.support_course_codes
-            if code in catalogue.courses
+            code for code in selected_pathway.support_course_codes if code in catalogue.courses
         )
-    missing_support = [
-        code for code in programme.support_course_codes if code not in catalogue.courses
-    ]
+    missing_support = [code for code in programme.support_course_codes if code not in catalogue.courses]
     if selected_pathway:
         missing_support.extend(
-            code
-            for code in selected_pathway.support_course_codes
-            if code not in catalogue.courses
+            code for code in selected_pathway.support_course_codes if code not in catalogue.courses
         )
     if missing_support:
         warnings.append(
@@ -195,9 +166,7 @@ def build_programme_scope(
             + "."
         )
 
-    allowed_course_codes = (
-        required_course_codes | explicit_electives | support_course_codes
-    )
+    allowed_course_codes = required_course_codes | explicit_electives | support_course_codes
     scoped_courses = {}
     for code in sorted(allowed_course_codes):
         if code not in catalogue.courses:
@@ -206,26 +175,24 @@ def build_programme_scope(
         if (
             code in programme.prerequisite_overrides
             or code in programme.co_requisite_overrides
+            or code in programme.prerequisite_expression_overrides
         ):
             fact = replace(
                 fact,
-                prerequisites=list(
-                    programme.prerequisite_overrides.get(code, fact.prerequisites)
-                ),
+                prerequisites=list(programme.prerequisite_overrides.get(code, fact.prerequisites)),
                 prerequisites_verified=(
-                    True
-                    if code in programme.prerequisite_overrides
-                    else fact.prerequisites_verified
+                    True if code in programme.prerequisite_overrides else fact.prerequisites_verified
                 ),
-                co_requisites=list(
-                    programme.co_requisite_overrides.get(code, fact.co_requisites)
+                co_requisites=list(programme.co_requisite_overrides.get(code, fact.co_requisites)),
+                prerequisite_expression=(
+                    dict(programme.prerequisite_expression_overrides[code])
+                    if code in programme.prerequisite_expression_overrides
+                    else fact.prerequisite_expression
                 ),
             )
         scoped_courses[code] = fact
 
-    missing_required = sorted(
-        code for code in required_course_codes if code not in catalogue.courses
-    )
+    missing_required = sorted(code for code in required_course_codes if code not in catalogue.courses)
     if missing_required:
         warnings.append(
             "Programme or major requirements reference missing course definitions: "
@@ -248,10 +215,7 @@ def build_programme_scope(
         and not missing_electives
         and not non_elective_mappings
         and not missing_support
-        and (
-            selected_pathway is None
-            or selected_pathway.verification_status == "verified"
-        )
+        and (selected_pathway is None or selected_pathway.verification_status == "verified")
     )
     status = "verified" if scope_verified else "unverified"
 
@@ -259,6 +223,7 @@ def build_programme_scope(
     scope_issues.extend(f"Programme scope: {warning}" for warning in warnings)
 
     scoped = Catalogue(
+        institution_release_id=catalogue.institution_release_id,
         courses=scoped_courses,
         majors=scoped_majors,
         programmes={programme_key: programme},
@@ -272,6 +237,7 @@ def build_programme_scope(
         cross_credit_exclusions=list(catalogue.cross_credit_exclusions),
         source=catalogue.source,
         catalogue_version=catalogue.catalogue_version,
+        award_rules=list(catalogue.award_rules),
     )
     scope = ProgrammeScope(
         faculty_key=faculty_key,

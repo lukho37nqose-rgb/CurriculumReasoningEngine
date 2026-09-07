@@ -32,16 +32,43 @@ from curriculum_advisor.admin_governance import (
     verify_admin_write_gate,
 )
 from curriculum_advisor.governance_status import governance_status
+from curriculum_advisor.presentation import (
+    PresentationContext,
+    advisor_reasoning_view,
+    presentation_context_from_request,
+    student_reasoning_view,
+)
 from curriculum_advisor.product import PRODUCT_VERSION, bootstrap_payload
+from curriculum_reasoning_engine.institutions import InstitutionRelease, get_institution_release
+from engine.award import QualificationAwardEvidence
 from engine.catalogue import load_catalogue
+from engine.completion import (
+    CourseCompletionRecognitionEvidence,
+    CourseCompletionRecognitionInput,
+    RecognitionEvidenceCoverage,
+)
+from engine.graduation import GraduationClearanceEvidence
 from engine.knowledge_graph import KnowledgeGraph
-from engine.models import Catalogue, CourseResult, StudentRecord
-from engine.parser import parse_transcript_pdf, parse_transcript_text
+from engine.models import (
+    AcademicRecordCoverageEvidence,
+    Catalogue,
+    CourseAttemptCoverageEvidence,
+    CourseResult,
+    ExternalSubjectAchievementCoverage,
+    ExternalSubjectAchievementEvidence,
+    PriorQualificationCoverage,
+    PriorQualificationEvidence,
+    RequirementRecognitionCoverage,
+    RequirementRecognitionEvidence,
+    StudentRecord,
+)
 from engine.reasoner import GraduateGoal, HonoursReadinessGoal
+from engine.registration import RegistrationHistoryCoverage, RegistrationHistoryEvidence
 from engine.rule_engine import compute_report
 from engine.scope import ProgrammeScope, build_programme_scope
 from engine.simulator import SimulationEngine
-from engine.utils import _infer_faculty_key, _infer_programme_key, _normalise_major_keys
+from engine.utils import _normalise_major_keys
+from northstar.web import install as install_northstar_demo
 
 app = FastAPI(
     title="CurriculumAdvisor API",
@@ -54,9 +81,7 @@ app = FastAPI(
 app.add_middleware(GZipMiddleware, minimum_size=1000)
 
 allowed_origins_env = os.environ.get("ALLOWED_ORIGINS", "")
-allowed_origins = [
-    origin.strip() for origin in allowed_origins_env.split(",") if origin.strip()
-]
+allowed_origins = [origin.strip() for origin in allowed_origins_env.split(",") if origin.strip()]
 if allowed_origins:
     app.add_middleware(
         CORSMiddleware,
@@ -69,53 +94,34 @@ _BASE = Path(__file__).parent
 _STATIC = _BASE / "static"
 app.mount("/static", StaticFiles(directory=str(_STATIC)), name="static")
 
-FACULTY_META = {
-    "uct_commerce": {
-        "name": "Commerce",
-        "short_name": "Commerce",
-        "description": "Business Science, Commerce, Economics, Finance, Accounting and related programmes.",
-        "available": True,
-    },
-    "uct_ebe": {
-        "name": "Engineering & the Built Environment",
-        "short_name": "EBE",
-        "description": "Engineering, architecture, construction, property and geomatics programmes.",
-        "available": True,
-    },
-    "uct_health": {
-        "name": "Health Sciences",
-        "short_name": "Health Sciences",
-        "description": "Medicine, rehabilitation sciences, clinical training and other undergraduate health programmes.",
-        "available": True,
-    },
-    "uct_humanities": {
-        "name": "Humanities",
-        "short_name": "Humanities",
-        "description": "Arts, social sciences, performance, education and related programmes.",
-        "available": True,
-    },
-    "uct_law": {
-        "name": "Law",
-        "short_name": "Law",
-        "description": "Four-year, graduate-entry, combined and continuing-student LLB pathways.",
-        "available": True,
-    },
-    "uct_science": {
-        "name": "Science",
-        "short_name": "Science",
-        "description": "Regular and extended BSc routes across mathematical, computational, physical, earth and life sciences.",
-        "available": True,
-    },
-}
-AVAILABLE_FACULTIES = set(FACULTY_META)
+ACTIVE_INSTITUTION_RELEASE = get_institution_release("uct", "2026")
+FACULTY_META = ACTIVE_INSTITUTION_RELEASE.faculty_meta_projection()
+AVAILABLE_FACULTIES = ACTIVE_INSTITUTION_RELEASE.enabled_catalogue_keys
+TRANSCRIPT_ADAPTER = ACTIVE_INSTITUTION_RELEASE.transcript_adapter
 
 # The ingestion catalogue and the programme-scoped catalogue are cached
 # separately.  A graph must never be shared across programme boundaries.
-_catalogues: dict[str, Catalogue] = {}
-_scoped_catalogues: dict[tuple[str, str, str], Catalogue] = {}
-_scopes: dict[tuple[str, str, str], ProgrammeScope] = {}
-_graphs: dict[tuple[str, str, str], KnowledgeGraph] = {}
-_faculty_contexts: dict[str, dict[str, Any]] = {}
+_catalogues: dict[tuple[str, str, str], Catalogue] = {}
+_scoped_catalogues: dict[tuple[str, str, str, str, str], Catalogue] = {}
+_scopes: dict[tuple[str, str, str, str, str], ProgrammeScope] = {}
+_graphs: dict[tuple[str, str, str, str, str], KnowledgeGraph] = {}
+_faculty_contexts: dict[tuple[str, str], dict[str, Any]] = {}
+
+
+def _release_from_request(body: dict) -> InstitutionRelease:
+    institution = body.get("institution_id")
+    release_id = body.get("release_id")
+    if institution is None and release_id is None:
+        return ACTIVE_INSTITUTION_RELEASE
+    if institution is None or release_id is None:
+        raise HTTPException(
+            status_code=422,
+            detail="institution_id and release_id must be supplied together.",
+        )
+    try:
+        return get_institution_release(str(institution).strip(), str(release_id).strip())
+    except KeyError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
 
 
 def _clear_catalogue_caches(faculty_key: str | None = None) -> None:
@@ -127,35 +133,66 @@ def _clear_catalogue_caches(faculty_key: str | None = None) -> None:
         _faculty_contexts.clear()
         return
 
-    _catalogues.pop(faculty_key, None)
-    _faculty_contexts.pop(faculty_key, None)
+    descriptor = ACTIVE_INSTITUTION_RELEASE.resolve_catalogue(faculty_key)
+    catalogue_key = descriptor.catalogue_key
+    _catalogues.pop(catalogue_key, None)
+    _catalogues.pop(
+        (ACTIVE_INSTITUTION_RELEASE.institution_id, ACTIVE_INSTITUTION_RELEASE.release_id, catalogue_key),
+        None,
+    )
+    _faculty_contexts.pop(
+        (ACTIVE_INSTITUTION_RELEASE.institution_id, ACTIVE_INSTITUTION_RELEASE.release_id), None
+    )
     for cache in (_scoped_catalogues, _scopes, _graphs):
         for key in list(cache):
-            if key[0] == faculty_key:
+            if len(key) >= 3 and key[2] == catalogue_key:
                 cache.pop(key, None)
 
 
-def get_catalogue(faculty_key: str) -> Catalogue:
-    if faculty_key not in AVAILABLE_FACULTIES:
+def get_catalogue(
+    faculty_key: str,
+    release: InstitutionRelease = ACTIVE_INSTITUTION_RELEASE,
+) -> Catalogue:
+    try:
+        descriptor = release.resolve_catalogue(faculty_key)
+    except KeyError as exc:
         raise ValueError(
             f"Unknown faculty catalogue {faculty_key!r}. Expected one of: "
-            f"{', '.join(sorted(AVAILABLE_FACULTIES))}."
+            f"{', '.join(sorted(release.enabled_catalogue_keys))}."
+        ) from exc
+    catalogue_key = descriptor.catalogue_key
+    if catalogue_key not in release.enabled_catalogue_keys:
+        raise ValueError(
+            f"Unknown faculty catalogue {faculty_key!r}. Expected one of: "
+            f"{', '.join(sorted(release.enabled_catalogue_keys))}."
         )
-    if faculty_key not in _catalogues:
-        catalogue = load_catalogue(faculty_key)
+    cache_key = (
+        catalogue_key
+        if release is ACTIVE_INSTITUTION_RELEASE
+        else (release.institution_id, release.release_id, catalogue_key)
+    )
+    if cache_key not in _catalogues:
+        catalogue = load_catalogue(
+            catalogue_key,
+            descriptor.courses_path,
+            descriptor.requirements_path,
+            release.course_code_scheme,
+        )
         apply_quick_edit_overlays(catalogue, _BASE)
-        _catalogues[faculty_key] = catalogue
-    return _catalogues[faculty_key]
+        catalogue.institution_release_id = release.release_id
+        _catalogues[cache_key] = catalogue
+    return _catalogues[cache_key]
 
 
 def get_programme_catalogue_and_graph(
     faculty_key: str,
     programme_key: str,
     pathway_key: str = "",
+    release: InstitutionRelease = ACTIVE_INSTITUTION_RELEASE,
 ) -> tuple[Catalogue, KnowledgeGraph, ProgrammeScope]:
-    cache_key = (faculty_key, programme_key, pathway_key)
+    cache_key = (release.institution_id, release.release_id, faculty_key, programme_key, pathway_key)
     if cache_key not in _scoped_catalogues:
-        full_catalogue = get_catalogue(faculty_key)
+        full_catalogue = get_catalogue(faculty_key, release)
         scoped, scope = build_programme_scope(
             faculty_key,
             full_catalogue,
@@ -183,27 +220,30 @@ def _scope_or_422(
     faculty_key: str,
     programme_key: str,
     pathway_key: str = "",
+    release: InstitutionRelease = ACTIVE_INSTITUTION_RELEASE,
 ) -> tuple[Catalogue, KnowledgeGraph, ProgrammeScope]:
     if not faculty_key:
         raise HTTPException(status_code=422, detail="A faculty selection is required.")
-    if faculty_key not in FACULTY_META:
+    if faculty_key not in release.academic_unit_keys:
         raise HTTPException(status_code=422, detail="Unknown faculty selection.")
-    if not FACULTY_META[faculty_key].get("available", False):
+    unit = release.academic_unit(faculty_key)
+    if not unit.available:
         raise HTTPException(
             status_code=422,
-            detail=f"{FACULTY_META[faculty_key]['name']} is not enabled yet.",
+            detail=f"{unit.name} is not enabled yet.",
         )
     # Validate the faculty before reporting a missing programme so malformed
     # faculty keys cannot hide behind a secondary validation error.
-    _full_catalogue_or_422(faculty_key)
-    if not programme_key:
-        raise HTTPException(
-            status_code=422, detail="A programme selection is required."
-        )
     try:
-        return get_programme_catalogue_and_graph(
-            faculty_key, programme_key, pathway_key
+        _full_catalogue_or_422(faculty_key) if release is ACTIVE_INSTITUTION_RELEASE else get_catalogue(
+            faculty_key, release
         )
+    except (ValueError, OSError) as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    if not programme_key:
+        raise HTTPException(status_code=422, detail="A programme selection is required.")
+    try:
+        return get_programme_catalogue_and_graph(faculty_key, programme_key, pathway_key, release)
     except (ValueError, OSError) as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
 
@@ -225,6 +265,7 @@ def _student_from_dict(body: dict) -> StudentRecord:
             mark = int(mark)
             if not 0 <= mark <= 100:
                 raise ValueError(f"Result {index + 1} has a mark outside 0-100.")
+        achievement_value = raw.get("achievement_value")
         nqf_level = int(raw.get("nqf_level", 0))
         nqf_credits = int(raw.get("nqf_credits", 0))
         if not 0 <= nqf_level <= 10:
@@ -238,10 +279,14 @@ def _student_from_dict(body: dict) -> StudentRecord:
                 nqf_level=nqf_level,
                 nqf_credits=nqf_credits,
                 mark=mark,
+                achievement_value=achievement_value,
                 grade=raw.get("grade"),
                 academic_year=(
-                    int(raw["academic_year"])
-                    if raw.get("academic_year") not in (None, "")
+                    int(raw["academic_year"]) if raw.get("academic_year") not in (None, "") else None
+                ),
+                academic_period_key=(
+                    str(raw["academic_period_key"]).strip()
+                    if raw.get("academic_period_key") not in (None, "")
                     else None
                 ),
             )
@@ -261,22 +306,25 @@ def _student_from_dict(body: dict) -> StudentRecord:
         programme_key=str(body.get("programme_key", "")).strip(),
         pathway_key=str(body.get("pathway_key", "")).strip(),
         years_registered=(
-            int(body["years_registered"])
-            if body.get("years_registered") not in (None, "")
-            else None
+            int(body["years_registered"]) if body.get("years_registered") not in (None, "") else None
         ),
     )
 
 
-def _to_dict(obj: Any) -> Any:
+def _to_dict(obj: Any, *, presentation_context: PresentationContext | None = None) -> Any:
+    if obj.__class__.__name__ == "Report" and dataclasses.is_dataclass(obj):
+        payload = {key: _to_dict(value, presentation_context=presentation_context) for key, value in dataclasses.asdict(obj).items()}
+        payload["student_reasoning_view"] = student_reasoning_view(obj, context=presentation_context)
+        payload["advisor_reasoning_view"] = advisor_reasoning_view(obj, context=presentation_context)
+        return payload
     if dataclasses.is_dataclass(obj) and not isinstance(obj, type):
-        return {key: _to_dict(value) for key, value in dataclasses.asdict(obj).items()}
+        return {key: _to_dict(value, presentation_context=presentation_context) for key, value in dataclasses.asdict(obj).items()}
     if isinstance(obj, list):
-        return [_to_dict(item) for item in obj]
+        return [_to_dict(item, presentation_context=presentation_context) for item in obj]
     if isinstance(obj, tuple):
-        return [_to_dict(item) for item in obj]
+        return [_to_dict(item, presentation_context=presentation_context) for item in obj]
     if isinstance(obj, dict):
-        return {key: _to_dict(value) for key, value in obj.items()}
+        return {key: _to_dict(value, presentation_context=presentation_context) for key, value in obj.items()}
     if isinstance(obj, set):
         return sorted(obj)
     return obj
@@ -288,12 +336,11 @@ def _bind_student_to_scope(
     programme_key: str,
     pathway_key: str,
     catalogue: Catalogue,
+    release: InstitutionRelease = ACTIVE_INSTITUTION_RELEASE,
 ) -> StudentRecord:
     """Attach the user's explicit route selections and reject clear mismatches."""
     inferred_faculty = (
-        _infer_faculty_key(student.programme)
-        if student.programme
-        else "unknown_faculty"
+        release.infer_academic_unit(student.programme) if student.programme else "unknown_faculty"
     )
     if inferred_faculty != "unknown_faculty" and inferred_faculty != faculty_key:
         raise HTTPException(
@@ -305,9 +352,7 @@ def _bind_student_to_scope(
         )
 
     inferred_programme = (
-        _infer_programme_key(student.programme)
-        if student.programme
-        else "unknown_programme"
+        release.infer_programme(student.programme) if student.programme else "unknown_programme"
     )
 
     # A standard transcript label often states only BA or BSocSc and omits the
@@ -345,7 +390,7 @@ def _bind_student_to_scope(
     )
     route_conflict = (
         inferred_programme != "unknown_programme"
-        and inferred_programme in get_catalogue(faculty_key).programmes
+        and inferred_programme in get_catalogue(faculty_key, release).programmes
         and (
             _family(inferred_programme) != _family(programme_key)
             or (transcript_explicitly_extended and inferred_programme != programme_key)
@@ -373,16 +418,248 @@ def _context_from_body(
     body: dict,
     student: StudentRecord,
 ) -> tuple[StudentRecord, Catalogue, KnowledgeGraph, ProgrammeScope]:
+    release = _release_from_request(body)
     faculty_key = str(body.get("faculty") or student.faculty_key or "").strip()
-    programme_key = str(
-        body.get("programme_key") or student.programme_key or ""
-    ).strip()
+    programme_key = str(body.get("programme_key") or student.programme_key or "").strip()
     pathway_key = str(body.get("pathway_key") or student.pathway_key or "").strip()
-    catalogue, graph, scope = _scope_or_422(faculty_key, programme_key, pathway_key)
-    student = _bind_student_to_scope(
-        student, faculty_key, programme_key, pathway_key, catalogue
-    )
+    catalogue, graph, scope = _scope_or_422(faculty_key, programme_key, pathway_key, release)
+    student = _bind_student_to_scope(student, faculty_key, programme_key, pathway_key, catalogue, release)
     return student, catalogue, graph, scope
+
+
+def _evidence_from_body(body: dict, release: InstitutionRelease, student: StudentRecord):
+    """Parse only the already-established, explicit evidence contracts."""
+    result_coverage = tuple(
+        AcademicRecordCoverageEvidence(
+            tuple(str(code).strip().upper() for code in item.get("course_codes", [])),
+            str(item.get("coverage_state", "")),
+            str(item.get("source_reference", "")),
+            str(item.get("authority", "")),
+            str(item.get("verification_status", "verified")),
+        )
+        for item in body.get("academic_record_coverage", [])
+    )
+    decisions = tuple(
+        CourseCompletionRecognitionEvidence(
+            str(item["recognition_id"]),
+            str(item.get("student_id", student.student_id)),
+            str(item["target_course_code"]).strip().upper(),
+            str(item["source_learning_identity"]),
+            str(item.get("institution_id", release.institution_id)),
+            str(item.get("release_id", release.release_id)),
+            str(item["authority"]),
+            str(item["source_reference"]),
+            str(item.get("verification_status", "unverified")),
+            str(item.get("programme_key", student.programme_key)),
+            str(item.get("pathway_key", student.pathway_key)),
+        )
+        for item in body.get("course_completion_recognition", [])
+    )
+    recognition_coverage = tuple(
+        RecognitionEvidenceCoverage(
+            str(item.get("student_id", student.student_id)),
+            str(item.get("institution_id", release.institution_id)),
+            str(item.get("release_id", release.release_id)),
+            tuple(str(code).strip().upper() for code in item.get("course_codes", [])),
+            str(item["authority"]),
+            str(item["source_reference"]),
+            str(item.get("verification_status", "unverified")),
+            str(item.get("programme_key", student.programme_key)),
+            str(item.get("pathway_key", student.pathway_key)),
+        )
+        for item in body.get("recognition_coverage", [])
+    )
+    return result_coverage, CourseCompletionRecognitionInput(decisions, recognition_coverage)
+
+
+def _requirement_recognition_from_body(body: dict, release: InstitutionRelease, student: StudentRecord):
+    evidence = tuple(
+        RequirementRecognitionEvidence(
+            str(item["recognition_id"]),
+            str(item.get("student_id", student.student_id)),
+            str(item.get("institution_id", release.institution_id)),
+            str(item.get("release_id", release.release_id)),
+            str(item.get("programme_key", student.programme_key)),
+            str(item["target_requirement_id"]),
+            str(item["source_learning_identity"]),
+            str(item["authority"]),
+            str(item.get("source_reference", "")),
+            str(item.get("verification_status", "unverified")),
+            str(item.get("pathway_key", student.pathway_key)),
+        )
+        for item in body.get("requirement_recognition_evidence", [])
+    )
+    coverage = tuple(
+        RequirementRecognitionCoverage(
+            str(item.get("student_id", student.student_id)),
+            str(item.get("institution_id", release.institution_id)),
+            str(item.get("release_id", release.release_id)),
+            str(item.get("programme_key", student.programme_key)),
+            tuple(str(value) for value in item.get("requirement_ids", [])),
+            str(item.get("coverage_state", "")),
+            str(item.get("source_reference", "")),
+            str(item.get("authority", "")),
+            str(item.get("verification_status", "unverified")),
+            str(item.get("pathway_key", student.pathway_key)),
+        )
+        for item in body.get("requirement_recognition_coverage", [])
+    )
+    return evidence, coverage
+
+
+def _receipt_evidence_body(body, result_coverage, recognition, requirements, requirement_coverage):
+    """Present the ingested snapshots, without deciding which conclusions used them."""
+    return {
+        **body,
+        "academic_record_coverage": [dataclasses.asdict(item) for item in result_coverage],
+        "course_completion_recognition": [dataclasses.asdict(item) for item in recognition.decisions],
+        "recognition_coverage": [dataclasses.asdict(item) for item in recognition.coverage],
+        "requirement_recognition_evidence": [dataclasses.asdict(item) for item in requirements],
+        "requirement_recognition_coverage": [dataclasses.asdict(item) for item in requirement_coverage],
+    }
+
+
+def _external_subject_achievement_from_body(body: dict, release: InstitutionRelease, student: StudentRecord):
+    evidence = tuple(
+        ExternalSubjectAchievementEvidence(
+            str(item["evidence_id"]),
+            str(item.get("student_id", student.student_id)),
+            str(item["qualification_system_id"]),
+            str(item["subject_id"]),
+            item["achievement_value"],
+            str(item["authority"]),
+            str(item.get("source_reference", "")),
+            str(item.get("verification_status", "unverified")),
+            str(item.get("credential_id", "")),
+        )
+        for item in body.get("external_subject_achievement_evidence", [])
+    )
+    coverage = tuple(
+        ExternalSubjectAchievementCoverage(
+            str(item.get("student_id", student.student_id)),
+            str(item["qualification_system_id"]),
+            tuple(str(subject) for subject in item.get("subject_ids", [])),
+            str(item.get("coverage_state", "")),
+            str(item["authority"]),
+            str(item.get("source_reference", "")),
+            str(item.get("verification_status", "unverified")),
+        )
+        for item in body.get("external_subject_achievement_coverage", [])
+    )
+    return evidence, coverage
+
+
+def _course_attempt_coverage_from_body(body: dict):
+    """Request-local attempt completeness, not course-completion coverage."""
+    return tuple(
+        CourseAttemptCoverageEvidence(
+            tuple(str(code) for code in item.get("course_codes", [])),
+            str(item.get("coverage_state", "")),
+            str(item.get("source_reference", "")),
+            str(item.get("authority", "")),
+            str(item.get("verification_status", "unverified")),
+        )
+        for item in body.get("course_attempt_coverage", [])
+    )
+
+
+def _prior_qualification_from_body(body: dict, release: InstitutionRelease, student: StudentRecord):
+    evidence = tuple(
+        PriorQualificationEvidence(
+            str(item["evidence_id"]),
+            str(item.get("student_id", student.student_id)),
+            str(item["qualification_system_id"]),
+            str(item["qualification_id"]),
+            str(item["authority"]),
+            str(item.get("source_reference", "")),
+            str(item.get("verification_status", "unverified")),
+            str(item.get("credential_id", "")),
+        )
+        for item in body.get("prior_qualification_evidence", [])
+    )
+    coverage = tuple(
+        PriorQualificationCoverage(
+            str(item.get("student_id", student.student_id)),
+            str(item["qualification_system_id"]),
+            tuple(str(value) for value in item.get("qualification_ids", [])),
+            str(item.get("coverage_state", "")),
+            str(item["authority"]),
+            str(item.get("source_reference", "")),
+            str(item.get("verification_status", "unverified")),
+        )
+        for item in body.get("prior_qualification_coverage", [])
+    )
+    return evidence, coverage
+
+
+def _graduation_clearances_from_body(body: dict, release: InstitutionRelease, student: StudentRecord):
+    return tuple(
+        GraduationClearanceEvidence(
+            str(item["evidence_id"]),
+            str(item.get("student_id", student.student_id)),
+            release.institution_id,
+            release.release_id,
+            str(item["clearance_id"]),
+            str(item["outcome"]),
+            str(item["authority"]),
+            str(item.get("verification_status", "unverified")),
+            str(item.get("source_reference", "")),
+            str(item.get("programme_key", student.programme_key)),
+        )
+        for item in body.get("graduation_clearances", [])
+    )
+
+
+def _qualification_awards_from_body(body: dict, release: InstitutionRelease, student: StudentRecord):
+    return tuple(
+        QualificationAwardEvidence(
+            str(item["award_evidence_id"]),
+            str(item.get("student_id", student.student_id)),
+            release.institution_id,
+            str(item.get("qualification_key", student.programme_key)),
+            str(item["outcome"]),
+            str(item["authority"]),
+            str(item.get("verification_status", "unverified")),
+            str(item.get("source_reference", "")),
+            str(item.get("applicable_release_id", "")),
+        )
+        for item in body.get("qualification_award_evidence", [])
+    )
+
+
+def _registration_from_body(body: dict, release: InstitutionRelease, student: StudentRecord):
+    entries = tuple(
+        RegistrationHistoryEvidence(
+            str(item["evidence_id"]),
+            str(item.get("student_id", student.student_id)),
+            release.institution_id,
+            release.release_id,
+            str(item["academic_period_key"]),
+            str(item["programme_key"]),
+            str(item.get("pathway_key", "")),
+            str(item.get("registration_state", "active")),
+            str(item.get("authority", "")),
+            str(item.get("verification_status", "unverified")),
+            str(item.get("source_reference", "")),
+        )
+        for item in body.get("registration_history", [])
+    )
+    coverage = tuple(
+        RegistrationHistoryCoverage(
+            str(item.get("student_id", student.student_id)),
+            release.institution_id,
+            release.release_id,
+            tuple(item.get("academic_period_keys", [])),
+            str(item["authority"]),
+            str(item["source_reference"]),
+            str(item.get("coverage_state", "complete")),
+            str(item.get("verification_status", "unverified")),
+            str(item.get("programme_key", "")),
+            str(item.get("pathway_key", "")),
+        )
+        for item in body.get("registration_history_coverage", [])
+    )
+    return entries, coverage
 
 
 def _faculty_context(faculty_key: str) -> dict[str, Any]:
@@ -395,12 +672,8 @@ def _faculty_context(faculty_key: str) -> dict[str, Any]:
         return {"key": faculty_key, **meta, "programmes": [], "status": "coming_soon"}
     catalogue = _full_catalogue_or_422(faculty_key)
     programmes = []
-    for key, programme in sorted(
-        catalogue.programmes.items(), key=lambda item: item[1].name
-    ):
-        preview_pathway = programme.default_pathway_key or (
-            next(iter(programme.pathways), "")
-        )
+    for key, programme in sorted(catalogue.programmes.items(), key=lambda item: item[1].name):
+        preview_pathway = programme.default_pathway_key or (next(iter(programme.pathways), ""))
         scoped, _, scope = _scope_or_422(faculty_key, key, preview_pathway)
         programmes.append(
             {
@@ -439,9 +712,7 @@ def _faculty_context(faculty_key: str) -> dict[str, Any]:
                         "availability_note": pathway.availability_note,
                         "source": pathway.source,
                     }
-                    for pathway in sorted(
-                        programme.pathways.values(), key=lambda item: item.name
-                    )
+                    for pathway in sorted(programme.pathways.values(), key=lambda item: item.name)
                 ],
                 "admission_notes": programme.admission_notes,
                 "progression_notes": programme.progression_notes,
@@ -459,9 +730,7 @@ def _faculty_context(faculty_key: str) -> dict[str, Any]:
                         "admission_note": major.admission_note,
                         "source": major.source,
                     }
-                    for major in sorted(
-                        scoped.majors.values(), key=lambda major: major.name
-                    )
+                    for major in sorted(scoped.majors.values(), key=lambda major: major.name)
                 ],
             }
         )
@@ -498,9 +767,7 @@ def admin_workspace():
     admin_file = _STATIC / "admin.html"
     if admin_file.exists():
         return FileResponse(str(admin_file), media_type="text/html")
-    return JSONResponse(
-        {"error": "Administration workspace not found."}, status_code=404
-    )
+    return JSONResponse({"error": "Administration workspace not found."}, status_code=404)
 
 
 @app.get("/api/v1/faculties")
@@ -581,9 +848,7 @@ def admin_recent_quick_edits(x_admin_token: str | None = Header(default=None)):
 
 
 @app.post("/api/v1/admin/quick-edit")
-async def admin_quick_edit(
-    body: dict, x_admin_token: str | None = Header(default=None)
-):
+async def admin_quick_edit(body: dict, x_admin_token: str | None = Header(default=None)):
     """Apply a low-risk metadata overlay and append an immutable audit event."""
     try:
         verify_admin_write_gate(x_admin_token)
@@ -629,9 +894,7 @@ def programme_view(faculty_key: str, programme_key: str, pathway_key: str = ""):
         "major_count": len(catalogue.majors),
         "course_count": len(catalogue.courses),
         "verified_major_count": sum(
-            1
-            for major in catalogue.majors.values()
-            if major.verification_status == "verified"
+            1 for major in catalogue.majors.values() if major.verification_status == "verified"
         ),
     }
 
@@ -657,15 +920,11 @@ async def analyse_pdf(
         raise HTTPException(status_code=400, detail="Only PDF files are accepted.")
     content = await file.read()
     if len(content) > 20 * 1024 * 1024:
-        raise HTTPException(
-            status_code=413, detail="Transcript PDF exceeds the 20 MB upload limit."
-        )
+        raise HTTPException(status_code=413, detail="Transcript PDF exceeds the 20 MB upload limit.")
     if not content or b"%PDF-" not in content[:1024]:
-        raise HTTPException(
-            status_code=400, detail="The uploaded file is not a valid PDF."
-        )
+        raise HTTPException(status_code=400, detail="The uploaded file is not a valid PDF.")
     try:
-        student = parse_transcript_pdf(io.BytesIO(content))
+        student = TRANSCRIPT_ADAPTER.parse_pdf(io.BytesIO(content))
     except Exception as exc:
         raise HTTPException(
             status_code=422,
@@ -687,11 +946,27 @@ async def analyse_pdf(
         student.declared_majors = selected_majors
     if years_registered is not None:
         if not 1 <= years_registered <= 20:
-            raise HTTPException(
-                status_code=422, detail="years_registered must be between 1 and 20."
-            )
+            raise HTTPException(status_code=422, detail="years_registered must be between 1 and 20.")
         student.years_registered = years_registered
-    return JSONResponse(_to_dict(compute_report(student, catalogue)))
+    return JSONResponse(
+        _to_dict(
+            compute_report(
+                student,
+                catalogue,
+                ACTIVE_INSTITUTION_RELEASE.grading_scheme,
+                ACTIVE_INSTITUTION_RELEASE.credit_framework,
+                ACTIVE_INSTITUTION_RELEASE.course_code_scheme,
+                ACTIVE_INSTITUTION_RELEASE.course_load_framework,
+            ),
+            presentation_context=presentation_context_from_request(
+                {"programme_key": programme, "pathway_key": pathway},
+                academic_record_supplied=True,
+                institution_id=ACTIVE_INSTITUTION_RELEASE.institution_id,
+                release_id=ACTIVE_INSTITUTION_RELEASE.release_id,
+                provenance=ACTIVE_INSTITUTION_RELEASE.provenance,
+            ),
+        )
+    )
 
 
 @app.post("/api/v1/analyse/text")
@@ -700,27 +975,111 @@ async def analyse_text(body: dict):
     text = str(body.get("text", ""))
     if not text.strip():
         raise HTTPException(status_code=400, detail="No transcript text provided.")
-    student = parse_transcript_text(text)
+    release = _release_from_request(body)
+    student = release.transcript_adapter.parse_text(text)
     if not student.results and not student.student_id:
         raise HTTPException(
             status_code=422,
             detail="The text did not contain recognisable UCT transcript data.",
         )
     student, catalogue, _, _ = _context_from_body(body, student)
-    return JSONResponse(_to_dict(compute_report(student, catalogue)))
+    result_coverage, recognition = _evidence_from_body(body, release, student)
+    requirement_recognition, requirement_recognition_coverage = _requirement_recognition_from_body(body, release, student)
+    external_subject_evidence, external_subject_coverage = _external_subject_achievement_from_body(body, release, student)
+    prior_qualification_evidence, prior_qualification_coverage = _prior_qualification_from_body(body, release, student)
+    registration_history, registration_coverage = _registration_from_body(body, release, student)
+    clearances = _graduation_clearances_from_body(body, release, student)
+    awards = _qualification_awards_from_body(body, release, student)
+    presentation_context = presentation_context_from_request(
+        _receipt_evidence_body(body, result_coverage, recognition, requirement_recognition, requirement_recognition_coverage),
+        academic_record_supplied=True,
+        provenance=release.provenance,
+        institution_id=release.institution_id,
+        release_id=release.release_id,
+    )
+    return JSONResponse(
+        _to_dict(
+            compute_report(
+                student,
+                catalogue,
+                release.grading_scheme,
+                release.credit_framework,
+                release.course_code_scheme,
+                release.course_load_framework,
+                achievement_scheme=release.achievement_scheme,
+                academic_record_coverage_evidence=result_coverage,
+                completion_recognition=recognition,
+                academic_period_scheme=release.period_scheme,
+                registration_history=registration_history,
+                registration_history_coverage=registration_coverage,
+                graduation_clearance_evidence=clearances,
+                qualification_award_evidence=awards,
+                requirement_recognition_evidence=requirement_recognition,
+                requirement_recognition_coverage=requirement_recognition_coverage,
+                external_qualification_systems=release.external_qualification_systems,
+                external_subject_achievement_evidence=external_subject_evidence,
+                external_subject_achievement_coverage=external_subject_coverage,
+                prior_qualification_evidence=prior_qualification_evidence,
+                prior_qualification_coverage=prior_qualification_coverage,
+                course_attempt_coverage_evidence=_course_attempt_coverage_from_body(body),
+            ),
+            presentation_context=presentation_context,
+        )
+    )
 
 
 @app.post("/api/v1/analyse/json")
 @app.post("/analyse/json")
 async def analyse_json(body: dict):
+    release = _release_from_request(body)
     try:
         student = _student_from_dict(body)
     except (KeyError, TypeError, ValueError) as exc:
-        raise HTTPException(
-            status_code=422, detail=f"Invalid student record: {exc}"
-        ) from exc
+        raise HTTPException(status_code=422, detail=f"Invalid student record: {exc}") from exc
     student, catalogue, _, _ = _context_from_body(body, student)
-    return JSONResponse(_to_dict(compute_report(student, catalogue)))
+    result_coverage, recognition = _evidence_from_body(body, release, student)
+    requirement_recognition, requirement_recognition_coverage = _requirement_recognition_from_body(body, release, student)
+    external_subject_evidence, external_subject_coverage = _external_subject_achievement_from_body(body, release, student)
+    prior_qualification_evidence, prior_qualification_coverage = _prior_qualification_from_body(body, release, student)
+    registration_history, registration_coverage = _registration_from_body(body, release, student)
+    clearances = _graduation_clearances_from_body(body, release, student)
+    awards = _qualification_awards_from_body(body, release, student)
+    presentation_context = presentation_context_from_request(
+        _receipt_evidence_body(body, result_coverage, recognition, requirement_recognition, requirement_recognition_coverage),
+        academic_record_supplied=True,
+        provenance=release.provenance,
+        institution_id=release.institution_id,
+        release_id=release.release_id,
+    )
+    return JSONResponse(
+        _to_dict(
+            compute_report(
+                student,
+                catalogue,
+                release.grading_scheme,
+                release.credit_framework,
+                release.course_code_scheme,
+                release.course_load_framework,
+                achievement_scheme=release.achievement_scheme,
+                academic_record_coverage_evidence=result_coverage,
+                completion_recognition=recognition,
+                academic_period_scheme=release.period_scheme,
+                registration_history=registration_history,
+                registration_history_coverage=registration_coverage,
+                graduation_clearance_evidence=clearances,
+                qualification_award_evidence=awards,
+                requirement_recognition_evidence=requirement_recognition,
+                requirement_recognition_coverage=requirement_recognition_coverage,
+                external_qualification_systems=release.external_qualification_systems,
+                external_subject_achievement_evidence=external_subject_evidence,
+                external_subject_achievement_coverage=external_subject_coverage,
+                prior_qualification_evidence=prior_qualification_evidence,
+                prior_qualification_coverage=prior_qualification_coverage,
+                course_attempt_coverage_evidence=_course_attempt_coverage_from_body(body),
+            ),
+            presentation_context=presentation_context,
+        )
+    )
 
 
 @app.post("/api/v1/simulate/fail")
@@ -732,13 +1091,17 @@ async def simulate_fail(body: dict):
         if not course_code:
             raise ValueError("course_code is required.")
     except (KeyError, TypeError, ValueError) as exc:
-        raise HTTPException(
-            status_code=422, detail=f"Invalid student record: {exc}"
-        ) from exc
+        raise HTTPException(status_code=422, detail=f"Invalid student record: {exc}") from exc
     student, catalogue, graph, _ = _context_from_body(body, student)
     try:
         report, blocked = SimulationEngine(
-            student, catalogue, graph
+            student,
+            catalogue,
+            graph,
+            ACTIVE_INSTITUTION_RELEASE.grading_scheme,
+            ACTIVE_INSTITUTION_RELEASE.credit_framework,
+            ACTIVE_INSTITUTION_RELEASE.course_code_scheme,
+            ACTIVE_INSTITUTION_RELEASE.course_load_framework,
         ).simulate_fail_course(course_code)
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
@@ -757,14 +1120,18 @@ async def simulate_pass(body: dict):
         if not 0 <= mark <= 100:
             raise ValueError("mark must be between 0 and 100.")
     except (KeyError, TypeError, ValueError) as exc:
-        raise HTTPException(
-            status_code=422, detail=f"Invalid student record: {exc}"
-        ) from exc
+        raise HTTPException(status_code=422, detail=f"Invalid student record: {exc}") from exc
     student, catalogue, graph, _ = _context_from_body(body, student)
     try:
-        report = SimulationEngine(student, catalogue, graph).simulate_pass_course(
-            course_code, mark
-        )
+        report = SimulationEngine(
+            student,
+            catalogue,
+            graph,
+            ACTIVE_INSTITUTION_RELEASE.grading_scheme,
+            ACTIVE_INSTITUTION_RELEASE.credit_framework,
+            ACTIVE_INSTITUTION_RELEASE.course_code_scheme,
+            ACTIVE_INSTITUTION_RELEASE.course_load_framework,
+        ).simulate_pass_course(course_code, mark)
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
     return JSONResponse(_to_dict(report))
@@ -780,15 +1147,19 @@ async def simulate_switch(body: dict):
             raise ValueError("new_majors must be a list.")
         new_majors = [str(major).strip() for major in new_majors if str(major).strip()]
     except (KeyError, TypeError, ValueError) as exc:
-        raise HTTPException(
-            status_code=422, detail=f"Invalid student record: {exc}"
-        ) from exc
+        raise HTTPException(status_code=422, detail=f"Invalid student record: {exc}") from exc
     student, catalogue, graph, _ = _context_from_body(body, student)
     return JSONResponse(
         _to_dict(
-            SimulationEngine(student, catalogue, graph).simulate_switch_majors(
-                new_majors
-            )
+            SimulationEngine(
+                student,
+                catalogue,
+                graph,
+                ACTIVE_INSTITUTION_RELEASE.grading_scheme,
+                ACTIVE_INSTITUTION_RELEASE.credit_framework,
+                ACTIVE_INSTITUTION_RELEASE.course_code_scheme,
+                ACTIVE_INSTITUTION_RELEASE.course_load_framework,
+            ).simulate_switch_majors(new_majors)
         )
     )
 
@@ -804,19 +1175,21 @@ async def simulate_semester(body: dict):
                 raise ValueError("Each simulated course must be [course_code, mark].")
             code, mark = str(item[0]).strip().upper(), int(item[1])
             if not code or not 0 <= mark <= 100:
-                raise ValueError(
-                    "Simulated course codes are required and marks must be 0-100."
-                )
+                raise ValueError("Simulated course codes are required and marks must be 0-100.")
             courses_to_take.append((code, mark))
     except (KeyError, TypeError, ValueError) as exc:
-        raise HTTPException(
-            status_code=422, detail=f"Invalid student record: {exc}"
-        ) from exc
+        raise HTTPException(status_code=422, detail=f"Invalid student record: {exc}") from exc
     student, catalogue, graph, _ = _context_from_body(body, student)
     try:
-        report = SimulationEngine(student, catalogue, graph).simulate_future_semester(
-            courses_to_take
-        )
+        report = SimulationEngine(
+            student,
+            catalogue,
+            graph,
+            ACTIVE_INSTITUTION_RELEASE.grading_scheme,
+            ACTIVE_INSTITUTION_RELEASE.credit_framework,
+            ACTIVE_INSTITUTION_RELEASE.course_code_scheme,
+            ACTIVE_INSTITUTION_RELEASE.course_load_framework,
+        ).simulate_future_semester(courses_to_take)
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
     return JSONResponse(_to_dict(report))
@@ -828,18 +1201,31 @@ async def evaluate_goals(body: dict):
     try:
         student = _student_from_dict(body.get("student", {}))
     except (KeyError, TypeError, ValueError) as exc:
-        raise HTTPException(
-            status_code=422, detail=f"Invalid student record: {exc}"
-        ) from exc
+        raise HTTPException(status_code=422, detail=f"Invalid student record: {exc}") from exc
     student, catalogue, graph, _ = _context_from_body(body, student)
-    grad_report = GraduateGoal(student, catalogue, graph).evaluate()
+    grad_report = GraduateGoal(
+        student,
+        catalogue,
+        graph,
+        ACTIVE_INSTITUTION_RELEASE.grading_scheme,
+        ACTIVE_INSTITUTION_RELEASE.credit_framework,
+        ACTIVE_INSTITUTION_RELEASE.course_code_scheme,
+        ACTIVE_INSTITUTION_RELEASE.course_load_framework,
+    ).evaluate()
     honours_reports = []
     for major in student.declared_majors:
         normalised = _normalise_major_keys([major], catalogue)
         if normalised:
             honours_reports.append(
                 HonoursReadinessGoal(
-                    student, catalogue, graph, normalised[0]
+                    student,
+                    catalogue,
+                    graph,
+                    normalised[0],
+                    ACTIVE_INSTITUTION_RELEASE.grading_scheme,
+                    ACTIVE_INSTITUTION_RELEASE.credit_framework,
+                    ACTIVE_INSTITUTION_RELEASE.course_code_scheme,
+                    ACTIVE_INSTITUTION_RELEASE.course_load_framework,
                 ).evaluate()
             )
     return JSONResponse(
@@ -852,29 +1238,26 @@ async def evaluate_goals(body: dict):
 
 @app.get("/api/v1/dependencies")
 @app.get("/dependencies")
-def get_dependencies(
-    start: str, end: str, faculty_key: str, programme_key: str, pathway_key: str = ""
-):
+def get_dependencies(start: str, end: str, faculty_key: str, programme_key: str, pathway_key: str = ""):
     _, graph, _ = _scope_or_422(faculty_key, programme_key, pathway_key)
     return {"path": graph.get_dependency_path(start.upper(), end.upper())}
 
 
 @app.get("/api/v1/dependencies/unlocked")
 @app.get("/dependencies/unlocked")
-def get_unlocked(
-    course_code: str, faculty_key: str, programme_key: str, pathway_key: str = ""
-):
+def get_unlocked(course_code: str, faculty_key: str, programme_key: str, pathway_key: str = ""):
     _, graph, _ = _scope_or_422(faculty_key, programme_key, pathway_key)
     return {"unlocked": sorted(graph.get_all_unlocked_courses(course_code.upper()))}
 
 
 @app.get("/api/v1/dependencies/blocked")
 @app.get("/dependencies/blocked")
-def get_blocked(
-    course_code: str, faculty_key: str, programme_key: str, pathway_key: str = ""
-):
+def get_blocked(course_code: str, faculty_key: str, programme_key: str, pathway_key: str = ""):
     _, graph, _ = _scope_or_422(faculty_key, programme_key, pathway_key)
     return {"blocked": sorted(graph.get_blocked_courses({course_code.upper()}))}
+
+
+install_northstar_demo(app, analyse_json)
 
 
 if __name__ == "__main__":
