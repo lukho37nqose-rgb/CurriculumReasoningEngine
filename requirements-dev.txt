@@ -4,3 +4,4 @@ httpx>=0.28,<1
 ruff>=0.9,<1
 bandit>=1.8,<2
 pip-audit>=2.8,<3
+playwright>=1.58,<2

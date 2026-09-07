@@ -4,6 +4,7 @@ import copy
 import inspect
 import json
 from dataclasses import asdict
+from pathlib import Path
 
 import pytest
 from fastapi import FastAPI
@@ -318,7 +319,16 @@ def test_no_institution_or_case_branches_in_reasoning_and_shared_renderer():
     assert "studentConclusionCard" not in script
 
 
-def test_builder_reproducible_and_case_metadata_outside_records(tmp_path):
+@pytest.mark.parametrize("host_newline", ["\n", "\r\n"])
+def test_builder_reproducible_and_case_metadata_outside_records(tmp_path, monkeypatch, host_newline):
+    write_text = Path.write_text
+
+    def host_write_text(path, data, **kwargs):
+        # Simulate either host default; explicit builder formatting must win.
+        kwargs.setdefault("newline", host_newline)
+        return write_text(path, data, **kwargs)
+
+    monkeypatch.setattr(Path, "write_text", host_write_text)
     build(tmp_path)
     for path in ("package/courses.json", "package/degree_requirements.json", "package/registry.json", "records/students.json", "cases.json"):
         assert (tmp_path / path).read_bytes() == (ROOT / path).read_bytes()

@@ -171,7 +171,8 @@ def build(destination=ROOT):
     for path, value in outputs.items():
         target = destination / path
         target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(json.dumps(value, indent=2) + "\n", encoding="utf-8")
+        # Preserve the accepted fixture bytes on every build host.
+        target.write_text(json.dumps(value, indent=2) + "\n", encoding="utf-8", newline="\r\n")
 
 
 if __name__ == "__main__":
