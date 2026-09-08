@@ -5,31 +5,15 @@ let nsGeneration = 0, nsPayload = null, nsConfig = {}, nsView = "dashboard";
 async function nsRequest(path, body = {}) {
   let response;
   try { response = await fetch(`/api/northstar/${path}`, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body), cache: "no-store"}); }
-  catch { throw new Error("The service could not be reached. Try again; no new academic conclusion was made."); }
+  catch { throw new Error(StudentWorkspace.errorMessage(0)); }
   if (!response.ok) {
-    const messages = {401: "The demo account or session could not be confirmed. Log in again with a listed account.", 422: "The selected release or supplied evidence could not be used. Try again or ask for help with the demonstration.", 503: "Your record or reasoning service is unavailable. Try again; no new academic conclusion was made."};
-    throw new Error(messages[response.status] || "Reasoning is unavailable. Try again; no new conclusion was made.");
+    throw new Error(StudentWorkspace.errorMessage(response.status));
   }
-  try { return await response.json(); } catch { throw new Error("The service returned an unusable response. Please try again."); }
+  try { return await response.json(); } catch { throw new Error(StudentWorkspace.errorMessage("malformed")); }
 }
 
-function nsShow(view, focus = false) {
-  if (!nsPayload || !Object.hasOwn(nsConfig.navigation, view)) return;
-  nsView = view;
-  ns("title").textContent = nsConfig.navigation[view];
-  ns("nav").querySelectorAll("button").forEach(button => button.setAttribute("aria-current", button.dataset.view === view ? "page" : "false"));
-  const projection = nsPayload.report.student_reasoning_view;
-  ns("sources").replaceChildren();
-  if (view === "dashboard") ns("results").innerHTML = StudentPortal.dashboard(projection, nsConfig);
-  if (view === "curriculum") ns("results").innerHTML = StudentPortal.curriculum(projection, nsConfig);
-  if (view === "evidence") ns("results").innerHTML = StudentPortal.evidence(projection, nsConfig, nsPayload.retrieval, nsPayload.registration_duration);
-  if (view === "sources") {
-    ns("results").innerHTML = "<header class='portal-heading'><h2>Why these rules are represented</h2><p>Institutional sources establish the represented rules. Student evidence is shown separately in Academic Evidence.</p></header>";
-    ns("sources").innerHTML = StudentPortal.sources(projection, false, nsConfig);
-  }
-  if (view === "help") ns("results").innerHTML = StudentPortal.help(nsConfig);
-  if (focus) ns("content").focus();
-}
+let nsWorkspace = null;
+function nsShow(view, focus = false) { nsWorkspace?.show(view, focus); }
 
 function nsRender(payload) {
   nsPayload = payload;
@@ -45,10 +29,15 @@ function nsRender(payload) {
     <details><summary>Source identities and relationships</summary><pre>${esc(JSON.stringify(payload.report.student_reasoning_view.source_relationships, null, 2))}</pre></details>
     <details><summary>Full reasoning detail and recognition explanations</summary><pre>${esc(JSON.stringify(payload.report.advisor_reasoning_view, null, 2))}</pre></details>
     <details><summary>Entry and registration detail</summary><pre>${esc(JSON.stringify({entry: payload.report.programme_entry_eligibility_assessment, registration: payload.registration_duration}, null, 2))}</pre></details>`;
-  ns("login").hidden = true; ns("workspace").hidden = false; nsShow(nsView);
+  ns("login").hidden = true; ns("workspace").hidden = false;
+  ns("sources").replaceChildren();
+  nsWorkspace = StudentWorkspace.mount(ns("results"), payload.report, nsConfig, {
+    section: nsView, navigation: ns("nav"), focusTarget: ns("content"), inspector: false,
+    retrieval: payload.retrieval, registration_duration: payload.registration_duration,
+    onSection: section => { nsView = section; ns("title").textContent = StudentWorkspace.tabs(nsConfig).find(([key]) => key === section)?.[1] || "Overview"; }
+  });
 }
 
-document.addEventListener("click", event => { const button = event.target.closest("button[data-view]"); if (button) nsShow(button.dataset.view, true); });
 ns("form").addEventListener("submit", async event => {
   event.preventDefault(); const generation = ++nsGeneration; const button = event.currentTarget.querySelector("button");
   button.disabled = true; nsPayload = null; ns("workspace").hidden = true; ns("results").replaceChildren(); ns("message").textContent = "Confirming the demo account...";
@@ -68,15 +57,16 @@ ns("refresh").addEventListener("click", async () => {
 ns("switch").addEventListener("click", async () => {
   ++nsGeneration;
   try {
-    await nsRequest("logout"); nsPayload = null; ns("workspace").hidden = true;
+    await nsRequest("logout"); nsWorkspace?.destroy(); nsWorkspace = null; nsPayload = null; ns("workspace").hidden = true;
     ["results", "debug", "sources"].forEach(id => ns(id).replaceChildren()); document.querySelector(".ns-debug").open = false;
     ns("login").hidden = false; ns("message").textContent = "Session ended. Choose another demonstration account."; ns("subject").focus();
   } catch (error) { ns("message").textContent = error.message; }
 });
 ns("form").querySelector("button").disabled = true;
 fetch("/api/northstar/presentation", {cache: "no-store"}).then(response => { if (!response.ok) throw new Error("Unavailable"); return response.json(); }).then(payload => {
-  nsConfig = payload.config; ns("brand").textContent = nsConfig.institution_name;
-  ns("nav").innerHTML = Object.entries(nsConfig.navigation).map(([key, title]) => `<button data-view="${esc(key)}">${esc(title)}</button>`).join("");
+  nsConfig = {...payload.config, evidence_origin: "demo_record", capabilities: {course_exploration: true, export: true}};
+  ns("brand").textContent = nsConfig.institution_name;
+  ns("nav").innerHTML = StudentWorkspace.navigation(nsConfig, "overview");
   ns("subject").innerHTML = payload.cases.map(item => `<option value="${esc(item.subject)}">${esc(item.subject)} · ${esc(item.label)}</option>`).join("");
   ns("form").querySelector("button").disabled = false;
 }).catch(() => { ns("message").textContent = "The demo directory is unavailable. Reload this page to try again."; });

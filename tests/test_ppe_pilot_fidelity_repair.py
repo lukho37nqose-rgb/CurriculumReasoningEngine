@@ -130,7 +130,7 @@ def test_scoped_receipt(coverage_key, scope_key, category, state):
 def test_frontend_and_projection_architecture():
     js = (ROOT / "static/app.js").read_text(encoding="utf-8")
     assert "conclusions.slice(0, 8)" not in js
-    assert "conclusions.map(studentConclusionCard)" in js
+    assert 'StudentWorkspace.renderSection(report, workspaceConfig(), "curriculum")' in js
     assert "if (projected) return studentConclusionCard(projected)" in js
     assert "esc(link.conclusion_id)" not in js
     assert "StudentLanguage.card" in js
@@ -198,28 +198,32 @@ const fs = require('fs');
 const vm = require('vm');
 const data = JSON.parse(fs.readFileSync(0, 'utf8'));
 const src = fs.readFileSync('static/app.js', 'utf8');
-const names = ['studentConclusionCard', 'renderStudentReasoningView', 'requirementCard', 'requirementsSection'];
+const names = ['workspaceConfig', 'studentConclusionCard', 'renderStudentReasoningView', 'requirementCard', 'requirementsSection'];
 const context = {state: {report: data}, asArray: x => Array.isArray(x) ? x : [],
  esc: x => String(x ?? '').replaceAll('<', '&lt;'), statusKey: x => x,
  titleCase: x => x, sourceLocator: x => JSON.stringify(x)};
 vm.createContext(context);
 vm.runInContext(fs.readFileSync('static/student-language.js', 'utf8'), context);
+vm.runInContext(fs.readFileSync('static/student-portal.js', 'utf8'), context);
+vm.runInContext(fs.readFileSync('static/student-workspace.js', 'utf8'), context);
 for (const name of names) {
  const start = src.indexOf('function ' + name + '(');
  const end = src.indexOf('\nfunction ', start + 1);
  vm.runInContext(src.slice(start, end < 0 ? undefined : end), context);
 }
-process.stdout.write(JSON.stringify({overview: context.renderStudentReasoningView(data), requirements: context.requirementsSection()}));
+context.data = data;
+process.stdout.write(JSON.stringify({curriculum: context.renderStudentReasoningView(data), requirements: context.requirementsSection(), evidence: vm.runInContext('StudentWorkspace.renderSection(data, workspaceConfig(), "evidence")', context)}));
 '''
     process = subprocess.run(["node", "-e", script], input=json.dumps(payload), text=True, encoding="utf-8", capture_output=True, cwd=ROOT, check=True)
     rendered = json.loads(process.stdout)
     for key in IDS:
         student = projections(payload, key)[1]
-        for html in rendered.values():
+        for html in [rendered['curriculum'], rendered['requirements']]:
             assert student["title"] in html
             assert student["outcome_label"] in html
-    assert "Complete for this named scope: ECO3025S" in rendered["overview"]
-    assert "Formal award" in rendered["overview"]
+    assert "Complete information was supplied for the specific items below" in rendered["evidence"]
+    assert "ECO3025S" in rendered["evidence"]
+    assert "Formal award" in rendered["curriculum"]
     assert "does not mean the institution has formally confirmed" in rendered["requirements"]
 
 

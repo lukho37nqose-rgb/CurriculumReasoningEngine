@@ -45,6 +45,7 @@ vm.runInContext(fs.readFileSync('static/student-language.js', 'utf8'), context);
 const start = src.indexOf('function studentConclusionCard(');
 vm.runInContext(src.slice(start, src.indexOf('\nfunction ', start + 1)), context);
 vm.runInContext(fs.readFileSync('static/student-portal.js', 'utf8'), context);
+vm.runInContext(fs.readFileSync('static/student-workspace.js', 'utf8'), context);
 const before = JSON.stringify(data);
 const output = vm.runInContext(`({
  counts: StudentPortal.counts(data.payload.report.student_reasoning_view),
@@ -94,7 +95,7 @@ def test_sources_and_evidence_are_separate_and_registry_has_no_page(cases):
     assert 'Page ' not in rendered['sources']
     assert 'Student-evidence source' not in rendered['sources']
     assert 'Where this information came from' in rendered['evidence']
-    assert 'not every item is used by every conclusion' in rendered['evidence']
+    assert 'Not every item is used for every answer' in rendered['evidence']
 
 
 def test_nonpercentage_achievement_is_explicit_not_converted(cases):
@@ -102,7 +103,7 @@ def test_nonpercentage_achievement_is_explicit_not_converted(cases):
     assert 'FOUND-X7 - Ways of Inquiry: <strong>15</strong>' in rendered['evidence']
     assert '0 to 20' in rendered['evidence']
     assert '15%' not in rendered['evidence']
-    assert 'Supporting identifiers: FOUND-X7' in rendered['curriculum']
+    assert 'Information supporting this result relates to: FOUND-X7' in rendered['curriculum']
     assert 'badge policy_clear' in rendered['curriculum']
 
 
@@ -141,7 +142,7 @@ def test_presentation_changes_cannot_change_or_hide_truth(cases):
     original, changed = render(before), render(before, config)
     assert original['counts'] == changed['counts']
     assert changed['unchanged'] and before == cases['NS-006']
-    assert 'Other represented requirements' in changed['curriculum']
+    assert 'Other curriculum requirements' in changed['curriculum']
 
 
 def test_same_components_render_uct_ppe_and_document_locators(cases):
@@ -186,5 +187,5 @@ def test_shared_renderer_has_no_institution_or_student_branch():
     assert 'studentConclusionCard' in text
     assert 'fetch(' not in text
     assert 'academic_year' not in text
-    assert 'aria-current' in (REPO / 'static/northstar.js').read_text()
+    assert 'aria-current' in (REPO / 'static/student-workspace.js').read_text()
     assert 'focus-visible' in (REPO / 'static/northstar.css').read_text()

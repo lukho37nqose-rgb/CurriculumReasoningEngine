@@ -21,6 +21,7 @@ const state = {
   selectedFile: null,
   report: null,
   reportTab: "overview",
+  evidenceOrigin: "unknown",
   currentStep: "route",
   serviceReady: false,
   manualCourses: [],
@@ -210,19 +211,15 @@ async function api(url, options = {}) {
   try {
     response = await fetch(url, { ...options, headers, credentials: "same-origin" });
   } catch (error) {
-    const origin = window.location.origin;
-    throw new Error(
-      `CurriculumAdvisor could not reach its server at ${origin}. `
-      + "Reload the deployed site, or restart the local FastAPI server if you are working on your computer."
-    );
+    throw new Error(StudentWorkspace.errorMessage(0));
   }
   let payload = {};
   if (response.status !== 204) {
     try { payload = await response.json(); }
-    catch { payload = { detail: "The server returned an unexpected response." }; }
+    catch { throw new Error(StudentWorkspace.errorMessage("malformed")); }
   }
   if (!response.ok) {
-    const error = new Error(detailMessage(payload.detail));
+    const error = new Error(StudentWorkspace.errorMessage(response.status));
     error.status = response.status;
     error.retryAfter = response.headers.get("Retry-After");
     throw error;
@@ -339,7 +336,7 @@ function resetRouteState() {
   $("analyseButton").disabled = true;
   $("routeContinue").disabled = true;
   $("programmePreview").className = "programme-preview empty-state";
-  $("programmePreview").innerHTML = '<div class="empty-symbol" aria-hidden="true">↳</div><div><strong>Your programme sets what we\'ll check.</strong><p>Select it to see the length, credits needed, and what majors are available.</p></div>';
+  $("programmePreview").innerHTML = '<div class="empty-symbol" aria-hidden="true">↳</div><div><strong>Your programme sets which rules CRE checks.</strong><p>Select it to see the length, credits needed, and what majors are available.</p></div>';
 }
 
 async function openFaculty(key, { historyMode = "push" } = {}) {
@@ -616,6 +613,7 @@ async function analyse() {
   $("analyseButton").disabled = true;
   $("analysisProgressText").textContent = "Reading your transcript and checking your program rules…";
   try {
+    state.evidenceOrigin = "user_supplied";
     state.report = await api(`/api/v1/analyse?${params}`, { method: "POST", body: form });
     state.reportTab = "overview";
     renderReport();
@@ -660,15 +658,13 @@ function nextSummary() {
   return `${count} route-visible course option${count === 1 ? " is" : "s are"} available for consideration, subject to live registration conditions.`;
 }
 
-function reportTabs() {
-  return [
-    ["overview", "Overview"],
-    ["requirements", "Requirements"],
-    ["majors", "Majors"],
-    ["next", "Next courses"],
-    ["evidence", "Evidence & limits"],
-  ];
+function workspaceConfig() {
+  return {institution_name: "UCT", institution_short_name: "UCT",
+    evidence_origin: state.evidenceOrigin || "unknown",
+    capabilities: {course_exploration: Array.isArray(state.report?.eligible_courses), export: true}};
 }
+
+function reportTabs() { return StudentWorkspace.tabs(workspaceConfig()); }
 
 function sourceLocator(locator) {
   if (locator && typeof locator === "object") {
@@ -683,20 +679,7 @@ function studentConclusionCard(item, presentation = {}) {
 }
 
 function renderStudentReasoningView(report) {
-  const view = report.student_reasoning_view || {};
-  const conclusions = asArray(view.conclusions).filter(item => !item.legacy_compatibility);
-  const legacy = asArray(view.conclusions).filter(item => item.legacy_compatibility);
-  const sources = asArray(view.sources);
-  const receipt = view.evidence_receipt || {};
-  return `<section class="report-section student-reasoning-view">
-    <div class="report-section-heading"><div><h2>What CRE concluded</h2></div><p>These are represented conclusions based on the evidence supplied.</p></div>
-    <div class="notice-group-body">${conclusions.map(studentConclusionCard).join("") || '<div class="empty-report">No structured conclusion was produced.</div>'}</div>
-    ${legacy.length ? `<details><summary>Legacy compatibility summaries (not canonical assessments)</summary>${legacy.map(studentConclusionCard).join("")}</details>` : ""}
-    <div class="evidence-grid-report">
-      <article class="evidence-card"><span>What CRE received about you</span>${asArray(receipt.entries).map(entry => `<p>${esc(({academic_record: "Academic results", course_completion_recognition: "Course-completion recognition decisions", requirement_recognition: "Requirement recognition decisions"})[entry.category] || titleCase(entry.category))}: ${entry.supplied ? "Received by CRE" : "Not supplied to CRE"}. ${entry.coverage_scopes.length ? entry.coverage_scopes.map(scope => `${esc(({COVERAGE_COMPLETE_FOR_SCOPE: "Complete for this named scope", COVERAGE_PARTIAL: "Partial record for this scope", COVERAGE_UNKNOWN: "Completeness unknown for this scope"})[scope.coverage_state] || "Completeness not established")}: ${esc((scope.course_codes || scope.requirement_ids || []).join(", "))}`).join("; ") : "Record completeness is unknown"}</p>`).join("")}<p>Receipt does not establish use by a conclusion or complete coverage outside the named scope.</p></article>
-      <article class="evidence-card"><span>Sources represented</span><h3>${sources.length}</h3><p>Open the evidence section for represented source details.</p></article>
-    </div>
-  </section>`;
+  return StudentWorkspace.renderSection(report, workspaceConfig(), "curriculum");
 }
 
 function requirementCard(requirement) {
@@ -707,199 +690,24 @@ function requirementCard(requirement) {
     explanation: "A structured conclusion is not available for this legacy requirement."});
 }
 
-function overviewSection() {
-  const report = state.report;
-  const requirements = blockingRequirements();
-  const projected = asArray(report.student_reasoning_view?.conclusions);
-  const completed = requirements.filter(row => projected.some(item => item.identity === row.id && item.outcome === "satisfied")).length;
-  const risk = report.exclusion_risk || {};
-  const distinction = report.distinction || {};
-  return `
-    ${renderStudentReasoningView(report)}
-    <section class="report-section">
-      <div class="report-section-heading"><div><h2>Academic position</h2></div><p>These figures are computed within ${esc(report.programme_name)}${report.pathway_name ? ` · ${esc(report.pathway_name)}` : ""} using the 2026 catalogue.</p></div>
-      <div class="metric-grid">
-        <article class="metric-card"><strong>${esc(report.credits_completed)}</strong><span>NQF credits counted</span></article>
-        <article class="metric-card"><strong>${esc(report.level_7_credits)}</strong><span>NQF level 7 credits</span></article>
-        <article class="metric-card"><strong>${esc(report.semester_course_equivalents)}</strong><span>semester-course equivalents</span></article>
-        <article class="metric-card"><strong>${completed}/${requirements.length}</strong><span>requirements confirmed met</span></article>
-      </div>
-    </section>
-    <section class="report-section">
-      <div class="report-section-heading"><div><h2>Immediate judgment</h2></div><p>The system separates represented thresholds from matters that still require faculty confirmation.</p></div>
-      <div class="notice-stack">
-        <div class="notice-row ${risk.at_risk ? "" : "info"}"><strong>${risk.at_risk ? "Possible readmission risk" : "Readmission indicator"}</strong><br>${esc(risk.basis || "No programme-specific readmission threshold is represented.")}</div>
-        <div class="notice-row info"><strong>${distinction.qualification_eligible ? "Represented distinction threshold appears met" : "Distinction is not confirmed"}</strong><br>${esc(distinction.basis || "See requirements tab for detail.")}</div>
-      </div>
-    </section>
-    <section class="report-section">
-      <div class="report-section-heading"><div><h2>Requirements to review</h2></div><p>An unresolved requirement is not a confirmed shortfall. Open Requirements for the full account.</p></div>
-      <div class="requirement-list">${requirements.filter(row => !row.complete).slice(0, 5).map(requirementCard).join("") || '<div class="empty-report">No represented blocking requirement is incomplete.</div>'}</div>
-    </section>
-  `;
-}
-
-function requirementsSection() {
-  const rows = asArray(state.report?.requirements);
-  return `
-    <section class="report-section">
-      <div class="report-section-heading"><div><h2>Qualification requirements</h2></div><p>Completion and verification are separate. A rule may appear complete but remain provisional.</p></div>
-      <div class="requirement-list">${rows.map(requirementCard).join("") || '<div class="empty-report">No requirement records were produced.</div>'}</div>
-    </section>
-  `;
-}
-
-function majorsSection() {
-  const majors = asArray(state.report?.majors);
-  return `
-    <section class="report-section">
-      <div class="report-section-heading"><div><h2>Major progress</h2></div><p>Only majors represented within the selected route are assessed.</p></div>
-      <div class="major-grid">${majors.map(major => `
-        <article class="major-card">
-          <div class="major-card-head"><h3>${esc(major.name)}</h3>${statusWidget(major.complete ? "complete" : (major.status || "unverified"), majorExplanation(major))}</div>
-          ${asArray(major.completed_requirements).length ? `<ul>${major.completed_requirements.map(item => `<li>✓ ${esc(item)}</li>`).join("")}</ul>` : ""}
-          ${asArray(major.outstanding_requirements).length ? `<ul>${major.outstanding_requirements.map(item => `<li>${esc(item)}</li>`).join("")}</ul>` : ""}
-        </article>
-      `).join("") || '<div class="empty-report">This programme does not use a represented major structure, or no majors were selected.</div>'}</div>
-    </section>
-  `;
-}
-
-function nextCoursesSection() {
-  const courses = asArray(state.report?.eligible_courses);
-  return `
-    <section class="report-section">
-      <div class="report-section-heading"><div><h2>Route-visible next courses</h2></div><p>These are curriculum and prerequisite conclusions—not live registration promises.</p></div>
-      <div class="filter-bar"><input id="courseFilter" placeholder="Search course code, name or department"><select id="courseStatusFilter"><option value="">All evidence states</option><option value="verified">Verified</option><option value="provisional">Provisional</option><option value="unverified">Unverified</option></select></div>
-      <div class="course-grid" id="nextCourseGrid">${renderCourseCards(courses)}</div>
-    </section>
-  `;
-}
-
-function renderCourseCards(courses) {
-  return courses.map(course => `
-    <article class="course-card" data-course-search="${esc(`${course.code} ${course.name} ${course.department}`.toLowerCase())}" data-course-status="${esc(course.status || "unverified")}">
-      <div class="course-card-head"><div><div class="course-code">${esc(course.code)}</div><h3>${esc(course.name)}</h3></div>${statusWidget(course.status || "unverified", courseExplanation(course))}</div>
-      <p>${esc(course.reason || "Visible within the selected route.")}</p>
-      <div class="course-meta"><span>${esc(course.credits)} credits</span><span>${esc(course.department || "Department not recorded")}</span>${asArray(course.offered).length ? `<span>${esc(course.offered.join(", "))}</span>` : ""}</div>
-    </article>
-  `).join("") || '<div class="empty-report">No course recommendation can be made from the represented prerequisite data.</div>';
-}
-
-function evidenceSection() {
-  const report = state.report;
-  const programme = state.programme || {};
-  const pathway = selectedPathway();
-  const warnings = asArray(report.warnings);
-  const verifications = asArray(report.verification_messages);
-  const recognitionWarnings = warnings.filter(isRecognitionNotice);
-  const otherWarnings = warnings.filter(item => !isRecognitionNotice(item));
-  const sources = asArray(report.student_reasoning_view?.source_directory || report.student_reasoning_view?.sources);
-  const limitations = asArray(report.student_reasoning_view?.limitations);
-  return `
-    <section class="report-section">
-      <div class="report-section-heading"><div><h2>Evidence and limits</h2></div><p>This is the audit surface: what was selected, what was computed, and what remains outside the model.</p></div>
-      <div class="evidence-grid-report">
-        <article class="evidence-card"><span>Scope</span><h3>${esc(report.programme_name)}</h3><p>${pathway ? esc(pathway.name) : "No additional pathway selected."} Scope status: ${esc(report.scope_status)}</p></article>
-        <article class="evidence-card"><span>Curriculum source</span><h3>${esc(state.context?.catalogue_version || "2026 catalogue")}</h3><p>${esc(state.context?.source || programme.source?.document || "Official handbook")}</p></article>
-        <article class="evidence-card"><span>Institutional authority</span><h3>Explanation, not approval</h3><p>Academic completion, graduation eligibility and formal award are separate conclusions. See their individual assessments; CRE does not grant approval or confer a qualification.</p></article>
-        <article class="evidence-card"><span>Operational boundary</span><h3>Timetable not connected</h3><p>Live offering, clash, venue, capacity and registration-window information must still be confirmed with the institution.</p></article>
-      </div>
-    </section>
-    <section class="report-section">
-      <div class="report-section-heading"><div><h2>Warnings and verification questions</h2></div></div>
-      <div class="notice-stack">
-        ${noticeGroup("Verification questions", verifications, "info")}
-        ${noticeGroup("Recognition notes", recognitionWarnings, "recognition")}
-        ${noticeGroup("Warnings and limits", otherWarnings)}
-        ${!verifications.length && !warnings.length ? '<div class="empty-report">No additional warning was produced.</div>' : ""}
-      </div>
-    </section>
-    <section class="report-section">
-      <div class="report-section-heading"><div><h2>Sources represented in this assessment</h2></div><p>Direct, inherited and package-level source relationships are shown separately where represented.</p></div>
-      <div class="notice-stack">${sources.map(source => `<div class="notice-row info"><strong>${esc(source.title)}</strong>${asArray(source.conclusion_links).map(link => `<p>${esc(link.title || "Represented requirement")} · ${esc(sourceLocator(link.locator))}</p>`).join("")}<small>${esc(source.status_language || "Source status is not fully confirmed.")}</small></div>`).join("") || '<div class="empty-report">Source detail is not currently represented.</div>'}</div>
-      <p class="report-boundary">For final confirmation, consult the institutional source or an authorised institutional advisor. Where no precise source location is represented, use an authorised institutional source or advisor rather than assuming a link.</p>
-      ${limitations.map(item => `<p class="report-boundary">${esc(item)}</p>`).join("")}
-    </section>
-  `;
-}
-
-function renderReportSection() {
-  const container = $("reportSectionContent");
-  const sections = {
-    overview: overviewSection,
-    requirements: requirementsSection,
-    majors: majorsSection,
-    next: nextCoursesSection,
-    evidence: evidenceSection,
-  };
-  container.innerHTML = sections[state.reportTab]();
-  if (state.reportTab === "next") {
-    const applyFilters = () => {
-      const query = $("courseFilter").value.trim().toLowerCase();
-      const status = $("courseStatusFilter").value;
-      document.querySelectorAll("#nextCourseGrid .course-card").forEach(card => {
-        const matchesQuery = !query || card.dataset.courseSearch.includes(query);
-        const matchesStatus = !status || card.dataset.courseStatus === status;
-        card.classList.toggle("hidden", !(matchesQuery && matchesStatus));
-      });
-    };
-    $("courseFilter").addEventListener("input", applyFilters);
-    $("courseStatusFilter").addEventListener("change", applyFilters);
-  }
-}
-
+// Compatibility entry points delegate to the one shared student workspace.
+function overviewSection() { return StudentWorkspace.overview(state.report, workspaceConfig()); }
+function requirementsSection() { return StudentWorkspace.renderSection(state.report, workspaceConfig(), "curriculum"); }
+function nextCoursesSection() { return StudentWorkspace.exploration(state.report, workspaceConfig()); }
+function evidenceSection() { return StudentWorkspace.renderSection(state.report, workspaceConfig(), "evidence"); }
+let activeWorkspace = null;
+function renderReportSection() { activeWorkspace?.show(state.reportTab); }
 function renderReport() {
-  const report = state.report;
-  const conclusions = asArray(report.student_reasoning_view?.conclusions);
-  const counts = value => conclusions.filter(item => item.outcome === value).length;
-  $("reportContent").innerHTML = `
-    <section class="report-hero">
-      <div>
-        <span>Represented academic position</span>
-        <h1>${esc(report.student_name || "Academic account")}</h1>
-        <p>${esc(report.programme_name)}${report.pathway_name ? ` · ${esc(report.pathway_name)}` : ""} · ${esc(titleCase(report.scope_status))} scope</p>
-      </div>
-      <div class="report-score"><strong>${counts("satisfied")}</strong><span>conclusions shown as met</span></div>
-    </section>
-    <section class="decision-grid" aria-label="Decision summary">
-      <article class="decision-card good"><span>What CRE can confirm</span><h2>${esc(report.credits_completed)} credits counted</h2><p>These figures describe supplied evidence, not necessarily the entire academic record.</p></article>
-      <article class="decision-card"><span>What CRE knows</span><h2>${counts("unresolved")} not yet determined</h2><p>${counts("not_satisfied")} definitively not met; ${counts("conflict")} with conflicting evidence. Read each conclusion below.</p></article>
-      <article class="decision-card caution"><span>What can I do next?</span><h2>${asArray(report.eligible_courses).length} route-visible options</h2><p>${esc(nextSummary())}</p></article>
-    </section>
-    <nav class="report-tabs" aria-label="Academic account sections">
-      ${reportTabs().map(([key, label]) => `<button class="report-tab ${state.reportTab === key ? "active" : ""}" type="button" data-report-tab="${key}">${label}</button>`).join("")}
-    </nav>
-    <div id="reportSectionContent"></div>
-  `;
-  document.querySelectorAll("[data-report-tab]").forEach(button => {
-    button.addEventListener("click", () => {
-      state.reportTab = button.dataset.reportTab;
-      document.querySelectorAll("[data-report-tab]").forEach(tab => tab.classList.toggle("active", tab === button));
-      renderReportSection();
-    });
+  activeWorkspace = StudentWorkspace.mount($("reportContent"), state.report, workspaceConfig(), {
+    section: state.reportTab,
+    onSection: section => { state.reportTab = section; }
   });
-  renderReportSection();
 }
-
 function copySummary() {
   if (!state.report) return;
-  const report = state.report;
-  const incomplete = blockingRequirements().filter(row => !row.complete).map(row => `- ${row.label}: ${row.detail || row.explanation || "incomplete"}`);
-  const summary = [
-    "CurriculumAdvisor academic account",
-    `${report.student_name || "Student"} — ${report.programme_name}${report.pathway_name ? ` / ${report.pathway_name}` : ""}`,
-    `Conclusion: ${titleCase(report.graduation_status)}`,
-    `Credits counted: ${report.credits_completed}`,
-    `NQF level 7 credits: ${report.level_7_credits}`,
-    `Scope status: ${titleCase(report.scope_status)}`,
-    "",
-    "Outstanding represented requirements:",
-    ...(incomplete.length ? incomplete : ["- None"]),
-    "",
-    "Important: live timetable, capacity, concessions and institutional approval remain confirmable.",
-  ].join("\n");
-  navigator.clipboard.writeText(summary).then(() => announce("Report summary copied."));
+  navigator.clipboard.writeText(StudentWorkspace.exportText(state.report, workspaceConfig()))
+    .then(() => announce("Reasoning summary copied. Not an official academic record."))
+    .catch(() => announce("Copy is unavailable. Use Print instead."));
 }
 
 function showRouteDialog() {
@@ -1155,6 +963,7 @@ function toggleEvidenceMode(mode) {
 }
 
 async function analyseEmpty() {
+    state.evidenceOrigin = "manual_entry";
     $("analyseEmptyBtn").disabled = true;
     $("analysisError").classList.add("hidden");
     $("analysisProgress").classList.remove("hidden");
@@ -1278,6 +1087,7 @@ function handleManualSearch(event) {
 }
 
 async function analyseManual() {
+    state.evidenceOrigin = "manual_entry";
     if (state.manualCourses.length === 0 || !state.programme) return;
 
     const payload = {

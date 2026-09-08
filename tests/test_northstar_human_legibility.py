@@ -57,7 +57,7 @@ def test_normal_navigation_has_no_technical_tokens_even_expanded(cases, subject)
                                                   'curriculum:', 'NS-V1-', 'REC-NS-', 'record_id', 'unverified', 'authority:'])
     normal = StudentText(rendered['curriculum'], expanded=False).text
     assert 'Ways of Inquiry' not in normal  # Supporting course lists are behind Why.
-    assert 'Where is the rule?' in normal
+    assert 'Where this comes from' in normal
     assert 'institutionally confirmed' in normal
 
 
@@ -73,14 +73,14 @@ def test_governed_instructions_preserve_all_singleton_choice_and_credit():
 
 
 @pytest.mark.parametrize('subject,expected', [
-    ('NS-002', 'not currently met. CRE has enough information'),
-    ('NS-003', 'cannot determine this requirement'),
+    ('NS-002', 'You do not meet this requirement yet.'),
+    ('NS-003', 'does not have enough information to decide'),
     ('NS-006', 'will not choose one automatically'),
-    ('NS-004', 'supplied a recognition decision that counts toward this requirement'),
+    ('NS-004', 'includes an institutional recognition decision that counts toward this requirement'),
     ('NS-005', 'Recognition information may affect this result'),
     ('NS-008', 'course achievement meets the represented achievement requirement'),
     ('NS-009', 'external subject result meets'),
-    ('NS-010', 'qualifying prior qualification on record'),
+    ('NS-010', 'supplied information establishes a qualifying prior qualification'),
     ('NS-011', 'This is not an admission decision'),
 ])
 def test_plain_explanations_are_supported_by_existing_result(cases, subject, expected):

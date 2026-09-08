@@ -17,10 +17,12 @@ def test_start_empty_uses_existing_endpoint_and_account_panel():
 def test_report_header_does_not_reconstruct_a_failure_from_legacy_fields():
     source = (ROOT / "static/app.js").read_text(encoding="utf-8")
     block = source.split("function renderReport()", 1)[1].split("function copySummary", 1)[0]
+    assert 'StudentWorkspace.mount' in block
+    block = (ROOT / 'static/student-workspace.js').read_text(encoding='utf-8').split('function exploration', 1)[0]
     assert 'student_reasoning_view' in block
     assert 'report.graduation_status' not in block
     assert 'row.complete' not in block
-    assert 'not yet determined' in block
+    assert 'need more information' in block
 
 
 def test_canonical_visual_states_and_keyboard_focus_are_explicit():

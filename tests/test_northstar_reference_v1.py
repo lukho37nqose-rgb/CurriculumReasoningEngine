@@ -313,7 +313,8 @@ def test_no_institution_or_case_branches_in_reasoning_and_shared_renderer():
         assert not any(token in text for token in ("northstar", "ns-015", "found-x7", "ns-registry")), path
     assert "cases.json" not in inspect.getsource(adapter)
     script = (repo / "static/northstar.js").read_text(encoding="utf-8")
-    assert "StudentPortal.curriculum(projection, nsConfig)" in script
+    assert "StudentWorkspace.mount(" in script
+    assert "StudentPortal.curriculum(view, config)" in (repo / "static/student-workspace.js").read_text()
     assert "studentConclusionCard(item, config)" in (repo / "static/student-portal.js").read_text(encoding="utf-8")
     assert "NS-0" not in script
     assert "studentConclusionCard" not in script
