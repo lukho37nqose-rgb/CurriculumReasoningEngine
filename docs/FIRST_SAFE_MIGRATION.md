@@ -1,3 +1,6 @@
+> **Historical document**
+> This file describes an earlier stage of CRE and is retained for development history. It should not be treated as the current architecture or product specification. See [current architecture](CURRENT_ARCHITECTURE.md) and the [documentation index](README.md). Original content below is preserved; counts, screenshots, commands and claims retain their original milestone context.
+
 # First safe migration procedure
 
 This procedure is designed for the existing public-release repository. It does not move or rewrite current catalogue files.

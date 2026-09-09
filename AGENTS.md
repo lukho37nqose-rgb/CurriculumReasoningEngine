@@ -1,17 +1,19 @@
 # Curriculum Reasoning Engine Repository Map
 
-This repository currently ships the UCT 2026 implementation of CurriculumAdvisor. The product direction is Curriculum Reasoning Engine, with UCT 2026 becoming one institutional package rather than a dependency of generic engine code.
+CRE is the curriculum reasoning product/engine in the broader Cacisa Systems context. The repository is a modular monolith with a working UCT demonstrator and an executable synthetic Northstar reference institution. Both use the shared student workspace; CurriculumAdvisor remains an existing UCT/interface/package name.
 
 ## Current Areas
 
-- `app.py` is the FastAPI product boundary for the student workspace, faculty routing, analysis, simulation, goals, readiness, and admin endpoints.
-- `static/` contains the browser UI for the student and admin workspaces.
-- `curriculum_advisor/` contains product metadata, bootstrap payloads, and admin governance helpers.
-- `engine/` contains the current curriculum models, catalogue loading, transcript parsing, programme scoping, rule evaluation, recognition, reasoning, simulation, and graph utilities.
-- `data/uct_*` contains UCT 2026 faculty catalogue data and source-extraction artifacts.
-- `catalogue_governance/` and `governance/` contain release integrity, operational offering, schema, template, and manifest support.
-- `tools/` contains one-off and repeatable UCT catalogue build/guard scripts.
-- `tests/` is the regression boundary for current UCT 2026 behaviour and outputs.
+- `app.py`: FastAPI analysis, routes, projections, goals/simulation, readiness and administration; mounts Northstar orchestration.
+- `engine/`: current curriculum/evidence models, scoping, assessment, recognition, reasoning, simulation and compatibility paths.
+- `curriculum_reasoning_engine/institutions/` and `adapters/`: release/framework contracts and canonical transcript adapters.
+- `curriculum_advisor/`: product metadata, student/advisor projections and guarded admin metadata overlays.
+- `static/`: UCT and Northstar acquisition shells, `StudentWorkspace`, `StudentPortal`, `StudentLanguage`, and admin UI.
+- `northstar/`: synthetic identity, native records, evidence adapter and package; distinct from `tests/fixtures/northstar/`.
+- `data/uct_*`: represented UCT curriculum packages and source-extraction provenance.
+- `catalogue_governance/` and `governance/`: technical verification, manifests, schemas and provenance records.
+- `tools/`: builders and integrity tools; older browser rehearsal scripts need selector updates before current use.
+- `tests/`: cross-institution, product, browser, UCT and compatibility regression contracts.
 
 ## Architectural Rules
 
@@ -22,10 +24,11 @@ This repository currently ships the UCT 2026 implementation of CurriculumAdvisor
 - Prefer compatibility shims and small PRs over a large directory migration.
 - Treat UCT-specific transcript parsing, grade semantics, faculty names, award/readmission rules, and course-code assumptions as institutional implementation, not generic engine primitives.
 
-## Planning Documents
 
-- `docs/architecture/PRODUCT_ARCHITECTURE.md`
-- `docs/architecture/CORE_BOUNDARIES.md`
-- `docs/architecture/INSTITUTION_PACKAGE_CONTRACT.md`
-- `docs/architecture/ADAPTER_CONTRACTS.md`
-- `docs/migration/PRODUCT_EXTRACTION_PLAN.md`
+## Current Documentation and Compatibility
+
+- Start with `docs/README.md`, `docs/CURRENT_ARCHITECTURE.md`, `docs/CURRENT_LIMITATIONS.md` and `docs/RUNNING_AND_VALIDATION.md`.
+- Shared workspace and policy-legibility reports are accepted milestone evidence; historical extraction plans are not current implementation instructions.
+- Keep parser shims, legacy Report fields, route aliases, explicit frontend wrappers, projection-only helpers and independent Northstar fixtures until a separate compatibility review authorizes changes.
+- Do not infer institutional approval from test/gate success or promote legacy Boolean summaries into canonical student truth.
+- Follow artifact guidance in `docs/RUNNING_AND_VALIDATION.md`; generated review evidence and governed source files are not disposable merely because generated.

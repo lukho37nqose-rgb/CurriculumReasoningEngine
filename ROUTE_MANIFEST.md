@@ -1,3 +1,6 @@
+> **Historical document**
+> This file describes an earlier stage of CRE and is retained for development history. It should not be treated as the current architecture or product specification. See [current architecture](docs/CURRENT_ARCHITECTURE.md) and the [documentation index](docs/README.md). Original content below is preserved; counts, screenshots, commands and claims retain their original milestone context.
+
 # CurriculumAdvisor 2026 route manifest
 
 This manifest is generated from the packaged catalogues. Each row is one selectable programme/pathway reasoning scope.

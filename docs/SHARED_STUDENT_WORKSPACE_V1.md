@@ -1,3 +1,8 @@
+> **Accepted milestone record**
+> This is bounded implementation/review evidence, not a rolling test count. The two presentation slices were subsequently committed at `73f07140765cc0d9a0db36b4fbcd1296cbb43c37`; original no-commit statements refer to the original task. See the [documentation index](README.md) for current authority and limitations.
+
+> **Screenshot and wording context:** This extraction snapshot precedes [Policy Legibility & Action Language v1](CRE_POLICY_LEGIBILITY_V1.md). Earlier/README redesign comparisons are historical; the canonical current screenshot set is `artifacts/policy-legibility/after/`.
+
 # Shared CRE Student Workspace v1
 
 Technical closure: CLOSED. Verified 8 September 2026.

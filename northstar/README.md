@@ -1,10 +1,10 @@
 # Northstar University v1
 
-The latest student presentation is documented in [Human Legibility Pass v1](HUMAN_LEGIBILITY.md).
-It changes disclosure and wording, not this accepted institution's rules or records.
+The current presentation uses [Shared CRE Student Workspace](../docs/SHARED_STUDENT_WORKSPACE_V1.md) and the subsequent [Policy Legibility & Action Language](../docs/CRE_POLICY_LEGIBILITY_V1.md) slice. Earlier [Human Legibility](HUMAN_LEGIBILITY.md) and [Student Interface](STUDENT_INTERFACE.md) reports are historical milestones. See [current architecture](../docs/CURRENT_ARCHITECTURE.md) for ownership and compatibility.
 
-Synthetic reference institution and system-of-record demonstrator. Not a real
-university integration or production identity service.
+Northstar University is a synthetic reference institution used to test portability, evidence boundaries, institutional separation and the shared student product experience. It uses materially non-UCT semantics and synthetic institutional records, with no real student data. It is an executable reference integration, not production integration or authentication.
+
+CRE does not aim to become a durable student system of record. Authoritative institutional records and formal decisions remain with the institution; Northstar models that boundary with a read-only synthetic records service. Cacisa Systems is the broader product/company context; CRE is the curriculum reasoning engine/product in this repository.
 
 ## Run and Rehearse
 
@@ -134,9 +134,7 @@ Shared projection changes expose entry eligibility, full receipt domains,
 clearance children and explicit award-evidence wording. Legacy Boolean summaries
 remain available in a labelled disclosure, not among canonical assessments.
 Triggered policy conditions are labelled as triggered conditions, not as completed
-curriculum requirements. The student portal uses the generic `StudentPortal`
-renderer and the existing shared `studentConclusionCard`, with the UCT route
-initialization disabled.
+curriculum requirements. The student portal uses `StudentWorkspace` for shared composition/navigation, `StudentPortal` for section rendering, and `StudentLanguage` through the existing `studentConclusionCard` wrapper. UCT route initialization is disabled when its helpers are loaded in projection-only mode.
 
 No `engine/` file was changed for this capability. `app.py` only mounts the demo
 orchestrator. No UCT records, rules, builders or manifests were changed.
@@ -145,25 +143,20 @@ The annual progression-ratio path still uses legacy annual scope rather than the
 opaque-cycle scheme. v1 therefore uses the supported cumulative failed metric;
 it does not fabricate years or claim that annual consumer migration is complete.
 Registration duration is shown through the existing explicit-history metric in
-Academic Evidence, not a new progression consequence or maximum-years rule.
+My information, not a new progression consequence or maximum-years rule.
 Legacy report fields still contain calendar/NQF/semester terminology. They are
 labelled compatibility output, not Northstar canonical requirements.
 
 Formal Admission, Course Registration/Co-requisites and Qualification Taxonomy
 remain source-blocked. No production SSO, advisor authorisation, consent, SIS
 connector, evidence revocation, telemetry policy or deletion guarantee is supplied.
-The student portal now extends this accepted record boundary. See
-[STUDENT_INTERFACE.md](STUDENT_INTERFACE.md) for its shared components, boundaries,
-demonstration sequence and verification. The original v1 closure below remains a
-historical verification record, not the latest interface test count.
+The shared workspace extends this accepted record boundary. Current sections are Overview, My Curriculum, My information, Sources, Courses to explore where supported, and Help / Limits, with supported copy/print. See the [documentation index](../docs/README.md) for current product docs and historical review records.
 
 ## Verification
 
 `tests/test_northstar_reference_v1.py` exercises all fifteen logins and canonical
 outcomes, fresh source reads, metadata independence, domain failure, scope, source
-resolution, isolation, and shared rendering. `tools/qa_northstar_browser.py` drives
-real login/fetch/report/logout at desktop and mobile sizes; screenshots and
-observations live in `artifacts/northstar-v1-browser/`.
+resolution, isolation, and shared rendering. Current browser regression entry: `python -m pytest -q tests/test_shared_workspace_browser.py`, run from the repository root with development dependencies and Chromium installed. See [running and validation](../docs/RUNNING_AND_VALIDATION.md). The older `tools/qa_northstar_browser.py` has superseded selectors and is retained for later tooling review, not recommended as a current command.
 
-The final validation counts and governance limitations are recorded in
+The original v1 validation counts and governance limitations are historical evidence recorded in
 `artifacts/northstar-v1-browser/CLOSURE.md` after the final verification pass.

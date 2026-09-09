@@ -1,169 +1,118 @@
-# CurriculumAdvisor — institutional reasoning for students
+# Curriculum Reasoning Engine (CRE)
 
-CurriculumAdvisor is a programme-scoped academic reasoning system for UCT undergraduate curricula. It does not merely calculate credits. It separates four things that universities often allow students to encounter as one confusing mass:
+CRE is a governed institutional reasoning engine for curriculum. It is designed to explain how represented institutional rules apply to student evidence while preserving uncertainty, source traceability and institutional authority boundaries.
 
-1. **transcript facts** — attempts, marks, grades and programme text;
-2. **curriculum rules** — what the selected qualification, pathway and major require;
-3. **computed conclusions** — what follows from represented rules and evidence;
-4. **institutional judgment** — concessions, substitutions, capacity, placement evidence and discretionary decisions that cannot honestly be inferred.
+Cacisa Systems is the broader product/company context. Curriculum Reasoning Engine (CRE) is the curriculum reasoning product/engine in this repository. **CurriculumAdvisor** remains the UCT interface and compatibility name in existing code; package names have not been renamed.
 
-The product is organised around three student questions:
+## Current product
 
-- **Where am I now?**
-- **What is blocking me?**
-- **What can I do next?**
+UCT and Northstar share a student workspace: **Overview**, **My Curriculum**, **My information**, **Sources**, **Courses to explore** where supported, **Help / Limits**, and copy/print where supported. The workspace explains the student's position, why, and available next actions, with rule and evidence disclosures kept separate.
 
-![Redesigned landing page](docs/redesign-landing.png)
+> Personalize the application of policy without privatizing the policy itself.
 
-## What this redesign changes
+Student-specific meaning is personalized; the institutional rule remains public, its source inspectable where linked, and institutional authority external. Institution-specific entry does not mean institution-specific reasoning. Generic product architecture does not require identical institutional workflows.
 
-The previous interface behaved primarily like a catalogue attached to a transcript upload. The redesigned product is a decision workspace:
-
-- faculty and programme selection are treated as evidence, not decorative filters;
-- the route is prepared before the transcript enters the reasoning process;
-- the report presents position, blockers and next options before technical detail;
-- completion and verification are shown separately;
-- timetable, capacity and institutional discretion remain visibly outside the curriculum engine;
-- the public administration surface is read-only until authentication and institutional authority exist;
-- all new API routes are versioned under `/api/v1`;
-- legacy routes remain available for compatibility.
-
-![Programme selection workspace](docs/redesign-route.png)
-
-![Decision-oriented academic report](docs/redesign-report.png)
-
-## Product architecture
+## Architecture
 
 ```text
-Student experience                 Read-only data desk
-/static/index.html                 /static/admin.html
-          │                                │
-          └────────── /api/v1 ─────────────┘
-                         │
-              FastAPI compatibility façade
-              legacy routes remain active
-                         │
-          product + governance orchestration
-              /curriculum_advisor
-                         │
-      programme scope + reasoning + simulation
-                     /engine
-                         │
-       immutable 2026 catalogue JSON releases
-                      /data
-                         │
-        manifests, schemas and draft templates
-                  /governance
+Institution-specific entry / evidence acquisition
+        ↓
+InstitutionRelease + represented curriculum data and provenance
+        ↓
+Existing Report / reasoning pipeline
+        ↓
+StudentReasoningView (and advisor projection)
+        ↓
+Shared CRE Student Workspace
+        ↓
+Student / advisor-facing explanation
 ```
 
-This is a **modular monolith**, intentionally. The domain does not yet justify distributed services. Academic conclusions must remain testable in one process and one release.
+This is a modular monolith. UCT uses governed catalogue packages; Northstar uses an explicitly synthetic reference package, not an institutionally approved release. The engine produces assessments; product projections and the shared frontend explain them. Advisor/technical inspectors are not an advisor authorization system. See [current architecture](docs/CURRENT_ARCHITECTURE.md) for physical paths and compatibility boundaries.
 
-See [Architecture](docs/ARCHITECTURE.md) and [Product decisions](docs/PRODUCT_DECISIONS.md).
+## UCT demonstrator
 
-## Enabled faculties
+The repository contains a working UCT demonstrator covering undergraduate curriculum material across the represented faculty packages. Faculty/programme selection precedes uploaded, manual or empty-entry analysis. Development reviews also use synthetic/constructed evidence. **Live UCT student records are not retrieved.**
 
-- Humanities
-- Commerce
-- Engineering & the Built Environment
-- Law
-- Science
-- Health Sciences
+```text
+UCT faculty/programme/manual/upload entry → CRE → Shared Student Workspace
+```
 
-The existing catalogue and reasoning data are preserved. The redesign does not rewrite handbook facts or relocate faculty JSON files.
+Implemented coverage does not mean every faculty, programme or rule has undergone human fidelity review.
+
+![UCT desktop overview — accepted policy-legibility presentation](artifacts/policy-legibility/after/uct-overview-1440.png)
+
+## Northstar reference institution
+
+Northstar University is a synthetic reference institution used to test portability, evidence boundaries, institutional separation and the shared student product experience. Its opaque course codes, explicit periods and separate achievement scale exercise materially non-UCT semantics by design.
+
+```text
+Northstar Identity → Northstar Records → Northstar Evidence Adapter
+        → CRE → Shared Student Workspace
+```
+
+Northstar is an executable demonstration with synthetic institutional records and demo identity/record retrieval, not merely a test fixture. It contains no real student data and is not a production integration or authentication service. The separate test-only Northstar package remains an independent regression fixture. See [Northstar](northstar/README.md).
+
+![Northstar desktop overview — accepted policy-legibility presentation](artifacts/policy-legibility/after/northstar-overview-1440.png)
+
+## What works today
+
+- Shared reasoning contracts exercised through UCT and a materially different synthetic institution.
+- Distinct known shortfall, unresolved, conflict and unsupported assessments; explicit recognition evidence and represented progression policies.
+- Separate academic completion, graduation eligibility and formal award evidence boundaries; entry eligibility does not establish admission.
+- Evidence receipts and scoped coverage, with receipt distinguished from use by a conclusion.
+- Traceable direct, inherited and package-level rule sources, separated from student-evidence references; missing source detail stays visible.
+- Shared student presentation and Northstar's synthetic identity-to-record-to-analysis flow.
+
+These are **implemented and regression-tested capabilities**, not institutionally validated advice or complete coverage of all institutional policy.
+
+## What CRE does not claim
+
+CRE does not aim to become a durable student system of record. Authoritative institutional records and formal decisions remain with the institution.
+
+This repository does not claim institutional approval, official academic advising status, live UCT SIS integration, production authentication, formal admission or registration decisions, complete source fidelity across represented UCT rules, or complete PPE fidelity beyond reviewed scope. Copy/print is reasoning output, not an official academic record. Student comprehension has not yet been validated with real users.
 
 ## Run locally
+
+From the repository root, with Python installed (CI uses Python 3.13):
 
 ```bash
 python -m pip install -r requirements.txt
 python -m uvicorn app:app --reload
 ```
 
-Open:
+- UCT: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+- Northstar: [http://127.0.0.1:8000/northstar](http://127.0.0.1:8000/northstar); choose a listed synthetic account and use demo code `northstar-demo`.
+- Administration: [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin), read-only by default; guarded Tier 1 metadata overlays can be enabled separately. This is not institutional publishing approval.
+- Operations: `/health`, `/ready`; API reference: `/docs`.
 
-- student experience: `http://127.0.0.1:8000`
-- read-only data desk: `http://127.0.0.1:8000/admin`
-- shallow liveness: `http://127.0.0.1:8000/health`
-- catalogue readiness: `http://127.0.0.1:8000/ready`
-- API documentation: `http://127.0.0.1:8000/docs`
+The UCT/product APIs use `/api/v1`, with legacy aliases retained. Northstar uses `/api/northstar/*`. See [running and validation](docs/RUNNING_AND_VALIDATION.md) for tests, release checks and deployment configuration.
 
-## Test and audit
+## Validation and provenance
+
+Validation includes the full pytest suite, focused product tests, Chromium desktop/mobile journeys, scoped Ruff/Bandit checks and the UCT release/governance gate. Exact counts belong in dated review reports, not a standing product claim.
 
 ```bash
 python -m pip install -r requirements-dev.txt
+python -m playwright install chromium
 python -m pytest -q
-python -m ruff check app.py curriculum_advisor catalogue_governance tools/catalogue_guard.py tests/test_product_redesign.py
-python -m bandit -q -c pyproject.toml -r app.py curriculum_advisor engine
-python -m pip_audit -r requirements.txt
+python -m catalogue_governance --institution uct --release uct-2026-uploaded-baseline --json
 ```
 
-Validated in this build:
+Node.js must also be available on `PATH` for executable JavaScript tests. On Linux, CI installs Chromium with `--with-deps`. The full release gate runs pytest again; see the validation guide before duplicating expensive checks.
 
-- **200 tests passed**;
-- **19 subtests passed**;
-- JavaScript syntax checks passed;
-- Python compilation passed;
-- Ruff passed for the application, governance and redesigned product surface;
-- Bandit passed with documented false-positive exclusions;
-- all **22 catalogue files** match the recorded baseline manifest;
-- the source-data directory was not modified.
+The accepted UCT baseline passes the technical gate **with warnings**, preserving `checksum_mismatch_unverified_source_archive` and missing-declaration limitations. Institutional approval is **NOT_ASSESSED**. Technical reproducibility/gate success does not establish institutional source verification. See [governance status and limits](docs/CURRENT_LIMITATIONS.md).
 
-`pip-audit` requires access to its vulnerability service. It is included in CI but could not complete in the offline build environment.
+## Documentation map
 
-## API shape
+- [Documentation index and authority hierarchy](docs/README.md)
+- [Current architecture and compatibility layers](docs/CURRENT_ARCHITECTURE.md)
+- [Shared Student Workspace v1](docs/SHARED_STUDENT_WORKSPACE_V1.md) and [Policy Legibility & Action Language v1](docs/CRE_POLICY_LEGIBILITY_V1.md): accepted bounded implementation/review records
+- [Northstar reference institution](northstar/README.md)
+- [Running, workflows and artifact guidance](docs/RUNNING_AND_VALIDATION.md)
 
-Preferred versioned endpoints:
+Older architecture plans, build reports and redesign screenshots are labelled historical and retained in place. They are not current setup instructions or proof of current capabilities.
 
-- `GET /api/v1/bootstrap`
-- `GET /api/v1/system/health`
-- `GET /api/v1/system/ready`
-- `GET /api/v1/faculties`
-- `GET /api/v1/faculties/{faculty_key}`
-- `GET /api/v1/programme`
-- `GET /api/v1/catalogue`
-- `GET /api/v1/majors`
-- `POST /api/v1/analyse`
-- `POST /api/v1/analyse/text`
-- `POST /api/v1/analyse/json`
-- `POST /api/v1/simulate/*`
-- `POST /api/v1/goals`
-- `GET /api/v1/governance/status`
+## Current limitations
 
-The former unversioned routes are retained so deployment does not break existing clients.
-
-## Data governance position
-
-Departments should be able to edit curriculum **content** without redefining the canonical meaning of courses, credits, requirements or evidence states.
-
-The intended model is:
-
-- distributed content ownership;
-- central schema governance;
-- separate editor and approver roles;
-- immutable annual releases;
-- cohort-aware curriculum versions;
-- separate term-specific timetable data;
-- explicit manual-confirmation boundaries for discretion.
-
-The `/admin` experience demonstrates this model but cannot publish or mutate curriculum data.
-
-![Read-only governance desk](docs/redesign-admin.png)
-
-## Deployment
-
-Railway is configured to:
-
-- install from `requirements.txt`;
-- start Uvicorn on the platform-provided `$PORT`;
-- trust forwarded proxy headers;
-- use one worker while rate limiting and caches are process-local;
-- check `/ready`, which loads all enabled faculty catalogues.
-
-See [Deployment and migration](docs/DEPLOYMENT_AND_MIGRATION.md).
-
-## Provenance caution
-
-This redesign was built from the locally supplied governance candidate. Its catalogue files match the recorded baseline, but the candidate records that the uploaded source archive did not match the separately supplied public-release archive checksum. That provenance warning is preserved in `governance/releases/source_archive_verification.json` and has not been erased or reinterpreted.
-
-## Governing principle
-
-> No architectural improvement is acceptable if it makes the academic conclusion less traceable, less reversible or more authoritative than its evidence permits.
+The PPE aggregate third-year count remains under semantic review. Formal admission decisions, course-registration/co-requisite semantics and qualification classification/taxonomy remain source-blocked. Represented prerequisites/course exploration do not guarantee registration. Full scope and source qualifications are in [current limitations](docs/CURRENT_LIMITATIONS.md).

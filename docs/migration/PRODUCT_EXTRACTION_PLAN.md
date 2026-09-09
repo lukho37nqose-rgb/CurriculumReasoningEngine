@@ -1,3 +1,6 @@
+> **Historical document**
+> This file describes an earlier stage of CRE and is retained for development history. It should not be treated as the current architecture or product specification. See [current architecture](../CURRENT_ARCHITECTURE.md) and the [documentation index](../README.md). Original content below is preserved; counts, screenshots, commands and claims retain their original milestone context.
+
 # Product Extraction Plan
 
 This plan prepares CurriculumAdvisor for extraction into the first standalone product of Cacisa Systems: Curriculum Reasoning Engine. It deliberately avoids the large-scale module migration.

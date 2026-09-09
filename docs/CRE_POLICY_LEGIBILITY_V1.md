@@ -1,3 +1,6 @@
+> **Accepted milestone record**
+> This is bounded implementation/review evidence, not a rolling test count. The two presentation slices were subsequently committed at `73f07140765cc0d9a0db36b4fbcd1296cbb43c37`; original no-commit statements refer to the original task. See the [documentation index](README.md) for current authority and limitations.
+
 # CRE Policy Legibility & Action Language v1
 
 ## Scope and Grammar

@@ -1,3 +1,6 @@
+> **Historical document**
+> This file describes an earlier stage of CRE and is retained for development history. It should not be treated as the current architecture or product specification. See [current architecture](../../docs/CURRENT_ARCHITECTURE.md) and the [documentation index](../../docs/README.md). Original content below is preserved; counts, screenshots, commands and claims retain their original milestone context.
+
 # Northstar Reference Student Interface v1: CLOSED
 
 Date: 7 September 2026. Bounded synthetic demonstrator only.

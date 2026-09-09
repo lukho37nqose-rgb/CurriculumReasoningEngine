@@ -1,3 +1,8 @@
+> **Historical document**
+> This file describes an earlier stage of CRE and is retained for development history. It should not be treated as the current architecture or product specification. See [current architecture](CURRENT_ARCHITECTURE.md) and the [documentation index](README.md). Original content below is preserved; counts, screenshots, commands and claims retain their original milestone context.
+
+> **Scope:** Governance principles remain useful; proposed ownership, approval and publishing processes below are not evidence of implemented institutional authority.
+
 # CurriculumAdvisor curriculum-data governance
 
 ## Non-negotiable boundary

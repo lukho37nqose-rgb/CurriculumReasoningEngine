@@ -1,3 +1,8 @@
+> **Historical document**
+> This file describes an earlier stage of CRE and is retained for development history. It should not be treated as the current architecture or product specification. See [current architecture](../docs/CURRENT_ARCHITECTURE.md) and the [documentation index](../docs/README.md). Original content below is preserved; counts, screenshots, commands and claims retain their original milestone context.
+
+> **Current guidance:** Use [running and validation](../docs/RUNNING_AND_VALIDATION.md). Earlier launch/QA selectors, unconditional read-only administration claims and complete-report print claims below are not current behavior.
+
 # Northstar Reference Student Interface v1
 
 ## Run and Rehearse

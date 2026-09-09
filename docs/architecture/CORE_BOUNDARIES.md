@@ -1,3 +1,6 @@
+> **Historical document**
+> This file describes an earlier stage of CRE and is retained for development history. It should not be treated as the current architecture or product specification. See [current architecture](../CURRENT_ARCHITECTURE.md) and the [documentation index](../README.md). Original content below is preserved; counts, screenshots, commands and claims retain their original milestone context.
+
 # Core Boundaries
 
 The Curriculum Core should express curriculum primitives and evaluation mechanics without depending on UCT as an institution. Today, the boundary is partial: the core package contains useful generic components, but also UCT-specific policy and parsing assumptions.
