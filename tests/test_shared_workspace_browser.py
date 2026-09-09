@@ -94,7 +94,7 @@ def test_northstar_shared_workspace_journeys(workspace_server, width):
         page.on('request', lambda request: retrievals.append(request.url) if request.url.endswith('/api/northstar/analyse') else None)
         page.goto(workspace_server + '/northstar')
         page.locator('#ns-subject option').nth(14).wait_for(state='attached')
-        for index, subject in enumerate(['NS-001', 'NS-003', 'NS-006', 'NS-007', 'NS-008', 'NS-011', 'NS-013', 'NS-014', 'NS-015']):
+        for index, subject in enumerate(['NS-001', 'NS-003', 'NS-006', 'NS-007', 'NS-008', 'NS-011', 'NS-012', 'NS-013', 'NS-014', 'NS-015']):
             page.select_option('#ns-subject', subject)
             page.get_by_role('button', name='Log in and retrieve my record').click()
             root, nav = page.locator('#ns-results'), page.locator('#ns-nav')
@@ -107,6 +107,14 @@ def test_northstar_shared_workspace_journeys(workspace_server, width):
                 export_checks(page, root)
             nav.locator('[data-view="curriculum"]').click()
             expect(root.locator('.human-card')).not_to_have_count(0)
+            # Retain the old rehearsal's expanded-evidence and token checks.
+            normal = root.locator('.cre-section').inner_text()
+            assert not any(token in normal for token in [
+                'assessment_complete', 'choose_n', 'DIRECT_RULE_SOURCE', 'unverified',
+                'curriculum:', 'NS-V1-', 'REC-NS'])
+            root.locator('.human-why summary').first.click()
+            expect(root.locator('.cre-section')).to_contain_text('Ways of Inquiry')
+            root.locator('.human-why summary').first.click()
             if subject in ['NS-003', 'NS-006']:
                 state = 'unresolved' if subject == 'NS-003' else 'conflict'
                 expect(root.locator(f'article.{state}').first).to_be_visible()
@@ -126,7 +134,21 @@ def test_northstar_shared_workspace_journeys(workspace_server, width):
                 expect(root.locator('.cre-section')).to_contain_text('Northstar achievement points (0 to 20)')
                 expect(root.locator('.cre-section')).to_contain_text('15')
                 expect(root.locator('.cre-section')).not_to_contain_text('15%')
+            if subject == 'NS-012':
+                root.get_by_text('What your registration history shows', exact=True).click()
+                expect(root.locator('.cre-section')).to_contain_text('2 active academic cycles')
+                expect(root.locator('.cre-section')).to_contain_text('not a current enrolment decision')
             no_overflow(page)
+            nav.locator('[data-view="sources"]').click()
+            root.locator('.portal-source summary').first.click()
+            expect(root.locator('.cre-section')).to_contain_text('Record RX-')
+            expect(root.locator('.cre-section')).not_to_contain_text('Page ')
+            no_overflow(page)
+            nav.locator('[data-view="help"]').click()
+            expect(root.locator('.cre-section')).to_contain_text('What does CRE do?')
+            page.locator('.ns-debug > summary').click()
+            expect(page.locator('#ns-debug')).to_contain_text(subject)
+            expect(page.locator('#ns-debug')).to_contain_text('NS-REGISTRY')
             page.locator('#ns-switch').click()
             expect(page.locator('#ns-login')).to_be_visible()
             expect(root).to_be_empty()

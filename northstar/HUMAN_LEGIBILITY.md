@@ -186,6 +186,8 @@ Open `/northstar`; use `northstar-demo`. Show NS-001, NS-003, NS-006, NS-011,
 then NS-014 and NS-015. Begin with ordinary meaning, open Why and a source,
 then open the inspector to demonstrate what the infrastructure distinguishes.
 
+> **Retired command:** The following is preserved as the original historical command. Hygiene Slice 1 moved its useful checks into the current [pytest browser suites](../docs/RUNNING_AND_VALIDATION.md); it is no longer runnable from the current tree.
+
 Run `python tools/qa_northstar_browser.py --output artifacts/northstar-legibility/after`.
 The before captures, canonical digests, after captures and separate UCT browser
 observations are retained under `artifacts/northstar-legibility/`.

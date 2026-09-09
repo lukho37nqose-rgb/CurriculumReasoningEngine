@@ -12,7 +12,7 @@ CRE is the curriculum reasoning product/engine in the broader Cacisa Systems con
 - `northstar/`: synthetic identity, native records, evidence adapter and package; distinct from `tests/fixtures/northstar/`.
 - `data/uct_*`: represented UCT curriculum packages and source-extraction provenance.
 - `catalogue_governance/` and `governance/`: technical verification, manifests, schemas and provenance records.
-- `tools/`: builders and integrity tools; older browser rehearsal scripts need selector updates before current use.
+- `tools/`: builders and integrity tools; browser rehearsal scenarios are maintained in the current pytest browser suites.
 - `tests/`: cross-institution, product, browser, UCT and compatibility regression contracts.
 
 ## Architectural Rules

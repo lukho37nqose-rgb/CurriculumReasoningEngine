@@ -61,4 +61,6 @@ permission, locator, provenance status or evaluator has been changed in this tas
 Screenshots are named by scenario, viewport width and requirement. `observations.json`
 records the rendered text, canonical outcome receipts, page widths and browser errors.
 `input-error.png` shows the unreadable synthetic PDF recovery message.
+> **Retired command:** The following is preserved as the original historical command. Hygiene Slice 1 moved its useful checks into the current [pytest browser suites](../../docs/RUNNING_AND_VALIDATION.md); it is no longer runnable from the current tree.
+
 Reproduce with the local app on port 8765 and `python tools/qa_ppe_browser.py`.

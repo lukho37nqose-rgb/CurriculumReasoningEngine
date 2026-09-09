@@ -156,7 +156,7 @@ The shared workspace extends this accepted record boundary. Current sections are
 
 `tests/test_northstar_reference_v1.py` exercises all fifteen logins and canonical
 outcomes, fresh source reads, metadata independence, domain failure, scope, source
-resolution, isolation, and shared rendering. Current browser regression entry: `python -m pytest -q tests/test_shared_workspace_browser.py`, run from the repository root with development dependencies and Chromium installed. See [running and validation](../docs/RUNNING_AND_VALIDATION.md). The older `tools/qa_northstar_browser.py` has superseded selectors and is retained for later tooling review, not recommended as a current command.
+resolution, isolation, and shared rendering. Current browser regression entry: `python -m pytest -q tests/test_shared_workspace_browser.py`, run from the repository root with development dependencies and Chromium installed. See [running and validation](../docs/RUNNING_AND_VALIDATION.md). The older standalone Northstar browser script has been retired; its useful disclosure, registry and NS-012 history checks are now in that suite.
 
 The original v1 validation counts and governance limitations are historical evidence recorded in
 `artifacts/northstar-v1-browser/CLOSURE.md` after the final verification pass.

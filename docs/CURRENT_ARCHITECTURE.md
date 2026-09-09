@@ -37,7 +37,7 @@ Northstar's identity service identifies a demo subject. Its record service suppl
 | `northstar/` | Executable synthetic institution: identity, records, adapter, package and presentation metadata |
 | `static/` | UCT and Northstar acquisition shells, shared student workspace/components, administration UI |
 | `data/uct_*`, `governance/`, `catalogue_governance/` | UCT represented packages and extraction provenance, manifests/schemas and technical release verification |
-| `tests/`, `tools/` | Regression contracts, package builders, integrity tooling and older browser rehearsal scripts |
+| `tests/`, `tools/` | Regression contracts, package builders and integrity tooling; browser rehearsals live in pytest |
 
 ## Truth and presentation ownership
 

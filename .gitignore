@@ -21,3 +21,7 @@ data/**/*.txt
 *.jsonl
 tmp/
 temp/
+
+# Local test/lint caches observed in this checkout (not review evidence)
+/.pytest_cache/
+/.ruff_cache/

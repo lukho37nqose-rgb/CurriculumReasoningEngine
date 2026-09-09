@@ -139,6 +139,8 @@ alternatives; NS-008 demonstrates achievement 15 on the supplied 0-to-20 scale.
 
 `python -m pytest -q tests/test_northstar_student_interface.py tests/test_northstar_portal_browser.py tests/test_northstar_reference_v1.py tests/test_ppe_pilot_fidelity_repair.py tests/test_ppe_browser_presentation.py`
 
+> **Retired command:** The following is preserved as the original historical command. Hygiene Slice 1 moved its useful checks into the current [pytest browser suites](../docs/RUNNING_AND_VALIDATION.md); it is no longer runnable from the current tree.
+
 `python tools/qa_northstar_browser.py`
 
 `python -m pytest -q`

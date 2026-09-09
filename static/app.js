@@ -113,97 +113,6 @@ function statusDisclosure(lines, label = "Why?") {
   `;
 }
 
-function statusWidget(status, lines, label = "") {
-  return `
-    <div class="status-widget">
-      ${statusBadge(status, label)}
-      ${statusDisclosure(lines)}
-    </div>
-  `;
-}
-
-function requirementExplanation(requirement) {
-  const key = statusKey(requirement.status);
-  const lines = [];
-  if (!requirement.complete) lines.push(STATUS_EXPLANATIONS.incomplete);
-  if (key !== "verified" && STATUS_EXPLANATIONS[key]) lines.push(STATUS_EXPLANATIONS[key]);
-  if (requirement.detail || requirement.explanation) {
-    lines.push(`Basis: ${requirement.detail || requirement.explanation}`);
-  }
-  if (requirement.required || requirement.current) {
-    lines.push(`Progress used: ${requirement.current ?? 0} of ${requirement.required ?? 0}.`);
-  }
-  if (asArray(requirement.assumptions).length) {
-    lines.push(`Still needs confirmation: ${asArray(requirement.assumptions).join(" ")}`);
-  }
-  lines.push(confidenceLine(requirement.confidence));
-  lines.push(sourceLine(requirement.source));
-  return uniqueLines(lines);
-}
-
-function majorExplanation(major) {
-  const key = statusKey(major.status);
-  const lines = [];
-  if (!major.complete) lines.push(STATUS_EXPLANATIONS.incomplete);
-  if (key !== "verified" && STATUS_EXPLANATIONS[key]) lines.push(STATUS_EXPLANATIONS[key]);
-  if (asArray(major.outstanding_requirements).length) {
-    lines.push(`Outstanding: ${asArray(major.outstanding_requirements).join("; ")}`);
-  }
-  lines.push(confidenceLine(major.confidence));
-  return uniqueLines(lines);
-}
-
-function courseExplanation(course) {
-  const key = statusKey(course.status);
-  const lines = [];
-  if (key !== "verified" && STATUS_EXPLANATIONS[key]) lines.push(STATUS_EXPLANATIONS[key]);
-  if (course.reason) lines.push(`Basis: ${course.reason}`);
-  if (asArray(course.limitations).length) lines.push(`Limits: ${asArray(course.limitations).join(" ")}`);
-  lines.push(confidenceLine(course.confidence));
-  return uniqueLines(lines);
-}
-
-function reportStatusExplanation(report) {
-  const key = statusKey(report.graduation_status);
-  const lines = [];
-  if (STATUS_EXPLANATIONS[key]) lines.push(STATUS_EXPLANATIONS[key]);
-  lines.push(blockersSummary());
-  if (statusKey(report.scope_status) !== "verified") {
-    lines.push("The selected programme scope is not fully verified, so the result cannot be treated as final.");
-  }
-  return uniqueLines(lines);
-}
-
-function isRecognitionNotice(item) {
-  const text = String(item || "").toLowerCase();
-  return text.includes("not counted automatically")
-    || text.includes("not recognised")
-    || text.includes("not recognized")
-    || text.includes("recognition");
-}
-
-function noticeGroup(title, items, kind = "") {
-  const rows = asArray(items);
-  if (!rows.length) return "";
-  return `
-    <details class="notice-group ${esc(kind)}">
-      <summary><span>${esc(title)}</span><strong>${rows.length}</strong></summary>
-      <div class="notice-group-body">
-        ${rows.map(item => `<div class="notice-row ${kind === "info" ? "info" : ""}">${esc(item)}</div>`).join("")}
-      </div>
-    </details>
-  `;
-}
-
-function detailMessage(detail) {
-  if (typeof detail === "string" && detail.trim()) return detail;
-  if (Array.isArray(detail)) {
-    const messages = detail.map(item => item?.msg || item?.detail || "").filter(Boolean);
-    if (messages.length) return messages.join(" ");
-  }
-  return "The request could not be completed.";
-}
-
 async function api(url, options = {}) {
   const headers = new Headers(options.headers || {});
   headers.set("Accept", "application/json");
@@ -636,12 +545,6 @@ function blockingRequirements() {
   return asArray(state.report?.requirements).filter(requirement => requirement.blocking !== false);
 }
 
-function completionPercent() {
-  const rows = blockingRequirements();
-  if (!rows.length) return 0;
-  return Math.round(rows.filter(row => row.complete).length / rows.length * 100);
-}
-
 function blockersSummary() {
   const report = state.report || {};
   const incomplete = blockingRequirements().filter(row => !row.complete);
@@ -650,12 +553,6 @@ function blockersSummary() {
   if (incomplete.length) return `${incomplete.length} blocking requirement${incomplete.length === 1 ? " remains" : "s remain"} in the represented route.`;
   if (failures) return `${failures} failed attempt${failures === 1 ? " remains" : "s remain"} visible in the academic history.`;
   return "No represented blocking requirement is currently incomplete.";
-}
-
-function nextSummary() {
-  const count = asArray(state.report?.eligible_courses).length;
-  if (!count) return "No course can currently be recommended from represented prerequisite evidence.";
-  return `${count} route-visible course option${count === 1 ? " is" : "s are"} available for consideration, subject to live registration conditions.`;
 }
 
 function workspaceConfig() {

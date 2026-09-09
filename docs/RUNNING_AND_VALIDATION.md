@@ -31,10 +31,10 @@ Focused product checks:
 
 ```bash
 python -m pytest -q tests/test_shared_student_workspace.py tests/test_policy_legibility.py
-python -m pytest -q tests/test_shared_workspace_browser.py
+python -m pytest -q tests/test_shared_workspace_browser.py tests/test_browser_rehearsal_scenarios.py
 ```
 
-The full suite also covers Northstar service failures and institutional/compatibility contracts. Exact milestone counts remain in dated closure reports. Old `tools/qa_northstar_browser.py` and `tools/qa_ppe_browser.py` contain superseded labels/selectors; they are retained for later tooling review, **not current recommended rehearsal commands**. Preserve their unique scenarios before retirement.
+The full suite also covers Northstar service failures and institutional/compatibility contracts. Exact milestone counts remain in dated closure reports. The old standalone Northstar/PPE browser scripts were retired in Hygiene Slice 1. Their useful expanded-disclosure, registration-history, invalid-upload and PPE scenario checks now run in `tests/test_shared_workspace_browser.py` and `tests/test_browser_rehearsal_scenarios.py`, using ephemeral servers and no ordinary capture output.
 
 ## Quality and release verification
 
@@ -86,4 +86,4 @@ Both currently run the full suite. Node availability is implicit in the runner r
 - The canonical current review set is `artifacts/policy-legibility/after/`; `artifacts/shared-workspace/` is the accepted earlier extraction snapshot. Images document a reviewed state, not live production or real-user validation.
 - Other artifact collections and `docs/redesign-*.png` are historical review evidence. Keep closure reports, observations, digests and links intact. A generated report can still be intentional versioned evidence; label its milestone and validation scope.
 - Do not broadly ignore `artifacts/`, PNGs, governed JSON or `data/`: selected screenshots, institutional provenance and synthetic reference data are intentionally tracked. `.gitattributes` preserves JSON bytes for manifest/parity checks.
-- Duplicate screenshot deletion, stale-script repair, compatibility removal and checksum/archive relocation belong to later reviewed slices. This guidance does not authorize them.
+- Hygiene Slice 1 removed only mapped duplicate source captures and the two retired browser scripts. Further screenshot consolidation, compatibility removal and checksum/archive relocation still require separate review. See [hygiene report and remaining register](REPOSITORY_HYGIENE_SLICE1.md).

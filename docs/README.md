@@ -42,4 +42,4 @@ Use [current governance status](CURRENT_LIMITATIONS.md) and [verification comman
 | `artifacts/northstar-legibility/`, `northstar-student-interface/`, `northstar-v1-browser/`, `ppe-browser-qa/` | Historical milestone/scenario evidence; retain labels, observations and closure records |
 | `docs/redesign-*.png` | Historical UCT redesign, not current shared interface |
 
-For artifact-specific status see [artifact index](../artifacts/README.md). There is no general approval to delete duplicate paths: historical links and review context remain dependencies.
+For artifact-specific status see [artifact index](../artifacts/README.md). [Hygiene Slice 1](REPOSITORY_HYGIENE_SLICE1.md) records the limited source-capture deduplication and remaining candidates. There is no general approval to delete other duplicate paths: historical links and review context remain dependencies.
