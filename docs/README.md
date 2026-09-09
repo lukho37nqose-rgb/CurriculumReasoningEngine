@@ -2,6 +2,8 @@
 
 Start with the [repository README](../README.md). This index separates current implementation descriptions from accepted milestone evidence, design intentions and development history. Source code and tests remain the implementation evidence; no document grants institutional authority.
 
+The [validation contract](VALIDATION_CONTRACT.md) owns current CI/local/gate dependencies, scope boundaries and check-name stability.
+
 ## Current product, architecture and operations
 
 1. [Current CRE architecture](CURRENT_ARCHITECTURE.md): physical layout, truth owners, active surfaces and intentionally retained compatibility interfaces.

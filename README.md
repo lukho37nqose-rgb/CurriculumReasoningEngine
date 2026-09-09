@@ -99,7 +99,7 @@ python -m pytest -q
 python -m catalogue_governance --institution uct --release uct-2026-uploaded-baseline --json
 ```
 
-Node.js must also be available on `PATH` for executable JavaScript tests. On Linux, CI installs Chromium with `--with-deps`. The full release gate runs pytest again; see the validation guide before duplicating expensive checks.
+Node.js 24 must also be available on `PATH` for executable JavaScript tests. On Linux, CI installs Chromium with `--with-deps`. The full release gate runs pytest again; see the [validation contract](docs/VALIDATION_CONTRACT.md) for exact local, CI and integrated-gate scopes before duplicating expensive checks.
 
 The accepted UCT baseline passes the technical gate **with warnings**, preserving `checksum_mismatch_unverified_source_archive` and missing-declaration limitations. Institutional approval is **NOT_ASSESSED**. Technical reproducibility/gate success does not establish institutional source verification. See [governance status and limits](docs/CURRENT_LIMITATIONS.md).
 

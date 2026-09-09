@@ -17,7 +17,7 @@ Open UCT at `http://127.0.0.1:8000/` and Northstar at `http://127.0.0.1:8000/nor
 
 ## Tests and browser requirements
 
-Install Node.js and ensure `node` is on `PATH`: Python component tests execute JavaScript through it. Install Python development and browser dependencies:
+Install Node.js 24 and ensure `node` is on `PATH`: Python component tests execute JavaScript through it. Install Python development and browser dependencies:
 
 ```bash
 python -m pip install -r requirements-dev.txt
@@ -73,7 +73,7 @@ See [current limitations](CURRENT_LIMITATIONS.md) for `PASS_WITH_WARNINGS`, arch
 | [CurriculumAdvisor checks](../.github/workflows/ci.yml) | Push to `main`; pull requests | Python 3.13, dependencies, Chromium, full pytest, scoped application/product/governance Ruff, app/product/engine Bandit, runtime dependency audit |
 | [CRE release verification](../.github/workflows/release-verification.yml) | Pushes without a branch filter; pull requests | Python 3.13, dependencies, Chromium, UCT technical release gate including full pytest and governance quality checks |
 
-Both currently run the full suite. Node availability is implicit in the runner rather than declared by a setup step. Quality-target coverage and repeated test work are known tooling follow-ups; workflows and their names are unchanged here. Passing checks do not establish institutional authority or student comprehension.
+Both run the full suite and explicitly set up Node 24 for executable JavaScript tests. Their quality targets differ. The [validation contract](VALIDATION_CONTRACT.md) is authoritative for exact scopes, integrated versus partial gate terminology, known gaps and check-name stability. Running pytest/Ruff separately plus `--skip-quality` is not an integrated full gate. Before renaming or deleting a workflow/job, verify branch-protection and external required-check consumers. Passing checks do not establish institutional authority or student comprehension.
 
 ## Deployment configuration
 
