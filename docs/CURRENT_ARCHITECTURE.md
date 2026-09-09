@@ -43,9 +43,9 @@ Northstar's identity service identifies a demo subject. Its record service suppl
 
 `engine/rule_engine.py` defines `Report` and `compute_report`. The report holds canonical assessments alongside older report fields. `curriculum_advisor/presentation.py` projects student/advisor explanations; `app.py` attaches them to serialized reports. Product language does not replace the underlying institutional rule or upgrade its authority.
 
-`static/student-workspace.js` owns shared account layout, section navigation/history, composition, course filtering and copy/print. `student-portal.js` supplies curriculum/evidence/source/help/sequence rendering; `student-language.js` supplies outcome/action wording and disclosures. `studentConclusionCard` is an existing wrapper in `app.js`.
+`static/student-workspace.js` owns shared account layout, section navigation/history, composition, course filtering and copy/print. `student-portal.js` supplies curriculum/evidence/source/help/sequence rendering; `student-language.js` supplies outcome/action wording and disclosures. `student-shared.js` owns `esc`, `asArray`, `titleCase` and the `studentConclusionCard` rendering bridge. These classic-script bindings are an internal shared frontend API, not a public external API. The bridge delegates to StudentLanguage and does not evaluate academic facts.
 
-UCT's `static/app.js` retains faculty/programme selection and upload/manual/empty entry. `static/northstar.js` retains demo login, retrieval, refresh and switching. Northstar loads `app.js` in `data-projection-only` mode for shared helpers while suppressing UCT initialization. The two shells are not two independent reasoning implementations.
+UCT's `static/app.js` retains faculty/programme selection and upload/manual/empty entry. `static/northstar.js` retains demo login, retrieval, refresh and switching. Both load `student-shared.js`, then `student-language.js`, `student-portal.js`, `student-workspace.js`, and finally their own shell. Northstar does not load `app.js` and no longer needs projection-only initialization suppression. The two shells are not two independent reasoning implementations. Other legacy wrappers, hidden Copy/Print bindings, presentation configuration and CSS remain unchanged by this extraction.
 
 The advisor/technical inspector is an explanation surface, not a production advisor permission system. Academic completion, graduation eligibility, formal award, entry and registration remain distinct questions. Course exploration displays represented curriculum/prerequisite results, not live places, timetables or registration approval.
 
@@ -70,7 +70,6 @@ Administration is read-only by default. Explicitly enabled/token-guarded Tier 1 
 | `engine/utils.py` route/major/course-load helpers and model grading defaults | Tested compatibility contracts and some production fallbacks remain |
 | Unversioned API aliases | Existing routes for clients; removal requires a separate compatibility decision |
 | Frontend report wrappers and hidden copy/print nodes | Tests extract wrappers and initialization still binds hidden controls; remove neither in isolation |
-| Northstar's projection-only `app.js` load | Shared utility/conclusion-wrapper dependency remains |
 | `tests/fixtures/northstar/` | Independent synthetic regression package used by entry, completion, periods, registration and achievement tests; not a spare copy of runtime Northstar |
 
 These are legacy interfaces retained for compatibility, not a declaration of deprecation or planned removal. Similar names (`reasoner.py`, `reasoning.py`, `knowledge_graph.py`) do not establish duplication.

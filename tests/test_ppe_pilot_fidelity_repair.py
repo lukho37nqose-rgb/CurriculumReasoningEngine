@@ -133,7 +133,7 @@ def test_frontend_and_projection_architecture():
     assert 'StudentWorkspace.renderSection(report, workspaceConfig(), "curriculum")' in js
     assert "if (projected) return studentConclusionCard(projected)" in js
     assert "esc(link.conclusion_id)" not in js
-    assert "StudentLanguage.card" in js
+    assert "StudentLanguage.card" in (ROOT / "static/student-shared.js").read_text(encoding="utf-8")
     assert "institutionally confirmed" in (ROOT / "static/student-language.js").read_text(encoding="utf-8")
     source = inspect.getsource(presentation)
     assert "CurriculumEvaluator" not in source
@@ -198,11 +198,10 @@ const fs = require('fs');
 const vm = require('vm');
 const data = JSON.parse(fs.readFileSync(0, 'utf8'));
 const src = fs.readFileSync('static/app.js', 'utf8');
-const names = ['workspaceConfig', 'studentConclusionCard', 'renderStudentReasoningView', 'requirementCard', 'requirementsSection'];
-const context = {state: {report: data}, asArray: x => Array.isArray(x) ? x : [],
- esc: x => String(x ?? '').replaceAll('<', '&lt;'), statusKey: x => x,
- titleCase: x => x, sourceLocator: x => JSON.stringify(x)};
+const names = ['workspaceConfig', 'renderStudentReasoningView', 'requirementCard', 'requirementsSection'];
+const context = {state: {report: data}};
 vm.createContext(context);
+vm.runInContext(fs.readFileSync('static/student-shared.js', 'utf8'), context);
 vm.runInContext(fs.readFileSync('static/student-language.js', 'utf8'), context);
 vm.runInContext(fs.readFileSync('static/student-portal.js', 'utf8'), context);
 vm.runInContext(fs.readFileSync('static/student-workspace.js', 'utf8'), context);

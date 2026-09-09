@@ -28,17 +28,6 @@ const state = {
 };
 
 const $ = id => document.getElementById(id);
-const esc = value => String(value ?? "").replace(/[&<>"']/g, character => ({
-  "&": "&amp;",
-  "<": "&lt;",
-  ">": "&gt;",
-  '"': "&quot;",
-  "'": "&#39;",
-}[character]));
-const titleCase = value => String(value || "")
-  .replaceAll("_", " ")
-  .replace(/\b\w/g, character => character.toUpperCase());
-const asArray = value => Array.isArray(value) ? value : [];
 const STATUS_EXPLANATIONS = {
   complete: "This item is satisfied by the represented transcript and route evidence.",
   eligible: "All represented blocking rules are complete and verified within the selected route.",
@@ -570,11 +559,6 @@ function sourceLocator(locator) {
   return locator || "Location not recorded.";
 }
 
-function studentConclusionCard(item, presentation = {}) {
-  // Array.map supplies an index as its second argument, not presentation metadata.
-  return StudentLanguage.card(item, typeof presentation === "object" ? presentation : {});
-}
-
 function renderStudentReasoningView(report) {
   return StudentWorkspace.renderSection(report, workspaceConfig(), "curriculum");
 }
@@ -815,11 +799,8 @@ function bindEvents() {
   });
 }
 
-// Other workspaces can reuse the canonical projection renderer without route UI initialization.
-if (!document.currentScript?.hasAttribute("data-projection-only")) {
-  bindEvents();
-  boot();
-}
+bindEvents();
+boot();
 
 
 

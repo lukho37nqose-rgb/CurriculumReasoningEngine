@@ -36,14 +36,10 @@ def render(payload, config=None):
     script = r'''
 const fs = require('fs'), vm = require('vm');
 const data = JSON.parse(fs.readFileSync(0, 'utf8'));
-const src = fs.readFileSync('static/app.js', 'utf8');
-const context = {data, asArray: x => Array.isArray(x) ? x : [],
- esc: x => String(x ?? '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('"', '&quot;'),
- titleCase: x => x, statusKey: x => x, sourceLocator: x => JSON.stringify(x)};
+const context = {data};
 vm.createContext(context);
+vm.runInContext(fs.readFileSync('static/student-shared.js', 'utf8'), context);
 vm.runInContext(fs.readFileSync('static/student-language.js', 'utf8'), context);
-const start = src.indexOf('function studentConclusionCard(');
-vm.runInContext(src.slice(start, src.indexOf('\nfunction ', start + 1)), context);
 vm.runInContext(fs.readFileSync('static/student-portal.js', 'utf8'), context);
 vm.runInContext(fs.readFileSync('static/student-workspace.js', 'utf8'), context);
 const before = JSON.stringify(data);

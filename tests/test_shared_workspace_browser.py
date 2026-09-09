@@ -46,6 +46,18 @@ def no_overflow(page):
     assert not page.evaluate('document.documentElement.scrollWidth > innerWidth')
 
 
+def shared_script_contract(page, shell):
+    scripts = page.evaluate('[...document.scripts].map(script => new URL(script.src).pathname)')
+    assert scripts == [f'/static/{name}.js' for name in
+                       ['student-shared', 'student-language', 'student-portal', 'student-workspace', shell]]
+    resources = page.evaluate('performance.getEntriesByType("resource").map(item => new URL(item.name).pathname)')
+    assert ('/static/app.js' in resources) == (shell == 'app')
+    assert page.evaluate('typeof studentConclusionCard') == 'function'
+    assert page.evaluate('typeof esc') == 'function'
+    assert page.evaluate('typeof asArray') == 'function'
+    assert page.evaluate('typeof titleCase') == 'function'
+
+
 def export_checks(page, root):
     page.context.grant_permissions(['clipboard-read', 'clipboard-write'])
     root.locator('[data-copy]').click()
@@ -152,6 +164,7 @@ def test_northstar_shared_workspace_journeys(workspace_server, width):
             page.locator('#ns-switch').click()
             expect(page.locator('#ns-login')).to_be_visible()
             expect(root).to_be_empty()
+        shared_script_contract(page, 'northstar')
         assert not errors
         browser.close()
 
@@ -198,5 +211,6 @@ def test_uct_entry_and_shared_workspace(workspace_server, width, manual):
         root.locator('.cre-nav [data-view="evidence"]').click()
         expect(root.locator('.cre-section')).to_contain_text('You supplied this information')
         no_overflow(page)
+        shared_script_contract(page, 'app')
         assert not errors
         browser.close()

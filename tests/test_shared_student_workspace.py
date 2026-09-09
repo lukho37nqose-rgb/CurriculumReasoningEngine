@@ -14,12 +14,10 @@ def render(report, config):
     script = r'''
 const fs = require('fs'), vm = require('vm');
 const data = JSON.parse(fs.readFileSync(0, 'utf8'));
-const context = {data, asArray: x => Array.isArray(x) ? x : [],
- esc: x => String(x ?? '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;')};
+const context = {data};
 vm.createContext(context);
-for (const file of ['student-language', 'student-portal', 'student-workspace'])
+for (const file of ['student-shared', 'student-language', 'student-portal', 'student-workspace'])
  vm.runInContext(fs.readFileSync('static/' + file + '.js','utf8'),context);
-vm.runInContext('function studentConclusionCard(item, config) {return StudentLanguage.card(item, config)}',context);
 const before = JSON.stringify(data);
 const output = vm.runInContext(`Object.fromEntries(['overview','curriculum','evidence','sources','explore','help'].map(key => [key,StudentWorkspace.renderSection(data.report,data.config,key)]))`,context);
 output.tabs = vm.runInContext('StudentWorkspace.tabs(data.config)',context);
