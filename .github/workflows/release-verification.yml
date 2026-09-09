@@ -4,6 +4,10 @@ on:
   push:
   pull_request:
 
+# Validation only needs read access to repository contents.
+permissions:
+  contents: read
+
 jobs:
   verify:
     runs-on: ubuntu-latest

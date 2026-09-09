@@ -56,7 +56,7 @@ Neither workflow uses manual dispatch, reusable workflows, matrices, explicit sh
 | Default Ubuntu shell, normal UTF-8 environment | IMPLICIT_BUT_SAFE in current CI | No Windows-only workflow commands; cross-platform parity is not universal certification |
 | `/mnt/data` builder inputs | LOCAL_ONLY for earlier builder workflows | Not invoked by these CI commands; rebuilding all packages is not claimed |
 | `CRE_WORKSPACE_SCREENSHOTS` | LOCAL_ONLY opt-in review output | Unset in workflows; normal tests do not request captures |
-| Default token permission on release workflow | IMPLICIT_RISK | Effective repository/org policy was not verified |
+| Workflow token permissions | DECLARED | Both workflows request only contents: read; see hardening policy below |
 
 ## Exact static and frontend scope
 
@@ -122,16 +122,16 @@ Blocking failures or unexplained drift produce `FAIL` and exit 1. Incomplete dec
 - **DIFFERENT SCOPE DESPITE SIMILAR NAME:** general versus governance Bandit; general versus focused pytest. Governance Ruff overlaps the general command but the standalone gate owns its own check.
 - **UNCERTAIN optimization:** two workflow executions of pytest and repeated setup. Execution duplication is established; lack of purpose is not. No repetition is established as safely removable HISTORICAL DUPLICATION in this slice.
 
-Actions use major tags, not immutable SHAs: `actions/checkout@v4`, `actions/setup-python@v5`, and newly declared `actions/setup-node@v4`. No bulk action upgrades were made. `ubuntu-latest`, major runtime selectors and bounded dev dependency ranges also float. Review exact pinning as a separate hardening policy, not an incidental cleanup.
+Actions retain major tags, not immutable SHAs: `actions/checkout@v4`, `actions/setup-python@v5`, and `actions/setup-node@v4`. This is an explicit maintenance choice under the hardening policy below. `ubuntu-latest`, runtime selectors and bounded dev dependency ranges also float. No action or dependency upgrade is implied.
 
-General CI uses setup-python's pip cache; release CI does not. Neither explicitly caches browsers or Node/npm dependencies. Caching reduces download work and does not replace dependency installation/validation. No workflow uploads or retains review screenshots/reports beyond ordinary GitHub job logs. Neither references secrets or deployment credentials. General CI explicitly grants `contents: read`; release CI inherits defaults. Checkout token handling remains the action default; absence of write commands is not proof of read-only effective permissions.
+General CI uses setup-python's pip cache; release CI does not. Neither explicitly caches browsers or Node/npm dependencies. Caching reduces download work and does not replace dependency installation/validation. No workflow uploads or retains review screenshots/reports beyond ordinary GitHub job logs. Neither references secrets or deployment credentials. Both workflows explicitly request `contents: read`, with no job overrides. Checkout token handling remains the action default; the explicit permission declaration, not merely absence of write commands, bounds the token.
 
 No README workflow badges exist to repair. GitHub also lists dynamic Copilot workflows; these are not the two source-controlled workflow files and are outside this contract's implementation scope.
 
 | Later candidate | Risk | Required evidence before change |
 |---|---|---|
-| Action/runtime/dev-tool pinning policy | MEDIUM_RISK | Maintenance/update policy and hosted-run proof |
-| Explicit release token permissions | MEDIUM_RISK | Effective defaults and action consumers |
+| Immutable action refs / frozen environment | MEDIUM_RISK | Update discipline; policy below accepts current mutability |
+| Additional token permissions | HIGH_RISK | A new step must demonstrate a specific need; current validation needs no writes |
 | Explicit all-file syntax / artifact-cleanliness assertion | LOW_RISK_LATER | Agree new coverage; this would add validation semantics |
 | Repeated setup/cache parity | LOW_RISK_LATER | Measure benefit and preserve independent execution |
 | Ruff/Bandit omitted production roots | MEDIUM_RISK | Findings triage and deliberate scope expansion |
@@ -139,3 +139,165 @@ No README workflow badges exist to repair. GitHub also lists dynamic Copilot wor
 | Job/workflow names, filters or trigger changes | HIGH_RISK_EXTERNAL_CONTRACT | Branch protection, rulesets and integration verification |
 
 GitHub baseline evidence and slice-specific validation results belong in the closure report, not durable test-count claims. Branch-protection inspection returned 401 during this audit; required checks remain unverified. Do not infer absence of protection. This contract does not claim CI optimization, eliminated duplication, complete automatic validation or identical scopes across layers.
+
+## CI hardening policy v1
+
+This policy changes execution trust declarations, not validation scope. Workflow
+files, display names, jobs, triggers, filters, step order, commands, setup inputs
+and environment behaviour remain as documented above. No dependency upgrades,
+matrix, lockfile, automation service or security-scope expansion is part of v1.
+
+### Token permissions and trust map
+
+| Workflow / job | Before | After | Required access | Confidence |
+|---|---|---|---|---|
+| CurriculumAdvisor checks / test-and-audit | Explicit contents: read; no job override | Unchanged | REQUIRED: contents read | High: action contracts and local command inspection |
+| CRE release verification / verify | No permission declaration; defaults UNCERTAIN | Explicit contents: read; no job override | REQUIRED: contents read | High: same setup actions; local read-only governance |
+
+Unspecified token permission categories are set to none when an explicit set is
+declared. GitHub still exposes implicit metadata read access. Defaults otherwise
+come from enterprise/organisation/repository settings and can differ; YAML does
+not prove what the prior release token could do. GitHub's managed job reporting
+does not require the script to receive checks: write.
+[Permission calculation](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#permissions).
+
+| Consumer | Permission classification | Reason |
+|---|---|---|
+| Checkout own repository | REQUIRED contents: read | Fetches the event ref; default shallow checkout, not full history |
+| Setup Python / Node | contents: read is sufficient | Public distribution download and local tool-cache setup; no publishing |
+| setup-python pip cache | NOT REQUIRED actions: write | Action-managed cache service, not a script using repository Actions REST writes |
+| pytest / browser / Node component execution | NOT REQUIRED additional token scopes | Repository files, local temporary files and loopback servers; no GitHub API consumer found |
+| Ruff / Bandit | NOT REQUIRED additional token scopes | Local static checks |
+| pip / Playwright / pip-audit | NOT REQUIRED additional token scopes | Network downloads and vulnerability queries, not repository writes |
+| Governance CLI | NOT REQUIRED additional token scopes | Local manifest/source/declaration checks and subprocess validation; no GitHub API or full-history fetch |
+| PR metadata, artifacts, packages, security events, deployments | NOT REQUIRED | No current step consumes these APIs |
+
+There is no custom GitHub CLI/API call, status/check publisher, artifact action,
+package upload, environment deployment or OIDC exchange. Do not grant contents,
+pull-requests, checks, actions, packages, security-events or id-token write access
+for convenience. No named secrets or deployment credentials are referenced.
+Actions still receive GitHub's automatic token; "no named secrets" does not mean
+"no credentials". Checkout retains its default credential persistence and cleanup;
+v1 narrows the token rather than changing checkout behaviour.
+[Checkout v4](https://github.com/actions/checkout/tree/v4),
+[setup-python v5](https://github.com/actions/setup-python/tree/v5),
+[setup-node v4](https://github.com/actions/setup-node/tree/v4).
+
+Both workflows retain pull_request, not pull_request_target. Same-repository PRs
+use the declared permissions. Fork PRs are subject to GitHub's approval/settings
+rules, ordinarily receive no repository secrets and have write scopes downgraded
+to read unless an administrator explicitly permits write tokens. This YAML requests
+no writes even in that exceptional configuration. Fork safety is not weakened.
+No hosted fork execution is claimed by a successful main-branch push.
+
+### Action references: retain major tags
+
+| Action / maintainer | Before = after | Ref type | Purpose | Accepted risk |
+|---|---|---|---|---|
+| actions/checkout / GitHub actions | v4 | MAJOR TAG | Fetch checkout | Tag can move |
+| actions/setup-python / GitHub actions | v5 | MAJOR TAG | Python, optional pip cache | Tag and distribution downloads can move |
+| actions/setup-node / GitHub actions | v4 | MAJOR TAG | Explicit system Node for tests | Tag and distribution downloads can move |
+
+These are the only three direct action dependencies, used in both workflows.
+No action reference changes in v1; no release SHA is invented or presented as a
+pin. Hosted setup logs record the actual resolved action SHAs for each run.
+
+Decision: **major-tag pinning**, deliberately not immutable. It keeps the already
+working majors and allows upstream compatible fixes without a new manual SHA
+refresh obligation for this small repository. Exact version tags are also mutable.
+Full SHA pinning prevents tag movement but can strand fixes without update
+discipline. SHA plus a release-version comment would be the preferred immutable
+alternative if that maintenance obligation is adopted later. None of these
+choices verifies all downloaded/transitive dependencies or certifies supply-chain
+security. Official action repositories above are the trusted provenance sources.
+
+### Runtime and dependency classes
+
+| Class | Current selection | Classification / decision |
+|---|---|---|
+| CI Python | 3.13 | Minor-line selector; accept patch drift for security/compatibility fixes; no exact patch pin |
+| CI system Node | 24 | Major selector; accept minor/patch drift for built-in VM tooling; no npm application dependency graph |
+| Hosted OS | ubuntu-latest | Accept maintained image drift; even ubuntu-24.04 would not freeze image contents; no runner change |
+| Runtime Python requirements | fastapi 0.138.1, uvicorn 0.49.0, pypdf 6.16.1, python-multipart 0.0.32 | EXACT_PIN for these direct requirements, not a complete lock |
+| pytest | >=8,<10 | BOUNDED_RANGE, spans more than one major |
+| httpx | >=0.28,<1 | BOUNDED_RANGE |
+| Ruff | >=0.9,<1 | BOUNDED_RANGE |
+| Bandit | >=1.8,<2 | BOUNDED_RANGE |
+| pip-audit | >=2.8,<3 | BOUNDED_RANGE |
+| Python Playwright | >=1.58,<2 | BOUNDED_RANGE |
+| PyYAML / other indirect tools | No direct declaration | TRANSITIVE (e.g. Bandit); do not imply an independent pinned YAML tool |
+| Other indirect Python packages | Resolver-selected | TRANSITIVE constraints, not a frozen environment |
+| pip bootstrap | General upgrades pip; release uses setup's pip | UNBOUNDED upgrade versus ambient bundled version |
+
+Local Python can differ (for example 3.14); that is not a supported compatibility
+matrix. CI means the actually logged 3.13 patch, not a promise that any local
+version is supported. The Node used internally by a GitHub JavaScript action or
+the Playwright driver is separate from the system Node installed for CRE tests.
+
+Each Playwright package version expects specific browser revisions. Both jobs
+run `python -m playwright install --with-deps chromium`; the resolved Playwright
+version governs Chromium, not a separately maintained manual browser pin. Fresh
+hosted jobs normally download it; neither workflow declares a browser cache.
+The Playwright range can change both package and browser across runs. Linux OS
+dependencies also remain mutable. [Browser model](https://playwright.dev/python/docs/browsers).
+
+Both install requirements-dev.txt, which includes requirements.txt. There is no
+lock or hash-checked environment. Direct runtime pins do not freeze transitive
+packages. Pip may resolve newer permitted dev/transitive versions each run; a
+cache is not a lock. General CI upgrades pip and caches pip downloads; release CI
+does neither explicitly. Node and browser setup otherwise match. The pip
+asymmetry is **HISTORICAL / NEEDS EVIDENCE**: no intentional reason was found. It
+is potential resolver drift, not a demonstrated failure, and is not harmonised.
+
+Ubuntu run steps use the default bash behaviour (fallback sh if bash unavailable);
+there is no PowerShell syntax or custom shell override in either YAML. Installs,
+runtime downloads, browser OS packages and vulnerability auditing require network
+access. This is online hosted CI, not reproducible offline execution.
+
+### Lightweight update process
+
+Updates are currently manual; no repository Dependabot/Renovate update config was
+found. Review changes before a pilot/release and at least monthly; triage relevant
+security advisories promptly. A maintainer should:
+
+1. Review official action releases and compatibility notes. Keep both workflows
+   on the reviewed major; inspect the run's resolved SHA. If adopting immutable
+   refs later, verify the full SHA against an official release/tag and retain a
+   version comment. Never obtain a pin from an arbitrary example.
+2. Update dev tools as a deliberate bounded change, reviewing lint/security output
+   and running focused/full validation and both hosted workflows. Do not relax
+   checks merely to accommodate new findings.
+3. Update direct runtime pins separately with application regressions and the
+   existing runtime dependency audit. A passing audit is not zero vulnerability.
+4. Treat a Playwright update as a browser update; install its matched Chromium and
+   run browser journeys. Review Python/Node major or runner changes separately.
+5. Preserve names/triggers/scopes; record hosted commit, runtime versions, resolved
+   action refs and outcomes. No heavyweight approval infrastructure is required.
+
+### External settings and later candidates
+
+Read-only API inspection on 2026-09-09: default workflow token settings, Actions
+policy, classic main branch protection and vulnerability-alert status returned
+401 without an authenticated settings credential. Their configuration is not
+verified and no settings were changed. Public ruleset listing was accessible and
+showed active repository ruleset RGB (22494028). Its detail lists deletion and
+non_fast_forward rules, with empty include/exclude ref lists and no required-status
+check rule. This is not verification of classic protection or every effective
+required-check consumer. No local Dependabot/Renovate config was found; that
+does not establish that GitHub-side security features are disabled.
+
+| Later candidate | Priority | Why / prerequisite |
+|---|---|---|
+| Settings / branch protection verification | MEDIUM | Required before renaming checks; authenticated administrator read needed |
+| SHA plus version comments | MEDIUM | Adopt sustainable update ownership first; current major-tag risk is explicit |
+| Frozen dependency environment / lockfile | MEDIUM | Improve replayability without changing dependency architecture incidentally |
+| Dev-tool vulnerability-scan scope | MEDIUM | Separate agreed scope expansion and triage |
+| Fixed Ubuntu release | LOW | Reduces OS-family drift, not full immutability |
+| Pip asymmetry / cache parity | LOW | Investigate resolver differences or measured benefit before changing |
+| Dependabot / update automation | LOW | Useful when manual maintenance becomes insufficient |
+| Artifact retention | LOW | No current artifact upload; define need first |
+
+Further CI work is not automatically the highest-value next task. With successful
+hosted proof, return to a **read-only legacy frontend compatibility contract audit**
+(wrappers, hidden Copy/Print bindings and actual consumers) before deleting code.
+Do not combine it with Report/API migration or CSS ownership changes.
