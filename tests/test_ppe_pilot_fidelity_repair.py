@@ -127,18 +127,24 @@ def test_scoped_receipt(coverage_key, scope_key, category, state):
     assert entry["coverage_scopes"][0]["coverage_state"] == {"complete": "COVERAGE_COMPLETE_FOR_SCOPE", "partial": "COVERAGE_PARTIAL", "unknown": "COVERAGE_UNKNOWN"}[state]
 
 
-def test_frontend_and_projection_architecture():
-    js = (ROOT / "static/app.js").read_text(encoding="utf-8")
-    assert "conclusions.slice(0, 8)" not in js
-    assert 'StudentWorkspace.renderSection(report, workspaceConfig(), "curriculum")' in js
-    assert "if (projected) return studentConclusionCard(projected)" in js
-    assert "esc(link.conclusion_id)" not in js
-    assert "StudentLanguage.card" in (ROOT / "static/student-shared.js").read_text(encoding="utf-8")
+def test_shared_frontend_and_projection_architecture():
+    shared = (ROOT / "static/student-shared.js").read_text(encoding="utf-8")
+    workspace = (ROOT / "static/student-workspace.js").read_text(encoding="utf-8")
+    assert "StudentLanguage.card" in shared
+    assert "conclusions.slice(0, 8)" not in workspace
+    assert "StudentPortal.curriculum(view, config)" in workspace
     assert "institutionally confirmed" in (ROOT / "static/student-language.js").read_text(encoding="utf-8")
     source = inspect.getsource(presentation)
     assert "CurriculumEvaluator" not in source
     assert "CourseCompletionResolver" not in source
     assert "requirement.complete" not in source
+
+
+def test_legacy_uct_presentation_wrappers_remain_available():
+    js = (ROOT / "static/app.js").read_text(encoding="utf-8")
+    assert 'StudentWorkspace.renderSection(report, workspaceConfig(), "curriculum")' in js
+    assert "if (projected) return studentConclusionCard(projected)" in js
+    assert "esc(link.conclusion_id)" not in js
 
 
 def test_award_remains_reachable_and_not_inferred():
@@ -197,21 +203,19 @@ def test_actual_frontend_renderers_preserve_seven_cards_and_scopes():
 const fs = require('fs');
 const vm = require('vm');
 const data = JSON.parse(fs.readFileSync(0, 'utf8'));
-const src = fs.readFileSync('static/app.js', 'utf8');
-const names = ['workspaceConfig', 'renderStudentReasoningView', 'requirementCard', 'requirementsSection'];
-const context = {state: {report: data}};
+const config = {institution_name: 'UCT', institution_short_name: 'UCT', evidence_origin: 'user_supplied',
+ capabilities: {course_exploration: true, export: true}};
+const context = {data, config};
 vm.createContext(context);
 vm.runInContext(fs.readFileSync('static/student-shared.js', 'utf8'), context);
 vm.runInContext(fs.readFileSync('static/student-language.js', 'utf8'), context);
 vm.runInContext(fs.readFileSync('static/student-portal.js', 'utf8'), context);
 vm.runInContext(fs.readFileSync('static/student-workspace.js', 'utf8'), context);
-for (const name of names) {
- const start = src.indexOf('function ' + name + '(');
- const end = src.indexOf('\nfunction ', start + 1);
- vm.runInContext(src.slice(start, end < 0 ? undefined : end), context);
-}
-context.data = data;
-process.stdout.write(JSON.stringify({curriculum: context.renderStudentReasoningView(data), requirements: context.requirementsSection(), evidence: vm.runInContext('StudentWorkspace.renderSection(data, workspaceConfig(), "evidence")', context)}));
+process.stdout.write(JSON.stringify({
+ curriculum: vm.runInContext('StudentWorkspace.renderSection(data, config, "curriculum")', context),
+ requirements: vm.runInContext('StudentPortal.curriculum(data.student_reasoning_view, config)', context),
+ evidence: vm.runInContext('StudentWorkspace.renderSection(data, config, "evidence")', context)
+}));
 '''
     process = subprocess.run(["node", "-e", script], input=json.dumps(payload), text=True, encoding="utf-8", capture_output=True, cwd=ROOT, check=True)
     rendered = json.loads(process.stdout)

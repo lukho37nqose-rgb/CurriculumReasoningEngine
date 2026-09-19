@@ -19,9 +19,9 @@ def card(item, config=None):
 const fs = require('fs'), vm = require('vm');
 const data = JSON.parse(fs.readFileSync(0, 'utf8'));
 const before = JSON.stringify(data);
-const context = {data, asArray: x => Array.isArray(x) ? x : [],
- esc: x => String(x ?? '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;')};
+const context = {data};
 vm.createContext(context);
+vm.runInContext(fs.readFileSync('static/student-shared.js', 'utf8'), context);
 vm.runInContext(fs.readFileSync('static/student-language.js', 'utf8'), context);
 const output = vm.runInContext('({html: StudentLanguage.card(data.item, data.config), meaning: StudentLanguage.meaning(data.item, data.config), action: StudentLanguage.actionDetail(data.item, data.config)})', context);
 output.unchanged = JSON.stringify(data) === before;
