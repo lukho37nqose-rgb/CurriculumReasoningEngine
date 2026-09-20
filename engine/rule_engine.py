@@ -31,6 +31,7 @@ from .curriculum import (
     collect_curriculum_course_codes,
 )
 from .entry import ProgrammeEntryEligibilityAssessment, evaluate_programme_entry
+from .evaluation_context import EvaluationContext
 from .graduation import (
     GraduationClearanceEvidence,
     GraduationEligibilityAssessment,
@@ -4065,6 +4066,18 @@ def _compute_warnings(
     credit_framework: AcademicCreditFramework | None = None,
     course_code_scheme: CourseCodeScheme | None = None,
 ) -> list[str]:
+    """Compatibility entry point using a short-lived evaluation context."""
+    return _compute_warnings_with_context(
+        EvaluationContext(student, catalogue, grading_scheme, credit_framework, course_code_scheme, None), major_keys
+    )
+
+
+def _compute_warnings_with_context(
+    context: EvaluationContext, major_keys: list[str],
+) -> list[str]:
+    student = context.student
+    catalogue = context.catalogue
+    grading_scheme = context.grading_scheme
     warnings = []
 
     # Warn about failed courses
@@ -4098,13 +4111,7 @@ def _compute_warnings(
 
     provisional_codes = {
         result.code
-        for result in provisional_open_credit_results(
-            student,
-            catalogue,
-            grading_scheme,
-            credit_framework,
-            course_code_scheme,
-        )
+        for result in context.provisional_results
     }
     unknown_passes = sorted(
         result.code
@@ -4151,9 +4158,7 @@ def _compute_warnings(
                     or f"Admission to {major.name} must be confirmed by the relevant department."
                 )
 
-    recognised, recognition_exclusions = recognised_credited_pairs(
-        student, catalogue, grading_scheme, course_code_scheme
-    )
+    recognised, recognition_exclusions = context.recognition
     if recognition_exclusions:
         warnings.append(
             "Music-course recognition limit applied: "
@@ -4224,6 +4229,15 @@ def _compute_credits(
     credit_framework: AcademicCreditFramework | None = None,
     course_code_scheme: CourseCodeScheme | None = None,
 ) -> tuple[int, int, list[CourseResult]]:
+    """Compatibility entry point using a short-lived evaluation context."""
+    return _compute_credits_with_context(
+        EvaluationContext(student, catalogue, grading_scheme, credit_framework, course_code_scheme, None)
+    )
+
+
+def _compute_credits_with_context(
+    context: EvaluationContext,
+) -> tuple[int, int, list[CourseResult]]:
     """Count verified catalogue credits plus explicitly permitted provisional electives.
 
     Catalogue values outrank transcript-extracted fields for known courses.
@@ -4232,10 +4246,9 @@ def _compute_credits(
     complementary-studies list). Those credits remain provisional and therefore
     cannot support a fully verified graduation conclusion.
     """
-    recognised, _ = recognised_credited_pairs(student, catalogue, grading_scheme, course_code_scheme)
-    provisional = provisional_open_credit_results(
-        student, catalogue, grading_scheme, credit_framework, course_code_scheme
-    )
+    credit_framework = context.credit_framework
+    recognised, _ = context.recognition
+    provisional = list(context.provisional_results)
     credits_completed = sum(_credit_value(fact, credit_framework) for _, fact in recognised) + sum(
         _credit_value(result, credit_framework) for result in provisional
     )
@@ -4259,7 +4272,18 @@ def _compute_course_equivalents(
     course_code_scheme: CourseCodeScheme | None = None,
     course_load_framework: CourseLoadFramework | None = None,
 ) -> tuple[float, float, float]:
-    recognised, _ = recognised_credited_pairs(student, catalogue, grading_scheme, course_code_scheme)
+    """Compatibility entry point using a short-lived evaluation context."""
+    return _compute_course_equivalents_with_context(
+        EvaluationContext(student, catalogue, grading_scheme, credit_framework, course_code_scheme, course_load_framework)
+    )
+
+
+def _compute_course_equivalents_with_context(
+    context: EvaluationContext,
+) -> tuple[float, float, float]:
+    credit_framework = context.credit_framework
+    course_load_framework = context.course_load_framework
+    recognised, _ = context.recognition
     credited = [(result, fact) for result, fact in recognised if fact.counts_towards_course_equivalents]
     sce_total = sum(_load_equivalent(result, course_load_framework) for result, _ in credited)
     senior_sce = sum(
@@ -4968,17 +4992,12 @@ def compute_report(
 
     major_keys = _normalise_major_keys(student.declared_majors, catalogue)
 
-    credits_completed, level_7_credits, provisional_credit_results = _compute_credits(
-        student, catalogue, grading_scheme, credit_framework, course_code_scheme
+    context = EvaluationContext(
+        student, catalogue, grading_scheme, credit_framework,
+        course_code_scheme, course_load_framework,
     )
-    sce_total, senior_sce, humanities_sce = _compute_course_equivalents(
-        student,
-        catalogue,
-        grading_scheme,
-        credit_framework,
-        course_code_scheme,
-        course_load_framework,
-    )
+    credits_completed, level_7_credits, provisional_credit_results = _compute_credits_with_context(context)
+    sce_total, senior_sce, humanities_sce = _compute_course_equivalents_with_context(context)
     major_progresses, majors_complete, humanities_majors_complete = _compute_all_major_progresses(
         student,
         catalogue,
@@ -5113,14 +5132,7 @@ def compute_report(
         course_load_framework,
         award_course_selections,
     )
-    warnings = _compute_warnings(
-        student,
-        catalogue,
-        major_keys,
-        grading_scheme,
-        credit_framework,
-        course_code_scheme,
-    )
+    warnings = _compute_warnings_with_context(context, major_keys)
     if prog is None:
         warnings.append(
             f"No programme rule set matched {student.programme!r}; graduation cannot be verified."
