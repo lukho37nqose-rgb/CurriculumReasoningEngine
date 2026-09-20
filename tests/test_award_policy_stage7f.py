@@ -1,6 +1,6 @@
 import inspect
 
-from engine import rule_engine
+from engine import award_policy, rule_engine
 from engine.catalogue import load_catalogue
 from engine.models import Catalogue, CourseFact, CourseResult, MajorDefinition, StudentRecord
 from engine.rule_engine import _compute_distinction, compute_report
@@ -294,7 +294,7 @@ def test_failed_synthetic_award_remains_failed_with_provisional_status():
 
 
 def test_informatics_award_policy_is_not_hard_coded_in_compute_distinction():
-    source = inspect.getsource(rule_engine._compute_distinction)
+    source = inspect.getsource(rule_engine._compute_distinction) + "\n" + inspect.getsource(award_policy)
 
     assert 'key == "informatics"' not in source
     assert "INF3011F" not in source

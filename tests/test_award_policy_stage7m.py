@@ -4,6 +4,7 @@ from typing import Any
 
 import engine.curriculum as curriculum
 import engine.rule_engine as rule_engine
+from engine import award_policy
 from engine.catalogue import load_catalogue
 from engine.curriculum import CurriculumEvaluator
 from engine.models import Catalogue, CourseFact, CourseResult, MajorDefinition, StudentRecord
@@ -505,7 +506,7 @@ def test_science_alternative_path_is_now_governed_and_status_bounded():
 
 
 def test_science_direct_thresholds_no_longer_active_python_policy():
-    source = inspect.getsource(rule_engine._compute_distinction)
+    source = inspect.getsource(rule_engine._compute_distinction) + "\n" + inspect.getsource(award_policy)
 
     assert "first_credits >= 264" not in source
     assert "senior_first_credits >= 192" not in source

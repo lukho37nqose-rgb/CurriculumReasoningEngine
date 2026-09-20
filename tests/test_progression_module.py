@@ -5,7 +5,7 @@ import inspect
 import subprocess
 import sys
 
-from engine import framework_adapters, progression, rule_engine
+from engine import award_policy, framework_adapters, progression, rule_engine
 
 
 def owned_names():
@@ -40,7 +40,9 @@ def test_shared_adapters_are_imported_without_duplicate_implementations():
 def test_report_orchestration_and_unrelated_views_remain_in_rule_engine():
     for name in ("_compute_exclusion_risk", "compute_report", "_academic_level", "Report",
                  "ExclusionRisk", "Requirement", "MajorProgress", "EligibleCourse",
-                 "QualificationCompletionAssessment", "SubjectDistinction", "Distinction"):
+                 "QualificationCompletionAssessment", "Distinction"):
         assert getattr(rule_engine, name).__module__ == "engine.rule_engine"
         assert not hasattr(progression, name)
+    assert rule_engine.SubjectDistinction is award_policy.SubjectDistinction
+    assert not hasattr(progression, "SubjectDistinction")
     assert not hasattr(progression, "EvaluationContext")

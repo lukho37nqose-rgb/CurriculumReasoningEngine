@@ -4,6 +4,7 @@ from pathlib import Path
 
 import engine.curriculum as curriculum
 import engine.rule_engine as rule_engine
+from engine import award_policy
 from engine.catalogue import load_catalogue
 from engine.curriculum import CurriculumEvaluator
 from engine.models import Catalogue, CourseFact, CourseResult, ProgrammeRules, StudentRecord
@@ -410,7 +411,7 @@ def test_first_attempt_weighted_average_contains_no_hard_coded_uct_tokens():
 
 def test_status_treatment_is_not_owned_by_grading_or_commerce_identity():
     evaluator_source = inspect.getsource(CurriculumEvaluator.evaluate)
-    distinction_source = inspect.getsource(rule_engine._compute_distinction)
+    distinction_source = inspect.getsource(rule_engine._compute_distinction) + "\n" + inspect.getsource(award_policy)
     grading_source = inspect.getsource(curriculum.GradingScheme)
 
     assert "uct_commerce" not in evaluator_source

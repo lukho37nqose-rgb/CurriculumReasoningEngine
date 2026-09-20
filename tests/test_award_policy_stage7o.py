@@ -4,6 +4,7 @@ from typing import Any
 
 import engine.curriculum as curriculum
 import engine.rule_engine as rule_engine
+from engine import award_policy
 from engine.catalogue import load_catalogue
 from engine.curriculum import CurriculumEvaluator
 from engine.models import Catalogue, CourseFact, CourseResult, StudentRecord
@@ -348,7 +349,7 @@ def test_science_alternative_duration_and_dependency_are_governed_path_condition
 
 
 def test_science_alternative_policy_removed_from_generic_python():
-    distinction_source = inspect.getsource(rule_engine._compute_distinction)
+    distinction_source = inspect.getsource(rule_engine._compute_distinction) + "\n" + inspect.getsource(award_policy)
     evaluator_source = inspect.getsource(curriculum.CurriculumEvaluator.evaluate)
 
     assert "for credit_value, count in ((18, 6), (24, 6), (36, 4))" not in distinction_source

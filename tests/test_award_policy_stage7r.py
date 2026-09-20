@@ -1,6 +1,7 @@
 import inspect
 
 import engine.rule_engine as rule_engine
+from engine import award_policy
 from engine.catalogue import load_catalogue
 from engine.models import Catalogue, CourseFact, CourseResult, ProgrammeRules, StudentRecord
 from engine.rule_engine import _compute_distinction, compute_report
@@ -267,7 +268,7 @@ def test_synthetic_structured_duration_blocks_without_special_faculty_code():
 
 
 def test_structured_award_orchestration_does_not_require_commerce_identity():
-    source = inspect.getsource(rule_engine._compute_distinction)
+    source = inspect.getsource(rule_engine._compute_distinction) + "\n" + inspect.getsource(award_policy)
 
     assert "uct_commerce" not in source
     assert "commerce_structured" not in source

@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 from typing import Any
 
+from engine import award_policy
 from engine.curriculum import CurriculumEvaluator
 from engine.rule_engine import _compute_distinction
 from tools import build_commerce_2026 as commerce_builder
@@ -157,7 +158,7 @@ def test_generation_does_not_upgrade_commerce_source_archive_authority():
 
 def test_stage7t_architecture_guards_generation_and_runtime_boundaries():
     evaluator_source = inspect.getsource(CurriculumEvaluator.evaluate)
-    distinction_source = inspect.getsource(_compute_distinction)
+    distinction_source = inspect.getsource(_compute_distinction) + "\n" + inspect.getsource(award_policy)
     builder_source = inspect.getsource(commerce_builder.first_attempt_weighted_average_rule)
 
     for token in ("AB", "DPR", "INC", "EXA"):

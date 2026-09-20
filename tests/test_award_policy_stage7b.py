@@ -2,7 +2,7 @@ import inspect
 from dataclasses import dataclass
 from typing import Any
 
-from engine import rule_engine
+from engine import award_policy, rule_engine
 from engine.catalogue import load_catalogue
 from engine.curriculum import CurriculumEvaluator
 from engine.models import Catalogue, CourseFact, CourseResult, StudentRecord
@@ -207,7 +207,7 @@ def test_migrated_humanities_law_fb1_2_distinction_regression():
 
 
 def test_law_award_policy_is_not_hard_coded_in_compute_distinction():
-    source = inspect.getsource(rule_engine._compute_distinction)
+    source = inspect.getsource(rule_engine._compute_distinction) + "\n" + inspect.getsource(award_policy)
 
     assert 'key == "law"' not in source
     assert "PBL, PVL, CML" not in source

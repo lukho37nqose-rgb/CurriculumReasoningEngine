@@ -1,6 +1,6 @@
 import inspect
 
-from engine import rule_engine
+from engine import award_policy, rule_engine
 from engine.catalogue import load_catalogue
 from engine.models import CourseResult, StudentRecord
 from engine.rule_engine import compute_report
@@ -163,7 +163,7 @@ def test_migrated_psychology_fb1_2_pool_excludes_unrelated_courses():
 
 
 def test_psychology_award_policy_is_not_hard_coded_in_compute_distinction():
-    source = inspect.getsource(rule_engine._compute_distinction)
+    source = inspect.getsource(rule_engine._compute_distinction) + "\n" + inspect.getsource(award_policy)
 
     assert 'key == "psychology"' not in source
     assert "PSY2015F, one other second-year Psychology course" not in source

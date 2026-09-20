@@ -1,6 +1,7 @@
 import inspect
 
 import engine.rule_engine as rule_engine
+from engine import award_policy
 from engine.models import Catalogue, CourseFact, CourseResult, MajorDefinition, StudentRecord
 from engine.rule_engine import _compute_distinction
 
@@ -161,7 +162,7 @@ def test_all_governed_qualification_paths_can_fail_without_institution_branch():
 
 
 def test_compute_distinction_no_longer_contains_science_award_branch():
-    source = inspect.getsource(rule_engine._compute_distinction)
+    source = inspect.getsource(rule_engine._compute_distinction) + "\n" + inspect.getsource(award_policy)
 
     assert "uct_science" not in source
     assert "science_degree" not in source

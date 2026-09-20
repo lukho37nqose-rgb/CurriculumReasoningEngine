@@ -1,6 +1,6 @@
 import inspect
 
-from engine import rule_engine
+from engine import award_policy, rule_engine
 from engine.catalogue import load_catalogue
 from engine.models import CourseResult, StudentRecord
 from engine.rule_engine import compute_report
@@ -151,7 +151,7 @@ def test_migrated_iop_fb1_2_uses_governed_pools_not_hidden_level_parsing():
 
 
 def test_iop_award_policy_is_not_hard_coded_in_compute_distinction():
-    source = inspect.getsource(rule_engine._compute_distinction)
+    source = inspect.getsource(rule_engine._compute_distinction) + "\n" + inspect.getsource(award_policy)
 
     assert 'key == "industrial_and_organisational_psychology"' not in source
     assert "BUS2024F" not in source

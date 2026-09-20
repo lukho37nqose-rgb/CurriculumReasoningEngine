@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 from typing import Any
 
+from engine import award_policy
 from engine.rule_engine import _compute_distinction
 from tools import build_health_2026 as health_builder
 
@@ -209,7 +210,7 @@ def test_health_source_archive_authority_is_not_upgraded_by_builder_reproducibil
 
 
 def test_health_runtime_award_engine_has_no_faculty_specific_award_branch():
-    source = inspect.getsource(_compute_distinction)
+    source = inspect.getsource(_compute_distinction) + "\n" + inspect.getsource(award_policy)
 
     assert "uct_health" not in source
     assert "mbchb" not in source.lower()

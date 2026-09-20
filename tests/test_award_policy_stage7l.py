@@ -2,6 +2,7 @@ import inspect
 from typing import Any
 
 import engine.rule_engine as rule_engine
+from engine import award_policy
 from engine.catalogue import load_catalogue
 from engine.models import Catalogue, CourseFact, CourseResult, MajorDefinition, StudentRecord
 from engine.rule_engine import _compute_distinction, compute_report
@@ -244,7 +245,7 @@ def test_synthetic_award_dependency_can_use_governed_major_identity():
 
 
 def test_science_fb8_1_has_no_named_major_policy_in_generic_python():
-    source = inspect.getsource(rule_engine._compute_distinction)
+    source = inspect.getsource(rule_engine._compute_distinction) + "\n" + inspect.getsource(award_policy)
 
     assert "chemistry" not in source
     assert "computer_science" not in source
@@ -252,6 +253,6 @@ def test_science_fb8_1_has_no_named_major_policy_in_generic_python():
 
 
 def test_science_legacy_alternative_fb8_2_thresholds_are_no_longer_python_policy():
-    source = inspect.getsource(rule_engine._compute_distinction)
+    source = inspect.getsource(rule_engine._compute_distinction) + "\n" + inspect.getsource(award_policy)
 
     assert "for credit_value, count in ((18, 6), (24, 6), (36, 4))" not in source

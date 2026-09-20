@@ -1,6 +1,7 @@
 import inspect
 from typing import Any
 
+from engine import award_policy
 from engine.catalogue import load_catalogue
 from engine.models import (
     AuthorisedAwardCourseSelection,
@@ -433,7 +434,7 @@ def test_synthetic_numeric_thresholds_can_pass_while_dependency_fails():
 
 
 def test_fb1_4_thresholds_and_major_names_are_not_generic_python_policy():
-    source = inspect.getsource(_compute_distinction)
+    source = inspect.getsource(_compute_distinction) + "\n" + inspect.getsource(award_policy)
 
     assert "first_class_sce >= 10" not in source
     assert "first_class_senior_sce >= 8" not in source

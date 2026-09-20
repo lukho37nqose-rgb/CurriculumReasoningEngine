@@ -8,11 +8,10 @@ from curriculum_reasoning_engine.institutions import (
     get_institution_release,
 )
 from curriculum_reasoning_engine.institutions import course_load as generic_load
-from engine import curriculum, planner
+from engine import award_policy, curriculum, planner
 from engine.models import Catalogue, CourseFact, CourseResult, ProgrammeRules, StudentRecord
 from engine.rule_engine import (
     _compute_course_equivalents,
-    _compute_distinction,
     _compute_exclusion_risk,
     compute_report,
 )
@@ -241,4 +240,4 @@ def test_generic_migrated_paths_do_not_call_legacy_course_weight_directly():
     assert "_course_weight" not in inspect.getsource(_compute_exclusion_risk)
     assert "_course_weight" not in inspect.getsource(planner.plan_next_semester)
     assert "_course_weight" not in inspect.getsource(curriculum.CurriculumEvaluator)
-    assert "_course_weight" in inspect.getsource(_compute_distinction)
+    assert "_course_weight" in inspect.getsource(award_policy.weighted_average)

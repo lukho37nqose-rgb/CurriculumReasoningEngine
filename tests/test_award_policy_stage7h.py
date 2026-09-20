@@ -1,7 +1,7 @@
 import inspect
 from typing import Any
 
-from engine import rule_engine
+from engine import award_policy, rule_engine
 from engine.catalogue import load_catalogue
 from engine.models import Catalogue, CourseFact, CourseResult, MajorDefinition, StudentRecord
 from engine.rule_engine import _compute_distinction, compute_report
@@ -288,7 +288,7 @@ def test_synthetic_provisional_major_cannot_produce_verified_award():
 
 
 def test_fb1_1_deterministic_policy_is_not_literal_generic_python_branch():
-    source = inspect.getsource(rule_engine._compute_distinction)
+    source = inspect.getsource(rule_engine._compute_distinction) + "\n" + inspect.getsource(award_policy)
 
     assert "weights >= 4" not in source
     assert "level7_weights >= 2" not in source

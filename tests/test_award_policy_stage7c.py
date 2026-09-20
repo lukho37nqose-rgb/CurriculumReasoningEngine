@@ -1,6 +1,6 @@
 import inspect
 
-from engine import rule_engine
+from engine import award_policy, rule_engine
 from engine.catalogue import load_catalogue
 from engine.models import CourseResult, StudentRecord
 from engine.rule_engine import compute_report
@@ -187,7 +187,7 @@ def test_migrated_economics_fb1_2_pool_excludes_unrelated_courses():
 
 
 def test_economics_award_policy_is_not_hard_coded_in_compute_distinction():
-    source = inspect.getsource(rule_engine._compute_distinction)
+    source = inspect.getsource(rule_engine._compute_distinction) + "\n" + inspect.getsource(award_policy)
 
     assert 'key == "economics"' not in source
     assert "ECO3020F and two other 3000-level ECO courses" not in source
