@@ -1347,6 +1347,19 @@ def _compute_exclusion_risk(
             elif rule_type == "manual":
                 unknown.append(str(raw.get("note", label + " requires Faculty confirmation.")))
 
+            elif accumulated_spec is None:
+                # Accumulated rules are already handled above but retain their fall-through.
+                if raw.get("type") is None or not rule_type:
+                    unknown.append(
+                        "An applicable progression/exclusion rule has no supported rule type; "
+                        "institutional review is required."
+                    )
+                else:
+                    unknown.append(
+                        f"Unsupported progression/exclusion rule type {rule_type!r}; "
+                        "institutional review is required."
+                    )
+
         if provisional_progression:
             unknown.append(
                 "Annual/cumulative totals include transcript-only approved/open elective credits whose programme approval is not verified: "
