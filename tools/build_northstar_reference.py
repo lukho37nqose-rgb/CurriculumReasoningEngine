@@ -71,7 +71,7 @@ def package():
                    "progression_ineligible", "Foundation progression prerequisite not met")],
     )
     return courses, dict(catalogue_version="northstar-v1", source=SOURCE, programmes={"systems_inquiry": programme}, majors={},
-        award_rules=[dict(id="NS-V1-DISTINCTION", name="Systems Inquiry Achievement", type="qualification_distinction", applies_to="structured",
+        award_rules=[dict(id="NS-V1-DISTINCTION", name="Systems Inquiry Achievement", type="qualification_distinction", applies_to="structured", applies_to_programmes=["systems_inquiry"],
             verification_status="unverified", source={"reference": SOURCE}, curriculum_rules=[
                 dict(id="award_average", type="weighted_average", label="Achievement average", course_codes=CODES, minimum_average=82, weighting={"basis": "credit_value"}),
                 dict(id="award_credits", type="credits", label="Award credits", required=30)])],

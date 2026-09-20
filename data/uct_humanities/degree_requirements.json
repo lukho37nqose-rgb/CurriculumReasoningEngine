@@ -156,6 +156,7 @@
       "name": "Humanities FB1.4 qualification distinction",
       "type": "qualification_distinction",
       "applies_to": "general_humanities_degree",
+      "applies_to_programmes": ["ba_regular", "bsocsc_regular", "ba_extended", "bsocsc_extended"],
       "verification_status": "verified",
       "curriculum_rules": [
         {

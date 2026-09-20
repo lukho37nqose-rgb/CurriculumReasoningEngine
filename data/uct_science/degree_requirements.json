@@ -7,6 +7,7 @@
       "name": "Science FB8.2 direct qualification distinction path",
       "type": "qualification_distinction",
       "applies_to": "science_degree_direct_fb8_2",
+      "applies_to_programmes": ["bsc_science", "bsc_science_edp"],
       "verification_status": "unverified",
       "curriculum_rules": [
         {
@@ -74,6 +75,7 @@
       "name": "Science FB8.2 alternative 18/24/36 grouped-average path",
       "type": "qualification_distinction",
       "applies_to": "science_degree_alternative_fb8_2",
+      "applies_to_programmes": ["bsc_science", "bsc_science_edp"],
       "verification_status": "unverified",
       "complete_within_years": "programme_minimum_duration",
       "curriculum_rules": [
