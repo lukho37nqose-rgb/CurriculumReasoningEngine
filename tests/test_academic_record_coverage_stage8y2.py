@@ -581,7 +581,7 @@ def test_all_courses_global_boolean_behavior_is_unchanged():
 
 
 def test_existing_failed_any_compatibility_remains_in_source():
-    source = Path("engine/rule_engine.py").read_text(encoding="utf-8")
+    source = Path("engine/progression.py").read_text(encoding="utf-8")
 
     assert '"failed_any"' in source
     assert "failed_metric" in source
