@@ -32,6 +32,7 @@ from .curriculum import (
 )
 from .entry import ProgrammeEntryEligibilityAssessment, evaluate_programme_entry
 from .evaluation_context import EvaluationContext
+from .framework_adapters import _credit_value, _is_senior_level, _load_equivalent
 from .graduation import (
     GraduationClearanceEvidence,
     GraduationEligibilityAssessment,
@@ -395,36 +396,11 @@ class Report:
     programme_entry_eligibility_assessment: ProgrammeEntryEligibilityAssessment | None = None
 
 
-def _credit_value(
-    item: CourseFact | CourseResult,
-    credit_framework: AcademicCreditFramework | None,
-) -> int:
-    return credit_framework.credit_value(item) if credit_framework is not None else item.nqf_credits
-
-
 def _academic_level(
     item: CourseFact | CourseResult,
     credit_framework: AcademicCreditFramework | None,
 ) -> int:
     return credit_framework.academic_level(item) if credit_framework is not None else item.nqf_level
-
-
-def _is_senior_level(
-    item: CourseFact | CourseResult,
-    credit_framework: AcademicCreditFramework | None,
-) -> bool:
-    return credit_framework.is_senior_level(item) if credit_framework is not None else item.nqf_level >= 6
-
-
-def _load_equivalent(
-    item: CourseFact | CourseResult | str,
-    course_load_framework: CourseLoadFramework | None,
-) -> float:
-    return (
-        course_load_framework.load_equivalent(item)
-        if course_load_framework is not None
-        else _course_weight(item if isinstance(item, str) else item.code)
-    )
 
 
 def _accumulated_progression_metric_spec(
