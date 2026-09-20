@@ -1834,7 +1834,9 @@ def _compute_distinction(
         major_def = catalogue.majors.get(key)
         if not major_def:
             continue
-        progress = _compute_major_progress(major_def, student, catalogue=catalogue)
+        progress = _compute_major_progress(
+            major_def, student, catalogue=catalogue, grading_scheme=grading_scheme
+        )
         used = progress.used_course_codes
         senior_codes = [
             code for code in used if (fact := catalogue.courses.get(code)) is not None and fact.nqf_level >= 6
