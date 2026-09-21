@@ -209,8 +209,9 @@
       "id": "NS-V1-DISTINCTION",
       "name": "Systems Inquiry Achievement",
       "type": "qualification_distinction",
-      "applies_to": "structured",
-      "applies_to_programmes": ["systems_inquiry"],
+      "applies_to_programmes": [
+        "systems_inquiry"
+      ],
       "verification_status": "unverified",
       "source": {
         "reference": "Northstar Academic Rules Registry (synthetic)"

@@ -1,9 +1,9 @@
 {
   "academic_year": 2026,
   "catalogue_root_name": "data",
-  "content_sha256": "5372f013c8bd5f9397cda08e4c303bc49765eeca0305c6187d44f4b6eaef4698",
-  "created_at": "2026-09-20T19:59:44+00:00",
-  "created_by": "Pass 12 phase 1 explicit qualification programme scope",
+  "content_sha256": "5447d44bdb2f3dce5777f608a5feb8bcbf521f5083f634042cece0998df89176",
+  "created_at": "2026-09-20T20:06:08+00:00",
+  "created_by": "Pass 12 explicit qualification programme scope migration",
   "file_count": 22,
   "files": [
     {
@@ -78,8 +78,8 @@
     },
     {
       "path": "uct_humanities/degree_requirements.json",
-      "sha256": "ec0e442d6214a1545f2f6ca4ef4db04e932befe7aac5ce5ee0187e0a46eb0120",
-      "size": 297972
+      "sha256": "fbe9e856ba69bad9902d4cca4ea7ad43ee297e992f8809af6388058e30572397",
+      "size": 297923
     },
     {
       "path": "uct_humanities/music_pathways_2026.json",
@@ -108,8 +108,8 @@
     },
     {
       "path": "uct_science/degree_requirements.json",
-      "sha256": "82dc83b2d69c8810c3fa88cf4be6c978f2d6fda8a6b1baa767429966a22f190c",
-      "size": 208338
+      "sha256": "2df39d5ded3e79a581c98751b249af1388666b816622c196514531ec6079b72e",
+      "size": 208231
     },
     {
       "path": "uct_science/source_extraction/course_descriptions.json",

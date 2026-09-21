@@ -12,7 +12,7 @@ No conclusions are stored in the JSON. Everything is derived here.
 
 import re
 from dataclasses import dataclass, field, replace
-from typing import Any
+from typing import Any, Literal
 
 from curriculum_reasoning_engine.institutions import (
     AcademicCreditFramework,
@@ -25,6 +25,7 @@ from curriculum_reasoning_engine.institutions import (
 from .award import QualificationAwardAssessment, QualificationAwardEvidence, assess_qualification_award
 from .award_policy import SubjectDistinction as SubjectDistinction
 from .award_policy import standard_subject_award, subject_record
+from .catalogue import _qualification_programme_scope_error
 from .completion import CourseCompletionRecognitionInput, CourseCompletionResolver
 from .curriculum import (
     CurriculumEvaluator,
@@ -1441,6 +1442,29 @@ def _compute_exclusion_risk(
 # ---------------------------------------------------------------------------
 
 
+def _resolve_qualification_award_applicability(
+    rule: dict[str, Any],
+    *,
+    selected_programme_key: str | None,
+    allow_programme_less_compatibility: bool,
+) -> tuple[Literal["applicable", "inapplicable", "unresolved"], str]:
+    """Resolve exact programme scope; reference validation belongs to the full catalogue loader."""
+    scope_error = _qualification_programme_scope_error(rule)
+    if scope_error:
+        return "unresolved", f"Malformed programme scope: {scope_error}."
+    if "applies_to" in rule:
+        return "unresolved", "Legacy qualification scope cannot be interpreted; explicit programme targets are required."
+    if "applies_to_programmes" not in rule:
+        if allow_programme_less_compatibility and selected_programme_key is None:
+            return "applicable", "Programme-less catalogue compatibility."
+        return "unresolved", "Programme scope is missing outside programme-less catalogue compatibility."
+    if selected_programme_key is None:
+        return "unresolved", "The selected programme identity is unresolved."
+    if selected_programme_key in rule["applies_to_programmes"]:
+        return "applicable", "The selected programme is an explicit target."
+    return "inapplicable", "The selected programme is not an explicit target."
+
+
 def _compute_distinction(
     student: StudentRecord,
     catalogue: Catalogue,
@@ -1471,19 +1495,38 @@ def _compute_distinction(
             return f"{major.key}:award_rules:{'|'.join(ids)}"
         return f"{major.key}:award_rules"
 
-    def has_applicable_catalogue_qualification_awards() -> bool:
-        if programme is None:
-            return any(rule.get("type") == "qualification_distinction" for rule in catalogue.award_rules)
-        programme_type = str(programme.programme_type).strip()
-        for rule in catalogue.award_rules:
-            if rule.get("type") != "qualification_distinction":
-                continue
-            applies_to = str(rule.get("applies_to", "")).strip()
-            if not applies_to and major_keys:
-                return True
-            if programme_type and programme_type in applies_to:
-                return True
-        return False
+    qualification_awards: list[dict[str, Any]] = []
+    unresolved_applicability: list[str] = []
+    allow_programme_less = not catalogue.programmes and not (student.programme_key or catalogue.programme_key)
+    for index, rule in enumerate(catalogue.award_rules):
+        if rule.get("type") != "qualification_distinction":
+            continue
+        applicability, detail = _resolve_qualification_award_applicability(
+            rule,
+            selected_programme_key=programme.key if programme is not None else None,
+            allow_programme_less_compatibility=allow_programme_less,
+        )
+        if applicability == "applicable":
+            qualification_awards.append(rule)
+        elif applicability == "unresolved":
+            label = rule.get("id") or rule.get("name")
+            if not isinstance(label, str) or not label:
+                label = f"catalogue rule {index + 1}"
+            unresolved_applicability.append(
+                f"Cannot establish whether qualification policy '{label}' governs the programme. {detail}"
+            )
+
+    def with_applicability_uncertainty(result: Distinction) -> Distinction:
+        if not unresolved_applicability:
+            return result
+        return replace(
+            result,
+            qualification_eligible=False,
+            provisional=True,
+            status="conflict" if result.status == "conflict" else "unverified",
+            confidence=min(result.confidence, 0.65),
+            reason=" ".join([result.reason, *unresolved_applicability]).strip(),
+        )
 
     def governed_award_policy_id(
         award: dict[str, Any],
@@ -1598,11 +1641,11 @@ def _compute_distinction(
     if (
         programme is not None
         and programme.programme_type != "general_degree"
-        and not has_applicable_catalogue_qualification_awards()
+        and not qualification_awards
     ):
         structured_award_rules = structured_programme_awards()
         if not structured_award_rules:
-            return Distinction(
+            return with_applicability_uncertainty(Distinction(
                 qualification_eligible=False,
                 provisional=True,
                 subjects=[],
@@ -1612,7 +1655,7 @@ def _compute_distinction(
                     "This structured qualification has programme-specific award rules, "
                     "but no machine-checkable award rule set has been verified."
                 ),
-            )
+            ))
 
         award_rows: list[SubjectDistinction] = []
         verified_award = False
@@ -1642,14 +1685,14 @@ def _compute_distinction(
             if status != "verified" and overall_status == "verified":
                 overall_status = status
 
-        return Distinction(
+        return with_applicability_uncertainty(Distinction(
             qualification_eligible=verified_award,
             provisional=not verified_award and possible_award or overall_status != "verified",
             subjects=award_rows,
             status="verified" if verified_award else overall_status,
             confidence=0.95 if verified_award else (0.5 if possible_award else 0.8),
             reason="Programme-specific award assessment. " + "; ".join(explanations),
-        )
+        ))
 
 
     selections = award_course_selections or []
@@ -1953,9 +1996,6 @@ def _compute_distinction(
             )
             continue
 
-    qualification_awards = [
-        rule for rule in catalogue.award_rules if rule.get("type") == "qualification_distinction"
-    ]
     if qualification_awards:
         path_results = [(rule, *evaluate_qualification_award(rule)) for rule in qualification_awards]
         verified_witness = next(
@@ -1995,14 +2035,14 @@ def _compute_distinction(
         status = "unverified"
         reason = "No governed qualification-distinction rule is available."
         confidence = 0.0
-    return Distinction(
+    return with_applicability_uncertainty(Distinction(
         qualification_eligible=qualification_eligible,
         provisional=status != "verified",
         subjects=subjects,
         status=status,
         confidence=confidence,
         reason=reason,
-    )
+    ))
 
 
 # ---------------------------------------------------------------------------

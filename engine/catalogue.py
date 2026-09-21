@@ -29,6 +29,22 @@ def _nqf_level_from_code(code: str) -> int:
     return _LEGACY_UCT_CODE_SCHEME.infer_academic_level(code)
 
 
+def _qualification_programme_scope_error(rule: dict) -> str:
+    """Validate only the explicit qualification programme-list shape."""
+    if "applies_to_programmes" in rule and "applies_to" in rule:
+        return "both legacy and explicit programme scope are declared"
+    if "applies_to_programmes" not in rule:
+        return ""
+    targets = rule["applies_to_programmes"]
+    if not isinstance(targets, list) or not targets:
+        return "applies_to_programmes must be a nonempty list"
+    if any(not isinstance(key, str) or not key or key != key.strip() for key in targets):
+        return "programme targets must be nonempty strings without surrounding whitespace"
+    if len(set(targets)) != len(targets):
+        return "programme targets must not contain duplicates"
+    return ""
+
+
 def load_catalogue(
     faculty_key: str = "uct_humanities",
     courses_path: Path | None = None,
@@ -325,6 +341,20 @@ def load_catalogue(
             pathway_entry_eligibility=raw.get("pathway_entry_eligibility", {}),
         )
 
+    award_rules = [rule for rule in raw_reqs.get("award_rules", []) if isinstance(rule, dict)]
+    for index, rule in enumerate(award_rules):
+        if rule.get("type") != "qualification_distinction":
+            continue
+        scope_error = _qualification_programme_scope_error(rule)
+        if scope_error:
+            raise ValueError(f"Catalogue qualification rule {index + 1}: {scope_error}.")
+        if "applies_to_programmes" in rule:
+            unknown = [key for key in rule["applies_to_programmes"] if key not in programmes]
+            if unknown:
+                raise ValueError(
+                    f"Catalogue qualification rule {index + 1}: unknown programme targets {unknown!r}."
+                )
+
     forbidden = [
         tuple(pair)
         for pair in raw_reqs.get("forbidden_major_combinations", [])
@@ -340,5 +370,5 @@ def load_catalogue(
         cross_credit_exclusions=raw_reqs.get("cross_credit_exclusions", []),
         source=str(raw_reqs.get("source", "")),
         catalogue_version=str(raw_reqs.get("catalogue_version", "")),
-        award_rules=[rule for rule in raw_reqs.get("award_rules", []) if isinstance(rule, dict)],
+        award_rules=award_rules,
     )
