@@ -25,7 +25,7 @@ from curriculum_reasoning_engine.institutions import (
 from .award import QualificationAwardAssessment, QualificationAwardEvidence, assess_qualification_award
 from .award_policy import SubjectDistinction as SubjectDistinction
 from .award_policy import standard_subject_award, subject_record
-from .catalogue import _qualification_programme_scope_error
+from .catalogue import _governed_award_declaration_issue, _qualification_programme_scope_error
 from .completion import CourseCompletionRecognitionInput, CourseCompletionResolver
 from .curriculum import (
     CurriculumEvaluator,
@@ -1534,12 +1534,16 @@ def _compute_distinction(
         owner_kind: str,
         owner_key: str,
     ) -> str:
+        # Direct catalogues can bypass loader validation; retain a safe identity.
+        if not isinstance(award, dict):
+            award = {}
         explicit = str(award.get("id", "")).strip()
         if explicit:
             return f"{owner_kind}:{owner_key}:{explicit}"
+        declared_rules = award.get("curriculum_rules", [])
         child_ids = [
             str(rule.get("id", "")).strip()
-            for rule in award.get("curriculum_rules", [])
+            for rule in (declared_rules if isinstance(declared_rules, list) else [])
             if isinstance(rule, dict) and str(rule.get("id", "")).strip()
         ]
         if child_ids:
@@ -1662,12 +1666,27 @@ def _compute_distinction(
         possible_award = False
         overall_status = "verified"
         explanations: list[str] = []
+        invalid_awards = 0
+        has_conflict = False
         for award, policy_id, owner_status in structured_award_rules:
-            name = str(award.get("name", "Programme award"))
-            complete, status, display_average, reason, used_codes = evaluate_governed_award(
-                award,
-                owner_status=owner_status,
-            )
+            name = str(award.get("name", "Programme award")) if isinstance(award, dict) else "Programme award"
+            issue = _governed_award_declaration_issue(award)
+            if issue is not None:
+                invalid_awards += 1
+                complete, status, display_average, used_codes = False, "unverified", 0.0, []
+                reason = f"Cannot assess this award because its governed criteria declaration is invalid: {issue}."
+                explanations.append(f"{name}: {reason}")
+                has_conflict = has_conflict or owner_status == "conflict" or (
+                    isinstance(award, dict)
+                    and str(award.get("verification_status", award.get("status", "verified"))) == "conflict"
+                )
+            else:
+                complete, status, display_average, reason, used_codes = evaluate_governed_award(
+                    award,
+                    owner_status=owner_status,
+                )
+                explanations.append(f"{name}: " + ("thresholds met" if complete else "thresholds not met"))
+            has_conflict = has_conflict or status == "conflict"
             award_rows.append(
                 SubjectDistinction(
                     major=name,
@@ -1681,16 +1700,20 @@ def _compute_distinction(
             )
             possible_award = possible_award or complete
             verified_award = verified_award or (complete and status == "verified")
-            explanations.append(f"{name}: " + ("thresholds met" if complete else "thresholds not met"))
             if status != "verified" and overall_status == "verified":
                 overall_status = status
+
+        confidence = 0.95 if verified_award else (0.5 if possible_award else 0.8)
+        if invalid_awards and not verified_award:
+            overall_status = "conflict" if has_conflict else "unverified"
+            confidence = 0.0 if invalid_awards == len(structured_award_rules) else min(confidence, 0.5)
 
         return with_applicability_uncertainty(Distinction(
             qualification_eligible=verified_award,
             provisional=not verified_award and possible_award or overall_status != "verified",
             subjects=award_rows,
             status="verified" if verified_award else overall_status,
-            confidence=0.95 if verified_award else (0.5 if possible_award else 0.8),
+            confidence=confidence,
             reason="Programme-specific award assessment. " + "; ".join(explanations),
         ))
 

@@ -45,6 +45,27 @@ def _qualification_programme_scope_error(rule: dict) -> str:
     return ""
 
 
+def _governed_award_declaration_issue(award: object) -> str | None:
+    """Check governed award structure, leaving criterion semantics to evaluation."""
+    if not isinstance(award, dict):
+        return "award must be a dictionary"
+
+    def check_rules(rules: object, path: str) -> str | None:
+        if not isinstance(rules, list) or not rules:
+            return f"{path} must be a nonempty list of criterion dictionaries"
+        for index, rule in enumerate(rules, 1):
+            rule_path = f"{path}[{index}]"
+            if not isinstance(rule, dict):
+                return f"{rule_path} must be a criterion dictionary"
+            if str(rule.get("type", "course")).strip().lower() in {"all_of", "any_of"}:
+                issue = check_rules(rule.get("children"), f"{rule_path}.children")
+                if issue is not None:
+                    return issue
+        return None
+
+    return check_rules(award.get("curriculum_rules"), "curriculum_rules")
+
+
 def load_catalogue(
     faculty_key: str = "uct_humanities",
     courses_path: Path | None = None,
@@ -189,6 +210,10 @@ def load_catalogue(
 
     programmes: dict[str, ProgrammeRules] = {}
     for key, raw in raw_reqs.get("programmes", {}).items():
+        for award_index, award in enumerate(raw.get("award_rules", []), 1):
+            issue = _governed_award_declaration_issue(award)
+            if issue is not None:
+                raise ValueError(f"Programme {key!r}, award {award_index}: {issue}.")
         thresholds = [
             ReadmissionThreshold(
                 year=int(t.get("year", 0)),
@@ -203,6 +228,12 @@ def load_catalogue(
             if not isinstance(pathway_raw, dict):
                 issues.append(f"Programme '{key}' has an invalid pathway definition for {pathway_key!r}.")
                 continue
+            for award_index, award in enumerate(pathway_raw.get("award_rules", []), 1):
+                issue = _governed_award_declaration_issue(award)
+                if issue is not None:
+                    raise ValueError(
+                        f"Programme {key!r}, pathway {pathway_key!r}, award {award_index}: {issue}."
+                    )
             pathways[pathway_key] = PathwayDefinition(
                 key=pathway_key,
                 name=str(pathway_raw.get("name", pathway_key)),
